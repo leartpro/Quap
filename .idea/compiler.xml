@@ -8,12 +8,12 @@
         <outputRelativeToContentRoot value="true" />
         <module name="DesktopApp" />
         <module name="Server" />
-        <module name="Client" />
+        <module name="ConsoleApp" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Client" target="1.5" />
-      <module name="ConsoleApp" target="1.5" />
+      <module name="Client" target="16" />
+      <module name="ConsoleApp" target="16" />
       <module name="DesktopApp" target="16" />
       <module name="Server" target="1.5" />
     </bytecodeTargetLevel>
