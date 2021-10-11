@@ -11,4 +11,20 @@ module com.quap.desktopapp {
 
     opens com.quap.desktopapp to javafx.fxml;
     exports com.quap.desktopapp;
+
+    exports com.quap.controller;
+    opens com.quap.controller to javafx.fxml;
+
+    exports com.quap.controller.scene;
+    opens com.quap.controller.scene to javafx.fxml;
+
+    exports com.quap.controller.vista;
+    opens com.quap.controller.vista to javafx.fxml;
+
+    exports com.quap.controller.vista.sidebar to javafx.fxml;
+    opens com.quap.controller.vista.sidebar to javafx.fxml;
+
+    exports com.quap.controller.vista.content to javafx.fxml;
+    opens com.quap.controller.vista.content to javafx.fxml;
+
 }
