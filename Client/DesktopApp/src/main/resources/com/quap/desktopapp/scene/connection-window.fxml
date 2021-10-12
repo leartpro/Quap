@@ -6,8 +6,8 @@
 <?import javafx.scene.text.Font?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.scene.ConnectionWindowController">
    <children>
-      <Label layoutX="59.0" layoutY="323.0" prefHeight="17.0" prefWidth="78.0" text="Loading..." AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" />
-      <ProgressBar fx:id="lblLoading" layoutY="386.0" prefHeight="17.0" prefWidth="600.0" />
+      <Label fx:id="lblLoading" layoutX="59.0" layoutY="323.0" prefHeight="17.0" prefWidth="78.0" text="Loading..." AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" />
+      <ProgressBar layoutY="386.0" prefHeight="17.0" prefWidth="600.0" />
       <Label layoutX="218.0" layoutY="150.0" prefHeight="103.0" prefWidth="165.0" text="Quap">
          <font>
             <Font size="64.0" />

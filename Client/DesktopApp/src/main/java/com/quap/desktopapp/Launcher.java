@@ -28,6 +28,7 @@ public class Launcher extends Application {
     }
 
     public static void main(String[] args) {
-
+        System.setProperty("javafx.preloader", LauncherPreloader.class.getCanonicalName());
+        launch(args);
     }
 }

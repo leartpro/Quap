@@ -1,10 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
-<?import javafx.scene.layout.AnchorPane?>
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.quap.controller.scene.MainWindowController"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.scene.MainWindowController">
+   <left>
+      <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="160.0" spacing="25.0">
+                     <children>
+                        <Button fx:id="btnFriends" mnemonicParsing="false" prefWidth="140.0" text="Friends" />
+                        <Button fx:id="btnChatrooms" mnemonicParsing="false" prefWidth="140.0" text="Chatrooms" />
+                        <Button fx:id="btnSettings" mnemonicParsing="false" prefWidth="140.0" text="Settings" />
+                        <Button fx:id="btnProfil" mnemonicParsing="false" prefWidth="140.0" text="Profil" />
+                     </children>
+                     <padding>
+                        <Insets left="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </AnchorPane>
+            <StackPane fx:id="stackSidebar" prefHeight="150.0" prefWidth="200.0">
+               <children>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Button fx:id="btnChatroom1" mnemonicParsing="false" text="Chatroom1" />
+                              <Button mnemonicParsing="false" text="Chatroom2" />
+                              <Button mnemonicParsing="false" text="Chatroom3" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Button fx:id="btnAppSetting1" mnemonicParsing="false" text="AppSetting1" />
+                              <Button mnemonicParsing="false" text="AppSetting2" />
+                              <Button mnemonicParsing="false" text="AppSetting3" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Button fx:id="btnProfilData" mnemonicParsing="false" text="ProfilData" />
+                              <Button mnemonicParsing="false" text="EditProfil" />
+                              <Button mnemonicParsing="false" text="DeletProfil" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Button fx:id="btnFriend1" mnemonicParsing="false" text="Friend1" />
+                              <Button mnemonicParsing="false" text="Friend2" />
+                              <Button mnemonicParsing="false" text="Friend3" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </StackPane>
+        </items>
+      </SplitPane>
+   </left>
+   <center>
+      <StackPane fx:id="stackContent" prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Pane fx:id="paneChatpane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: yellow;">
+               <children>
+                  <Label text="ChatPane" />
+               </children>
+            </Pane>
+            <Pane fx:id="paneSettingsPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: green;">
+               <children>
+                  <Label text="SettingsPane" />
+               </children>
+            </Pane>
+            <Pane fx:id="paneProfilPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: red;">
+               <children>
+                  <Label text="ProfilPane" />
+               </children>
+            </Pane>
+         </children>
+      </StackPane>
+   </center>
+</BorderPane>
