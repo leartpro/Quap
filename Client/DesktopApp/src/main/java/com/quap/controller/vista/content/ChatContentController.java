@@ -1,4 +1,4 @@
 package com.quap.controller.vista.content;
 
-public class FriendsContentController {
+public class ChatContentController {
 }

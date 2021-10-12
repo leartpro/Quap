@@ -7,7 +7,6 @@ module com.quap.desktopapp {
     requires com.dlsc.formsfx;
     requires validatorfx;
     requires org.kordamp.ikonli.javafx;
-    requires eu.hansolo.tilesfx;
 
     opens com.quap.desktopapp to javafx.fxml;
     exports com.quap.desktopapp;
