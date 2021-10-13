@@ -42,35 +42,35 @@ public class ConnectionWindowController implements Initializable {
         });
 
         Thread t2 = new Thread(() -> {
+            Platform.runLater(() -> loadingLabel.setText(message[0]));
             message[0] = "Second Function";
-            Platform.runLater(() -> loadingLabel.setText(message[0]));
-            Platform.runLater(new Runnable() {
-
-                @Override
-                public void run() {
-                    try {
-                        Thread.sleep(3000);
-                    Stage stage = new Stage();
-                    Parent root = null;
-                        root = FXMLLoader.load(getClass().getResource("/com/quap/desktopapp/scene/main-window.fxml"));
-                    Scene scene = new Scene(root);
-                    stage.setScene(scene);
-                    stage.show();
-                    } catch (IOException | InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-        });
-
-        Thread t3 = new Thread(() -> {
-            Platform.runLater(() -> loadingLabel.setText(message[0]));
-            message[0] = "Open Main Stage";
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+        });
+
+        Thread t3 = new Thread(() -> {
+            Platform.runLater(() -> loadingLabel.setText(message[0]));
+            message[0] = "Open Login Stage";
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            Platform.runLater(() -> {
+                    try { //TODO: login-window is not hiding after loading main
+                        Thread.sleep(3000);
+                        Stage stage = new Stage();
+                        Parent root = FXMLLoader.load(getClass().getResource("/com/quap/desktopapp/scene/login-window.fxml"));
+                        Scene scene = new Scene(root);
+                        stage.setScene(scene);
+                        stage.show();
+                    } catch (IOException | InterruptedException e) {
+                        e.printStackTrace();
+                    }
+            });
         });
 
         t1.start();

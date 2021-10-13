@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -36,7 +35,7 @@
             </Label>
             <TextField fx:id="txtPasswordConfirm" text="Type your password here again" />
             <CheckBox fx:id="checkAnonymMode" mnemonicParsing="false" text="Anonym Mode" />
-            <Button fx:id="btnSubmit" mnemonicParsing="false" prefHeight="35.0" prefWidth="70.0" text="Submit">
+            <Button fx:id="btnSubmit" mnemonicParsing="false" onAction="#loadMain" prefHeight="35.0" prefWidth="70.0" text="Submit">
                <VBox.margin>
                   <Insets left="205.0" right="205.0" top="10.0" />
                </VBox.margin>

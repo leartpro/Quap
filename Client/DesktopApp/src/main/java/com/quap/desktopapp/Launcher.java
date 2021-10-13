@@ -3,7 +3,6 @@ package com.quap.desktopapp;
 
 import com.quap.controller.scene.ConnectionWindowController;
 import javafx.application.Application;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 
@@ -13,7 +12,6 @@ import javafx.stage.Stage;
 public class Launcher extends Application {
 
     public static Stage primaryStage = null;
-    public static Scene primaryScene = null;
 
     @Override
     public void init() {
