@@ -3,15 +3,10 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.scene.ConnectionWindowController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="splashBackground" stylesheets="@../../styles/layouts.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.scene.ConnectionWindowController">
    <children>
-      <Label fx:id="lblLoading" layoutX="59.0" layoutY="323.0" prefHeight="17.0" prefWidth="78.0" text="Loading..." AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" />
-      <ProgressBar layoutY="386.0" prefHeight="17.0" prefWidth="600.0" />
-      <Label layoutX="218.0" layoutY="150.0" prefHeight="103.0" prefWidth="165.0" text="Quap">
-         <font>
-            <Font size="64.0" />
-         </font>
-      </Label>
+      <ProgressBar layoutY="386.0" prefHeight="17.0" prefWidth="600.0" styleClass="indicator" stylesheets="@../../styles/colors.css" />
+      <Label fx:id="lblLoading" layoutX="7.0" layoutY="369.0" text="Loading" textFill="#fffdfd" />
+      <Label layoutX="14.0" layoutY="14.0" text="Quap" textFill="WHITE" />
    </children>
 </AnchorPane>

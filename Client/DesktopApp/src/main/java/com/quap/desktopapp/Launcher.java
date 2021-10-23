@@ -16,7 +16,9 @@ public class Launcher extends Application {
     @Override
     public void init() {
         ConnectionWindowController init = new ConnectionWindowController();
-        init.checkFunctions();
+        init.openConnection();
+        init.connect();
+        init.confirmConnection();
     }
 
     @Override

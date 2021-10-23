@@ -1,49 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Font?>
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.scene.LoginWindowController">
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<StackPane fx:id="stackContent" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.scene.LoginWindowController">
    <children>
-      <VBox minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox fx:id="vBoxSignUp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
          <children>
-            <Label text="Quap">
-               <font>
-                  <Font size="36.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="205.0" right="205.0" top="15.0" />
-               </VBox.margin>
-            </Label>
-            <Label text="Username">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <TextField fx:id="txtUsername" text="Type your username here" />
-            <Label text="Passwort">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <TextField fx:id="txtPassword" text="Type your password here" />
-            <Label text="Passwort Confirm">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <TextField fx:id="txtPasswordConfirm" text="Type your password here again" />
-            <CheckBox fx:id="checkAnonymMode" mnemonicParsing="false" text="Anonym Mode" />
-            <Button fx:id="btnSubmit" mnemonicParsing="false" onAction="#loadMain" prefHeight="35.0" prefWidth="70.0" text="Submit">
-               <VBox.margin>
-                  <Insets left="205.0" right="205.0" top="10.0" />
-               </VBox.margin>
-            </Button>
+            <Label text="Quap" />
+            <Button mnemonicParsing="false" text="Sign In" />
+            <Label fx:id="lblUsername" text="Username" />
+            <TextField fx:id="txtUsername" onKeyTyped="#validateUsername" />
+            <Label fx:id="lblPassword" text="Password" />
+            <PasswordField fx:id="txtPassword" onKeyTyped="#validatePassword" />
+            <Label fx:id="lblPasswordConfirm" text="Password Confirm" />
+            <PasswordField fx:id="txtPasswordConfirm" onKeyTyped="#confirmPassword" />
+            <CheckBox fx:id="checkAnonymMode" mnemonicParsing="false" onAction="#switchMode" text="Anonym Mode" />
+            <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#login" text="Login" />
+            <Label text="Sign in with existing Profil:" />
+            <ListView prefHeight="200.0" prefWidth="200.0" />
          </children>
-         <padding>
-            <Insets left="45.0" right="45.0" top="10.0" />
-         </padding>
+      </VBox>
+      <VBox fx:id="vBoxSignIn" prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <Button mnemonicParsing="false" text="Sign Up" />
+         </children>
       </VBox>
    </children>
-</AnchorPane>
+</StackPane>

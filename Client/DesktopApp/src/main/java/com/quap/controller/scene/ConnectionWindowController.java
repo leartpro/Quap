@@ -1,12 +1,16 @@
 package com.quap.controller.scene;
 
+import com.quap.client.Client;
 import javafx.application.Platform;
+import javafx.concurrent.Task;
+import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressIndicator;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -18,80 +22,110 @@ import java.util.ResourceBundle;
  */
 public class ConnectionWindowController implements Initializable {
 
+    private Client client;
+
     @FXML
     Label lblLoading;
-    public static Label loadingLabel;
+    private static Label loadingLabel;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        loadingLabel=lblLoading;
+        loadingLabel= lblLoading;
     }
 
-    public String checkFunctions() {
+    public void connect() {
 
-        final String[] message = {""};
+        ProgressIndicator pi = new ProgressIndicator();
+        Task<Void> counter = new Task<Void>() {
+            @Override
+            public Void call() throws Exception {
+                for (int i = 1; i <= 100; i++) {
+                    Thread.sleep(50);
+                    updateProgress(i, 100);
+                }
+                return null;
+            }
+        };
 
-        Thread t1 = new Thread(() -> {
-            Platform.runLater(() -> loadingLabel.setText(message[0]));
-            message[0] = "First Function";
-            try {
-                Thread.sleep(3000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+        pi.progressProperty().bind(counter.progressProperty());
+        pi.progressProperty().addListener((obs, oldProgress, newProgress) -> {
+            PseudoClass warning = PseudoClass.getPseudoClass("warning");
+            PseudoClass critical = PseudoClass.getPseudoClass("critical");
+            if (newProgress.doubleValue() < 0.3) {
+                pi.pseudoClassStateChanged(warning, false);
+                pi.pseudoClassStateChanged(critical, true);
+            } else if (newProgress.doubleValue() < 0.65) {
+                pi.pseudoClassStateChanged(warning, true);
+                pi.pseudoClassStateChanged(critical, false);
+            } else {
+                pi.pseudoClassStateChanged(warning, false);
+                pi.pseudoClassStateChanged(critical, false);
             }
         });
 
-        Thread t2 = new Thread(() -> {
-            Platform.runLater(() -> loadingLabel.setText(message[0]));
-            message[0] = "Second Function";
-            try {
-                Thread.sleep(3000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+        //#####################
+        Thread loadingDummyThread = new Thread(() -> {
+            //Platform.runLater(() -> loadingLabel.setText(information[4]));
+            String text = "Loading";
+            for(int i = 0; i < 3; i++) {
+                String finalText = text;
+                Platform.runLater(() -> loadingLabel.setText(finalText));
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                text = text + ".";
             }
         });
+        loadingDummyThread.start();
+        try {
+            loadingDummyThread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        //#####################
+        
 
-        Thread t3 = new Thread(() -> {
-            Platform.runLater(() -> loadingLabel.setText(message[0]));
-            message[0] = "Open Login Stage";
+        Thread openLoginThread = new Thread(() -> {
             try {
-                Thread.sleep(3000);
+                Thread.sleep(500);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            Platform.runLater(() -> {
-                    try { //TODO: login-window is not hiding after loading main
-                        Thread.sleep(3000);
+            Platform.runLater(() -> loadingLabel.setText("Loading Login"));
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    try {
                         Stage stage = new Stage();
                         Parent root = FXMLLoader.load(getClass().getResource("/com/quap/desktopapp/scene/login-window.fxml"));
                         Scene scene = new Scene(root);
                         stage.setScene(scene);
                         stage.show();
-                    } catch (IOException | InterruptedException e) {
+                    } catch (IOException e) {
                         e.printStackTrace();
                     }
+                }
             });
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         });
-
-        t1.start();
+        openLoginThread.start();
         try {
-            t1.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        t2.start();
-        try {
-            t2.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        t3.start();
-        try {
-            t3.join();
+            openLoginThread.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-        return message[0];
+    }
+
+    public void openConnection() {
+    }
+
+    public void confirmConnection() {
     }
 }
