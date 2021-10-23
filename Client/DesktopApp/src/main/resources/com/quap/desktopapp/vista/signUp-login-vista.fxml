@@ -7,7 +7,6 @@
     <children>
         <VBox fx:id="vBoxSignUp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
             <children>
-                <Label text="Quap" />
                 <Button mnemonicParsing="false" onAction="#signIn" text="Sign In" />
                 <Label fx:id="lblUsername" text="Username" />
                 <TextField fx:id="txtUsername" onKeyTyped="#validateUsername" />
@@ -15,9 +14,6 @@
                 <PasswordField fx:id="txtPassword" onKeyTyped="#validatePassword" />
                 <Label fx:id="lblPasswordConfirm" text="Password Confirm" />
                 <PasswordField fx:id="txtPasswordConfirm" onKeyTyped="#confirmPassword" />
-                <CheckBox fx:id="checkAnonymMode" mnemonicParsing="false" onAction="#switchMode" text="Anonym Mode" />
-                <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#login" text="Login" />
-                <ListView prefHeight="200.0" prefWidth="200.0" />
             </children>
         </VBox>
     </children>

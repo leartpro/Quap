@@ -1,51 +1,38 @@
 package com.quap.controller.vista.login;
 
 import com.quap.controller.VistaController;
+import com.quap.controller.scene.LoginWindowController;
+import com.quap.controller.vista.VistaNavigator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Paint;
-import javafx.stage.Stage;
 
-import java.io.IOException;
+public class SignUpController extends VistaNavigator {
+    private String username = "Anonym", password = "";
+    private final LoginWindowController loginWindowController = VistaController.getLoginWindowController();
 
-public class SignUpController {
-    private String name, password;
-
-    @FXML
-    private TextField txtUsername;
 
     @FXML
-    private Label lblPassword;
+    private TextField txtUsername = new TextField();
 
     @FXML
-    private PasswordField txtPassword;
+    private Label lblPassword = new Label();
 
     @FXML
-    private Label lblPasswordConfirm;
+    private PasswordField txtPassword = new PasswordField();
 
     @FXML
-    private PasswordField txtPasswordConfirm;
+    private Label lblPasswordConfirm = new Label();
 
     @FXML
-    private CheckBox checkAnonymMode;
+    private PasswordField txtPasswordConfirm = new PasswordField();
 
     @FXML
-    private Button btnLogin;
-
-    @FXML
-    private Label lblUsername;
-
-    @FXML
-    public void initialize() {
-        checkAnonymMode.setSelected(false);
-        btnLogin.setVisible(false);
-    }
+    private Label lblUsername = new Label();
 
     @FXML
     void confirmPassword(KeyEvent keyEvent) {
@@ -58,57 +45,52 @@ public class SignUpController {
         } else {
             lblPasswordConfirm.setTextFill(Paint.valueOf("red"));
         }
-        btnLogin.setVisible(validLogin());
+        loginWindowController.toggleLogin(validLogin());
     }
 
-    @FXML
-    void login(ActionEvent event) {
-        //confirm username with server
-        //check for lokal profil
-        //load main
+    public boolean validLogin() {
+        return password.equals(txtPasswordConfirm.getText())
+                && username.matches("[a-zA-Z]{4,12}")
+                && password.matches("(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,12}");
     }
 
-    @FXML
-    void switchMode(ActionEvent event) {
-        if(checkAnonymMode.isSelected()) {
-            name = "Anonym";
+    @Override
+    public void switchMode(boolean isSelected) {
+        if(isSelected) {
+            username = "Anonym";
             password = "";
             txtUsername.setEditable(false);
             txtPassword.setEditable(false);
             txtPasswordConfirm.setEditable(false);
-            btnLogin.setVisible(true);
 
             lblPassword.setTextFill(Paint.valueOf("gray"));
             lblPasswordConfirm.setTextFill(Paint.valueOf("gray"));
             lblUsername.setTextFill(Paint.valueOf("gray"));
-        } else { //TODO: undo color change from lblPassword, lblPasswordConfirm and lblUsername
+        } else {
             if(validLogin()) {
-                name = txtUsername.getText();
+                username = txtUsername.getText();
                 password = txtPassword.getText();
                 txtUsername.setEditable(true);
                 txtPassword.setEditable(true);
                 txtPasswordConfirm.setEditable(true);
-                btnLogin.setVisible(true);
             } else {
-                name = "Anonym";
+                username = "Anonym";
                 password = "";
                 txtUsername.setEditable(true);
                 txtPassword.setEditable(true);
                 txtPasswordConfirm.setEditable(true);
-                btnLogin.setVisible(false);
             }
         }
     }
 
-    private boolean validLogin() {
-        return txtPassword.getText().equals(txtPasswordConfirm.getText())
-                && txtUsername.getText().matches("[a-zA-Z]{4,12}")
-                && txtPassword.getText().matches("(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,12}");
-    }
+    /*@Override
+    public void setRootNode(LoginWindowController loginWindowController) {
+        this.loginWindowController = loginWindowController;
+    }*/
 
     @FXML
     void validatePassword(KeyEvent keyEvent) {
-        String password = txtPassword.getText();
+        password = txtPassword.getText();
         if(password.matches("(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,12}")) {
             lblPassword.setTextFill(Paint.valueOf("green"));
         } else if(password.length()==0) {
@@ -116,24 +98,11 @@ public class SignUpController {
         } else {
             lblPassword.setTextFill(Paint.valueOf("red"));
         }
-        btnLogin.setVisible(validLogin());
-    }
-
-
-
-    public void loadMain(ActionEvent e) throws IOException {
-        //TODO: give attributes to main scene controller
-        //TODO: set size (not resizable???)
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/quap/desktopapp/scene/main-window.fxml"));
-        Stage stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        loginWindowController.toggleLogin(validLogin());
     }
 
     public void validateUsername(KeyEvent keyEvent) {
-        String username = txtUsername.getText();
+        username = txtUsername.getText();
         if(username.matches("[a-zA-Z]{4,12}")) {
             lblUsername.setTextFill(Paint.valueOf("green"));
         } else if(username.length()==0) {
@@ -141,12 +110,14 @@ public class SignUpController {
         } else {
             lblUsername.setTextFill(Paint.valueOf("red"));
         }
-        btnLogin.setVisible(validLogin());
+        loginWindowController.toggleLogin(validLogin());
+
     }
 
     @FXML
     void signIn(ActionEvent event) {
         VistaController.loadVista(VistaController.SignIn);
     }
+
 
 }

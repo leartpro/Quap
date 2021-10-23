@@ -33,4 +33,8 @@ public class VistaController {
         VistaController.loginWindowController = loginWindowController;
     }
 
+    public static LoginWindowController getLoginWindowController() {
+        return loginWindowController;
+    }
+
 }
