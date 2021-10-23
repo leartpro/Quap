@@ -1,13 +1,13 @@
 package com.quap.controller.scene;
 
 import com.quap.client.Client;
+import com.quap.controller.VistaController;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
@@ -97,7 +97,8 @@ public class ConnectionWindowController implements Initializable {
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
-                    try {
+                    //Main
+                    /*try {
                         Stage stage = new Stage();
                         Parent root = FXMLLoader.load(getClass().getResource("/com/quap/desktopapp/scene/login-window.fxml"));
                         Scene scene = new Scene(root);
@@ -105,7 +106,24 @@ public class ConnectionWindowController implements Initializable {
                         stage.show();
                     } catch (IOException e) {
                         e.printStackTrace();
+                    } */
+                    FXMLLoader loader = new FXMLLoader();
+                    Stage stage = new Stage();
+                    try {
+                        stage.setScene(
+                                new Scene(
+                                    loader.load(
+                                            getClass()
+                                                    .getResourceAsStream(VistaController.LOGIN))));
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
+                    LoginWindowController loginWindowController = loader.getController();
+
+                    VistaController.setLoginWindowController(loginWindowController);
+                    VistaController.loadVista(VistaController.SignUp);
+
+                    stage.show();
                 }
             });
             try {

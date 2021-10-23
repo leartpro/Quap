@@ -18,4 +18,7 @@ module com.quap.desktopapp {
     exports com.quap.controller.scene;
     opens com.quap.controller.scene to javafx.fxml;
 
+    exports com.quap.controller.vista.login;
+    opens com.quap.controller.vista.login;
+
 }

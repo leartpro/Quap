@@ -1,31 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<StackPane fx:id="stackContent" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.scene.LoginWindowController">
-   <children>
-      <VBox fx:id="vBoxSignUp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
-         <children>
-            <Label text="Quap" />
-            <Button mnemonicParsing="false" text="Sign In" />
-            <Label fx:id="lblUsername" text="Username" />
-            <TextField fx:id="txtUsername" onKeyTyped="#validateUsername" />
-            <Label fx:id="lblPassword" text="Password" />
-            <PasswordField fx:id="txtPassword" onKeyTyped="#validatePassword" />
-            <Label fx:id="lblPasswordConfirm" text="Password Confirm" />
-            <PasswordField fx:id="txtPasswordConfirm" onKeyTyped="#confirmPassword" />
-            <CheckBox fx:id="checkAnonymMode" mnemonicParsing="false" onAction="#switchMode" text="Anonym Mode" />
-            <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#login" text="Login" />
-            <Label text="Sign in with existing Profil:" />
-            <ListView prefHeight="200.0" prefWidth="200.0" />
-         </children>
-      </VBox>
-      <VBox fx:id="vBoxSignIn" prefHeight="200.0" prefWidth="100.0">
-         <children>
-            <Button mnemonicParsing="false" text="Sign Up" />
-         </children>
-      </VBox>
-   </children>
-</StackPane>
+<VBox xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" prefHeight="400.0" prefWidth="600.0" fx:controller="com.quap.controller.scene.LoginWindowController">
+<children>
+   <Label fx:id="headerLabel" maxWidth="1.7976931348623157E308" text="Header" VBox.vgrow="NEVER" />
+   <StackPane fx:id="vistaHolder" VBox.vgrow="ALWAYS" />
+</children>
+</VBox>
