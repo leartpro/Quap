@@ -1,4 +1,4 @@
 package com.quap.controller.vista.main;
 
-public class ChatController {
+public class ChatController extends MainVistaNavigator{
 }

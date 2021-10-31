@@ -3,7 +3,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<AnchorPane fx:id="chat" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.quap.desktopapp.vista.main.ChatMainVista">
+<AnchorPane fx:id="chat" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.quap.controller.vista.main.ChatController">
     <children>
         <ScrollPane prefHeight="315.0" prefWidth="485.0">
             <content>

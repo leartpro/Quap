@@ -2,7 +2,7 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
-<AnchorPane fx:id="settings" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.quap.desktopapp.vista.main.SettingsMainVista" >
+<AnchorPane fx:id="settings" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.quap.controller.vista.main.SettingsController" >
     <children>
         <Label text="Settings" />
     </children>
