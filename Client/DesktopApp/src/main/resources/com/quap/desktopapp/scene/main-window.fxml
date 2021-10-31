@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.scene.MainWindowController">
    <center>
-      <StackPane fx:id="stackContent" prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER"></StackPane>
+      <StackPane fx:id="stackContent" prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </center>
    <left>
       <BorderPane fx:id="paneSidebar" prefHeight="377.0" prefWidth="115.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
