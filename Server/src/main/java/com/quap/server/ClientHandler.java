@@ -3,8 +3,16 @@ package com.quap.server;
 import java.io.*;
 import java.net.Socket;
 
-public class ClientHandler {
-    public ClientHandler(Socket socket) {
+public class ClientHandler implements Runnable {
+    private final int ID;
+    private final Socket socket;
+    public ClientHandler(Socket socket, int ID) {
+        this.socket = socket;
+        this.ID = ID;
+    }
+
+    @Override
+    public void run() {
         InputStream input = null;
         try {
             input = socket.getInputStream();
@@ -32,5 +40,16 @@ public class ClientHandler {
             writer.println("Server: " + reverseText);
 
         } while (!text.equals("bye"));
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public ServerClient getClient() {
+        return null;
+    }
+
+    public void disconnect() {
     }
 }

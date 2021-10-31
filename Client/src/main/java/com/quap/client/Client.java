@@ -4,21 +4,21 @@ import com.quap.client.network.Prefixes;
 import com.quap.client.network.Suffixes;
 
 import java.io.IOException;
-import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.util.Arrays;
 import java.util.HashMap;
 
 public class Client {
     private final HashMap<Prefixes, String> prefixes = new HashMap();
     private final HashMap<Suffixes, String> suffixes = new HashMap();
     private Socket socket;
-    private final int remotePort;
+    private int remotePort = 8192;
     private String name;
     private final int port;
-    private final InetAddress address;
+    private Thread send, listen;
+    private InetAddress address;
+    private int ID = -1;
 
     {
         try {
@@ -33,11 +33,15 @@ public class Client {
         for(Suffixes s : Suffixes.values()) {
             suffixes.put(s, "/-"+ s.name().toLowerCase().charAt(0)+ "-/");
         }
-        remotePort = 8080;
+        remotePort = 8192;
     }
 
-    public Client(InetAddress address, int port) {
-        this.address = address;
+    public Client(String address, int port) {
+        try {
+            this.address = InetAddress.getByName(address);
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
         this.port = port;
     }
 
@@ -57,40 +61,29 @@ public class Client {
         return port;
     }
 
-    public void send() {
+    public void send(String text) {
         send = new Thread("Send") {
             public void run() {
-                DatagramPacket packet = new DatagramPacket(data, data.length, ip, port);
-                try {
-                    socket.send(packet);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+
             }
         };
         send.start();
     }
 
     public String receive() {
-        byte[] data = new byte[1024];
-        DatagramPacket packet = new DatagramPacket(data, data.length);
-        try {
-            socket.receive(packet);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        String message = new String(packet.getData());
+        String message = "";
         return message;
     }
 
-    public void openConnection() {
+    public boolean openConnection() {
         try {
-            //socket = new Socket(InetAddress.getByName("de.quap.com"), 8192, address, port); //TODO: change socket
-            socket = new Socket(InetAddress.getByName("de.quap.com"), 8192); //TODO: add local configurations
+            socket = new Socket(InetAddress.getByName("de.quap.com"), remotePort, InetAddress.getLocalHost(), 8080); //TODO: add local configurations
             //socket.bind(new InetSocketAddress(address, port));
         } catch (IOException e) {
             e.printStackTrace();
+            return false;
         }
+        return true;
     }
 
     public void authorize() {
@@ -111,21 +104,21 @@ public class Client {
     public void listen() {
         listen = new Thread("Listen") {
             public void run() {
-                while (running) {
-                    String message = client.receive();
+                while (true) {
+                    String message = receive();
                     if (message.startsWith("/c/")) {
-                        client.setID(Integer.parseInt(message.split("/c/|/e/")[1]));
-                        console("Successfully connected to server! ID: " + client.getID());
+                        setID(Integer.parseInt(message.split("/c/|/e/")[1]));
+                        System.out.println("Successfully connected to server! ID: " + getID());
                     } else if (message.startsWith("/m/")) {
                         String text = message.substring(3);
                         text = text.split("/e/")[0];
-                        console(text);
+                        System.out.println(text);
                     } else if (message.startsWith("/i/")) {
-                        String text = "/i/" + client.getID() + "/e/";
-                        send(text, false);
+                        String text = "/i/" + getID() + "/e/";
+                        send(text);
                     } else if (message.startsWith("/u/")) {
                         String[] u = message.split("/u/|/n/|/e/");
-                        users.update(Arrays.copyOfRange(u, 1, u.length - 1));
+                        //users.update(Arrays.copyOfRange(u, 1, u.length - 1));
                     }
                 }
             }
@@ -133,7 +126,15 @@ public class Client {
         listen.start();
     }
 
-    public void update(String[] users) {
-        list.setListData(users);
+    //public void update(String[] users) {
+    //    list.setListData(users);
+    //}
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
+    public int getID() {
+        return ID;
     }
 }

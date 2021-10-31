@@ -7,18 +7,27 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.UnknownHostException;
 
-public class Main {
+public class Main { //TODO: mdns
     private static ServerSocket socket;
 
+    public Main(int port) {
+        try {
+            socket = new ServerSocket(port, 0);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        new Server(socket);
+    }
+
     public static void main(String[] args) {
-        int port=8192, backlog=50;
-        String address="de.quap.com";
+        System.setProperty("java.net.preferIPv4Stack", "true");
+        int port=8192;
         if (args.length==0) {
-            new Main(port, backlog, address);
+            new Main(port);
         } else if(args.length==1) {
-            new Main(Integer.parseInt(args[0]), backlog, address);
+            new Main(Integer.parseInt(args[0]));
         } else if(args.length==2) {
-            new Main(Integer.parseInt(args[0]), backlog, args[1]);
+            new Main(Integer.parseInt(args[0]), 0, args[1]);
         } else if(args.length==3) {
             new Main(Integer.parseInt(args[0]), Integer.parseInt(args[1]), args[2]);
         } else {
@@ -26,7 +35,6 @@ public class Main {
             System.err.println("Usage2: java -jar QuapServer.jar <PORT[int]>");
             System.err.println("Usage3: java -jar QuapServer.jar <PORT[int]> <ADDRESS[String]>");
             System.err.println("Usage4: java -jar QuapServer.jar <PORT[int]> <BACKLOG[int]> <ADDRESS[String]>");
-            return;
         }
     }
 
@@ -40,6 +48,6 @@ public class Main {
             e.printStackTrace();
             System.err.println("A security manager exists and its checkListen method doesn't allow the operation.");
         }
-        Server server = new Server(socket);
+        new Server(socket);
     }
 }

@@ -68,14 +68,16 @@ public class LoginWindowController {
         //confirm username with server
         //check for lokal profil
         //load main
-    }
-
-    public void loadMain(ActionEvent e) throws IOException {
         //TODO: give attributes to main scene controller
         //TODO: set size (not resizable???)
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/quap/desktopapp/scene/main-window.fxml"));
-        Stage stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
-        Parent root = loader.load();
+        Stage stage = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

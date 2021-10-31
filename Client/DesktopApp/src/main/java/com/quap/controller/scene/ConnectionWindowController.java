@@ -3,14 +3,11 @@ package com.quap.controller.scene;
 import com.quap.client.Client;
 import com.quap.controller.VistaController;
 import javafx.application.Platform;
-import javafx.concurrent.Task;
-import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.ProgressIndicator;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -35,7 +32,7 @@ public class ConnectionWindowController implements Initializable {
 
     public void connect() {
 
-        ProgressIndicator pi = new ProgressIndicator();
+        /*ProgressIndicator pi = new ProgressIndicator();
         Task<Void> counter = new Task<Void>() {
             @Override
             public Void call() throws Exception {
@@ -61,9 +58,9 @@ public class ConnectionWindowController implements Initializable {
                 pi.pseudoClassStateChanged(warning, false);
                 pi.pseudoClassStateChanged(critical, false);
             }
-        });
+        });*/
 
-        //#####################
+
         Thread loadingDummyThread = new Thread(() -> {
             //Platform.runLater(() -> loadingLabel.setText(information[4]));
             String text = "Loading";
@@ -81,6 +78,27 @@ public class ConnectionWindowController implements Initializable {
         loadingDummyThread.start();
         try {
             loadingDummyThread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        //#####################
+        Thread openConnection = new Thread(() -> {
+            Platform.runLater(() -> loadingLabel.setText("Open Connection..."));
+                client = new Client("localhost", 8080);
+                boolean success = client.openConnection();
+                if(success) {
+                    client.authorize();
+                }
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+        });
+        openConnection.start();
+        try {
+            openConnection.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

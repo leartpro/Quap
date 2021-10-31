@@ -17,7 +17,7 @@ public class Launcher extends Application {
     public void init() {
         ConnectionWindowController init = new ConnectionWindowController();
         init.openConnection();
-        init.connect();
+        init.connect(); //TODO:
         init.confirmConnection();
     }
 
