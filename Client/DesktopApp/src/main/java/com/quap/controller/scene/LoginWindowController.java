@@ -1,6 +1,7 @@
 package com.quap.controller.scene;
 
 import com.quap.controller.vista.VistaNavigator;
+import com.quap.controller.vista.login.LoginVistaNavigator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,7 +20,25 @@ import java.io.IOException;
  */
 public class LoginWindowController {
     private String name, password;
-    private VistaNavigator currentNode;
+    private final Vista vista = new Vista();
+    private LoginVistaNavigator currentNode;
+
+    private class Vista extends LoginVistaNavigator {
+
+        @Override
+        public boolean validLogin() {
+            return false;
+        }
+
+        @Override
+        public void switchMode(boolean isSelected) {
+
+        }
+
+        public VistaNavigator getVistaByID(String ID) {
+            return super.getVistaByID(ID);
+        }
+    }
 
     @FXML
     private StackPane vistaHolder;
@@ -34,13 +53,13 @@ public class LoginWindowController {
     public void initialize() {
         checkAnonymMode.setSelected(false);
         btnLogin.setVisible(false);
-        currentNode = VistaNavigator.getVistaByID("signUp");
+        currentNode = (LoginVistaNavigator) vista.getVistaByID("signUp");
         //currentNode.setRootNode(this);
     }
 
     public void setVista(Node node) {
         if(node.getId().equals("signUp") || node.getId().equals("signIn")) {
-            currentNode = VistaNavigator.getVistaByID(node.getId());
+            currentNode = (LoginVistaNavigator) vista.getVistaByID(node.getId());
             //currentNode.setRootNode(this);
         } else {
             IllegalArgumentException e;

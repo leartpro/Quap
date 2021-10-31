@@ -8,16 +8,6 @@
    <center>
       <StackPane fx:id="stackContent" prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane fx:id="paneProfilPane" prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <Label text="Profil" />
-               </children>
-            </AnchorPane>
-            <AnchorPane fx:id="paneSettingsPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: darkgray;">
-               <children>
-                  <Label text="Settings" />
-               </children>
-            </AnchorPane>
             <AnchorPane fx:id="paneChatPane" prefHeight="200.0" prefWidth="200.0">
                <children>
                   <ScrollPane prefHeight="315.0" prefWidth="485.0">

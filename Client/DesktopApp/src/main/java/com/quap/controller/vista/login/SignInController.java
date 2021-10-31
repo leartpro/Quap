@@ -2,7 +2,6 @@ package com.quap.controller.vista.login;
 
 import com.quap.controller.VistaController;
 import com.quap.controller.scene.LoginWindowController;
-import com.quap.controller.vista.VistaNavigator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -11,7 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Paint;
 
-public class SignInController extends VistaNavigator{
+public class SignInController extends LoginVistaNavigator {
     private String username = "Anonym", password = "";
     private final LoginWindowController loginWindowController = VistaController.getLoginWindowController();
 
@@ -27,6 +26,7 @@ public class SignInController extends VistaNavigator{
     @FXML
     private Label lblUsername = new Label();
 
+    @Override
     public boolean validLogin() {
         return  username
                 .matches("[a-zA-Z]{4,12}")
