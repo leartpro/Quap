@@ -6,28 +6,7 @@
 <?import javafx.scene.layout.*?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <center>
-      <StackPane fx:id="stackContent" prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-            <AnchorPane fx:id="paneChatPane" prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <ScrollPane prefHeight="315.0" prefWidth="485.0">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-                    </content>
-                  </ScrollPane>
-                  <TextField layoutY="330.0" prefHeight="25.0" prefWidth="481.0" />
-               </children>
-            </AnchorPane>
-            <AnchorPane fx:id="paneListPane" prefHeight="355.0" prefWidth="478.0">
-               <children>
-                  <ListView layoutX="1.0" layoutY="-1.0" prefHeight="356.0" prefWidth="484.0" />
-               </children>
-               <StackPane.margin>
-                  <Insets />
-               </StackPane.margin>
-            </AnchorPane>
-         </children>
-      </StackPane>
+      <StackPane fx:id="stackContent" prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER"></StackPane>
    </center>
    <left>
       <BorderPane fx:id="paneSidebar" prefHeight="377.0" prefWidth="115.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">

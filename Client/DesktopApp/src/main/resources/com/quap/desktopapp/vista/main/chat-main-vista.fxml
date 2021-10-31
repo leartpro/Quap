@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.quap.desktopapp.vista.main.ChatMainVista"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane fx:id="chat" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.quap.desktopapp.vista.main.ChatMainVista">
+    <children>
+        <ScrollPane prefHeight="315.0" prefWidth="485.0">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+            </content>
+        </ScrollPane>
+        <TextField layoutY="330.0" prefHeight="25.0" prefWidth="481.0" />
+    </children>
 </AnchorPane>
