@@ -1,4 +1,4 @@
 package com.quap.controller.vista.main;
 
-public class ListController {
+public class ListController extends MainVistaNavigator{
 }
