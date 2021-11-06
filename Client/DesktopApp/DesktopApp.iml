@@ -10,6 +10,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="json-20210307" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:18-ea+4" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:win:18-ea+4" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-base:18-ea+4" level="project" />
@@ -37,6 +38,5 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.jupiter:junit-jupiter-engine:5.8.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.platform:junit-platform-engine:1.8.1" level="project" />
     <orderEntry type="module" module-name="Client" />
-    <orderEntry type="library" name="json-20210307" level="project" />
   </component>
 </module>

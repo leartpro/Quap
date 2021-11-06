@@ -1,38 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<VBox xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.scene.MainWindowController">
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.scene.MainWindowController">
    <children>
-      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+      <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
          <center>
-            <StackPane fx:id="stackContent" prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+            <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
+               <children>
+                  <StackPane fx:id="stackContent" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: blue;" VBox.vgrow="ALWAYS" />
+               </children>
+            </VBox>
          </center>
          <left>
-            <BorderPane fx:id="paneSidebar" prefHeight="377.0" prefWidth="115.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
-               <top>
-                  <VBox prefHeight="118.0" prefWidth="115.0" BorderPane.alignment="CENTER">
-                     <children>
-                        <Button mnemonicParsing="false" text="Button" />
-                        <Button mnemonicParsing="false" text="Button" />
-                        <Button mnemonicParsing="false" text="Button" />
-                        <Button mnemonicParsing="false" text="Button" />
-                     </children>
-                  </VBox>
-               </top>
-               <bottom>
-                  <VBox fx:id="vBoxButtonHolder" prefHeight="237.0" prefWidth="115.0" BorderPane.alignment="CENTER" />
-               </bottom>
-            </BorderPane>
+            <VBox maxHeight="1.7976931348623157E308" BorderPane.alignment="CENTER">
+               <children>
+                  <BorderPane fx:id="paneSidebar" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="115.0" style="-fx-background-color: gray;" VBox.vgrow="ALWAYS">
+                     <top>
+                        <VBox alignment="CENTER" prefWidth="115.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Button mnemonicParsing="false" text="Button" />
+                              <Button mnemonicParsing="false" text="Button" />
+                              <Button mnemonicParsing="false" text="Button" />
+                              <Button mnemonicParsing="false" text="Button" />
+                           </children>
+                        </VBox>
+                     </top>
+                     <bottom>
+                        <VBox fx:id="vBoxButtonHolder" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="115.0" BorderPane.alignment="CENTER" />
+                     </bottom>
+                  </BorderPane>
+               </children>
+            </VBox>
          </left>
          <bottom>
-            <HBox alignment="CENTER_LEFT" prefHeight="20.0" prefWidth="600.0" style="-fx-background-color: lightgray;" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="20.0" prefWidth="600.0" style="-fx-background-color: lightgray;" BorderPane.alignment="CENTER">
                <children>
-                  <Label prefHeight="17.0" prefWidth="35.0" text="Quap" />
-                  <Pane prefHeight="20.0" prefWidth="523.0" />
-                  <Label fx:id="lblServer_IP" prefHeight="17.0" prefWidth="58.0" text="Server IP" />
+                  <Label alignment="CENTER" prefWidth="35.0" text="Quap" HBox.hgrow="NEVER" />
+                  <Pane maxWidth="1.7976931348623157E308" prefHeight="20.0" HBox.hgrow="ALWAYS" />
+                  <Label fx:id="lblServer_IP" prefWidth="50.0" text="Server IP" HBox.hgrow="NEVER" />
                </children>
                <opaqueInsets>
                   <Insets />
@@ -40,24 +47,35 @@
             </HBox>
          </bottom>
          <top>
-            <MenuBar BorderPane.alignment="CENTER">
-              <menus>
-                <Menu mnemonicParsing="false" text="Connection">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Disconnect" />
-                        <MenuItem mnemonicParsing="false" text="Reconnect" />
-                        <MenuItem mnemonicParsing="false" text="Status Informationn" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Help">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="About" />
-                        <MenuItem mnemonicParsing="false" text="Tutorial" />
-                        <MenuItem mnemonicParsing="false" text="Project&amp;Source" />
-                  </items>
-                </Menu>
-              </menus>
-            </MenuBar>
+            <HBox maxWidth="1.7976931348623157E308" prefWidth="25.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+               <children>
+                  <MenuBar maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                    <menus>
+                      <Menu mnemonicParsing="false" text="Connection">
+                        <items>
+                          <MenuItem mnemonicParsing="false" text="Disconnect" />
+                              <MenuItem mnemonicParsing="false" text="Reconnect" />
+                              <MenuItem mnemonicParsing="false" text="Status Informationn" />
+                        </items>
+                      </Menu>
+                      <Menu mnemonicParsing="false" text="Help">
+                        <items>
+                          <MenuItem mnemonicParsing="false" text="About" />
+                              <MenuItem mnemonicParsing="false" text="Tutorial" />
+                              <MenuItem mnemonicParsing="false" text="Project&amp;Source" />
+                        </items>
+                      </Menu>
+                    </menus>
+                  </MenuBar>
+                  <ButtonBar buttonMinWidth="16.0" prefHeight="16.0" prefWidth="120.0" HBox.hgrow="NEVER">
+                     <buttons>
+                        <Button mnemonicParsing="false" onAction="#maximize" text="O" />
+                        <Button mnemonicParsing="false" onAction="#minimize" text="_" />
+                        <Button mnemonicParsing="false" onAction="#close" text="X" />
+                     </buttons>
+                  </ButtonBar>
+               </children>
+            </HBox>
          </top>
       </BorderPane>
    </children>
