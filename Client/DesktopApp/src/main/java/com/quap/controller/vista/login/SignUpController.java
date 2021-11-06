@@ -116,7 +116,7 @@ public class SignUpController extends LoginVistaNavigator {
 
     @FXML
     void signIn(ActionEvent event) {
-        VistaController.loadVista(VistaController.SignIn);
+        VistaController.loadLoginVista(VistaController.SignIn);
     }
 
 

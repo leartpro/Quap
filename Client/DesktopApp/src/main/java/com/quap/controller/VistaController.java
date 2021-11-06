@@ -1,6 +1,7 @@
 package com.quap.controller;
 
 import com.quap.controller.scene.LoginWindowController;
+import com.quap.controller.scene.MainWindowController;
 import javafx.fxml.FXMLLoader;
 
 import java.io.IOException;
@@ -17,10 +18,25 @@ public class VistaController {
     public static final String SETTINGS = "/com/quap/desktopapp/vista/main/settings-main-vista.fxml";
 
     private static LoginWindowController loginWindowController;
+    private static MainWindowController mainWindowController;
 
-    public static void loadVista(String fxml) {
+    public static void loadLoginVista(String fxml) {
         try {
             loginWindowController.setVista(
+                    FXMLLoader.load(
+                            VistaController.class.getResource(
+                                    fxml
+                            )
+                    )
+            );
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void loadMainVista(String fxml) {
+        try {
+            mainWindowController.setVista( //TODO: mainWindowController is null
                     FXMLLoader.load(
                             VistaController.class.getResource(
                                     fxml
@@ -40,4 +56,7 @@ public class VistaController {
         return loginWindowController;
     }
 
+    public static void setMainWindowController(MainWindowController mainWindowController) {
+        VistaController.mainWindowController = mainWindowController;
+    }
 }

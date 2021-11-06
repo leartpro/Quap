@@ -1,7 +1,9 @@
 package com.quap.controller.scene;
 
+import com.quap.controller.VistaController;
 import com.quap.controller.vista.VistaNavigator;
 import com.quap.controller.vista.login.LoginVistaNavigator;
+import com.quap.listener.ResizeHelper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -87,8 +89,6 @@ public class LoginWindowController {
         //confirm username with server
         //check for lokal profil
         //load main
-        //TODO: give attributes to main scene controller
-        //TODO: set size (not resizable???)
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/quap/desktopapp/scene/main-window.fxml"));
         Stage stage = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
         Parent root = null;
@@ -99,6 +99,12 @@ public class LoginWindowController {
         }
         Scene scene = new Scene(root);
         stage.setScene(scene);
+        MainWindowController mainWindowController = loader.getController();
+        //TODO: give attributes to main scene controller
+        VistaController.setMainWindowController(mainWindowController);
+        VistaController.loadMainVista(VistaController.PROFILE);
+        stage.show();
+        ResizeHelper.addResizeListener(stage);
         stage.show();
     }
 }

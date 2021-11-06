@@ -77,8 +77,11 @@ public class Client {
 
     public boolean openConnection() {
         try {
-            socket = new Socket(InetAddress.getByName("de.quap.com"), remotePort, InetAddress.getLocalHost(), 8080); //TODO: add local configurations
-            //socket.bind(new InetSocketAddress(address, port));
+            //java.net.BindException: Cannot assign requested address: connect
+            //socket = new Socket(InetAddress.getByName("de.quap.com"), remotePort, InetAddress.getLocalHost(), 8080); //TODO: add local configurations
+
+            //try2
+            socket = new Socket(InetAddress.getByName("de.quap.com"), remotePort);
         } catch (IOException e) {
             e.printStackTrace();
             return false;

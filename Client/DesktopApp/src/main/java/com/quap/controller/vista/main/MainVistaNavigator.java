@@ -18,7 +18,7 @@ public abstract class MainVistaNavigator extends VistaNavigator {
         }
     }
 
-    public abstract void switchMode(boolean b);
+    public abstract void loadContent();
 
     //methods for main controllers
 

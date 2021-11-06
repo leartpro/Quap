@@ -32,10 +32,12 @@ public class ClientHandler implements Runnable {
         String text = null;
         do {
             try {
+                //TODO: java.net.SocketException: Connection reset
                 text = reader.readLine();
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            //TODO: java.lang.NullPointerException: Cannot invoke "String.length()" because "str" is null
             String reverseText = new StringBuilder(text).reverse().toString();
             writer.println("Server: " + reverseText);
 

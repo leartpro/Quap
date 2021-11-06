@@ -10,15 +10,6 @@ import java.net.UnknownHostException;
 public class Main { //TODO: mdns
     private static ServerSocket socket;
 
-    public Main(int port) {
-        try {
-            socket = new ServerSocket(port, 0);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        new Server(socket);
-    }
-
     public static void main(String[] args) {
         System.setProperty("java.net.preferIPv4Stack", "true");
         int port=8192;
@@ -36,6 +27,15 @@ public class Main { //TODO: mdns
             System.err.println("Usage3: java -jar QuapServer.jar <PORT[int]> <ADDRESS[String]>");
             System.err.println("Usage4: java -jar QuapServer.jar <PORT[int]> <BACKLOG[int]> <ADDRESS[String]>");
         }
+    }
+
+    public Main(int port) {
+        try {
+            socket = new ServerSocket(port, 0);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        new Server(socket);
     }
 
     public Main(int port, int backlog, String address) {

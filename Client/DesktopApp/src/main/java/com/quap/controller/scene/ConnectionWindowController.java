@@ -2,13 +2,17 @@ package com.quap.controller.scene;
 
 import com.quap.client.Client;
 import com.quap.controller.VistaController;
+import com.quap.desktopapp.LauncherPreloader;
+import com.quap.listener.WindowMoveHelper;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
@@ -115,33 +119,30 @@ public class ConnectionWindowController implements Initializable {
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
-                    //Main
-                    /*try {
-                        Stage stage = new Stage();
-                        Parent root = FXMLLoader.load(getClass().getResource("/com/quap/desktopapp/scene/login-window.fxml"));
-                        Scene scene = new Scene(root);
-                        stage.setScene(scene);
-                        stage.show();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    } */
-                    FXMLLoader loader = new FXMLLoader();
                     Stage stage = new Stage();
+                    Parent root = null;
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource(VistaController.LOGIN));
                     try {
-                        stage.setScene(
-                                new Scene(
-                                    loader.load(
-                                            getClass()
-                                                    .getResourceAsStream(VistaController.LOGIN))));
+                        root = loader.load();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+                    Scene scene;
+                    String osName = System.getProperty("os.name");
+                    if( osName != null && osName.startsWith("Windows") ) {
+                        scene = (new LauncherPreloader.WindowsHack()).getShadowScene(root);
+                        stage.initStyle(StageStyle.TRANSPARENT);
+                    } else {
+                        scene = new Scene(root);
+                        stage.initStyle(StageStyle.UNDECORATED);
+                    }
+                    stage.setScene(scene);
                     LoginWindowController loginWindowController = loader.getController();
 
                     VistaController.setLoginWindowController(loginWindowController);
-                    VistaController.loadVista(VistaController.SignUp);
-
+                    VistaController.loadLoginVista(VistaController.SignIn);
                     stage.show();
+                    WindowMoveHelper.addMoveListener(stage);
                 }
             });
             try {

@@ -9,6 +9,9 @@ public class MainWindowController {
     private MainVistaNavigator currentNode;
     private final Vista vista = new Vista();
 
+    public void setVista(Object load) {
+    }
+
     private class Vista extends LoginVistaNavigator {
 
         @Override
