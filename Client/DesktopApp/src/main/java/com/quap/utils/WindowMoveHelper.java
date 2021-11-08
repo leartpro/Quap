@@ -1,4 +1,4 @@
-package com.quap.listener;
+package com.quap.utils;
 
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;

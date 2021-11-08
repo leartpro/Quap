@@ -152,4 +152,8 @@ public class Client {
     public String getConnectionInfo() {
         return String.valueOf(socket.getRemoteSocketAddress());
     }
+
+    public void sendMessage(String message) {
+
+    }
 }

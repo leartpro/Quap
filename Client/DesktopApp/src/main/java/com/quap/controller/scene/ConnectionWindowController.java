@@ -3,7 +3,7 @@ package com.quap.controller.scene;
 import com.quap.client.Client;
 import com.quap.controller.VistaController;
 import com.quap.desktopapp.LauncherPreloader;
-import com.quap.listener.WindowMoveHelper;
+import com.quap.utils.WindowMoveHelper;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

@@ -1,6 +1,6 @@
 package com.quap.desktopapp;
 
-import com.quap.listener.WindowMoveHelper;
+import com.quap.utils.WindowMoveHelper;
 import javafx.application.Preloader;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;

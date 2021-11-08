@@ -4,7 +4,7 @@ import com.quap.client.Client;
 import com.quap.controller.VistaController;
 import com.quap.controller.vista.VistaNavigator;
 import com.quap.controller.vista.login.LoginVistaNavigator;
-import com.quap.listener.ResizeHelper;
+import com.quap.utils.ResizeHelper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

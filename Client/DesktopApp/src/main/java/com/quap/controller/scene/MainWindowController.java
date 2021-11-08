@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class MainWindowController {
@@ -30,7 +31,7 @@ public class MainWindowController {
     private VBox vBoxButtonHolder;
     @FXML
     private Label lblServer_IP;
-    private Client client;
+    public static Client client;
 
     @FXML
     public void initialize() {
@@ -87,7 +88,7 @@ public class MainWindowController {
     public void settings(ActionEvent actionEvent) { //?????????????????
         VistaController.loadMainVista(VistaController.SETTINGS); //calls indirect setVista
         vBoxButtonHolder.getChildren().clear();
-        for(Button b : new ArrayList<Button>(List.of(new Button[]{new Button("setting1"), new Button("setting2"),
+        for(Button b : new ArrayList<>(List.of(new Button[]{new Button("setting1"), new Button("setting2"),
                 new Button("setting3"), new Button("setting4")}))) {
             vBoxButtonHolder.getChildren().add(b);
         }
@@ -98,6 +99,12 @@ public class MainWindowController {
         vBoxButtonHolder.getChildren().clear();
         for(Button b : new ArrayList<Button>(List.of(new Button[]{new Button("friend1"), new Button("friend2"),
                 new Button("friend3"), new Button("friend4")}))) {
+            b.setOnAction(e -> {
+                VistaController.loadMainVista(VistaController.CHAT);
+                //TODO get vista controller
+                //((ChatController) vista.getVistaByID("chat")).loadContent(Collections.singletonList("Test Content"));
+                currentNode.loadContent(Collections.singletonList("Test Content"));
+            });
             vBoxButtonHolder.getChildren().add(b);
         }
     }
@@ -121,15 +128,15 @@ public class MainWindowController {
     }
 
     public void setClient(Client client) {
-        this.client = client;
+        MainWindowController.client = client;
     }
 
     private class Vista extends MainVistaNavigator { //?????????????????????
         //vista functions
 
-            @Override
-            public void loadContent() {
+        @Override
+        public void loadContent(List content) {
 
-            }
         }
+    }
     }

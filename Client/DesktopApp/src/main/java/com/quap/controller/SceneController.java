@@ -1,7 +1,7 @@
 package com.quap.controller;
 
 import com.quap.controller.popup.PopupController;
-import com.quap.listener.ResizeHelper;
+import com.quap.utils.ResizeHelper;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
