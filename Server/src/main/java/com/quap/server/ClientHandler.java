@@ -29,19 +29,17 @@ public class ClientHandler implements Runnable {
         }
         PrintWriter writer = new PrintWriter(output, true);
 
-        String text = null;
-        do {
+        String text = "Test";
             try {
-                //TODO: java.net.SocketException: Connection reset
-                text = reader.readLine();
+                while(reader.readLine() != null) {
+                    text += reader.readLine() + " | ";
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            //TODO: java.lang.NullPointerException: Cannot invoke "String.length()" because "str" is null
+
             String reverseText = new StringBuilder(text).reverse().toString();
             writer.println("Server: " + reverseText);
-
-        } while (!text.equals("bye"));
     }
 
     public int getID() {

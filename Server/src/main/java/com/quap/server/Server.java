@@ -26,6 +26,11 @@ public class Server implements Runnable  {
     public Server(ServerSocket socket) {
         service = Executors.newCachedThreadPool();
         this.socket = socket;
+        //try {
+            //socket.bind(new InetSocketAddress("192.168.178.1", 8192));
+        //} catch (IOException e) {
+        //    e.printStackTrace();
+        //}
         run = new Thread( this, "Server");
         run.start();
     }
@@ -73,11 +78,13 @@ public class Server implements Runnable  {
                 while (status) {
                     Socket client = null;
                     try {
+                        System.out.println("Listening on: " + socket.getLocalSocketAddress());
                         client = socket.accept();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    System.out.println("\r\nNew connection from " + client.getInetAddress().getHostAddress());
+                    System.out.print("\r\nNew connection from " + client.getInetAddress().getHostAddress() + ":" + client.getLocalPort());
+                    System.out.println(" to " + socket.getInetAddress() + ":" + socket.getLocalPort());
                     service.execute(new ClientHandler(client, UniqueIdentifier.getIdentifier()));
                 }
             }

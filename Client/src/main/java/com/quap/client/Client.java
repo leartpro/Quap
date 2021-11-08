@@ -5,6 +5,7 @@ import com.quap.client.network.Suffixes;
 
 import java.io.IOException;
 import java.net.InetAddress;
+import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.HashMap;
@@ -13,7 +14,6 @@ public class Client {
     private final HashMap<Prefixes, String> prefixes = new HashMap();
     private final HashMap<Suffixes, String> suffixes = new HashMap();
     private Socket socket;
-    private int remotePort = 8192;
     private String name;
     private final int port;
     private Thread send, listen;
@@ -33,10 +33,10 @@ public class Client {
         for(Suffixes s : Suffixes.values()) {
             suffixes.put(s, "/-"+ s.name().toLowerCase().charAt(0)+ "-/");
         }
-        remotePort = 8192;
     }
 
     public Client(String address, int port) {
+        socket = new Socket();
         try {
             this.address = InetAddress.getByName(address);
         } catch (UnknownHostException e) {
@@ -81,7 +81,15 @@ public class Client {
             //socket = new Socket(InetAddress.getByName("de.quap.com"), remotePort, InetAddress.getLocalHost(), 8080); //TODO: add local configurations
 
             //try2
-            socket = new Socket(InetAddress.getByName("de.quap.com"), remotePort);
+            socket.bind(new InetSocketAddress(address, port));
+            socket = new Socket(InetAddress.getByName("192.168.56.1"), 8192); //java.net.ConnectException: Connection refused: connect
+            /*
+            This exception means that there is no service listening on the IP/port you are trying to connect to:
+                - You are trying to connect to the wrong IP/Host or port.
+                - You have not started your server.
+                - Your server is not listening for connections.
+                - On Windows servers, the listen backlog queue is full.
+                */
         } catch (IOException e) {
             e.printStackTrace();
             return false;
@@ -139,5 +147,9 @@ public class Client {
 
     public int getID() {
         return ID;
+    }
+
+    public String getConnectionInfo() {
+        return String.valueOf(socket.getRemoteSocketAddress());
     }
 }

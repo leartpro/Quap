@@ -1,5 +1,6 @@
 package com.quap.controller.scene;
 
+import com.quap.client.Client;
 import com.quap.controller.VistaController;
 import com.quap.controller.vista.VistaNavigator;
 import com.quap.controller.vista.login.LoginVistaNavigator;
@@ -17,13 +18,15 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-/*
-    The login window of this application
- */
 public class LoginWindowController {
     private String name, password;
     private final Vista vista = new Vista();
     private LoginVistaNavigator currentNode;
+    private Client client;
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
 
     private class Vista extends LoginVistaNavigator {
 
@@ -86,6 +89,7 @@ public class LoginWindowController {
     }
 
     public void login(ActionEvent actionEvent) {
+        client.authorize();
         //confirm username with server
         //check for lokal profil
         //load main
@@ -100,6 +104,7 @@ public class LoginWindowController {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         MainWindowController mainWindowController = loader.getController();
+        mainWindowController.setClient(client);
         //TODO: give attributes to main scene controller
         VistaController.setMainWindowController(mainWindowController);
         VistaController.loadMainVista(VistaController.PROFILE);

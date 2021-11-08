@@ -9,28 +9,22 @@
          <center>
             <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
                <children>
-                  <StackPane fx:id="stackContent" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: blue;" VBox.vgrow="ALWAYS" />
+                  <StackPane fx:id="stackContent" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: gray;" VBox.vgrow="ALWAYS" />
                </children>
             </VBox>
          </center>
          <left>
-            <VBox maxHeight="1.7976931348623157E308" BorderPane.alignment="CENTER">
+            <VBox maxHeight="1.7976931348623157E308" style="-fx-background-color: darkgray;" BorderPane.alignment="CENTER">
                <children>
-                  <BorderPane fx:id="paneSidebar" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="115.0" style="-fx-background-color: gray;" VBox.vgrow="ALWAYS">
-                     <top>
-                        <VBox alignment="CENTER" prefWidth="115.0" BorderPane.alignment="CENTER">
-                           <children>
-                              <Button mnemonicParsing="false" text="Button" />
-                              <Button mnemonicParsing="false" text="Button" />
-                              <Button mnemonicParsing="false" text="Button" />
-                              <Button mnemonicParsing="false" text="Button" />
-                           </children>
-                        </VBox>
-                     </top>
-                     <bottom>
-                        <VBox fx:id="vBoxButtonHolder" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="115.0" BorderPane.alignment="CENTER" />
-                     </bottom>
-                  </BorderPane>
+                  <VBox alignment="CENTER" maxHeight="120.0" prefWidth="115.0" VBox.vgrow="NEVER">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#friends" text="Friends" />
+                        <Button mnemonicParsing="false" onAction="#chatrooms" text="Chatrooms" />
+                        <Button mnemonicParsing="false" onAction="#profil" text="Profil" />
+                        <Button mnemonicParsing="false" onAction="#settings" text="Settings" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="vBoxButtonHolder" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="255.0" prefWidth="115.0" VBox.vgrow="ALWAYS" />
                </children>
             </VBox>
          </left>
@@ -39,7 +33,7 @@
                <children>
                   <Label alignment="CENTER" prefWidth="35.0" text="Quap" HBox.hgrow="NEVER" />
                   <Pane maxWidth="1.7976931348623157E308" prefHeight="20.0" HBox.hgrow="ALWAYS" />
-                  <Label fx:id="lblServer_IP" prefWidth="50.0" text="Server IP" HBox.hgrow="NEVER" />
+                  <Label fx:id="lblServer_IP" prefWidth="50.0" text="Server IP" HBox.hgrow="ALWAYS" />
                </children>
                <opaqueInsets>
                   <Insets />

@@ -1,17 +1,20 @@
 package com.quap.controller.vista.main;
 
 import com.quap.controller.vista.VistaNavigator;
-import com.quap.controller.vista.login.SignInController;
-import com.quap.controller.vista.login.SignUpController;
 
 public abstract class MainVistaNavigator extends VistaNavigator {
 
     @Override
     public VistaNavigator getVistaByID(String id) {
-        if(id.equals("signUp")) {
-            return new SignUpController();
-        } else if(id.equals("signIn")) {
-            return new SignInController();
+        //TODO:
+        if(id.equals("list")) {
+            return new ListController();
+        } else if(id.equals("profile")) {
+            return new ProfilController();
+        } else if(id.equals("chat")) {
+            return new ProfilController();
+        } else if(id.equals("settings")) {
+            return new ProfilController();
         } else {
             IllegalArgumentException e;
             return null;

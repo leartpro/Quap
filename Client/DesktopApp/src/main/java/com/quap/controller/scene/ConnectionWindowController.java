@@ -17,6 +17,7 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /*
     The loading screen of this application
@@ -87,25 +88,27 @@ public class ConnectionWindowController implements Initializable {
         }
 
         //#####################
+        AtomicBoolean success = new AtomicBoolean(false);
         Thread openConnection = new Thread(() -> {
             Platform.runLater(() -> loadingLabel.setText("Open Connection..."));
-                client = new Client("localhost", 8080);
-                boolean success = client.openConnection();
-                if(success) {
-                    client.authorize();
-                }
+                client = new Client("localhost", 80); //local socketaddress to bind to
+                success.set(client.openConnection());
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
         });
-        openConnection.start();
-        try {
-            openConnection.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        int attempts = 1;
+        do {
+            openConnection.start();
+            try {
+                openConnection.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            attempts++;
+        } while(!success.get() || attempts > 3);
         //#####################
         
 
@@ -139,6 +142,7 @@ public class ConnectionWindowController implements Initializable {
                     stage.setScene(scene);
                     LoginWindowController loginWindowController = loader.getController();
 
+                    loginWindowController.setClient(client);
                     VistaController.setLoginWindowController(loginWindowController);
                     VistaController.loadLoginVista(VistaController.SignIn);
                     stage.show();
