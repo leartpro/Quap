@@ -83,7 +83,7 @@ public class Server implements Runnable  {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    System.out.print("\r\nNew connection from " + client.getInetAddress().getHostAddress() + ":" + client.getLocalPort());
+                    System.out.print("\r\nNew connection from " + client.getInetAddress() + ":" + client.getPort());
                     System.out.println(" to " + socket.getInetAddress() + ":" + socket.getLocalPort());
                     service.execute(new ClientHandler(client, UniqueIdentifier.getIdentifier()));
                 }

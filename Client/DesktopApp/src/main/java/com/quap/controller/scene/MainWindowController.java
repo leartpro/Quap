@@ -75,8 +75,8 @@ public class MainWindowController {
         ((Button)actionEvent.getSource()).getScene().getWindow().hide();
     }
 
-    public void setVista(Node node) { //TODO: ?????????????????
-        if(node.getId().equals("signUp") || node.getId().equals("signIn")) {
+    public void setVista(Node node) { //set the current node is called by VistaControler
+        if(node.getId().equals("chat") || node.getId().equals("list") || node.getId().equals("profile") || node.getId().equals("settings")) {
             currentNode = (MainVistaNavigator) vista.getVistaByID(node.getId()); //currentNode.setRootNode(this);
         } else {
             IllegalArgumentException e;
@@ -84,9 +84,8 @@ public class MainWindowController {
         stackContent.getChildren().setAll(node);
     }
 
-    //TODO: why use setVista? should i use VistaController directly?
     public void settings(ActionEvent actionEvent) { //?????????????????
-        VistaController.loadMainVista(VistaController.SETTINGS);
+        VistaController.loadMainVista(VistaController.SETTINGS); //calls indirect setVista
         vBoxButtonHolder.getChildren().clear();
         for(Button b : new ArrayList<Button>(List.of(new Button[]{new Button("setting1"), new Button("setting2"),
                 new Button("setting3"), new Button("setting4")}))) {

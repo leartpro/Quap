@@ -82,7 +82,7 @@ public class Client {
 
             //try2
             socket.bind(new InetSocketAddress(address, port));
-            socket = new Socket(InetAddress.getByName("192.168.56.1"), 8192); //java.net.ConnectException: Connection refused: connect
+            socket = new Socket(InetAddress.getByName("192.168.178.69"), 8192); //java.net.ConnectException: Connection refused: connect
             /*
             This exception means that there is no service listening on the IP/port you are trying to connect to:
                 - You are trying to connect to the wrong IP/Host or port.
@@ -91,7 +91,7 @@ public class Client {
                 - On Windows servers, the listen backlog queue is full.
                 */
         } catch (IOException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             return false;
         }
         return true;

@@ -99,16 +99,12 @@ public class ConnectionWindowController implements Initializable {
                     e.printStackTrace();
                 }
         });
-        int attempts = 1;
-        do {
-            openConnection.start();
-            try {
-                openConnection.join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            attempts++;
-        } while(!success.get() || attempts > 3);
+                openConnection.start();
+        try {
+            openConnection.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         //#####################
         
 

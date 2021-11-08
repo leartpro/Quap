@@ -2,14 +2,10 @@
 
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<AnchorPane fx:id="chat" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.quap.controller.vista.main.ChatController">
-    <children>
-        <ScrollPane prefHeight="315.0" prefWidth="485.0">
-            <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-            </content>
-        </ScrollPane>
-        <TextField layoutY="330.0" prefHeight="25.0" prefWidth="481.0" />
-    </children>
-</AnchorPane>
+<?import javafx.scene.layout.VBox?>
+<VBox fx:id="chat" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.vista.main.ChatController">
+   <children>
+        <ScrollPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="315.0" prefWidth="485.0" VBox.vgrow="ALWAYS" />
+        <TextField maxWidth="1.7976931348623157E308" prefHeight="25.0" VBox.vgrow="ALWAYS" />
+   </children>
+</VBox>

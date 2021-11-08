@@ -5,7 +5,6 @@ import com.quap.server.Server;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
@@ -16,12 +15,10 @@ public class Main { //TODO: mdns
 
     public static void main(String[] args) {
         System.setProperty("java.net.preferIPv4Stack", "true");
-        String adapter_name="Wi-fi";
-        String ip_address="192.168.100.55";
+        /*String adapter_name="Ethernet";
+        String ip_address="192.168.56.1";
         String subnet_mask="255.255.255.0";
-        String default_gateway="192.168.100.1";
-        String dns_1="8.8.8.8";
-        String dns_2="8.8.4.4";
+        String default_gateway="192.168.178.1";
         String[] command =
                 {
                         "cmd",
@@ -33,13 +30,11 @@ public class Main { //TODO: mdns
             new Thread(new SyncPipe(p.getInputStream(), System.out)).start();
             PrintWriter stdin = new PrintWriter(p.getOutputStream());
             stdin.println("netsh int ip set address "+adapter_name+" static "+ip_address+" "+subnet_mask+" "+default_gateway);
-            stdin.println("netsh int ip set dns "+adapter_name+" static "+dns_1+" primary");
-            stdin.println("netsh interface ip add dns "+adapter_name+" "+dns_2+" INDEX=2");
             stdin.close();
             p.waitFor();
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
         int port=8192;
         if (args.length==0) {
             new Main(port);
@@ -64,7 +59,7 @@ public class Main { //TODO: mdns
             e.printStackTrace();
         }
         try {
-            socket.bind(new InetSocketAddress("192.168.56.1", port));
+            socket.bind(new InetSocketAddress("192.168.178.69", port));
         } catch (IOException e) {
             e.printStackTrace();
         }
