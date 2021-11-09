@@ -2,20 +2,27 @@ package com.quap.controller.vista.main;
 
 import com.quap.controller.scene.MainWindowController;
 import javafx.fxml.FXML;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
-import java.util.List;
-
 public class ChatController extends MainVistaNavigator{
 
     @FXML
-    private TextArea chatPane = new TextArea();
+    private ScrollPane chatPane = new ScrollPane();
 
     @FXML
-    private TextField textConsole;
+    private TextField textConsole = new TextField();
+
+    @FXML
+    private TextArea chatArea = new TextArea();
+
+    @FXML
+    public void initialize() {
+
+    }
 
     @FXML
     public void send(KeyEvent keyEvent) {
@@ -24,10 +31,11 @@ public class ChatController extends MainVistaNavigator{
         }
     }
 
+
     @Override
-    public void loadContent(List content) {
+    public void loadContent(Object... content) {
         for (Object o : content) {
-            chatPane.setText(o.toString());
+            chatArea.appendText(o + "\n");
         }
     }
 }

@@ -59,13 +59,11 @@ public class LoginWindowController {
         checkAnonymMode.setSelected(false);
         btnLogin.setVisible(false);
         currentNode = (LoginVistaNavigator) vista.getVistaByID("signUp");
-        //currentNode.setRootNode(this);
     }
 
     public void setVista(Node node) {
         if(node.getId().equals("signUp") || node.getId().equals("signIn")) {
             currentNode = (LoginVistaNavigator) vista.getVistaByID(node.getId());
-            //currentNode.setRootNode(this);
         } else {
             IllegalArgumentException e;
         }
@@ -103,11 +101,13 @@ public class LoginWindowController {
         }
         Scene scene = new Scene(root);
         stage.setScene(scene);
+        stage.setMinWidth(600);
+        stage.setMinHeight(400);
         MainWindowController mainWindowController = loader.getController();
         mainWindowController.setClient(client);
         //TODO: give attributes to main scene controller
         VistaController.setMainWindowController(mainWindowController);
-        VistaController.loadMainVista(VistaController.PROFILE);
+        VistaController.loadMainVista(VistaController.LIST);
         stage.show();
         ResizeHelper.addResizeListener(stage);
         stage.show();

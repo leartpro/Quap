@@ -8,12 +8,10 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.util.Callback;
 
-import java.util.List;
-
 public class ListController extends MainVistaNavigator{
 
     @FXML
-    private ListView<Chat> listView;
+    private ListView<Chat> listView = new ListView<Chat>();
 
     @FXML
     public void initialize() {
@@ -27,10 +25,11 @@ public class ListController extends MainVistaNavigator{
     }
 
 
-
     @Override
-    public void loadContent(List content) {
-
+    public void loadContent(Object... content) {
+        for (Object o : content) {
+            listView.getItems().add((Chat)o);
+        }
     }
 
     public static class ContextMenuListCell<T> extends ListCell<T> {

@@ -3,6 +3,7 @@ package com.quap.controller;
 import com.quap.controller.scene.LoginWindowController;
 import com.quap.controller.scene.MainWindowController;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 
 import java.io.IOException;
 
@@ -36,14 +37,12 @@ public class VistaController {
     }
 
     public static void loadMainVista(String fxml) {
+        Parent node;
+        FXMLLoader loader;
         try {
-            mainWindowController.setVista( //TODO: mainWindowController is null
-                    FXMLLoader.load(
-                            VistaController.class.getResource(
-                                    fxml
-                            )
-                    )
-            );
+            loader = new FXMLLoader(VistaController.class.getResource(fxml));
+            node = loader.load();
+            mainWindowController.setVista(node, loader.getController());
         } catch (IOException e) {
             e.printStackTrace();
         }

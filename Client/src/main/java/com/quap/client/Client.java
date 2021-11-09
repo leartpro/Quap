@@ -98,6 +98,7 @@ public class Client {
     }
 
     public void authorize() {
+
     }
 
     public void disconnect() {

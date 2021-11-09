@@ -2,9 +2,7 @@ package com.quap.controller.vista.main;
 
 import com.quap.controller.vista.VistaNavigator;
 
-import java.util.List;
-
-public abstract class MainVistaNavigator<V> extends VistaNavigator {
+public abstract class MainVistaNavigator extends VistaNavigator {
 
     @Override
     public VistaNavigator getVistaByID(String id) {
@@ -23,7 +21,7 @@ public abstract class MainVistaNavigator<V> extends VistaNavigator {
         }
     }
 
-    public abstract void loadContent(List<V> content);
+    public abstract void loadContent(Object... content);
 
     //methods for main controllers
 

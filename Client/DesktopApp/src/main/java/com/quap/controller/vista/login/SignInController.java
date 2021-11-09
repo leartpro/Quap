@@ -59,11 +59,6 @@ public class SignInController extends LoginVistaNavigator {
         }
     }
 
-    /*@Override
-    public void setRootNode(LoginWindowController loginWindowController) {
-        this.loginWindowController = loginWindowController;
-    }*/
-
     @FXML
     void validatePassword(KeyEvent keyEvent) {
         password = txtPassword.getText();
