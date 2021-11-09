@@ -1,100 +1,103 @@
 package com.quap;
 
+import com.quap.server.Server;
+
 import java.io.IOException;
-import java.net.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.net.ServerSocket;
+import java.net.UnknownHostException;
 
-public class Main {
-    private static final int[] defaultPorts = new int[]{8, 10, 14, 16, 26, 40, 80, 9050, 9051, 9091};
-    private static final String regexPort = "^([1-9][0-9]{0,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5])";
-    private static final String regexAddress = "\\b((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\.|$)){4}\\b";
+public class Main { //TODO: mdns
     private static ServerSocket socket;
-    private static int port = defaultPorts[0];
-    private static  final InetAddress address;
-    private static int backlog = 65536;
 
-    static {
-        assert socket != null;
-        address = socket.getInetAddress();
-
+    public static void main(String[] args) {
+        System.setProperty("java.net.preferIPv4Stack", "true");
+        /*String adapter_name="Ethernet";
+        String ip_address="192.168.56.1";
+        String subnet_mask="255.255.255.0";
+        String default_gateway="192.168.178.1";
+        String[] command =
+                {
+                        "cmd",
+                };
+        Process p;
         try {
-            backlog = socket.getReceiveBufferSize();
-        } catch (SocketException e) {
+            p = Runtime.getRuntime().exec(command);
+            new Thread(new SyncPipe(p.getErrorStream(), System.err)).start();
+            new Thread(new SyncPipe(p.getInputStream(), System.out)).start();
+            PrintWriter stdin = new PrintWriter(p.getOutputStream());
+            stdin.println("netsh int ip set address "+adapter_name+" static "+ip_address+" "+subnet_mask+" "+default_gateway);
+            stdin.close();
+            p.waitFor();
+        } catch (Exception e) {
             e.printStackTrace();
+        }*/
+        int port=8192;
+        if (args.length==0) {
+            new Main(port);
+        } else if(args.length==1) {
+            new Main(Integer.parseInt(args[0]));
+        } else if(args.length==2) {
+            new Main(Integer.parseInt(args[0]), 0, args[1]);
+        } else if(args.length==3) {
+            new Main(Integer.parseInt(args[0]), Integer.parseInt(args[1]), args[2]);
+        } else {
+            System.err.println("Usage1: java -jar QuapServer.jar");
+            System.err.println("Usage2: java -jar QuapServer.jar <PORT[int]>");
+            System.err.println("Usage3: java -jar QuapServer.jar <PORT[int]> <ADDRESS[String]>");
+            System.err.println("Usage4: java -jar QuapServer.jar <PORT[int]> <BACKLOG[int]> <ADDRESS[String]>");
         }
     }
 
-    public static void main(String[] args) throws PortUnreachableException, UnknownHostException {
-
-        socket = switch (args.length) {
-            case 0 -> defaultConfiguration();
-            case 1 -> portConfiguration(args[0]);
-            case 2 -> customConfiguration(args[0], args[1]);
-            default -> throw new IllegalStateException("Unexpected value: " + args.length);
-        };
-        //TODO: open connection
-
-    }
-
-    private static ServerSocket customConfiguration(String arg1, String arg2) throws PortUnreachableException, UnknownHostException {
-        int port = defaultPorts[0];
-        InetAddress address = socket.getInetAddress();
-        Pattern pattern = Pattern.compile(regexPort);
-        Matcher matcher = pattern.matcher(arg1);
-        if(!matcher.find()) {
-            throw new PortUnreachableException();
-        } else {
-            Integer.parseInt(arg1);
-        }
-        pattern = Pattern.compile(regexAddress);
-        matcher = pattern.matcher(arg2);
-        if(!matcher.find()) {
-            throw new UnknownHostException();
-        } else {
-            address = InetAddress.getByName(arg2);
-        }
+    public Main(int port) {
         try {
-            socket = new ServerSocket(port, backlog, address);
+            socket = new ServerSocket();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return socket;
-    }
-
-    private static ServerSocket portConfiguration(String arg) throws PortUnreachableException {
-        int port;
-        Pattern pattern = Pattern.compile(regexPort);
-        Matcher matcher = pattern.matcher(arg);
-        if(!matcher.find()) {
-                throw new PortUnreachableException();
-        } else {
-            port = Integer.parseInt(arg);
-        }
         try {
-            socket = new ServerSocket(port, backlog, address);
+            socket.bind(new InetSocketAddress("192.168.178.69", port));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return socket;
+        new Server(socket);
     }
 
-    private static ServerSocket defaultConfiguration() {
-
-        for (int p : defaultPorts) {
-            try {
-                socket = new ServerSocket(p);
-                port = p;
-            } catch (IOException e) {
-                continue;
+    public Main(int port, int backlog, String address) {
+        try {
+            socket = new ServerSocket(port, backlog, InetAddress.getByName(address));
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+            System.err.println("No IP address for the host could be found, or a scope_id was specified for a global IPv6 address.");
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.err.println("A security manager exists and its checkListen method doesn't allow the operation.");
+        }
+        new Server(socket);
+    }
+    private static class SyncPipe implements Runnable {
+        public SyncPipe(InputStream istrm, OutputStream ostrm) {
+            istrm_ = istrm;
+            ostrm_ = ostrm;
+        }
+        public void run() {
+            try
+            {
+                final byte[] buffer = new byte[1024];
+                for (int length = 0; (length = istrm_.read(buffer)) != -1; )
+                {
+                    ostrm_.write(buffer, 0, length);
+                }
             }
-
-            try {
-                socket = new ServerSocket(port, backlog, address);
-            } catch (IOException e) {
+            catch (Exception e)
+            {
                 e.printStackTrace();
             }
         }
-        return socket;
+        private final OutputStream ostrm_;
+        private final InputStream istrm_;
     }
 }

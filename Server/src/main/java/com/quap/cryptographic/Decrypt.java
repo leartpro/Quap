@@ -1,4 +1,0 @@
-package com.quap.cryptographic;
-
-public class Decrypt {
-}

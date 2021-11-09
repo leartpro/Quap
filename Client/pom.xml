@@ -9,7 +9,7 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>ConsoleApp</module>
+        <module>DesktopApp</module>
     </modules>
     <properties>
         <maven.compiler.source>16</maven.compiler.source>
