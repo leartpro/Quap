@@ -5,7 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<VBox prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.scene.LoginWindowController">
+<VBox minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.scene.LoginWindowController">
 <children>
    <Label fx:id="headerLabel" maxWidth="1.7976931348623157E308" text="Quap" VBox.vgrow="NEVER" />
    <StackPane fx:id="vistaHolder" VBox.vgrow="ALWAYS" />

@@ -7,8 +7,10 @@ import com.quap.controller.vista.main.MainVistaNavigator;
 import com.quap.utils.Chat;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
@@ -17,6 +19,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,13 +41,31 @@ public class MainWindowController {
 
     @FXML
     public void initialize() {
-        currentNode = (MainVistaNavigator) vista.getVistaByID("list");
+        Parent node;
+        FXMLLoader loader;
+        try {
+            loader = new FXMLLoader(VistaController.class.getResource(VistaController.LIST));
+            node = loader.load();
+            setVista(node, loader.getController());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        currentNode.loadContent(new Chat("Friend1"), new Chat("Friend2"));//dummys
+        vBoxButtonHolder.getChildren().clear();
+        for(Button b : new ArrayList<Button>(List.of(new Button[]{new Button("friend1"), new Button("friend2"),
+                new Button("friend3"), new Button("friend4")}))) {
+            b.setOnAction(e -> {
+                VistaController.loadMainVista(CHAT);
+                currentNode.loadContent("User1: How are you?", "User2: Fine!"); //dummys
+            });
+            vBoxButtonHolder.getChildren().add(b);
+        }
     }
 
     public void setVista(Node node, MainVistaNavigator controller) { //set the current node is called by VistaControler
         if (node.getId().equals("chat") || node.getId().equals("list") || node.getId().equals("profile") || node.getId().equals("settings")) {
             currentNode = controller;
-            currentNode.loadContent("Universal Content");
+            currentNode.setClient(client);
         } else {
             IllegalArgumentException e;
         }
@@ -151,6 +172,11 @@ public class MainWindowController {
 
         @Override
         public void loadContent(Object... content) {
+
+        }
+
+        @Override
+        public void setClient(Client client) {
 
         }
 

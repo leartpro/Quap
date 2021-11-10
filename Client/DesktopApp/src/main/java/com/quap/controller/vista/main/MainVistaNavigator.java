@@ -1,5 +1,6 @@
 package com.quap.controller.vista.main;
 
+import com.quap.client.Client;
 import com.quap.controller.vista.VistaNavigator;
 
 public abstract class MainVistaNavigator extends VistaNavigator {
@@ -22,6 +23,8 @@ public abstract class MainVistaNavigator extends VistaNavigator {
     }
 
     public abstract void loadContent(Object... content);
+
+    public abstract void setClient(Client client);
 
     //methods for main controllers
 

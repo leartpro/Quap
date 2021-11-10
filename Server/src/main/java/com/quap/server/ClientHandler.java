@@ -6,40 +6,65 @@ import java.net.Socket;
 public class ClientHandler implements Runnable {
     private final int ID;
     private final Socket socket;
+    InputStream input;
+    BufferedReader reader;
+    OutputStream output;
+    PrintWriter writer;
+
     public ClientHandler(Socket socket, int ID) {
         this.socket = socket;
         this.ID = ID;
-    }
 
-    @Override
-    public void run() {
-        InputStream input = null;
         try {
             input = socket.getInputStream();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        BufferedReader reader = new BufferedReader(new InputStreamReader(input));
-
-        OutputStream output = null;
         try {
             output = socket.getOutputStream();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        PrintWriter writer = new PrintWriter(output, true);
 
-        String text = "Test";
-            try {
-                while(reader.readLine() != null) {
-                    text += reader.readLine() + " | ";
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+        writer = new PrintWriter(output, true);
+        reader = new BufferedReader(new InputStreamReader(input));
+
+        /*try {
+            System.out.println("Client message: " + receive());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
+        System.out.println("new Handler");
+    }
+
+    private void listen() {
+        System.out.println("Handler is listen...");
+        new Thread(() -> {
+            String message = null;
+            while(true) {
+                do {
+                    System.out.println("Test");
+                    try {
+                        message = reader.readLine();
+                        send("Return from Server");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } while(!message.equals("bye"));
             }
+        }).start();
+    }
 
-            String reverseText = new StringBuilder(text).reverse().toString();
-            writer.println("Server: " + reverseText);
+    private void send(String message) {
+        System.out.println("Server Message to Client: " + message);
+        //writer.write(message);
+        writer.println(message);
+        //writer.flush();
+    }
+
+    @Override
+    public void run() {
+        listen();
     }
 
     public int getID() {

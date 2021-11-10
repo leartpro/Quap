@@ -3,7 +3,10 @@ package com.quap.client;
 import com.quap.client.network.Prefixes;
 import com.quap.client.network.Suffixes;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
@@ -13,12 +16,13 @@ import java.util.HashMap;
 public class Client {
     private final HashMap<Prefixes, String> prefixes = new HashMap();
     private final HashMap<Suffixes, String> suffixes = new HashMap();
-    private Socket socket;
+    private Socket socket = new Socket();
     private String name;
     private final int port;
-    private Thread send, listen;
     private InetAddress address;
     private int ID = -1;
+    BufferedReader reader;
+    PrintWriter writer;
 
     {
         try {
@@ -29,14 +33,12 @@ public class Client {
         for(Prefixes p : Prefixes.values()) {
             prefixes.put(p, "/+"+ p.name().toLowerCase().charAt(0)+ "+/");
         }
-
         for(Suffixes s : Suffixes.values()) {
             suffixes.put(s, "/-"+ s.name().toLowerCase().charAt(0)+ "-/");
         }
     }
 
     public Client(String address, int port) {
-        socket = new Socket();
         try {
             this.address = InetAddress.getByName(address);
         } catch (UnknownHostException e) {
@@ -61,44 +63,31 @@ public class Client {
         return port;
     }
 
-    public void send(String text) {
-        send = new Thread("Send") {
-            public void run() {
-
-            }
-        };
-        send.start();
-    }
-
-    public String receive() {
-        String message = "";
-        return message;
-    }
-
     public boolean openConnection() {
         try {
-            //java.net.BindException: Cannot assign requested address: connect
-            //socket = new Socket(InetAddress.getByName("de.quap.com"), remotePort, InetAddress.getLocalHost(), 8080); //TODO: add local configurations
-
-            //try2
             socket.bind(new InetSocketAddress(address, port));
             socket = new Socket(InetAddress.getByName("192.168.178.69"), 8192); //java.net.ConnectException: Connection refused: connect
-            /*
-            This exception means that there is no service listening on the IP/port you are trying to connect to:
-                - You are trying to connect to the wrong IP/Host or port.
-                - You have not started your server.
-                - Your server is not listening for connections.
-                - On Windows servers, the listen backlog queue is full.
-                */
         } catch (IOException e) {
-            //e.printStackTrace();
+            System.err.println(e.getMessage());
             return false;
         }
         return true;
     }
 
-    public void authorize() {
+    public void setConnection() {
+        try {
+            writer = new PrintWriter(socket.getOutputStream(), true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
+    public void authorize(String name, String password) {
     }
 
     public void disconnect() {
@@ -114,33 +103,19 @@ public class Client {
     }
 
     public void listen() {
-        listen = new Thread("Listen") {
-            public void run() {
-                while (true) {
-                    String message = receive();
-                    if (message.startsWith("/c/")) {
-                        setID(Integer.parseInt(message.split("/c/|/e/")[1]));
-                        System.out.println("Successfully connected to server! ID: " + getID());
-                    } else if (message.startsWith("/m/")) {
-                        String text = message.substring(3);
-                        text = text.split("/e/")[0];
-                        System.out.println(text);
-                    } else if (message.startsWith("/i/")) {
-                        String text = "/i/" + getID() + "/e/";
-                        send(text);
-                    } else if (message.startsWith("/u/")) {
-                        String[] u = message.split("/u/|/n/|/e/");
-                        //users.update(Arrays.copyOfRange(u, 1, u.length - 1));
-                    }
+        System.out.println("Client is listen...");
+        new Thread(() -> {
+            String message;
+            while (true) {
+                    try {
+                        message = reader.readLine();
+                        System.out.println("Incoming message: " + message);
+                    } catch (IOException e) {
+                        e.printStackTrace();
                 }
             }
-        };
-        listen.start();
+        }).start();
     }
-
-    //public void update(String[] users) {
-    //    list.setListData(users);
-    //}
 
     public void setID(int ID) {
         this.ID = ID;
@@ -155,6 +130,9 @@ public class Client {
     }
 
     public void sendMessage(String message) {
-
+        System.out.println("Send Message from Client to Server: " + message);
+        //writer.write(message);
+        writer.println("Test from Client");
+        //writer.flush();
     }
 }

@@ -3,7 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.scene.MainWindowController">
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="400.0" minWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.scene.MainWindowController">
    <children>
       <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
          <center>
@@ -33,7 +33,7 @@
                <children>
                   <Label alignment="CENTER" prefWidth="35.0" text="Quap" HBox.hgrow="NEVER" />
                   <Pane maxWidth="1.7976931348623157E308" prefHeight="20.0" HBox.hgrow="ALWAYS" />
-                  <Label fx:id="lblServer_IP" prefWidth="50.0" text="Server IP" HBox.hgrow="ALWAYS" />
+                  <Label fx:id="lblServer_IP" maxWidth="1.7976931348623157E308" text="Server IP" HBox.hgrow="SOMETIMES" />
                </children>
                <opaqueInsets>
                   <Insets />

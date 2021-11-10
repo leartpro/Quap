@@ -1,6 +1,6 @@
 package com.quap.controller.vista.main;
 
-import com.quap.controller.scene.MainWindowController;
+import com.quap.client.Client;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
@@ -9,6 +9,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 public class ChatController extends MainVistaNavigator{
+    private Client client;
 
     @FXML
     private ScrollPane chatPane = new ScrollPane();
@@ -27,7 +28,8 @@ public class ChatController extends MainVistaNavigator{
     @FXML
     public void send(KeyEvent keyEvent) {
         if(keyEvent.getCode() == KeyCode.ENTER) {
-            MainWindowController.client.sendMessage(textConsole.getText());
+            System.out.println("Enter pressed");
+            client.sendMessage(textConsole.getText()); //MainWindowController maybe not the same as the real one
         }
     }
 
@@ -37,5 +39,10 @@ public class ChatController extends MainVistaNavigator{
         for (Object o : content) {
             chatArea.appendText(o + "\n");
         }
+    }
+
+    @Override
+    public void setClient(Client client) {
+        this.client = client;
     }
 }

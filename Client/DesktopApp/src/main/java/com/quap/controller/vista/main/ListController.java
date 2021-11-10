@@ -1,5 +1,6 @@
 package com.quap.controller.vista.main;
 
+import com.quap.client.Client;
 import com.quap.utils.Chat;
 import javafx.fxml.FXML;
 import javafx.scene.control.ContextMenu;
@@ -9,6 +10,7 @@ import javafx.scene.control.MenuItem;
 import javafx.util.Callback;
 
 public class ListController extends MainVistaNavigator{
+    private Client client;
 
     @FXML
     private ListView<Chat> listView = new ListView<Chat>();
@@ -30,6 +32,11 @@ public class ListController extends MainVistaNavigator{
         for (Object o : content) {
             listView.getItems().add((Chat)o);
         }
+    }
+
+    @Override
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     public static class ContextMenuListCell<T> extends ListCell<T> {

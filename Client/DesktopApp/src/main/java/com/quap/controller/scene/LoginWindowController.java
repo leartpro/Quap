@@ -28,18 +28,24 @@ public class LoginWindowController {
         this.client = client;
     }
 
-    private class Vista extends LoginVistaNavigator {
+    public void setVista(Parent node, LoginVistaNavigator controller) {
+        if(node.getId().equals("signUp") || node.getId().equals("signIn")) {
+            currentNode = controller;
+        } else {
+            IllegalArgumentException e;
+        }
+        vistaHolder.getChildren().setAll(node);
+    }
 
+    private class Vista extends LoginVistaNavigator {
         @Override
         public boolean validLogin() {
             return false;
         }
-
         @Override
         public void switchMode(boolean isSelected) {
 
         }
-
         public VistaNavigator getVistaByID(String ID) {
             return super.getVistaByID(ID);
         }
@@ -87,8 +93,8 @@ public class LoginWindowController {
     }
 
     public void login(ActionEvent actionEvent) {
-        client.authorize();
-        //confirm username with server
+        //TODO: run as future because the needed time is unknown
+        client.authorize(name, password);
         //check for lokal profil
         //load main
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/quap/desktopapp/scene/main-window.fxml"));
@@ -107,7 +113,8 @@ public class LoginWindowController {
         mainWindowController.setClient(client);
         //TODO: give attributes to main scene controller
         VistaController.setMainWindowController(mainWindowController);
-        VistaController.loadMainVista(VistaController.LIST);
+        //VistaController.loadMainVista(VistaController.LIST);
+        //TODO: receive future result and validate
         stage.show();
         ResizeHelper.addResizeListener(stage);
         stage.show();

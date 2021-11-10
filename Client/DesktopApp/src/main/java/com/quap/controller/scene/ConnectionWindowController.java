@@ -87,12 +87,14 @@ public class ConnectionWindowController implements Initializable {
             e.printStackTrace();
         }
 
-        //#####################
+
         AtomicBoolean success = new AtomicBoolean(false);
         Thread openConnection = new Thread(() -> {
             Platform.runLater(() -> loadingLabel.setText("Open Connection..."));
                 client = new Client("localhost", 80); //local socketaddress to bind to
-                success.set(client.openConnection());
+                success.set(client.openConnection()); //TODO: run as future the db connection and creation
+                client.setConnection(); //does this when openConnection is finished
+                client.listen();
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
@@ -105,7 +107,6 @@ public class ConnectionWindowController implements Initializable {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        //#####################
         
 
         Thread openLoginThread = new Thread(() -> {

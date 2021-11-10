@@ -23,14 +23,12 @@ public class VistaController {
     private static MainWindowController mainWindowController;
 
     public static void loadLoginVista(String fxml) {
+        Parent node;
+        FXMLLoader loader;
         try {
-            loginWindowController.setVista(
-                    FXMLLoader.load(
-                            VistaController.class.getResource(
-                                    fxml
-                            )
-                    )
-            );
+            loader = new FXMLLoader(VistaController.class.getResource(fxml));
+            node = loader.load();
+            loginWindowController.setVista(node, loader.getController());
         } catch (IOException e) {
             e.printStackTrace();
         }
