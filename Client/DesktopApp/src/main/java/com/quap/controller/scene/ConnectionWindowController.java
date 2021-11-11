@@ -107,7 +107,6 @@ public class ConnectionWindowController implements Initializable {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        
 
         Thread openLoginThread = new Thread(() -> {
             try {

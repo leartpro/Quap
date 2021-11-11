@@ -8,6 +8,7 @@ module com.quap.desktopapp {
     requires validatorfx;
     requires org.kordamp.ikonli.javafx;
     requires Client;
+    requires java.prefs;
 
     opens com.quap.desktopapp to javafx.fxml;
     exports com.quap.desktopapp;
