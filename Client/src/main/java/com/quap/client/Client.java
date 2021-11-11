@@ -131,8 +131,6 @@ public class Client {
 
     public void sendMessage(String message) {
         System.out.println("Send Message from Client to Server: " + message);
-        //writer.write(message);
         writer.println("Test from Client");
-        //writer.flush();
     }
 }

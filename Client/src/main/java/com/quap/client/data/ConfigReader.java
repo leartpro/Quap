@@ -1,29 +1,25 @@
 package com.quap.client.data;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.prefs.InvalidPreferencesFormatException;
+import java.util.prefs.Preferences;
 
-public class ConfigReader extends Reader{
 
-    @Override
-    public void insert(Object... args) {
+public class ConfigReader {
+    Preferences prefs;
 
+
+    public ConfigReader(String username) throws IOException, InvalidPreferencesFormatException {
+        prefs = Preferences.userNodeForPackage(Gadget.class);
+        Preferences.importPreferences(new FileInputStream("/users/"+username+"/preferences/settings.xml"));
     }
 
-    @Override
-    public boolean update(Object... args) {
-        return false;
-    }
+    private class Gadget {
+        private static final Theme THEME = Theme.LIGHT;
 
-    @Override
-    public Object getSpecific(Object regex) {
-        return null;
-    }
 
-    @Override
-    public Object getAll() {
-        return null;
-    }
-
-    @Override
-    public void create() {
-
+        private enum Theme {
+            DARK, LIGHT
+        }
     }
 }

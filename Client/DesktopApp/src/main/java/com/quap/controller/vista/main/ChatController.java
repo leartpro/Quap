@@ -29,8 +29,10 @@ public class ChatController extends MainVistaNavigator{
     public void send(KeyEvent keyEvent) {
         if(keyEvent.getCode() == KeyCode.ENTER) {
             System.out.println("Enter pressed");
-            client.sendMessage(textConsole.getText()); //MainWindowController maybe not the same as the real one
+            client.sendMessage(textConsole.getText());
         }
+        textConsole.setText("");
+        //TODO: box shake event
     }
 
 
