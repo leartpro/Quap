@@ -9,7 +9,7 @@
                 <map />
                 <node name="test">
                     <map>
-                        <entry key="property1" value="80" />
+                        <entry key="theme" value="dark" />
                         <entry key="property2" value="Red" />
                     </map>
                 </node>

@@ -28,12 +28,6 @@ public class ClientHandler implements Runnable {
 
         writer = new PrintWriter(output, true);
         reader = new BufferedReader(new InputStreamReader(input));
-
-        /*try {
-            System.out.println("Client message: " + receive());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
         System.out.println("new Handler");
     }
 
@@ -41,7 +35,7 @@ public class ClientHandler implements Runnable {
         System.out.println("Handler is listen...");
         new Thread(() -> {
             String message = null;
-            while(true) {
+            while(!socket.isClosed()) {
                 do {
                     System.out.println("Test");
                     try {
@@ -57,9 +51,7 @@ public class ClientHandler implements Runnable {
 
     private void send(String message) {
         System.out.println("Server Message to Client: " + message);
-        //writer.write(message);
         writer.println(message);
-        //writer.flush();
     }
 
     @Override

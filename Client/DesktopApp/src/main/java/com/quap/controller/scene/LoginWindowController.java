@@ -1,8 +1,6 @@
 package com.quap.controller.scene;
 
 import com.quap.client.Client;
-import com.quap.client.data.Config;
-import com.quap.client.data.ConfigReader;
 import com.quap.controller.VistaController;
 import com.quap.controller.vista.VistaNavigator;
 import com.quap.controller.vista.login.LoginVistaNavigator;
@@ -19,7 +17,6 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.prefs.InvalidPreferencesFormatException;
 
 public class LoginWindowController {
     private String name, password;
@@ -29,6 +26,8 @@ public class LoginWindowController {
 
     public void setClient(Client client) {
         this.client = client;
+        //TODO: name should be the current name from the UI!!!
+        this.name = "exampleUser1";
     }
 
     public void setVista(Parent node, LoginVistaNavigator controller) {
@@ -99,15 +98,9 @@ public class LoginWindowController {
         //TODO: run as future because the needed time is unknown
         client.authorize(name, password);
         //if authentification is successful:
-        ConfigReader configReader = null;
-        try {
+        /*ConfigReader configReader = null;
             configReader = new ConfigReader(name);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InvalidPreferencesFormatException e) {
-            e.printStackTrace();
-        }
-        Config configuration = configReader.readConfiguration();
+        Config configuration = configReader.readConfiguration();*/
         //check for lokal profil
         //load main
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/quap/desktopapp/scene/main-window.fxml"));
@@ -124,7 +117,7 @@ public class LoginWindowController {
         stage.setMinHeight(400);
         MainWindowController mainWindowController = loader.getController();
         mainWindowController.setClient(client);
-        mainWindowController.setConfiguration(configuration);
+        //mainWindowController.setConfiguration(configuration);
         //TODO: give attributes to main scene controller
         VistaController.setMainWindowController(mainWindowController);
         //VistaController.loadMainVista(VistaController.LIST);
