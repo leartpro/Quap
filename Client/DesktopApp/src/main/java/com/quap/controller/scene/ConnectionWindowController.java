@@ -14,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -36,63 +37,69 @@ public class ConnectionWindowController implements Initializable {
     }
 
     public void connect() {
-
-        /*ProgressIndicator pi = new ProgressIndicator();
-        Task<Void> counter = new Task<Void>() {
-            @Override
-            public Void call() throws Exception {
-                for (int i = 1; i <= 100; i++) {
-                    Thread.sleep(50);
-                    updateProgress(i, 100);
-                }
-                return null;
-            }
-        };
-
-        pi.progressProperty().bind(counter.progressProperty());
-        pi.progressProperty().addListener((obs, oldProgress, newProgress) -> {
-            PseudoClass warning = PseudoClass.getPseudoClass("warning");
-            PseudoClass critical = PseudoClass.getPseudoClass("critical");
-            if (newProgress.doubleValue() < 0.3) {
-                pi.pseudoClassStateChanged(warning, false);
-                pi.pseudoClassStateChanged(critical, true);
-            } else if (newProgress.doubleValue() < 0.65) {
-                pi.pseudoClassStateChanged(warning, true);
-                pi.pseudoClassStateChanged(critical, false);
-            } else {
-                pi.pseudoClassStateChanged(warning, false);
-                pi.pseudoClassStateChanged(critical, false);
-            }
-        });*/
-
-
+        //###########################
         Thread loadingDummyThread = new Thread(() -> {
-            //Platform.runLater(() -> loadingLabel.setText(information[4]));
             String text = "Loading";
             for(int i = 0; i < 3; i++) {
                 String finalText = text;
                 Platform.runLater(() -> loadingLabel.setText(finalText));
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                try { Thread.sleep(1000);} catch (InterruptedException e) {
+                    e.printStackTrace(); }
                 text = text + ".";
-            }
-        });
+            }});
         loadingDummyThread.start();
+        try { loadingDummyThread.join(); } catch (InterruptedException e) {
+            e.printStackTrace(); }
+        //###########################
+
+        Thread setupProjectStructure = new Thread(() -> {
+            Platform.runLater(() -> loadingLabel.setText("Create File-System"));
+            String rootPath = "./Client/src/main/resources/com/quap/users/anonym/";
+            boolean fileExisting = false;
+            boolean folderExisting = false;
+            File sqlFolder, prefFolder;
+            File sqlFile, prefFile;
+
+            sqlFolder = new File(rootPath + "/sqlite/db/");
+            sqlFolder.mkdirs();
+            sqlFile = new File(rootPath + "/sqlite/db/" + "messages.db");
+            try {
+                sqlFile.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            prefFolder = new File(rootPath + "/preferences/settings/");
+            prefFolder.mkdirs();
+            prefFile = new File(rootPath + "/preferences/settings/" + "settings.properties");
+            try {
+                prefFile.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            if (sqlFolder.exists() && prefFolder.exists()) {
+                folderExisting = true;
+            }
+            if (sqlFile.exists() && prefFile.exists()) {
+                fileExisting = true;
+            }
+            System.out.println(folderExisting && fileExisting);
+
+
+
+        }); setupProjectStructure.start();
         try {
-            loadingDummyThread.join();
+            setupProjectStructure.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
 
         AtomicBoolean success = new AtomicBoolean(false);
         Thread openConnection = new Thread(() -> {
             Platform.runLater(() -> loadingLabel.setText("Open Connection..."));
                 client = new Client("localhost", 80); //local socketaddress to bind to
-                success.set(client.openConnection()); //TODO: run as future the db connection and creation
+                success.set(client.openConnection()); //TODO: run as future the db and file system creation
                 client.setConnection(); //does this when openConnection is finished
                 client.listen();
                 try {

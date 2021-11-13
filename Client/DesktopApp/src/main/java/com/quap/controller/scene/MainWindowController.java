@@ -1,7 +1,6 @@
 package com.quap.controller.scene;
 
 import com.quap.client.Client;
-import com.quap.client.data.Config;
 import com.quap.controller.VistaController;
 import com.quap.controller.vista.VistaNavigator;
 import com.quap.controller.vista.main.MainVistaNavigator;
@@ -169,9 +168,6 @@ public class MainWindowController {
         lblServer_IP.setText(lblServer_IP.getText() + " " + client.getConnectionInfo());
     }
 
-    public void setConfiguration(Config configuration) {
-
-    }
 
     private class Vista extends MainVistaNavigator {
 

@@ -95,7 +95,7 @@ public class LoginWindowController {
     }
 
     public void login(ActionEvent actionEvent) {
-        //TODO: run as future because the needed time is unknown
+        //TODO: run as future the server request and in addition to the db connection and property reading
         client.authorize(name, password);
         //if authentification is successful:
         /*ConfigReader configReader = null;
