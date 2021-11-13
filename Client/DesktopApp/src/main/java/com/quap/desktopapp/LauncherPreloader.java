@@ -21,7 +21,7 @@ public class LauncherPreloader extends Preloader {
         Scene scene;
         String osName = System.getProperty("os.name");
         if( osName != null && osName.startsWith("Windows") ) {
-            scene = (new WindowsHack()).getShadowScene(root);
+            scene = (new ShadowScene()).getShadowScene(root);
             primaryStage.initStyle(StageStyle.TRANSPARENT);
 
         } else {
@@ -42,7 +42,7 @@ public class LauncherPreloader extends Preloader {
         }
     }
 
-    public static class WindowsHack {
+    public static class ShadowScene {
         public Scene getShadowScene(Parent p) {
             Scene scene;
             AnchorPane outer = new AnchorPane();

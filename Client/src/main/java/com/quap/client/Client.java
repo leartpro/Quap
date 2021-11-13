@@ -45,6 +45,11 @@ public class Client {
             e.printStackTrace();
         }
         this.port = port;
+        try {
+            socket.bind(new InetSocketAddress(address, port));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setName(String name) {
@@ -65,7 +70,6 @@ public class Client {
 
     public boolean openConnection() {
         try {
-            socket.bind(new InetSocketAddress(address, port));
             socket = new Socket(InetAddress.getByName("192.168.178.69"), 8192); //java.net.ConnectException: Connection refused: connect
         } catch (IOException e) {
             System.err.println(e.getMessage());

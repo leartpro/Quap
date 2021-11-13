@@ -19,6 +19,7 @@ public class Launcher extends Application {
         init.openConnection();
         init.connect(); //TODO:
         init.confirmConnection();
+        init.launchWindow();
     }
 
     @Override

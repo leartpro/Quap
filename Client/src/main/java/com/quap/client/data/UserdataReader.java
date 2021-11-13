@@ -22,9 +22,8 @@ public class UserdataReader{
         statement.setQueryTimeout(20);
 
         statement.executeUpdate("create table if not exists messages (" +
-                "id int not null primary key," +
+                "id int primary key autoincrement," +
                 "chat_id int not null," +
-                "isPrivate int check (isPrivate = 0 or isPrivate = 1)," +
                 "sender int not null," +
                 "created_at timestamp not null default current_timestamp," +
                 "content varchar not null)"

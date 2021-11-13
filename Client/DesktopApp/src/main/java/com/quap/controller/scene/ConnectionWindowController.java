@@ -1,6 +1,7 @@
 package com.quap.controller.scene;
 
 import com.quap.client.Client;
+import com.quap.client.data.ConfigReader;
 import com.quap.controller.VistaController;
 import com.quap.desktopapp.LauncherPreloader;
 import com.quap.utils.WindowMoveHelper;
@@ -17,15 +18,19 @@ import javafx.stage.StageStyle;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ResourceBundle;
+import java.util.*;
+import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.prefs.InvalidPreferencesFormatException;
 
 /*
     The loading screen of this application
  */
 public class ConnectionWindowController implements Initializable {
-
     private Client client;
+    private final ExecutorService executor = Executors.newCachedThreadPool();
+    private final List<Map<Boolean, Future<Boolean>>> resultList = new ArrayList<>();
+
 
     @FXML
     Label lblLoading;
@@ -36,30 +41,62 @@ public class ConnectionWindowController implements Initializable {
         loadingLabel= lblLoading;
     }
 
-    public void connect() {
-        //###########################
+    public ConnectionWindowController() {
+        try {
+            resultList.add((Map<Boolean, Future<Boolean>>) new HashMap<Boolean, Future<Boolean>>()
+                    .put(true,
+                            executor.submit(new ConfigReader("")
+                            )
+                    )
+            );
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InvalidPreferencesFormatException e) {
+            e.printStackTrace();
+        }
+        for(Map<Boolean, Future<Boolean>> pair : resultList) {
+            Optional<Boolean> optional = pair.keySet().stream().findFirst();
+            if(optional.isPresent()) {
+                var key = optional.get();
+
+                System.out.printf("Value is: %d%n", key);
+
+                var future = pair.get(key);
+                Boolean result = null;
+                try {
+                    result = future.get(10, TimeUnit.SECONDS);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (TimeoutException e) {
+                    e.printStackTrace();
+                }
+                var isDone = future.isDone();
+
+                System.out.printf("Result is %d%n", result);
+                System.out.printf("Task done: %b%n", isDone);
+                System.out.println("--------------------");
+            }
+        } executor.shutdown();
+
+        //TODO: start setupProjectThread as Future and let lauchWindow access later the returned data
         Thread loadingDummyThread = new Thread(() -> {
             String text = "Loading";
             for(int i = 0; i < 3; i++) {
                 String finalText = text;
                 Platform.runLater(() -> loadingLabel.setText(finalText));
-                try { Thread.sleep(1000);} catch (InterruptedException e) {
-                    e.printStackTrace(); }
-                text = text + ".";
-            }});
-        loadingDummyThread.start();
-        try { loadingDummyThread.join(); } catch (InterruptedException e) {
-            e.printStackTrace(); }
-        //###########################
+                try { Thread.sleep(1000);} catch (InterruptedException e) { e.printStackTrace(); }
+                text = text + "."; }
+        }); loadingDummyThread.start();
+        try { loadingDummyThread.join(); } catch (InterruptedException e) { e.printStackTrace(); }
+
 
         Thread setupProjectStructure = new Thread(() -> {
             Platform.runLater(() -> loadingLabel.setText("Create File-System"));
             String rootPath = "./Client/src/main/resources/com/quap/users/anonym/";
-            boolean fileExisting = false;
-            boolean folderExisting = false;
             File sqlFolder, prefFolder;
             File sqlFile, prefFile;
-
             sqlFolder = new File(rootPath + "/sqlite/db/");
             sqlFolder.mkdirs();
             sqlFile = new File(rootPath + "/sqlite/db/" + "messages.db");
@@ -68,7 +105,6 @@ public class ConnectionWindowController implements Initializable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
             prefFolder = new File(rootPath + "/preferences/settings/");
             prefFolder.mkdirs();
             prefFile = new File(rootPath + "/preferences/settings/" + "settings.properties");
@@ -77,50 +113,68 @@ public class ConnectionWindowController implements Initializable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-            if (sqlFolder.exists() && prefFolder.exists()) {
-                folderExisting = true;
-            }
-            if (sqlFile.exists() && prefFile.exists()) {
-                fileExisting = true;
-            }
-            System.out.println(folderExisting && fileExisting);
-
-
-
         }); setupProjectStructure.start();
         try {
             setupProjectStructure.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
 
+    public void connect() {
+        Thread connect = new Thread(() -> {
+            Platform.runLater(() -> loadingLabel.setText("Open Connection..."));
+                client = new Client("localhost", 80); //local socketaddress to bind to
+        }); connect.start();
+        try {
+            connect.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void openConnection() {
         AtomicBoolean success = new AtomicBoolean(false);
         Thread openConnection = new Thread(() -> {
             Platform.runLater(() -> loadingLabel.setText("Open Connection..."));
-                client = new Client("localhost", 80); //local socketaddress to bind to
-                success.set(client.openConnection()); //TODO: run as future the db and file system creation
-                client.setConnection(); //does this when openConnection is finished
-                client.listen();
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+            success.set(client.openConnection());
+            if(success.get()) {
+                client.setConnection();
+            } else {
+                System.err.println("Can not open Connection");
+            }
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         });
-                openConnection.start();
+        openConnection.start();
         try {
             openConnection.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
+    }
+
+    public void confirmConnection() {
+        Thread confirmConnection = new Thread(() -> {
+            Platform.runLater(() -> loadingLabel.setText("Open Connection..."));
+            client.listen();
+        });
+        confirmConnection.start();
+        try {
+            confirmConnection.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void launchWindow() {
         Thread openLoginThread = new Thread(() -> {
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
             Platform.runLater(() -> loadingLabel.setText("Loading Login"));
             Platform.runLater(new Runnable() {
                 @Override
@@ -134,9 +188,9 @@ public class ConnectionWindowController implements Initializable {
                         e.printStackTrace();
                     }
                     Scene scene;
-                    String osName = System.getProperty("os.name");
+                    final String osName = System.getProperty("os.name");
                     if( osName != null && osName.startsWith("Windows") ) {
-                        scene = (new LauncherPreloader.WindowsHack()).getShadowScene(root);
+                        scene = (new LauncherPreloader.ShadowScene()).getShadowScene(root);
                         stage.initStyle(StageStyle.TRANSPARENT);
                     } else {
                         scene = new Scene(root);
@@ -152,11 +206,6 @@ public class ConnectionWindowController implements Initializable {
                     WindowMoveHelper.addMoveListener(stage);
                 }
             });
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
         });
         openLoginThread.start();
         try {
@@ -164,12 +213,5 @@ public class ConnectionWindowController implements Initializable {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-    }
-
-    public void openConnection() {
-    }
-
-    public void confirmConnection() {
     }
 }
