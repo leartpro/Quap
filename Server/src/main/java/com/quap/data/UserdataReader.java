@@ -14,4 +14,6 @@ public class UserdataReader {
         connection = DriverManager.getConnection("jdbc:postgresql://localhost/postgres", "postgres", "password");
     }
 
+
+
 }

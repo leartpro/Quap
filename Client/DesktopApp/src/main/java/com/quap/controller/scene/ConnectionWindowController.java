@@ -49,9 +49,7 @@ public class ConnectionWindowController implements Initializable {
                             )
                     )
             );
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InvalidPreferencesFormatException e) {
+        } catch (IOException | InvalidPreferencesFormatException e) {
             e.printStackTrace();
         }
         for(Map<Boolean, Future<Boolean>> pair : resultList) {
@@ -65,11 +63,7 @@ public class ConnectionWindowController implements Initializable {
                 Boolean result = null;
                 try {
                     result = future.get(10, TimeUnit.SECONDS);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (ExecutionException e) {
-                    e.printStackTrace();
-                } catch (TimeoutException e) {
+                } catch (InterruptedException | ExecutionException | TimeoutException e) {
                     e.printStackTrace();
                 }
                 var isDone = future.isDone();
