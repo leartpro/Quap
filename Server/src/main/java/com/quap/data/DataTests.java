@@ -10,5 +10,6 @@ public class DataTests {
         } catch (SQLException | URISyntaxException e) {
             e.printStackTrace();
         }
+        ConfigReader reader = new ConfigReader();
     }
 }
