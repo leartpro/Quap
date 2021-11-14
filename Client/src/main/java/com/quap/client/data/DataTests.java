@@ -6,7 +6,7 @@ import java.sql.SQLException;
 public class DataTests {
     public static void main(String[] args) {
         try {
-            UserdataReader dataReader = new UserdataReader("anonym");
+            UserdataReader dataReader = new UserdataReader("anonym", "toor");
         } catch (SQLException | URISyntaxException e) {
             e.printStackTrace();
         }

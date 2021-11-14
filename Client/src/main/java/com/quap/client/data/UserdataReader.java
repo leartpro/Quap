@@ -10,10 +10,10 @@ public class UserdataReader{
     final Connection connection;
     Statement statement;
 
-    public UserdataReader(String username) throws SQLException, URISyntaxException {
+    public UserdataReader(String username, String password) throws SQLException, URISyntaxException {
         assert username != null;
  //       URL resource = UserdataReader.class.getResource("/com/quap/users/exampleUser1/sqlite/db");
-        connection = DriverManager.getConnection("jdbc:sqlite:" + "Client/src/main/resources/com/quap/users/" + username + "/sqlite/db/messages.db");
+        connection = DriverManager.getConnection("jdbc:sqlite:" + "Client/src/main/resources/com/quap/users/" + username + "/sqlite/db/messages.db", username, password);
         initDB();
     }
 
@@ -22,7 +22,7 @@ public class UserdataReader{
         statement.setQueryTimeout(20);
 
         statement.executeUpdate("create table if not exists messages (" +
-                "id int primary key autoincrement," +
+                "id integer primary key autoincrement," +
                 "chat_id int not null," +
                 "sender int not null," +
                 "created_at timestamp not null default current_timestamp," +

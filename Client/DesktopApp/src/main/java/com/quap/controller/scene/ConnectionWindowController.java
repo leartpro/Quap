@@ -94,15 +94,9 @@ public class ConnectionWindowController implements Initializable {
             Platform.runLater(() -> loadingLabel.setText("Create File-System"));
             String rootPath = "./Client/src/main/resources/com/quap/users/anonym/";
             File sqlFolder, prefFolder;
-            File sqlFile, prefFile;
+            File prefFile;
             sqlFolder = new File(rootPath + "/sqlite/db/");
             sqlFolder.mkdirs();
-            sqlFile = new File(rootPath + "/sqlite/db/" + "messages.db");
-            try {
-                sqlFile.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
             prefFolder = new File(rootPath + "/preferences/settings/");
             prefFolder.mkdirs();
             prefFile = new File(rootPath + "/preferences/settings/" + "settings.properties");
