@@ -111,6 +111,7 @@ public class LoginWindowController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        assert root != null;
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setMinWidth(600);

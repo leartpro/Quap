@@ -1,4 +1,4 @@
-package com.quap.client.network;
+package com.quap.client.utils;
 
 public enum Prefixes {
     MESSAGE, ANONYM_MESSAGE, COMMAND

@@ -1,4 +1,4 @@
-package com.quap.client.network;
+package com.quap.client.utils;
 
 public class Message {
     String content;

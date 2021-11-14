@@ -83,6 +83,7 @@ public class Server implements Runnable  {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+                    assert client != null;
                     System.out.print("\r\nNew connection from " + client.getInetAddress() + ":" + client.getPort());
                     System.out.println(" to " + socket.getInetAddress() + ":" + socket.getLocalPort());
                     service.execute(new ClientHandler(client, UniqueIdentifier.getIdentifier()));
@@ -114,7 +115,7 @@ public class Server implements Runnable  {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        if (status) {
+        if (status) { //TODO: status is always false
             System.out.println(LocalTime.now().toString().substring(0, LocalTime.now().toString().indexOf("."))
                     + " :Attempting to shutdown");
             service.shutdown();

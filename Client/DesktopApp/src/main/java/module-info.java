@@ -9,6 +9,7 @@ module com.quap.desktopapp {
     requires org.kordamp.ikonli.javafx;
     requires Client;
     requires java.prefs;
+    requires java.sql;
 
     opens com.quap.desktopapp to javafx.fxml;
     exports com.quap.desktopapp;

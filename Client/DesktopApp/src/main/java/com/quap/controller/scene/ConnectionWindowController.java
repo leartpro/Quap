@@ -1,6 +1,8 @@
 package com.quap.controller.scene;
 
 import com.quap.client.Client;
+import com.quap.client.data.ConfigReader;
+import com.quap.client.data.UserdataReader;
 import com.quap.controller.VistaController;
 import com.quap.desktopapp.LauncherPreloader;
 import com.quap.utils.WindowMoveHelper;
@@ -16,7 +18,9 @@ import javafx.stage.StageStyle;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -100,9 +104,20 @@ public class ConnectionWindowController implements Initializable {
             prefFolder = new File(rootPath + "/preferences/settings/");
             prefFolder.mkdirs();
             prefFile = new File(rootPath + "/preferences/settings/" + "settings.properties");
+            prefFolder = new File(rootPath + "/preferences/config/");
+            prefFolder.mkdirs();
             try {
                 prefFile.createNewFile();
             } catch (IOException e) {
+                e.printStackTrace();
+            }
+            ConfigReader reader = new ConfigReader("anonym");
+            reader.config();
+            try {
+                UserdataReader dataReader = new UserdataReader("anonym", "toor");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } catch (URISyntaxException e) {
                 e.printStackTrace();
             }
         }); setupProjectStructure.start();
@@ -180,6 +195,7 @@ public class ConnectionWindowController implements Initializable {
                         scene = (new LauncherPreloader.ShadowScene()).getShadowScene(root);
                         stage.initStyle(StageStyle.TRANSPARENT);
                     } else {
+                        assert root != null;
                         scene = new Scene(root);
                         stage.initStyle(StageStyle.UNDECORATED);
                     }

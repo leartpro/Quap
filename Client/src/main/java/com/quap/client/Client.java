@@ -1,7 +1,7 @@
 package com.quap.client;
 
-import com.quap.client.network.Prefixes;
-import com.quap.client.network.Suffixes;
+import com.quap.client.utils.Prefixes;
+import com.quap.client.utils.Suffixes;
 
 import java.io.BufferedReader;
 import java.io.IOException;
