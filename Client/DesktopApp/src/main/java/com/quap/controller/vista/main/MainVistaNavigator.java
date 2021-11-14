@@ -6,7 +6,7 @@ import com.quap.controller.vista.VistaNavigator;
 public abstract class MainVistaNavigator extends VistaNavigator {
 
     @Override
-    public VistaNavigator getVistaByID(String id) {
+     protected VistaNavigator getVistaByID(String id) {
         //TODO:
         if(id.equals("list")) {
             return new ListController();

@@ -14,8 +14,8 @@ import java.net.UnknownHostException;
 import java.util.HashMap;
 
 public class Client {
-    private final HashMap<Prefixes, String> prefixes = new HashMap();
-    private final HashMap<Suffixes, String> suffixes = new HashMap();
+    private final HashMap<Prefixes, String> prefixes = new HashMap<>();
+    private final HashMap<Suffixes, String> suffixes = new HashMap<>();
     private Socket socket = new Socket();
     private String name;
     private final int port;

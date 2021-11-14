@@ -239,67 +239,6 @@ public class Server implements Runnable  {
         }
     }*/
 
-    /*public class json {
-        public void jsonMain throws UnsupportedEncodingException {
-
-            final String dirPath = "C:\\Users\\Lenni\\Desktop\\App\\Formulierungen\\exc\\";
-            File dataFile = new File(dirPath + "db_to.json");
-            String area;
-            String tempJsonObject;
-            String Alldata = new String(Files.readAllBytes(Paths.get(dataFile.toURI())), "UTF-8");
-            JSONObject json = new JSONObject(Alldata);
-            JSONArray JSONarea = json.getJSONArray("area");
-            int count = 0;
-            int pos;
-            int i;
-            int points;
-
-            for (i = 0; i <= JSONarea.length() - 1; i++) {
-
-                area = JSONarea.getJSONObject(i).toString().substring(2,
-                        JSONarea.getJSONObject(i).toString().indexOf(":[") - 1);
-                tempJsonObject = JSONarea.getJSONObject(i).toString().replaceAll("[{\"\\[\\]}]", "").split(":")[1];
-                points = 0;
-
-                for (pos = 0; pos != -1 && pos < tempJsonObject.length();) {
-                    pos = tempJsonObject.indexOf(",", pos);
-                    if (pos != -1) {
-                        points++;
-                        ++pos;
-                    }
-                }
-
-                // System.out.println("In der Kategorie " + area + " befinden sich die Angaben:
-                // " + tempJsonObject + " mit " + ++points + "Unterpunkten");
-                if (count < points++) {
-                    count = points;
-                }
-                System.out.println("Größe von Spalte: " + count);
-                System.out.println("Größe von zeile: " + JSONarea.length());
-
-                String dataout[][] = new String [JSONarea.length()/* anzahl der zeilen hier anzahl von area elementen ]
-                        [count/*zahl der spalten hier anzahl vontempJsonObject elementen*;
-                for (i = 0; i <= JSONarea.length() - 1; i++) {
-                    area = JSONarea.getJSONObject(i).toString().substring(2,
-                            JSONarea.getJSONObject(i).toString().indexOf(":[") - 1);
-                    tempJsonObject = JSONarea.getJSONObject(i).toString().replaceAll("[{\"\\[\\]}]", "").split(":")[1];
-
-                    for (pos = 0; pos != -1 && pos < tempJsonObject.length();) {
-                        pos = tempJsonObject.indexOf(",", pos);
-                        if (pos != -1) {
-                            ++pos;
-                            System.out.println(pos);
-                        }
-                    }
-                    pos++;
-                    for (int round = 0; round < pos; round++) {
-                        dataout[i][round] = tempJsonObject;
-                        System.out.println(dataout[i][round] + " pos:" + pos + " round:" + round + " count:" + count);
-                    }
-                }
-            }
-        }
-    }*/
 
 
 }

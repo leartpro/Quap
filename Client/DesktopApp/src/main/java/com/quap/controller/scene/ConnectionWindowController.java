@@ -1,7 +1,6 @@
 package com.quap.controller.scene;
 
 import com.quap.client.Client;
-import com.quap.client.data.ConfigReader;
 import com.quap.controller.VistaController;
 import com.quap.desktopapp.LauncherPreloader;
 import com.quap.utils.WindowMoveHelper;
@@ -18,10 +17,13 @@ import javafx.stage.StageStyle;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.*;
-import java.util.concurrent.*;
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.prefs.InvalidPreferencesFormatException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.ResourceBundle;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 /*
     The loading screen of this application
@@ -42,6 +44,7 @@ public class ConnectionWindowController implements Initializable {
     }
 
     public ConnectionWindowController() {
+        /*
         try {
             resultList.add((Map<Boolean, Future<Boolean>>) new HashMap<Boolean, Future<Boolean>>()
                     .put(true,
@@ -73,15 +76,16 @@ public class ConnectionWindowController implements Initializable {
                 System.out.println("--------------------");
             }
         } executor.shutdown();
+         */
 
         //TODO: start setupProjectThread as Future and let lauchWindow access later the returned data
         Thread loadingDummyThread = new Thread(() -> {
-            String text = "Loading";
+            StringBuilder text = new StringBuilder("Loading");
             for(int i = 0; i < 3; i++) {
-                String finalText = text;
+                String finalText = text.toString();
                 Platform.runLater(() -> loadingLabel.setText(finalText));
                 try { Thread.sleep(1000);} catch (InterruptedException e) { e.printStackTrace(); }
-                text = text + "."; }
+                text.append("."); }
         }); loadingDummyThread.start();
         try { loadingDummyThread.join(); } catch (InterruptedException e) { e.printStackTrace(); }
 
@@ -118,7 +122,7 @@ public class ConnectionWindowController implements Initializable {
     public void connect() {
         Thread connect = new Thread(() -> {
             Platform.runLater(() -> loadingLabel.setText("Open Connection..."));
-                client = new Client("localhost", 80); //local socketaddress to bind to
+                client = new Client("localhost", 80); //local socketAddress to bind to
         }); connect.start();
         try {
             connect.join();
@@ -129,15 +133,10 @@ public class ConnectionWindowController implements Initializable {
     }
 
     public void openConnection() {
-        AtomicBoolean success = new AtomicBoolean(false);
         Thread openConnection = new Thread(() -> {
             Platform.runLater(() -> loadingLabel.setText("Open Connection..."));
-            success.set(client.openConnection());
-            if(success.get()) {
-                client.setConnection();
-            } else {
-                System.err.println("Can not open Connection");
-            }
+            client.openConnection();
+            client.setConnection();
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {

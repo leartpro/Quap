@@ -4,12 +4,15 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
-<VBox fx:id="chat" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.vista.main.ChatController">
-   <children>
-      <ScrollPane fx:id="chatPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
-         <content>
-            <TextArea fx:id="chatArea" prefHeight="200.0" prefWidth="200.0" />
-         </content></ScrollPane>
-        <TextField fx:id="textConsole" maxWidth="1.7976931348623157E308" onKeyPressed="#send" prefHeight="25.0" VBox.vgrow="ALWAYS" />
-   </children>
+<VBox fx:id="chat" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+      xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.quap.controller.vista.main.ChatController">
+   <ScrollPane fx:id="chatPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+               VBox.vgrow="ALWAYS">
+      <content>
+         <TextArea fx:id="chatArea" prefHeight="200.0" prefWidth="200.0"/>
+      </content>
+   </ScrollPane>
+   <TextField fx:id="textConsole" maxWidth="1.7976931348623157E308" onKeyPressed="#send" prefHeight="25.0"
+              VBox.vgrow="ALWAYS"/>
 </VBox>

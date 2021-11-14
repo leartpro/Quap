@@ -62,7 +62,7 @@ public class MainWindowController {
         }
     }
 
-    public void setVista(Node node, MainVistaNavigator controller) { //set the current node is called by VistaControler
+    public void setVista(Node node, MainVistaNavigator controller) { //set the current node is called by VistaController
         if (node.getId().equals("chat") || node.getId().equals("list") || node.getId().equals("profile") || node.getId().equals("settings")) {
             currentNode = controller;
             currentNode.setClient(client);

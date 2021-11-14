@@ -97,7 +97,7 @@ public class LoginWindowController {
     public void login(ActionEvent actionEvent) {
         //TODO: run as future the server request and in addition to the db connection and property reading
         client.authorize(name, password);
-        //if authentification is successful:
+        //if authentication is successful:
         /*ConfigReader configReader = null;
             configReader = new ConfigReader(name);
         Config configuration = configReader.readConfiguration();*/

@@ -9,6 +9,6 @@ public abstract class VistaNavigator extends Node {
         return super.getStyleableNode();
     }
 
-    public abstract VistaNavigator getVistaByID(String id);
+    protected abstract VistaNavigator getVistaByID(String id);
 
 }

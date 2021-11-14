@@ -3,8 +3,6 @@ package com.quap;
 import com.quap.server.Server;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
@@ -78,6 +76,7 @@ public class Main { //TODO: mdns
         }
         new Server(socket);
     }
+    /*
     private static class SyncPipe implements Runnable {
         public SyncPipe(InputStream istrm, OutputStream ostrm) {
             istrm_ = istrm;
@@ -100,4 +99,5 @@ public class Main { //TODO: mdns
         private final OutputStream ostrm_;
         private final InputStream istrm_;
     }
+    */
 }

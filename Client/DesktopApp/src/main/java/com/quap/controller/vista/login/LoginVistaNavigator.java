@@ -5,7 +5,7 @@ import com.quap.controller.vista.VistaNavigator;
 public abstract class LoginVistaNavigator extends VistaNavigator {
 
     @Override
-    public VistaNavigator getVistaByID(String id) {
+    protected VistaNavigator getVistaByID(String id) {
         if(id.equals("signUp")) {
             return new SignUpController();
         } else if(id.equals("signIn")) {
