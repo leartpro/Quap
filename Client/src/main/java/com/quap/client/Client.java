@@ -2,6 +2,7 @@ package com.quap.client;
 
 import com.quap.client.utils.Prefixes;
 import com.quap.client.utils.Suffixes;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -89,10 +90,13 @@ public class Client {
         }
     }
 
-    public void authorize(String name, String password) {
-        System.out.println("authentication");
+    public void authorize(String name, String password, boolean existing) {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("password", password);
+        json.put("existing", existing);
         String authenticationMessage = prefixes.get(Prefixes.AUTHENTICATION) +
-                name + "|" + password +
+                json +
                 suffixes.get(Suffixes.AUTHENTICATION);
         System.out.println(authenticationMessage);
         sendMessage(authenticationMessage);

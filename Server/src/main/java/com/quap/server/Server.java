@@ -26,11 +26,6 @@ public class Server implements Runnable  {
     public Server(ServerSocket socket) {
         service = Executors.newCachedThreadPool();
         this.socket = socket;
-        //try {
-            //socket.bind(new InetSocketAddress("192.168.178.1", 8192));
-        //} catch (IOException e) {
-        //    e.printStackTrace();
-        //}
         run = new Thread( this, "Server");
         run.start();
     }

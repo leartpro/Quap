@@ -22,10 +22,10 @@ public class UserdataReader {
     }
 
     //Sign up
-    public boolean insertUser(String name, String password) {
+    public String insertUser(String name, String password) {
         System.out.println("INSERTING USER:" + name + "|" + password);
         if(userExists(name, password)) {
-            return false;
+            return null;
         } else {
             try {
                 statement.executeUpdate("" +
@@ -36,7 +36,7 @@ public class UserdataReader {
                 e.printStackTrace();
             }
         }
-        return true;
+        return ""; //the new user settings as json string TODO
     }
 
     //Sign In

@@ -1,6 +1,7 @@
 package com.quap.server;
 
 import com.quap.data.UserdataReader;
+import org.json.JSONObject;
 
 import java.io.*;
 import java.net.Socket;
@@ -11,11 +12,12 @@ import java.sql.SQLException;
 public class ClientHandler implements Runnable {
     private final int ID;
     private final Socket socket;
-    private Thread listen;
-    InputStream input;
-    BufferedReader reader;
-    OutputStream output;
-    PrintWriter writer;
+    private Thread listen; //because listen is the only method call in run(), the clientHandler will quit when the listen Thread is interrupted
+
+    private InputStream input;
+    private final BufferedReader reader;
+    private OutputStream output;
+    private final PrintWriter writer;
 
     public ClientHandler(Socket socket, int ID) {
         this.socket = socket;
@@ -31,20 +33,21 @@ public class ClientHandler implements Runnable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         writer = new PrintWriter(output, true);
         reader = new BufferedReader(new InputStreamReader(input));
-        System.out.println("new Handler");
+    }
+
+    @Override
+    public void run() {
+        listen();
+        disconnect();
     }
 
     private void listen() {
-        System.out.println("Handler is listen...");
         listen = new Thread(() -> {
-            String message = null;
             while(!socket.isClosed()) {
                     try {
-                        message = reader.readLine();
-                        //send("Return from Server");
+                        String message = reader.readLine();
                         if(message.length() > 0) {
                             process(message);
                         }
@@ -60,13 +63,14 @@ public class ClientHandler implements Runnable {
     }
 
     private void process(String message) {
+        String content = message.substring(5, (message.length()-5));
         System.out.println(message);
-        String content = message.substring(5, (message.length()-5)); //TODO: begin -1, end -1, length 16
         System.out.println(content);
         switch(message.charAt(2)) {
             case 'm' -> System.out.println("message found");
             case 'c' -> System.out.println("command found");
             case 'a' -> {
+                System.out.println("authentication found");
                 //TODO: run database access as future
                 UserdataReader dbReader = null;
                 try {
@@ -75,9 +79,18 @@ public class ClientHandler implements Runnable {
                     e.printStackTrace();
                 }
                 assert dbReader != null;
-                System.out.println(content.split("\\|")[0] + " : "  + content.split("\\|")[1]);
-                boolean success = dbReader.insertUser(content.split("\\|")[0], content.split("\\|")[1]);
-                System.out.println(success);
+                JSONObject json = new JSONObject(content);
+                String name = json.getString("name");
+                String password = json.getString("password");
+                boolean existing = json.getBoolean("existing");
+
+                String result;
+                if(existing) {
+                    result = dbReader.verifyUser(name, password);
+                } else {
+                    result = dbReader.insertUser(name, password);
+                }
+                send(result);
             }
         }
     }
@@ -85,11 +98,6 @@ public class ClientHandler implements Runnable {
     private void send(String message) {
         System.out.println("Server Message to Client: " + message);
         writer.println(message);
-    }
-
-    @Override
-    public void run() {
-        listen();
     }
 
     public int getID() {
@@ -101,5 +109,6 @@ public class ClientHandler implements Runnable {
     }
 
     public void disconnect() {
+        System.out.println("Disconnecting");
     }
 }
