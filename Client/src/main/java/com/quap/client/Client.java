@@ -7,10 +7,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.InetAddress;
-import java.net.InetSocketAddress;
-import java.net.Socket;
-import java.net.UnknownHostException;
+import java.net.*;
 import java.util.HashMap;
 
 public class Client {
@@ -21,6 +18,7 @@ public class Client {
     private final int port;
     private InetAddress address;
     private int ID = -1;
+    private Thread listen;
     BufferedReader reader;
     PrintWriter writer;
 
@@ -30,11 +28,11 @@ public class Client {
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }
-        for(Prefixes p : Prefixes.values()) {
-            prefixes.put(p, "/+"+ p.name().toLowerCase().charAt(0)+ "+/");
+        for (Prefixes p : Prefixes.values()) {
+            prefixes.put(p, "/+" + p.name().toLowerCase().charAt(0) + "+/");
         }
-        for(Suffixes s : Suffixes.values()) {
-            suffixes.put(s, "/-"+ s.name().toLowerCase().charAt(0)+ "-/");
+        for (Suffixes s : Suffixes.values()) {
+            suffixes.put(s, "/-" + s.name().toLowerCase().charAt(0) + "-/");
         }
     }
 
@@ -92,6 +90,12 @@ public class Client {
     }
 
     public void authorize(String name, String password) {
+        System.out.println("authentication");
+        String authenticationMessage = prefixes.get(Prefixes.AUTHENTICATION) +
+                name + "|" + password +
+                suffixes.get(Suffixes.AUTHENTICATION);
+        System.out.println(authenticationMessage);
+        sendMessage(authenticationMessage);
     }
 
     public void disconnect() {
@@ -108,17 +112,23 @@ public class Client {
 
     public void listen() {
         System.out.println("Client is listen...");
-        new Thread(() -> {
+        listen = new Thread(() -> {
             String message;
-            while (true) {
-                    try {
-                        message = reader.readLine();
+            while (reader != null) {
+                try {
+                    message = reader.readLine();
+                    if (message.length() > 0) {
                         System.out.println("Incoming message: " + message);
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                    }
+                } catch (SocketException e) {
+                    e.printStackTrace();
+                    listen.interrupt();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
-        }).start();
+        });
+        listen.start();
     }
 
     public void setID(int ID) {
@@ -135,6 +145,6 @@ public class Client {
 
     public void sendMessage(String message) {
         System.out.println("Send Message from Client to Server: " + message);
-        writer.println("Test from Client");
+        writer.println(message);
     }
 }

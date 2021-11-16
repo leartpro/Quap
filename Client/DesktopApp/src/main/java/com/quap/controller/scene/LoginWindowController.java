@@ -27,7 +27,8 @@ public class LoginWindowController {
     public void setClient(Client client) {
         this.client = client;
         //TODO: name should be the current name from the UI!!!
-        this.name = "exampleUser1";
+        this.name = "exampleName";
+        this.password = "example!50AB";
     }
 
     public void setVista(Parent node, LoginVistaNavigator controller) {
@@ -96,6 +97,7 @@ public class LoginWindowController {
 
     public void login(ActionEvent actionEvent) {
         //TODO: run as future the server request and in addition to the db connection and property reading
+        //client.sendMessage("Test1");
         client.authorize(name, password);
         //if authentication is successful:
         /*ConfigReader configReader = null;

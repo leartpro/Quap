@@ -59,6 +59,10 @@ public class ConfigReader {
     public void settings() {
 
     }
+
+    public void props() {
+
+    }
     //TODO: add listener for all main config-vars
 
 }

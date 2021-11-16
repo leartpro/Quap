@@ -112,7 +112,6 @@ public class ConnectionWindowController implements Initializable {
                 e.printStackTrace();
             }
             ConfigReader reader = new ConfigReader("anonym");
-            reader.config();
             try {
                 UserdataReader dataReader = new UserdataReader("anonym", "toor");
             } catch (SQLException e) {

@@ -18,17 +18,19 @@ public class UserdataReader {
                 "jdbc:postgresql://localhost/postgres",
                 "postgres",
                 "password");
+        statement = connection.createStatement();
     }
 
     //Sign up
     public boolean insertUser(String name, String password) {
+        System.out.println("INSERTING USER:" + name + "|" + password);
         if(userExists(name, password)) {
             return false;
         } else {
             try {
                 statement.executeUpdate("" +
                         "INSERT INTO users(name, password)" +
-                        "VALUES(" + name + "," + password + ")"
+                        "VALUES(" + "'" + name + "'" + "," + "'" + password + "'" + ")"
                 );
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -90,7 +92,7 @@ public class UserdataReader {
     }
 
     private boolean userExists(String username, String password) { //TODO:
-        return true;
+        return false;
    }
 
    private JSONArray dataByUser(String name) { //TODO
