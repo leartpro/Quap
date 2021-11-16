@@ -6,6 +6,7 @@
     <file url="file://$PROJECT_DIR$/Server/src/main/resources/com/quap/db/insert-sample-db.sql" dialect="PostgreSQL" />
   </component>
   <component name="SqlResolveMappings">
+    <file url="file://$PROJECT_DIR$/Client/src/main/java/com/quap/client/data/UserdataReader.java" scope="{&quot;node&quot;:{  &quot;@negative&quot;:&quot;1&quot;,  &quot;group&quot;:{   &quot;@kind&quot;:&quot;root&quot;,   &quot;node&quot;:{    &quot;name&quot;:{     &quot;@qname&quot;:&quot;671610ae-8b1b-4638-8a30-aa42e58e02fc&quot;    }   }  } }}" />
     <file url="file://$PROJECT_DIR$/Server/src/main/java/com/quap/data/UserdataReader.java" scope="{&quot;node&quot;:{  &quot;@negative&quot;:&quot;1&quot;,  &quot;group&quot;:{   &quot;@kind&quot;:&quot;root&quot;,   &quot;node&quot;:{    &quot;name&quot;:{     &quot;@qname&quot;:&quot;bbbc8cbe-ecfc-4dbd-846d-194bd002699e&quot;    }   }  } }}" />
   </component>
 </project>

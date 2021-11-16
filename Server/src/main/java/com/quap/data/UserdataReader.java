@@ -4,83 +4,114 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.net.URISyntaxException;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class UserdataReader {
     final Connection connection;
     Statement statement;
 
     public UserdataReader() throws SQLException, URISyntaxException {
-        connection = DriverManager.getConnection("jdbc:postgresql://localhost/postgres", "postgres", "password");
+        connection = DriverManager.getConnection(
+                "jdbc:postgresql://localhost/postgres",
+                "postgres",
+                "password");
     }
-    //neuer nutzer
-    //verify nutzer
 
+    //Sign up
     public boolean insertUser(String name, String password) {
-        return !userExists(name, password);
-        //insert user here
+        if(userExists(name, password)) {
+            return false;
+        } else {
+            try {
+                statement.executeUpdate("" +
+                        "INSERT INTO users(name, password)" +
+                        "VALUES(" + name + "," + password + ")"
+                );
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return true;
     }
+
+    //Sign In
    public String verifyUser(String name, String password) {
        JSONObject json = new JSONObject();
         if(!userExists(name, password)) {
             json.put("error", "There is already a user with this name!");
             return json.toString();
+        } else {
+            json.put("data", dataByUser(name));
+            json.put("chats", chatsByUser(name));
+            json.put("friends", friendsByUser(name));
         }
-        int userID = getIdbyName(name);
-        json.put("chats", chatsByUserID(userID));
-        json.put("friends", friendsByUserID(userID));
         return json.toString(); //user json
    }
 
-    public void addChat() {
-
-   }
-
-   public void leaveChat() {
-
-   }
-
-    public void updatePassword() {
-
-    }
-
-    public void updateName() {
-
-    }
-
-    public void addFriend() {
-
-    }
-
-    public void removeFriend() {
-
-    }
-
-    private int getIdbyName(String name) {
+    public void addChat(String name, boolean isPrivate) {
         try {
-            final ResultSet result = statement.executeQuery(
-                    "SELECT * FROM users" +
-                    "");
-            return result.getInt("id()");
+            statement.executeUpdate("" +
+                    "INSERT INTO chatrooms(name, isPrivate)" +
+                    "VALUES(" + name + "," + isPrivate + ")"
+            );
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return 0;
+   }
+
+   public void leaveChat(int chat_id, int user_id) { //TODO
+
+   }
+
+    public void updatePassword() { //TODO
+
     }
 
-    private boolean userExists(String username, String password) {
+    public void updateName() { //TODO
+
+    }
+
+    public void addFriend(String name, String friend) {
+        try {
+            statement.executeUpdate("" +
+                    "INSERT INTO friends(friend1_id, friend2_id)" +
+                    "VALUES(" + IDByName(name) + "," + IDByName(friend) + ")"
+            );
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void removeFriend() { //TODO
+
+    }
+
+    private boolean userExists(String username, String password) { //TODO:
         return true;
    }
 
-   private JSONArray chatsByUserID(int id) {
+   private JSONArray dataByUser(String name) { //TODO
+
+       return new JSONArray();
+   }
+
+   private JSONArray chatsByUser(String name) { //TODO
 
         return new JSONArray();
    }
 
-    private JSONArray friendsByUserID(int userID) {
+    private JSONArray friendsByUser(String name) { //TODO
 
         return new JSONArray();
     }
+
+    private String IDByName(String name) { //TODO
+        return "";
+    }
+
 
 
 
