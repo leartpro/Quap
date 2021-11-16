@@ -36,7 +36,7 @@ public class UserdataReader{
 
     }
 
-    public void addMessage() {
+    public void addMessage(int chat_id) {
 
     }
 

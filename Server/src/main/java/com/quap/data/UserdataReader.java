@@ -1,12 +1,10 @@
 package com.quap.data;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.net.URISyntaxException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class UserdataReader {
     final Connection connection;
@@ -23,18 +21,67 @@ public class UserdataReader {
         //insert user here
     }
    public String verifyUser(String name, String password) {
+       JSONObject json = new JSONObject();
         if(!userExists(name, password)) {
-            JSONObject json = new JSONObject();
             json.put("error", "There is already a user with this name!");
             return json.toString();
         }
-
-        return ""; //user json
+        int userID = getIdbyName(name);
+        json.put("chats", chatsByUserID(userID));
+        json.put("friends", friendsByUserID(userID));
+        return json.toString(); //user json
    }
 
-   private boolean userExists(String username, String password) {
+    public void addChat() {
+
+   }
+
+   public void leaveChat() {
+
+   }
+
+    public void updatePassword() {
+
+    }
+
+    public void updateName() {
+
+    }
+
+    public void addFriend() {
+
+    }
+
+    public void removeFriend() {
+
+    }
+
+    private int getIdbyName(String name) {
+        try {
+            final ResultSet result = statement.executeQuery(
+                    "SELECT * FROM users" +
+                    "");
+            return result.getInt("id()");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    private boolean userExists(String username, String password) {
         return true;
    }
+
+   private JSONArray chatsByUserID(int id) {
+
+        return new JSONArray();
+   }
+
+    private JSONArray friendsByUserID(int userID) {
+
+        return new JSONArray();
+    }
+
 
 
 
