@@ -21,7 +21,7 @@ public class ConfigReader {
                 e.printStackTrace();
             }
         }
-        props.setProperty("theme", "light");
+        props.setProperty("theme", "light"); //TODO: sql settings, threading settings, network settings
 
         try {
             props.store(new FileWriter("Server/src/main/resources/com/quap/config/config.properties"), null);

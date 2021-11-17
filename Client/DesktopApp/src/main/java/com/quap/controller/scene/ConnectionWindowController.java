@@ -1,8 +1,6 @@
 package com.quap.controller.scene;
 
 import com.quap.client.Client;
-import com.quap.client.data.ConfigReader;
-import com.quap.client.data.UserdataReader;
 import com.quap.controller.VistaController;
 import com.quap.desktopapp.LauncherPreloader;
 import com.quap.utils.WindowMoveHelper;
@@ -20,6 +18,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.concurrent.Callable;
+import java.util.concurrent.FutureTask;
 
 /*
     The loading screen of this application
@@ -58,7 +57,7 @@ public class ConnectionWindowController implements Initializable {
             e.printStackTrace();
         }
 
-        Thread setupProjectStructure = new Thread(() -> {
+        /*Thread setupProjectStructure = new Thread(() -> {
             Platform.runLater(() -> loadingLabel.setText("Create Project-File-System"));
 
             ConfigReader configReader = new ConfigReader("anonym");
@@ -71,15 +70,15 @@ public class ConnectionWindowController implements Initializable {
             setupProjectStructure.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     public Callable<Boolean> connect() {
         return () -> {
-            connect.start();
+            Platform.runLater(() -> loadingLabel.setText("Open Connection..."));
             try {
-                connect.join();
-            } catch (InterruptedException e) {
+                client = new Client("localhost", 80); //local socketAddress to bind to
+            } catch (IOException e) {
                 e.printStackTrace();
                 return false;
             }
@@ -89,10 +88,16 @@ public class ConnectionWindowController implements Initializable {
 
     public Callable<Boolean> openConnection() {
         return () -> {
-            openConnection.start();
+            Platform.runLater(() -> loadingLabel.setText("Open Connection..."));
             try {
-                openConnection.join();
-            } catch (InterruptedException e) {
+                client.openConnection();
+            } catch (IOException e) {
+                e.printStackTrace();
+                return false;
+            }
+            try {
+                client.setConnection();
+            } catch (IOException e) {
                 e.printStackTrace();
                 return false;
             }
@@ -102,83 +107,52 @@ public class ConnectionWindowController implements Initializable {
 
     public Callable<Boolean> confirmConnection() {
         return () -> {
-            confirmConnection.start();
-            try {
-                confirmConnection.join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-                return false;
-            }
+            System.out.println("confirm connection");
+            Platform.runLater(() -> loadingLabel.setText("Open Connection..."));
+            client.listen();
             return true;
         };
     }
 
     public Callable<Boolean> launchWindow() {
         return () -> {
-            openLoginThread.start();
-            try {
-                openLoginThread.join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-                return false;
-            }
-            return true;
+            Platform.runLater(() -> loadingLabel.setText("Loading Login"));
+            Platform.runLater(task);
+            return (Boolean) task.get();
         };
     }
 
-    Thread connect = new Thread(() -> {
-        Platform.runLater(() -> loadingLabel.setText("Open Connection..."));
-        client = new Client("localhost", 80); //local socketAddress to bind to
-    });
-
-    Thread openConnection = new Thread(() -> {
-        Platform.runLater(() -> loadingLabel.setText("Open Connection..."));
-        client.openConnection();
-        client.setConnection();
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    });
-
-    Thread confirmConnection = new Thread(() -> {
-        Platform.runLater(() -> loadingLabel.setText("Open Connection..."));
-        client.listen();
-    });
-
-    Thread openLoginThread = new Thread(() -> {
-        Platform.runLater(() -> loadingLabel.setText("Loading Login"));
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                Stage stage = new Stage();
-                Parent root = null;
-                FXMLLoader loader = new FXMLLoader(getClass().getResource(VistaController.LOGIN));
-                try {
-                    root = loader.load();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                Scene scene;
-                final String osName = System.getProperty("os.name");
-                if (osName != null && osName.startsWith("Windows")) {
-                    scene = (new LauncherPreloader.ShadowScene()).getShadowScene(root);
-                    stage.initStyle(StageStyle.TRANSPARENT);
-                } else {
-                    assert root != null;
-                    scene = new Scene(root);
-                    stage.initStyle(StageStyle.UNDECORATED);
-                }
-                stage.setScene(scene);
-                LoginWindowController loginWindowController = loader.getController();
-
-                loginWindowController.setClient(client);
-                VistaController.setLoginWindowController(loginWindowController);
-                VistaController.loadLoginVista(VistaController.SignIn);
-                stage.show();
-                WindowMoveHelper.addMoveListener(stage);
+    final FutureTask task = new FutureTask(new Callable<Boolean>() {
+        @Override
+        public Boolean call() {
+            Stage stage = new Stage();
+            Parent root;
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(VistaController.LOGIN));
+            try {
+                root = loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+                return false;
             }
-        });
+            Scene scene;
+            final String osName = System.getProperty("os.name");
+            if (osName != null && osName.startsWith("Windows")) {
+                scene = (new LauncherPreloader.ShadowScene()).getShadowScene(root);
+                stage.initStyle(StageStyle.TRANSPARENT);
+            } else {
+                assert root != null;
+                scene = new Scene(root);
+                stage.initStyle(StageStyle.UNDECORATED);
+            }
+            stage.setScene(scene);
+            LoginWindowController loginWindowController = loader.getController();
+
+            loginWindowController.setClient(client);
+            VistaController.setLoginWindowController(loginWindowController);
+            VistaController.loadLoginVista(VistaController.SignIn);
+            stage.show();
+            WindowMoveHelper.addMoveListener(stage);
+            return true;
+        }
     });
 }

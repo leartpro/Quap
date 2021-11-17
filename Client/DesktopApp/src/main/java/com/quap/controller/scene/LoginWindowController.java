@@ -23,6 +23,7 @@ public class LoginWindowController {
     private final Vista vista = new Vista();
     private LoginVistaNavigator currentNode;
     private Client client;
+    private boolean existingUser;
 
     public void setClient(Client client) {
         this.client = client;
@@ -38,6 +39,13 @@ public class LoginWindowController {
             IllegalArgumentException e;
         }
         vistaHolder.getChildren().setAll(node);
+        if(node.getId().equals("signUp")) {
+            existingUser = false;
+        } else if(node.getId().equals("signIn")) {
+            existingUser = true;
+        } else {
+            System.err.println("Unknown node");
+        }
     }
 
     private class Vista extends LoginVistaNavigator {
@@ -68,16 +76,10 @@ public class LoginWindowController {
         checkAnonymMode.setSelected(false);
         btnLogin.setVisible(false);
         currentNode = (LoginVistaNavigator) vista.getVistaByID("signUp");
+        System.out.println(currentNode.getClass().getSimpleName());
+        System.out.println("ID:" + currentNode.getId());
     }
 
-    public void setVista(Node node) {
-        if(node.getId().equals("signUp") || node.getId().equals("signIn")) {
-            currentNode = (LoginVistaNavigator) vista.getVistaByID(node.getId());
-        } else {
-            IllegalArgumentException e;
-        }
-        vistaHolder.getChildren().setAll(node);
-    }
 
     //TODO: fill methods
     @FXML
@@ -98,7 +100,7 @@ public class LoginWindowController {
     public void login(ActionEvent actionEvent) {
         //TODO: run as future the server request and in addition to the db connection and property reading
         //client.sendMessage("Test1");
-        client.authorize(name, password, currentNode.getId().equals("signIn"));
+            client.authorize(name, password, existingUser);
         //if authentication is successful:
         /*ConfigReader configReader = null;
             configReader = new ConfigReader(name);

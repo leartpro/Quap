@@ -8,8 +8,9 @@ import java.net.Socket;
 import java.net.SocketException;
 import java.net.URISyntaxException;
 import java.sql.SQLException;
+import java.util.concurrent.Callable;
 
-public class ClientHandler implements Runnable {
+public class ClientHandler implements Callable {
     private final int ID;
     private final Socket socket;
     private Thread listen; //because listen is the only method call in run(), the clientHandler will quit when the listen Thread is interrupted
@@ -37,12 +38,6 @@ public class ClientHandler implements Runnable {
         reader = new BufferedReader(new InputStreamReader(input));
     }
 
-    @Override
-    public void run() {
-        listen();
-        disconnect();
-    }
-
     private void listen() {
         listen = new Thread(() -> {
             while(!socket.isClosed()) {
@@ -54,6 +49,7 @@ public class ClientHandler implements Runnable {
                     } catch (SocketException e) {
                         e.printStackTrace();
                         listen.interrupt();
+                        System.exit(0);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -110,5 +106,13 @@ public class ClientHandler implements Runnable {
 
     public void disconnect() {
         System.out.println("Disconnecting");
+    }
+
+    @Override
+    public ServerClient call() throws Exception {
+        listen();
+        //disconnect(); is called direct after listen()
+
+        return null;
     }
 }

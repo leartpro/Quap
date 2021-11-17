@@ -81,7 +81,9 @@ public class Server implements Runnable  {
                     assert client != null;
                     System.out.print("\r\nNew connection from " + client.getInetAddress() + ":" + client.getPort());
                     System.out.println(" to " + socket.getInetAddress() + ":" + socket.getLocalPort());
-                    service.execute(new ClientHandler(client, UniqueIdentifier.getIdentifier()));
+                    service.submit(new ClientHandler(client, UniqueIdentifier.getIdentifier()));
+                    //TODO: work with return
+                    //when return and result is not null -> submit a new ClientHAndler, because the previous failed
                 }
             }
         };
