@@ -1,20 +1,26 @@
 package com.quap.client.data;
 
-import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 public class UserdataReader{
-    final Connection connection;
-    Statement statement;
+    private Connection connection;
+    private Statement statement;
 
-    public UserdataReader(String username, String password) throws SQLException, URISyntaxException {
+    public UserdataReader(String username, String password) {
         assert username != null;
- //       URL resource = UserdataReader.class.getResource("/com/quap/users/exampleUser1/sqlite/db");
-        connection = DriverManager.getConnection("jdbc:sqlite:" + "Client/src/main/resources/com/quap/users/" + username + "/sqlite/db/messages.db", username, password);
-        initDB();
+        try {
+            connection = DriverManager.getConnection("jdbc:sqlite:" + "Client/src/main/resources/com/quap/users/" + username + "/sqlite/db/messages.db", username, password);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            initDB();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     private void initDB() throws SQLException {
