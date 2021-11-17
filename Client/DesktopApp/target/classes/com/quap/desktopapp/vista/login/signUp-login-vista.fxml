@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<StackPane fx:id="signUp" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.quap.controller.vista.login.SignUpController">
+    <VBox fx:id="vBoxSignUp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+          prefHeight="400.0" prefWidth="600.0">
+        <Button mnemonicParsing="false" onAction="#signIn" text="Sign In"/>
+        <Label fx:id="lblUsername" text="Username"/>
+        <TextField fx:id="txtUsername" onKeyTyped="#validateUsername"/>
+        <Label fx:id="lblPassword" text="Password"/>
+        <PasswordField fx:id="txtPassword" onKeyTyped="#validatePassword"/>
+        <Label fx:id="lblPasswordConfirm" text="Password Confirm"/>
+        <PasswordField fx:id="txtPasswordConfirm" onKeyTyped="#confirmPassword"/>
+    </VBox>
+</StackPane>
