@@ -28,13 +28,13 @@ CREATE TABLE participants
 );
 
 --shows that two users are friends
+--TODO: TRIGGER for friends
 CREATE TABLE friends
 (
     id         integer primary key generated always as identity,
     friend1_id integer   NOT NULL references users (id) ON DELETE CASCADE,
     friend2_id integer   NOT NULL references users (id) ON DELETE CASCADE,
     chat_id    integer   not null references chatrooms (id) ON DELETE CASCADE,
-    created_at timestamp not null default now(),
     unique (friend1_id, friend2_id)
 );
 

@@ -2,6 +2,7 @@
 <project version="4">
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/Client/src/main/java/com/quap/client/data/UserdataReader.java" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/Server/src/main/java/com/quap/data/UserdataReader.java" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/Server/src/main/resources/com/quap/db/create-db.sql" dialect="PostgreSQL" />
     <file url="file://$PROJECT_DIR$/Server/src/main/resources/com/quap/db/insert-sample-db.sql" dialect="PostgreSQL" />
   </component>

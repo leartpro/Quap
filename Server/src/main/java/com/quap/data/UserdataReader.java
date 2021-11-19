@@ -19,28 +19,31 @@ public class UserdataReader {
     }
 
     //Sign up
-    public String insertUser(String name, String password) {
+    public String insertUser(String name, String password) { //TODO: message format
+        PreparedStatement statement;
         JSONObject json = new JSONObject();
+        String query = "" +
+                "INSERT INTO users(name, password)" +
+                "VALUES(?,?)";
         int userID = getUserID(name, null);
         if (userID != -1) { //user already exists
             json.put("error", "A user with this name already exists");
             return json.toString();
         } else {
             try {
-                statement.executeUpdate("" +
-                        "INSERT INTO users(name, password)" +
-                        "VALUES(" + "'" + name + "'" + "," + "'" + password + "'" + ")"
-                );
-                json.put("success", "");
+                statement = connection.prepareStatement(query);
+                statement.setString(1, name);
+                statement.setString(1, password);
+                json.put("success", "User has been inserted correctly");
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
-        return ""; //the new user settings as json string TODO
+        return json.toString();
     }
 
     //Sign In
-    public String verifyUser(String name, String password) {
+    public String verifyUser(String name, String password) { //TODO: message format
         JSONObject json = new JSONObject();
         int userID = getUserID(name, password);
         if (userID == -1) {
@@ -48,7 +51,8 @@ public class UserdataReader {
             return json.toString();
         } else {
             //json.put("data", dataByUser(userID)); //general userdata
-            json.put("chats", chatsByUser(userID));
+            json.put("chatrooms", chatroomsByUser(userID));
+            json.put("private", chatsByUser(userID));
             json.put("friends", friendsByUser(userID));
         }
         return json.toString(); //user json
@@ -79,6 +83,7 @@ public class UserdataReader {
             e.printStackTrace();
         } finally {
             try {
+                assert statement != null;
                 statement.close();
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -137,25 +142,20 @@ public class UserdataReader {
         JSONArray json = new JSONArray();
         try {
             result = statement.executeQuery("" +
-                    "SELECT chatrooms.*, participants.created_at AS joined_at " +
-                    "FROM participants LEFT JOIN chatrooms ON chatrooms.id = chatroom_id " +
-                    "WHERE user_id = " + id
+                    "SELECT users.name, users.id, chatrooms.id, chatrooms.created_at " +
+                    "FROM friends " +
+                    "LEFT JOIN users " +
+                    "ON users.id = friends.friend2_id " +
+                    "LEFT JOIN chatrooms " +
+                    "ON chatrooms.id = friends.chat_id " +
+                    "WHERE friend1_id = " + id
             );
         } catch (SQLException e) {
             e.printStackTrace();
         }
         try {
-            while (result.next()) {
-                JSONObject chat = new JSONObject();
-                int chatID = result.getInt("id");
-                chat.put("id", chatID);
-                chat.put("name", result.getString("name"));
-                chat.put("is_private", result.getBoolean("is_private"));
-                chat.put("created_at", result.getTimestamp("created_at"));
-                chat.put("joined_at", result.getTimestamp("joined_at"));
-                chat.put("participants", usersByChat(chatID));
-                json.put(chat);
-            }
+            assert result != null;
+            json = resultSetToJSONArray(result);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -168,7 +168,36 @@ public class UserdataReader {
         return json;
     }
 
-    //Hilfsmethode für chatsByUser
+    private JSONArray chatroomsByUser(int id) {
+        ResultSet result = null;
+        JSONArray json = new JSONArray();
+        try {
+            result = statement.executeQuery("" +
+                    "SELECT chatrooms.*, participants.created_at " +
+                    "AS joined_at " +
+                    "FROM participants " +
+                    "LEFT JOIN chatrooms " +
+                    "ON chatrooms.id = chatroom_id " +
+                    "WHERE user_id = " + id
+            );
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            assert result != null;
+            json = resultSetToJSONArray(result);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                result.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return json;
+    }
+
     private JSONArray usersByChat(int chatID) {
         ResultSet result = null;
         JSONArray json = new JSONArray();
@@ -185,12 +214,8 @@ public class UserdataReader {
             e.printStackTrace();
         }
         try {
-            while (result.next()) {
-                JSONObject user = new JSONObject();
-                user.put("id", result.getInt("id"));
-                user.put("name", result.getString("name"));
-                json.put(user);
-            }
+            assert result != null;
+            json = resultSetToJSONArray(result);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -207,6 +232,21 @@ public class UserdataReader {
         ResultSet result = null;
         JSONArray json = new JSONArray();
 
+        return json;
+    }
+
+    private JSONArray resultSetToJSONArray(ResultSet rs) throws SQLException {
+        JSONArray json = new JSONArray();
+        ResultSetMetaData rsmd = rs.getMetaData();
+        while(rs.next()) {
+            int numColumns = rsmd.getColumnCount();
+            JSONObject obj = new JSONObject();
+            for (int i=1; i<=numColumns; i++) {
+                String column_name = rsmd.getColumnName(i);
+                obj.put(column_name, rs.getObject(column_name));
+            }
+            json.put(obj);
+        }
         return json;
     }
 

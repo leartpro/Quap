@@ -14,7 +14,7 @@ CREATE TABLE chatrooms
 (
     id         integer primary key generated always as identity,
     name       varchar   not null check (length(name) <= 12 and length(name) >= 4),
-    isPrivate  bool      not null,
+    friend_id  integer unique references friends ON DELETE CASCADE,
     created_at timestamp not null default now()
 );
 
@@ -30,6 +30,7 @@ CREATE TABLE participants
 --shows that two users are friends
 CREATE TABLE friends
 (
+    id         integer primary key generated always as identity,
     friend1_id integer   NOT NULL references users (id) ON DELETE CASCADE,
     friend2_id integer   NOT NULL references users (id) ON DELETE CASCADE,
     created_at timestamp not null default now(),
