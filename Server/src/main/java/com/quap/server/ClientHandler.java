@@ -49,7 +49,12 @@ public class ClientHandler implements Callable {
                     } catch (SocketException e) {
                         e.printStackTrace();
                         listen.interrupt();
-                        System.exit(0);
+                        try {
+                            socket.close();
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                        //System.exit(0);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

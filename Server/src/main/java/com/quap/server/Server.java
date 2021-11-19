@@ -35,6 +35,12 @@ public class Server implements Runnable  {
         manageClients();
         receiveConnection();
         //TODO: db connection
+        //TODO: config reader
+        /*ConfigReader configReader = new ConfigReader();
+        configReader.loadDefaultProperties();*/
+
+
+
         /*
         TODO: Server wirft Threads als Future raus und startet jedes mal neu, solange status==true!
 
