@@ -20,6 +20,7 @@ public class UserdataReader {
 
     //Sign up
     public String insertUser(String name, String password) { //TODO: message format
+        System.out.println("insertUser(" + name + "," + password + ")");
         PreparedStatement statement;
         JSONObject json = new JSONObject();
         String query = "" +
@@ -33,7 +34,8 @@ public class UserdataReader {
             try {
                 statement = connection.prepareStatement(query);
                 statement.setString(1, name);
-                statement.setString(1, password);
+                statement.setString(2, password);
+                statement.executeUpdate();
                 json.put("success", "User has been inserted correctly");
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -44,6 +46,7 @@ public class UserdataReader {
 
     //Sign In
     public String verifyUser(String name, String password) { //TODO: message format
+        System.out.println("verifyUser(" + name + "," + password + ")");
         JSONObject json = new JSONObject();
         int userID = getUserID(name, password);
         if (userID == -1) {

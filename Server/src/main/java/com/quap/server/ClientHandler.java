@@ -87,8 +87,10 @@ public class ClientHandler implements Callable {
 
                 String result;
                 if(existing) {
+                    System.out.println("verifyUser(" + name + "," + password + ")");
                     result = dbReader.verifyUser(name, password);
                 } else {
+                    System.out.println("insertUser(" + name + "," + password + ")");
                     result = dbReader.insertUser(name, password);
                 }
                 send(result);
