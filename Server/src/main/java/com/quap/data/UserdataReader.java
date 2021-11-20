@@ -28,7 +28,15 @@ public class UserdataReader {
                 "VALUES(?,?)";
         int userID = getUserID(name, null);
         if (userID != -1) { //user already exists
-            json.put("error", "A user with this name already exists");
+            JSONObject status = new JSONObject();
+            status.put("access", false);
+            status.put("message", "Request was rejected, because an user with this name exists already");
+            json.put("status", status);
+
+            JSONObject returnedOutput = new JSONObject();
+            returnedOutput.put("result-type", "void");
+            returnedOutput.put("result", "null");
+            json.put("return", returnedOutput);
             return json.toString();
         } else {
             try {
@@ -36,7 +44,16 @@ public class UserdataReader {
                 statement.setString(1, name);
                 statement.setString(2, password);
                 statement.executeUpdate();
-                json.put("success", "User has been inserted correctly");
+
+                JSONObject status = new JSONObject();
+                status.put("access", true);
+                status.put("message", "Request was executed successfully");
+                json.put("status", status);
+
+                JSONObject returnedOutput = new JSONObject();
+                returnedOutput.put("result-type", "void");
+                returnedOutput.put("result", "null");
+                json.put("return", returnedOutput);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -50,13 +67,30 @@ public class UserdataReader {
         JSONObject json = new JSONObject();
         int userID = getUserID(name, password);
         if (userID == -1) {
-            json.put("error", "Name or password is incorrect or there is already a user with this name!");
+            JSONObject status = new JSONObject();
+            status.put("access", false);
+            status.put("message", "Request was rejected, because the given name or password is incorrect");
+            json.put("status", status);
+
+            JSONObject returnedOutput = new JSONObject();
+            returnedOutput.put("result-type", "void");
+            returnedOutput.put("result", "null");
+            json.put("return", returnedOutput);
             return json.toString();
         } else {
-            //json.put("data", dataByUser(userID)); //general userdata
-            json.put("chatrooms", chatroomsByUser(userID));
-            json.put("private", chatsByUser(userID));
-            json.put("friends", friendsByUser(userID));
+            JSONObject status = new JSONObject();
+            status.put("access", true);
+            status.put("message", "Request was executed successfully");
+            json.put("status", status);
+
+            JSONObject returnedOutput = new JSONObject();
+            returnedOutput.put("result-type", "objects"); //TODO: return value key more specific
+            returnedOutput.put("result", "not null");
+            returnedOutput.put("id", userID);
+            returnedOutput.put("chatrooms", chatroomsByUser(userID));
+            returnedOutput.put("private", chatsByUser(userID));
+            //returnedOutput.put("friends", friendsByUser(userID));
+            json.put("return", returnedOutput);
         }
         return json.toString(); //user json
     }
@@ -135,17 +169,13 @@ public class UserdataReader {
 
     }
 
-    private JSONArray dataByUser(int id) { //TODO
-
-        return new JSONArray();
-    }
-
     private JSONArray chatsByUser(int id) {
         ResultSet result = null;
         JSONArray json = new JSONArray();
         try {
+            //no problemo
             result = statement.executeQuery("" +
-                    "SELECT users.name, users.id, chatrooms.id, chatrooms.created_at " +
+                    "SELECT users.name, users.id AS user_id, chatrooms.id AS chatrooms_id, chatrooms.created_at " +
                     "FROM friends " +
                     "LEFT JOIN users " +
                     "ON users.id = friends.friend2_id " +
@@ -176,7 +206,7 @@ public class UserdataReader {
         JSONArray json = new JSONArray();
         try {
             result = statement.executeQuery("" +
-                    "SELECT chatrooms.*, participants.created_at " +
+                    "SELECT chatrooms.id, chatrooms.name, chatrooms.created_at, participants.created_at " +
                     "AS joined_at " +
                     "FROM participants " +
                     "LEFT JOIN chatrooms " +
@@ -231,20 +261,42 @@ public class UserdataReader {
         return json;
     }
 
-    private JSONArray friendsByUser(int id) { //TODO
+    /*private JSONArray friendsByUser(int id) { //returns in current time the chats instead of friends
         ResultSet result = null;
         JSONArray json = new JSONArray();
-
+        try {
+            result = statement.executeQuery("" +
+                    "SELECT users.id, users.name " +
+                    "FROM users " +
+                    "LEFT JOIN friends " +
+                    "ON users.id = friends.friend2_id " +
+                    "WHERE friend1_id = " + id
+            );
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            assert result != null;
+            json = resultSetToJSONArray(result);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                result.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
         return json;
-    }
+    }*/
 
     private JSONArray resultSetToJSONArray(ResultSet rs) throws SQLException {
         JSONArray json = new JSONArray();
         ResultSetMetaData rsmd = rs.getMetaData();
-        while(rs.next()) {
+        while (rs.next()) {
             int numColumns = rsmd.getColumnCount();
             JSONObject obj = new JSONObject();
-            for (int i=1; i<=numColumns; i++) {
+            for (int i = 1; i <= numColumns; i++) {
                 String column_name = rsmd.getColumnName(i);
                 obj.put(column_name, rs.getObject(column_name));
             }

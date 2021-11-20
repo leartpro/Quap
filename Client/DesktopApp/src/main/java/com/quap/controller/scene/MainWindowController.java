@@ -2,7 +2,6 @@ package com.quap.controller.scene;
 
 import com.quap.client.Client;
 import com.quap.controller.VistaController;
-import com.quap.controller.vista.VistaNavigator;
 import com.quap.controller.vista.main.MainVistaNavigator;
 import com.quap.utils.Chat;
 import javafx.event.ActionEvent;
@@ -28,7 +27,6 @@ import static com.quap.controller.VistaController.CHAT;
 public class MainWindowController {
 
     private MainVistaNavigator currentNode;
-    private final Vista vista = new Vista();
     private double lastX = 0.0d, lastY = 0.0d, lastWidth = 0.0d, lastHeight = 0.0d;
 
     @FXML
@@ -37,6 +35,7 @@ public class MainWindowController {
     private VBox vBoxButtonHolder;
     @FXML
     private Label lblServer_IP;
+
     public static Client client;
 
     @FXML
@@ -52,7 +51,7 @@ public class MainWindowController {
         }
         currentNode.loadContent(new Chat("Friend1"), new Chat("Friend2"));//dummys
         vBoxButtonHolder.getChildren().clear();
-        for(Button b : new ArrayList<Button>(List.of(new Button[]{new Button("friend1"), new Button("friend2"),
+        for (Button b : new ArrayList<Button>(List.of(new Button[]{new Button("friend1"), new Button("friend2"),
                 new Button("friend3"), new Button("friend4")}))) {
             b.setOnAction(e -> {
                 VistaController.loadMainVista(CHAT);
@@ -72,16 +71,16 @@ public class MainWindowController {
         stackContent.getChildren().setAll(node);
     }
 
-        public void maximize(ActionEvent actionEvent) {
-        Node n = (Node)actionEvent.getSource();
+    public void maximize(ActionEvent actionEvent) {
+        Node n = (Node) actionEvent.getSource();
         Window w = n.getScene().getWindow();
         double currentX = w.getX(), currentY = w.getY(), currentWidth = w.getWidth(), currentHeight = w.getHeight();
         Screen screen = Screen.getPrimary();
         Rectangle2D bounds = screen.getVisualBounds();
-        if( currentX != bounds.getMinX() &&
+        if (currentX != bounds.getMinX() &&
                 currentY != bounds.getMinY() &&
                 currentWidth != bounds.getWidth() &&
-                currentHeight != bounds.getHeight() ) {
+                currentHeight != bounds.getHeight()) {
             w.setX(bounds.getMinX());
             w.setY(bounds.getMinY());
             w.setWidth(bounds.getWidth());
@@ -100,18 +99,18 @@ public class MainWindowController {
     }
 
     public void minimize(ActionEvent actionEvent) {
-        Stage stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
+        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
         stage.setIconified(true);
     }
 
     public void close(ActionEvent actionEvent) {
-        ((Button)actionEvent.getSource()).getScene().getWindow().hide();
+        ((Button) actionEvent.getSource()).getScene().getWindow().hide();
     }
 
     public void settings(ActionEvent actionEvent) {
         VistaController.loadMainVista(VistaController.SETTINGS);
         vBoxButtonHolder.getChildren().clear();
-        for(Button b : new ArrayList<>(List.of(new Button[]{new Button("setting1"), new Button("setting2"),
+        for (Button b : new ArrayList<>(List.of(new Button[]{new Button("setting1"), new Button("setting2"),
                 new Button("setting3"), new Button("setting4")}))) {
             b.setOnAction(e -> {
                 VistaController.loadMainVista(CHAT); //TODO: load setting specific
@@ -125,7 +124,7 @@ public class MainWindowController {
         VistaController.loadMainVista(VistaController.LIST);
         currentNode.loadContent(new Chat("Friend1"), new Chat("Friend2"));//dummys
         vBoxButtonHolder.getChildren().clear();
-        for(Button b : new ArrayList<Button>(List.of(new Button[]{new Button("friend1"), new Button("friend2"),
+        for (Button b : new ArrayList<Button>(List.of(new Button[]{new Button("friend1"), new Button("friend2"),
                 new Button("friend3"), new Button("friend4")}))) {
             b.setOnAction(e -> {
                 VistaController.loadMainVista(CHAT);
@@ -139,7 +138,7 @@ public class MainWindowController {
         VistaController.loadMainVista(VistaController.LIST);
         currentNode.loadContent(new Chat("Group1"), new Chat("Group2"));//dummys
         vBoxButtonHolder.getChildren().clear();
-        for(Button b : new ArrayList<Button>(List.of(new Button[]{new Button("chatroom1"), new Button("chatroom2"),
+        for (Button b : new ArrayList<Button>(List.of(new Button[]{new Button("chatroom1"), new Button("chatroom2"),
                 new Button("chatroom3"), new Button("chatroom4")}))) {
             b.setOnAction(e -> {
                 VistaController.loadMainVista(CHAT);
@@ -152,7 +151,7 @@ public class MainWindowController {
     public void profil(ActionEvent actionEvent) {
         VistaController.loadMainVista(VistaController.PROFILE);
         vBoxButtonHolder.getChildren().clear();
-        for(Button b : new ArrayList<Button>(List.of(new Button[]{new Button("prSetting1"), new Button("prSetting2"),
+        for (Button b : new ArrayList<Button>(List.of(new Button[]{new Button("prSetting1"), new Button("prSetting2"),
                 new Button("prSetting3"), new Button("prSetting4")}))) {
             b.setOnAction(e -> {
                 VistaController.loadMainVista(CHAT);//TODO: load profile-setting specific
@@ -167,22 +166,4 @@ public class MainWindowController {
         //TODO: start as future, waiting until the info is received
         lblServer_IP.setText(lblServer_IP.getText() + " " + client.getConnectionInfo());
     }
-
-
-    private class Vista extends MainVistaNavigator {
-
-        @Override
-        public void loadContent(Object... content) {
-
-        }
-
-        @Override
-        public void setClient(Client client) {
-
-        }
-
-        public VistaNavigator getVistaByID(String ID) {
-            return super.getVistaByID(ID);
-        }
-    }
-    }
+}
