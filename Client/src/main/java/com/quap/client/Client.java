@@ -4,6 +4,7 @@ import com.quap.client.domain.Chat;
 import com.quap.client.domain.Friend;
 import com.quap.client.utils.Prefixes;
 import com.quap.client.utils.Suffixes;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -52,12 +53,12 @@ public class Client {
     }
 
     public void openConnection() throws IOException {
-            socket = new Socket(InetAddress.getByName("192.168.178.69"), 8192); //java.net.ConnectException: Connection refused: connect
+        socket = new Socket(InetAddress.getByName("192.168.178.69"), 8192); //java.net.ConnectException: Connection refused: connect
     }
 
     public void setConnection() throws IOException {
-            writer = new PrintWriter(socket.getOutputStream(), true);
-            reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        writer = new PrintWriter(socket.getOutputStream(), true);
+        reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
     }
 
     public void authorize(String name, String password, boolean existing) {
@@ -81,11 +82,11 @@ public class Client {
         }).start();*/
     }
 
-    public void listen(){
+    public void listen() {
         System.out.println("Client is listen...");
         listen = new Thread(() -> {
             String message = null;
-            while (!socket.isClosed() && reader != null){
+            while (!socket.isClosed() && reader != null) {
                 try {
                     message = reader.readLine();
                 } catch (IOException e) {
@@ -98,7 +99,7 @@ public class Client {
                         e.printStackTrace();
                     }
                 }
-                if(message == null) {
+                if (message == null) {
                     continue;
                 }
                 process(message);
@@ -113,9 +114,41 @@ public class Client {
         JSONObject returned = root.getJSONObject("return");
         boolean access = status.getBoolean("access");
         String message = status.getString("message");
-        while(returned.keys().hasNext()) {
+        if (returned.get("result").equals("not null")) {
+            if (returned.get("result-value").equals("authentication")) {
+                int userID = returned.getInt("id");
+                JSONArray chatrooms = returned.getJSONArray("chatrooms");
+                for(int i = 0; i < chatrooms.length(); i++) {
+                    Chat chat = new Chat(chatrooms.getJSONObject(i));
+                    chats.add(chat);
+                }
+                JSONArray privates = returned.getJSONArray("private");
+                for(int i = 0; i < privates.length(); i++) {
+                    Friend friend = new Friend(chatrooms.getJSONObject(i));
+                    friends.add(friend);
+                }
 
-            returned.keys().next();
+            } else if (returned.get("result-value").equals("message")) {
+                while (returned.keys().hasNext()) {
+                    //Read the specific Result Content, because a specific result was found
+                    returned.keys().next();
+                }
+                //TODO: add more else-if()-blocks for more content values
+            } else {
+                if (returned.get("result-value").equals("void")) {
+                    System.out.println("A result was received, but no result was expected");
+                } else {
+                    System.err.println("A result was received, but the result-value is unknown");
+                }
+            }
+        } else if (returned.get("result").equals("null")) {
+            if (returned.get("result-value").equals("void")) {
+                System.out.println("No result was received and no result was expected");
+            } else {
+                System.err.println("No result was received, but a result was expected");
+            }
+        } else {
+            System.err.println("No result-key in the return-value was found!");
         }
 
         //TODO: analyse and evaluate message content with process thread
