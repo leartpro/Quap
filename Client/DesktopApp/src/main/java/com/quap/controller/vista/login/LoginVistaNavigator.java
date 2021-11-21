@@ -19,4 +19,8 @@ public abstract class LoginVistaNavigator extends VistaNavigator {
     public abstract boolean validLogin();
 
     public abstract void switchMode(boolean isSelected);
+
+    public abstract String getName();
+
+    public abstract String getPassword();
 }

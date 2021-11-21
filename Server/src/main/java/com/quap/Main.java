@@ -13,6 +13,7 @@ public class Main { //TODO: mdns
 
     public static void main(String[] args) {
         System.setProperty("java.net.preferIPv4Stack", "true");
+        //TODO: read from properties file
         /*String adapter_name="Ethernet";
         String ip_address="192.168.56.1";
         String subnet_mask="255.255.255.0";

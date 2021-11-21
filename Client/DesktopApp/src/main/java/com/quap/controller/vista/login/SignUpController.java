@@ -83,6 +83,16 @@ public class SignUpController extends LoginVistaNavigator {
         }
     }
 
+    @Override
+    public String getName() {
+        return username;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
     @FXML
     void validatePassword(KeyEvent keyEvent) {
         password = txtPassword.getText();
@@ -106,7 +116,6 @@ public class SignUpController extends LoginVistaNavigator {
             lblUsername.setTextFill(Paint.valueOf("red"));
         }
         loginWindowController.toggleLogin(validLogin());
-
     }
 
     @FXML

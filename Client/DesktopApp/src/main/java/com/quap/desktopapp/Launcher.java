@@ -27,7 +27,7 @@ public class Launcher extends Application {
 
        service.shutdown();
         */
-    @Override
+    @Override //TODO: check system vars, folder systems, hardware usw...
     public void init() {
         final ExecutorService executor = Executors.newCachedThreadPool();
         final CompletionService<Boolean> completionService = new ExecutorCompletionService<>(executor);

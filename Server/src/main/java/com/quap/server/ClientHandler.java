@@ -40,29 +40,36 @@ public class ClientHandler implements Callable {
 
     private void listen() {
         listen = new Thread(() -> {
-            while(!socket.isClosed()) {
+            String message = null;
+            while (!socket.isClosed() && reader != null) {
+                try {
+                    message = reader.readLine();
+                } catch (SocketException e) {
+                    e.printStackTrace();
+                    listen.interrupt();
                     try {
-                        String message = reader.readLine();
-                        if(message.length() > 0) {
-                            process(message);
-                        }
-                    } catch (SocketException e) {
-                        e.printStackTrace();
-                        listen.interrupt();
-                        System.exit(0);
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                        reader.close();
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
                     }
+                    //System.exit(0);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                if(message == null) {
+                    continue;
+                }
+                process(message);
             }
         });
         listen.start();
     }
 
     private void process(String message) {
-        String content = message.substring(5, (message.length()-5));
+        String content = message.substring(5, (message.length() - 5));
         System.out.println(message);
         System.out.println(content);
-        switch(message.charAt(2)) {
+        switch (message.charAt(2)) {
             case 'm' -> System.out.println("message found");
             case 'c' -> System.out.println("command found");
             case 'a' -> {
@@ -81,9 +88,11 @@ public class ClientHandler implements Callable {
                 boolean existing = json.getBoolean("existing");
 
                 String result;
-                if(existing) {
+                if (existing) {
+                    System.out.println("verifyUser(" + name + "," + password + ")");
                     result = dbReader.verifyUser(name, password);
                 } else {
+                    System.out.println("insertUser(" + name + "," + password + ")");
                     result = dbReader.insertUser(name, password);
                 }
                 send(result);

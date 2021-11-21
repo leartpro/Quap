@@ -3,67 +3,55 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="400.0" minWidth="600.0"
-      xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.quap.controller.scene.MainWindowController">
-    <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
-                minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="400.0" minWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.scene.MainWindowController">
+    <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
         <center>
-            <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                  BorderPane.alignment="CENTER">
-                <StackPane fx:id="stackContent" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                           prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: gray;"
-                           VBox.vgrow="ALWAYS"/>
+            <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
+                <StackPane fx:id="stackContent" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: gray;" VBox.vgrow="ALWAYS" />
             </VBox>
         </center>
         <left>
-            <VBox maxHeight="1.7976931348623157E308" style="-fx-background-color: darkgray;"
-                  BorderPane.alignment="CENTER">
+            <VBox maxHeight="1.7976931348623157E308" style="-fx-background-color: darkgray;" BorderPane.alignment="CENTER">
                 <VBox alignment="CENTER" maxHeight="120.0" prefWidth="115.0" VBox.vgrow="NEVER">
                     <children>
-                        <Button mnemonicParsing="false" onAction="#friends" text="Friends"/>
-                        <Button mnemonicParsing="false" onAction="#chatrooms" text="Chatrooms"/>
-                        <Button mnemonicParsing="false" onAction="#profil" text="Profil"/>
-                        <Button mnemonicParsing="false" onAction="#settings" text="Settings"/>
+                        <Button mnemonicParsing="false" onAction="#friends" text="Friends" />
+                        <Button mnemonicParsing="false" onAction="#chatrooms" text="Chatrooms" />
+                        <Button mnemonicParsing="false" onAction="#profil" text="Profil" />
+                        <Button mnemonicParsing="false" onAction="#settings" text="Settings" />
                     </children>
                 </VBox>
-                <VBox fx:id="vBoxButtonHolder" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308"
-                      maxWidth="1.7976931348623157E308" prefHeight="255.0" prefWidth="115.0" VBox.vgrow="ALWAYS"/>
+                <VBox fx:id="vBoxButtonHolder" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="255.0" prefWidth="115.0" VBox.vgrow="ALWAYS" />
             </VBox>
         </left>
         <bottom>
-            <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                  prefHeight="20.0" prefWidth="600.0" style="-fx-background-color: lightgray;"
-                  BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="20.0" prefWidth="600.0" style="-fx-background-color: lightgray;" BorderPane.alignment="CENTER">
                 <opaqueInsets>
-                    <Insets/>
+                    <Insets />
                 </opaqueInsets>
-                <Label alignment="CENTER" prefWidth="35.0" text="Quap" HBox.hgrow="NEVER"/>
-                <Pane maxWidth="1.7976931348623157E308" prefHeight="20.0" HBox.hgrow="ALWAYS"/>
-                <Label fx:id="lblServer_IP" maxWidth="1.7976931348623157E308" text="Server IP"
-                       HBox.hgrow="SOMETIMES"/>
+                <Label alignment="CENTER" prefWidth="35.0" text="Quap" HBox.hgrow="NEVER" />
+                <Pane maxWidth="1.7976931348623157E308" prefHeight="20.0" HBox.hgrow="ALWAYS" />
+                <Label fx:id="lblServer_IP" maxWidth="1.7976931348623157E308" text="Server IP" HBox.hgrow="SOMETIMES" />
             </HBox>
         </bottom>
         <top>
-            <HBox maxWidth="1.7976931348623157E308" prefWidth="25.0" style="-fx-background-color: white;"
-                  BorderPane.alignment="CENTER">
-                <MenuBar maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+            <HBox maxHeight="25.0" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="600.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+                <MenuBar maxHeight="25.0" maxWidth="1.7976931348623157E308" prefHeight="25.0" HBox.hgrow="ALWAYS">
                     <Menu mnemonicParsing="false" text="Connection">
-                        <MenuItem mnemonicParsing="false" text="Disconnect"/>
-                        <MenuItem mnemonicParsing="false" text="Reconnect"/>
-                        <MenuItem mnemonicParsing="false" text="Status Information"/>
+                        <MenuItem mnemonicParsing="false" text="Disconnect" />
+                        <MenuItem mnemonicParsing="false" text="Reconnect" />
+                        <MenuItem mnemonicParsing="false" text="Status Information" />
                     </Menu>
                     <Menu mnemonicParsing="false" text="Help">
-                        <MenuItem mnemonicParsing="false" text="About"/>
-                        <MenuItem mnemonicParsing="false" text="Tutorial"/>
-                        <MenuItem mnemonicParsing="false" text="Project&amp;Source"/>
+                        <MenuItem mnemonicParsing="false" text="About" />
+                        <MenuItem mnemonicParsing="false" text="Tutorial" />
+                        <MenuItem mnemonicParsing="false" text="Project&amp;Source" />
                     </Menu>
                 </MenuBar>
-                <ButtonBar buttonMinWidth="16.0" prefHeight="16.0" prefWidth="120.0" HBox.hgrow="NEVER">
+                <ButtonBar buttonMinWidth="16.0" maxHeight="25.0" prefHeight="25.0" prefWidth="120.0" HBox.hgrow="NEVER">
                     <buttons>
-                        <Button mnemonicParsing="false" onAction="#maximize" text="O"/>
-                        <Button mnemonicParsing="false" onAction="#minimize" text="_"/>
-                        <Button mnemonicParsing="false" onAction="#close" text="X"/>
+                        <Button mnemonicParsing="false" onAction="#maximize" text="O" />
+                        <Button mnemonicParsing="false" onAction="#minimize" text="_" />
+                        <Button mnemonicParsing="false" onAction="#close" text="X" />
                     </buttons>
                 </ButtonBar>
             </HBox>

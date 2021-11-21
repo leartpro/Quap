@@ -32,7 +32,6 @@ public class ConfigReader {
         read(username);
         readLocalProperties(username);
         readLocalPreference(username);
-
     }
 
     private void initLocalPreferences(String username) {

@@ -1,15 +1,23 @@
 package com.quap.client;
 
+import com.quap.client.domain.Chat;
+import com.quap.client.domain.Friend;
 import com.quap.client.utils.Prefixes;
 import com.quap.client.utils.Suffixes;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.*;
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Client {
     private final HashMap<Prefixes, String> prefixes = new HashMap<>();
@@ -18,10 +26,11 @@ public class Client {
     private String name;
     private final int port;
     private final InetAddress address;
-    private int ID = -1;
     private Thread listen;
-    BufferedReader reader;
-    PrintWriter writer;
+    private BufferedReader reader;
+    private PrintWriter writer;
+    private final List<Friend> friends = new ArrayList();
+    private final List<Chat> chats = new ArrayList();
 
     {
         try {
@@ -43,29 +52,13 @@ public class Client {
         socket.bind(new InetSocketAddress(address, port));
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getAddress() {
-        return address.toString();
-    }
-
-    public int getPort() {
-        return port;
-    }
-
     public void openConnection() throws IOException {
-            socket = new Socket(InetAddress.getByName("192.168.178.69"), 8192); //java.net.ConnectException: Connection refused: connect
+        socket = new Socket(InetAddress.getByName("192.168.178.69"), 8192); //java.net.ConnectException: Connection refused: connect
     }
 
     public void setConnection() throws IOException {
-            writer = new PrintWriter(socket.getOutputStream(), true);
-            reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        writer = new PrintWriter(socket.getOutputStream(), true);
+        reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
     }
 
     public void authorize(String name, String password, boolean existing) {
@@ -73,15 +66,12 @@ public class Client {
         json.put("name", name);
         json.put("password", password);
         json.put("existing", existing);
-        String authenticationMessage = prefixes.get(Prefixes.AUTHENTICATION) +
-                json +
-                suffixes.get(Suffixes.AUTHENTICATION);
-        System.out.println(authenticationMessage);
-        sendMessage(authenticationMessage);
+        sendAuthentication(json.toString());
     }
 
     public void disconnect() {
-        new Thread(() -> {
+        new Thread(this::closeSocket).start();
+        /*new Thread(() -> {
             synchronized (socket) {
                 try {
                     socket.close();
@@ -89,46 +79,112 @@ public class Client {
                     e.printStackTrace();
                 }
             }
-        }).start();
+        }).start();*/
     }
 
-    public void listen(){
+    public void listen() {
         System.out.println("Client is listen...");
         listen = new Thread(() -> {
             String message = null;
-            while (reader != null){
+            while (!socket.isClosed() && reader != null) {
                 try {
                     message = reader.readLine();
-                } catch (SocketException e) {
-                    e.printStackTrace();
-                    listen.interrupt();
-                    System.out.println(listen.isAlive());
                 } catch (IOException e) {
                     e.printStackTrace();
+                    listen.interrupt();
+                } finally {
+                    try {
+                        reader.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
-
-                if (message.length() > 0) {
-                    System.out.println("Incoming message: " + message);
+                if (message == null) {
+                    continue;
                 }
+                process(message);
             }
         });
         listen.start();
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    private void process(String content) {
+        JSONObject root = new JSONObject(content);
+        JSONObject status = root.getJSONObject("status");
+        JSONObject returned = root.getJSONObject("return");
+        boolean access = status.getBoolean("access");
+        String message = status.getString("message");
+        if (returned.get("result").equals("not null")) {
+            if (returned.get("result-value").equals("authentication")) {
+                int userID = returned.getInt("id");
+                JSONArray chatrooms = returned.getJSONArray("chatrooms");
+                for(int i = 0; i < chatrooms.length(); i++) {
+                    Chat chat = new Chat(chatrooms.getJSONObject(i));
+                    chats.add(chat);
+                }
+                JSONArray privates = returned.getJSONArray("private");
+                for(int i = 0; i < privates.length(); i++) {
+                    Friend friend = new Friend(chatrooms.getJSONObject(i));
+                    friends.add(friend);
+                }
+
+            } else if (returned.get("result-value").equals("message")) {
+                while (returned.keys().hasNext()) {
+                    //Read the specific Result Content, because a specific result was found
+                    returned.keys().next();
+                }
+                //TODO: add more else-if()-blocks for more content values
+            } else {
+                if (returned.get("result-value").equals("void")) {
+                    System.out.println("A result was received, but no result was expected");
+                } else {
+                    System.err.println("A result was received, but the result-value is unknown");
+                }
+            }
+        } else if (returned.get("result").equals("null")) {
+            if (returned.get("result-value").equals("void")) {
+                System.out.println("No result was received and no result was expected");
+            } else {
+                System.err.println("No result was received, but a result was expected");
+            }
+        } else {
+            System.err.println("No result-key in the return-value was found!");
+        }
+
+        //TODO: analyse and evaluate message content with process thread
+        //System.out.println("Incoming message: " + message);
     }
 
-    public int getID() {
-        return ID;
-    }
 
     public String getConnectionInfo() {
         return String.valueOf(socket.getRemoteSocketAddress());
     }
 
     public void sendMessage(String message) {
-        System.out.println("Send Message from Client to Server: " + message);
-        writer.println(message);
+        String output = prefixes.get(Prefixes.MESSAGE) + message + suffixes.get(Suffixes.MESSAGE);
+        System.out.println("Send Message from Client to Server: \n" + message);
+        writer.println(output);
+    }
+
+    public void sendAuthentication(String authentication) {
+        String output = prefixes.get(Prefixes.AUTHENTICATION) + authentication + suffixes.get(Suffixes.AUTHENTICATION);
+        System.out.println("Send Message from Client to Server: \n" + authentication);
+        writer.println(output);
+    }
+
+    public void sendCommand(String command) {
+        String output = prefixes.get(Prefixes.COMMAND) + command + suffixes.get(Suffixes.COMMAND);
+        System.out.println("Send Message from Client to Server: \n" + command);
+        writer.println(output);
+    }
+
+    private void closeSocket() {
+        synchronized (socket) {
+            try {
+                socket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

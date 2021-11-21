@@ -1,6 +1,7 @@
 package com.quap.controller.scene;
 
 import com.quap.client.Client;
+import com.quap.client.data.ConfigReader;
 import com.quap.controller.VistaController;
 import com.quap.controller.vista.VistaNavigator;
 import com.quap.controller.vista.login.LoginVistaNavigator;
@@ -28,8 +29,8 @@ public class LoginWindowController {
     public void setClient(Client client) {
         this.client = client;
         //TODO: name should be the current name from the UI!!!
-        this.name = "exampleName";
-        this.password = "example!50AB";
+        /*this.name = "exampleName";
+        this.password = "example!50AB";*/
     }
 
     public void setVista(Parent node, LoginVistaNavigator controller) {
@@ -57,6 +58,17 @@ public class LoginWindowController {
         public void switchMode(boolean isSelected) {
 
         }
+
+        @Override
+        public String getName() {
+            return null;
+        }
+
+        @Override
+        public String getPassword() {
+            return null;
+        }
+
         public VistaNavigator getVistaByID(String ID) {
             return super.getVistaByID(ID);
         }
@@ -99,14 +111,19 @@ public class LoginWindowController {
 
     public void login(ActionEvent actionEvent) {
         //TODO: run as future the server request and in addition to the db connection and property reading
-        //client.sendMessage("Test1");
-            client.authorize(name, password, existingUser);
+        name = currentNode.getName();
+        password = currentNode.getPassword();
+        client.authorize(name, password, existingUser);
         //if authentication is successful:
-        /*ConfigReader configReader = null;
-            configReader = new ConfigReader(name);
-        Config configuration = configReader.readConfiguration();*/
-        //check for lokal profil
-        //load main
+        ConfigReader configReader = new ConfigReader(name);
+        if(existingUser) {
+            configReader.readUser();
+        } else {
+            configReader.createUser();
+            configReader.readUser(); //TODO define readUser()
+        }
+        //Config configuration = configReader.readConfiguration();
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/quap/desktopapp/scene/main-window.fxml"));
         Stage stage = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
         Parent root = null;
@@ -125,7 +142,7 @@ public class LoginWindowController {
         //mainWindowController.setConfiguration(configuration);
         //TODO: give attributes to main scene controller
         VistaController.setMainWindowController(mainWindowController);
-        //VistaController.loadMainVista(VistaController.LIST);
+        //VistaController.loadMainVista(VistaController.LIST); //TODO: necessary?
         //TODO: receive future result and validate
         stage.show();
         ResizeHelper.addResizeListener(stage);
