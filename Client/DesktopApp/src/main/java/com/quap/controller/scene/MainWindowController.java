@@ -1,11 +1,11 @@
 package com.quap.controller.scene;
 
 import com.quap.client.Client;
+import com.quap.client.domain.Chat;
 import com.quap.client.domain.Friend;
-import com.quap.client.domain.Message;
+import com.quap.client.domain.UserContent;
 import com.quap.controller.VistaController;
 import com.quap.controller.vista.main.MainVistaNavigator;
-import com.quap.utils.Chat;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,8 +21,6 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import static com.quap.controller.VistaController.CHAT;
 
@@ -100,7 +98,7 @@ public class MainWindowController {
     }
 
     public void settings(ActionEvent actionEvent) {
-        VistaController.loadMainVista(VistaController.SETTINGS);
+        /*VistaController.loadMainVista(VistaController.SETTINGS);
         vBoxButtonHolder.getChildren().clear();
         for (Button b : new ArrayList<>(List.of(new Button[]{new Button("setting1"), new Button("setting2"),
                 new Button("setting3"), new Button("setting4")}))) {
@@ -109,24 +107,21 @@ public class MainWindowController {
                 currentNode.loadContent("Theme: dark", "Privacy: disable"); //dummys
             });
             vBoxButtonHolder.getChildren().add(b);
-        }
+        }*/
     }
 
     public void friends(ActionEvent actionEvent) {
         VistaController.loadMainVista(VistaController.LIST);
         //load the userdata into the default UI page
-        //TODO: ClassCastException: class com.quap.client.domain.Friend cannot be cast to class com.quap.utils.Chat
-        // (com.quap.client.domain.Friend is in module Client of loader 'app';
-        // com.quap.utils.Chat is in module com.quap.desktopapp of loader 'app')
-        currentNode.loadContent((Object[])client.getFriends().toArray(new Friend[0]));
+        currentNode.loadContent(client.getFriends());
         vBoxButtonHolder.getChildren().clear();
 
-        for(Friend friend : client.getFriends()) {
-            Button b = new Button(friend.name());
+        for(UserContent friend : client.getFriends()) {
+            Button b = new Button(((Friend)friend).name());
             b.setOnAction(e -> {
                 VistaController.loadMainVista(CHAT);
                 currentNode.loadContent(
-                        (Object[]) client.getMessagesByChat(friend.id()).toArray(new Message[0])
+                        client.getMessagesByChat(((Friend)friend).id())
                 );
             });
             vBoxButtonHolder.getChildren().add(b);
@@ -135,20 +130,24 @@ public class MainWindowController {
 
     public void chatrooms(ActionEvent actionEvent) {
         VistaController.loadMainVista(VistaController.LIST);
-        currentNode.loadContent(new Chat("Group1"), new Chat("Group2"));//dummys
+        //load the userdata into the default UI page
+        currentNode.loadContent(client.getChats());
         vBoxButtonHolder.getChildren().clear();
-        for (Button b : new ArrayList<Button>(List.of(new Button[]{new Button("chatroom1"), new Button("chatroom2"),
-                new Button("chatroom3"), new Button("chatroom4")}))) {
+
+        for(UserContent chat : client.getChats()) {
+            Button b = new Button(((Chat)chat).name());
             b.setOnAction(e -> {
                 VistaController.loadMainVista(CHAT);
-                currentNode.loadContent("User1: How are you?", "User2: Fine!", "User3: Whats up?", "User2: wtf fuck you!"); //dummys
+                currentNode.loadContent(
+                        client.getMessagesByChat(((Chat)chat).id())
+                );
             });
             vBoxButtonHolder.getChildren().add(b);
         }
     }
 
     public void profil(ActionEvent actionEvent) {
-        VistaController.loadMainVista(VistaController.PROFILE);
+        /*VistaController.loadMainVista(VistaController.PROFILE);
         vBoxButtonHolder.getChildren().clear();
         for (Button b : new ArrayList<Button>(List.of(new Button[]{new Button("prSetting1"), new Button("prSetting2"),
                 new Button("prSetting3"), new Button("prSetting4")}))) {
@@ -157,7 +156,7 @@ public class MainWindowController {
                 currentNode.loadContent("Name: User", "Password: *****"); //dummys
             });
             vBoxButtonHolder.getChildren().add(b);
-        }
+        }*/
     }
 
     public void setClient(Client client) {
@@ -165,15 +164,15 @@ public class MainWindowController {
         lblServer_IP.setText(lblServer_IP.getText() + " " + client.getConnectionInfo());
 
         //load the userdata into the default UI page
-        currentNode.loadContent((Object[])client.getFriends().toArray(new Friend[0]));
+        currentNode.loadContent(client.getFriends());
         vBoxButtonHolder.getChildren().clear();
 
-        for(Friend friend : client.getFriends()) {
-            Button b = new Button(friend.name());
+        for(UserContent friend : client.getFriends()) {
+            Button b = new Button(((Friend)friend).name());
             b.setOnAction(e -> {
                 VistaController.loadMainVista(CHAT);
                 currentNode.loadContent(
-                        (Object[]) client.getMessagesByChat(friend.id()).toArray(new Message[0])
+                        client.getMessagesByChat(((Friend)friend).id())
                 );
             });
             vBoxButtonHolder.getChildren().add(b);

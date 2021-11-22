@@ -1,7 +1,10 @@
 package com.quap.controller.vista.main;
 
 import com.quap.client.Client;
+import com.quap.client.domain.UserContent;
 import com.quap.controller.vista.VistaNavigator;
+
+import java.util.List;
 
 public abstract class MainVistaNavigator extends VistaNavigator {
 
@@ -22,7 +25,7 @@ public abstract class MainVistaNavigator extends VistaNavigator {
         }
     }
 
-    public abstract <T> void loadContent(T... content);
+    public abstract void loadContent(List<UserContent> content);
 
     public abstract void setClient(Client client);
 

@@ -3,7 +3,7 @@ package com.quap.client;
 import com.quap.client.data.UserdataReader;
 import com.quap.client.domain.Chat;
 import com.quap.client.domain.Friend;
-import com.quap.client.domain.Message;
+import com.quap.client.domain.UserContent;
 import com.quap.client.utils.Prefixes;
 import com.quap.client.utils.Suffixes;
 import org.json.JSONArray;
@@ -58,12 +58,14 @@ public class Client {
         socket.bind(new InetSocketAddress(address, port));
     }
 
-    public List<Friend> getFriends() {
-        return friends;
+    public List<UserContent> getFriends() {
+        List<UserContent> content = new ArrayList<>(friends);
+        return content;
     }
 
-    public List<Chat> getChats() {
-        return  chats;
+    public List<UserContent> getChats() {
+        List<UserContent> content = new ArrayList<>(chats);
+        return content;
     }
 
     public void openConnection() throws IOException {
@@ -199,7 +201,10 @@ public class Client {
         }
     }
 
-    public List<Message> getMessagesByChat(int id) {
-        return dataReader.getMessagesByChat(id);
+    public List<UserContent> getMessagesByChat(int id) {
+        List<UserContent> content = new ArrayList<>(
+                dataReader.getMessagesByChat(id)
+        );
+        return content;
     }
 }

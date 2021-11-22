@@ -46,7 +46,7 @@ public class UserdataReader{
             statement.executeQuery("" +
                     "select sender, content, created_at from messages " +
                     "where chat_id = " + id + " " +
-                    "order by timestamp"
+                    "order by created_at"
             );
         } catch (SQLException e) {
             e.printStackTrace();
