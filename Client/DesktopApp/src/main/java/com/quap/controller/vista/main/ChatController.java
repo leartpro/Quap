@@ -1,12 +1,15 @@
 package com.quap.controller.vista.main;
 
 import com.quap.client.Client;
+import com.quap.client.domain.UserContent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+
+import java.util.List;
 
 public class ChatController extends MainVistaNavigator{
     private Client client;
@@ -36,9 +39,8 @@ public class ChatController extends MainVistaNavigator{
         //TODO: box shake event
     }
 
-
     @Override
-    public void loadContent(Object... content) {
+    public void loadContent(List<UserContent> content) {
         for (Object o : content) {
             chatArea.appendText(o + "\n");
         }

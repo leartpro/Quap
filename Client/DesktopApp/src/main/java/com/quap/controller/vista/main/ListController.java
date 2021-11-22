@@ -1,7 +1,7 @@
 package com.quap.controller.vista.main;
 
 import com.quap.client.Client;
-import com.quap.utils.Chat;
+import com.quap.client.domain.UserContent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.ListCell;
@@ -9,11 +9,13 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.util.Callback;
 
+import java.util.List;
+
 public class ListController extends MainVistaNavigator{
     private Client client;
 
     @FXML
-    private ListView<Chat> listView = new ListView<Chat>();
+    private ListView<UserContent> listView = new ListView<UserContent>();
 
     @FXML
     public void initialize() {
@@ -26,11 +28,10 @@ public class ListController extends MainVistaNavigator{
         listView.setCellFactory(ContextMenuListCell.forListView(contextMenu, (listView) -> new ChatListCell()));
     }
 
-
     @Override
-    public void loadContent(Object... content) {
-        for (Object o : content) {
-            listView.getItems().add((Chat)o);
+    public void loadContent(List<UserContent> content) {
+        for (UserContent c : content) {
+            listView.getItems().add(c);
         }
     }
 
@@ -52,12 +53,12 @@ public class ListController extends MainVistaNavigator{
         }
     }
 
-    private class ChatListCell extends ListCell<Chat> {
+    private class ChatListCell extends ListCell<UserContent> {
         @Override
-        protected void updateItem(Chat chat, boolean isEmpty) {
-            super.updateItem(chat, isEmpty);
-            if(chat != null && !isEmpty) {
-                setText(chat.getName());
+        protected void updateItem(UserContent content, boolean isEmpty) {
+            super.updateItem(content, isEmpty);
+            if(content != null && !isEmpty) {
+                setText(content.display());
             }
         }
     }

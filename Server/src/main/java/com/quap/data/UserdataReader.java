@@ -23,20 +23,13 @@ public class UserdataReader {
         System.out.println("insertUser(" + name + "," + password + ")");
         PreparedStatement statement;
         JSONObject json = new JSONObject();
+        json.put("return-value", "void");
         String query = "" +
                 "INSERT INTO users(name, password)" +
                 "VALUES(?,?)";
         int userID = getUserID(name, null);
         if (userID != -1) { //user already exists
-            JSONObject status = new JSONObject();
-            status.put("access", false);
-            status.put("message", "Request was rejected, because an user with this name exists already");
-            json.put("status", status);
-
-            JSONObject returnedOutput = new JSONObject();
-            returnedOutput.put("result-type", "void");
-            returnedOutput.put("result", "null");
-            json.put("return", returnedOutput);
+            json.put("error", "User already exists");
             return json.toString();
         } else {
             try {
@@ -44,16 +37,7 @@ public class UserdataReader {
                 statement.setString(1, name);
                 statement.setString(2, password);
                 statement.executeUpdate();
-
-                JSONObject status = new JSONObject();
-                status.put("access", true);
-                status.put("message", "Request was executed successfully");
-                json.put("status", status);
-
-                JSONObject returnedOutput = new JSONObject();
-                returnedOutput.put("result-type", "void");
-                returnedOutput.put("result", "null");
-                json.put("return", returnedOutput);
+                json.put("data", "null");
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -65,32 +49,17 @@ public class UserdataReader {
     public String verifyUser(String name, String password) { //TODO: message format
         System.out.println("verifyUser(" + name + "," + password + ")");
         JSONObject json = new JSONObject();
+        json.put("return-value", "authentication");
         int userID = getUserID(name, password);
         if (userID == -1) {
-            JSONObject status = new JSONObject();
-            status.put("access", false);
-            status.put("message", "Request was rejected, because the given name or password is incorrect");
-            json.put("status", status);
-
-            JSONObject returnedOutput = new JSONObject();
-            returnedOutput.put("result-type", "void");
-            returnedOutput.put("result", "null");
-            json.put("return", returnedOutput);
+            json.put("error", "Request was rejected, because the given name or password is incorrect");
             return json.toString();
         } else {
-            JSONObject status = new JSONObject();
-            status.put("access", true);
-            status.put("message", "Request was executed successfully");
-            json.put("status", status);
-
-            JSONObject returnedOutput = new JSONObject();
-            returnedOutput.put("result-type", "objects"); //TODO: return value key more specific
-            returnedOutput.put("result", "not null");
-            returnedOutput.put("id", userID);
-            returnedOutput.put("chatrooms", chatroomsByUser(userID));
-            returnedOutput.put("private", chatsByUser(userID));
-            //returnedOutput.put("friends", friendsByUser(userID));
-            json.put("return", returnedOutput);
+            JSONObject data = new JSONObject();
+            data.put("id", userID);
+            data.put("chatrooms", chatroomsByUser(userID));
+            data.put("private", chatsByUser(userID));
+            json.put("data", data);
         }
         return json.toString(); //user json
     }

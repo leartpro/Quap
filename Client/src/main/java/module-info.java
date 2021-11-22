@@ -4,4 +4,5 @@ module Client {
     requires org.json;
     exports com.quap.client;
     exports com.quap.client.data;
+    exports com.quap.client.domain;
 }

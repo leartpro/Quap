@@ -1,7 +1,9 @@
 package com.quap.client;
 
+import com.quap.client.data.UserdataReader;
 import com.quap.client.domain.Chat;
 import com.quap.client.domain.Friend;
+import com.quap.client.domain.UserContent;
 import com.quap.client.utils.Prefixes;
 import com.quap.client.utils.Suffixes;
 import org.json.JSONArray;
@@ -31,6 +33,10 @@ public class Client {
     private PrintWriter writer;
     private final List<Friend> friends = new ArrayList();
     private final List<Chat> chats = new ArrayList();
+    private int id;
+    private String username;
+    private String password;
+    UserdataReader dataReader;
 
     {
         try {
@@ -52,6 +58,16 @@ public class Client {
         socket.bind(new InetSocketAddress(address, port));
     }
 
+    public List<UserContent> getFriends() {
+        List<UserContent> content = new ArrayList<>(friends);
+        return content;
+    }
+
+    public List<UserContent> getChats() {
+        List<UserContent> content = new ArrayList<>(chats);
+        return content;
+    }
+
     public void openConnection() throws IOException {
         socket = new Socket(InetAddress.getByName("192.168.178.69"), 8192); //java.net.ConnectException: Connection refused: connect
     }
@@ -62,11 +78,17 @@ public class Client {
     }
 
     public void authorize(String name, String password, boolean existing) {
+        this.username = name;
+        this.password = password;
         JSONObject json = new JSONObject();
-        json.put("name", name);
-        json.put("password", password);
+        json.put("name", this.username);
+        json.put("password", this.password);
         json.put("existing", existing);
         sendAuthentication(json.toString());
+    }
+
+    public void connectDB() {
+        dataReader = new UserdataReader(username, password);
     }
 
     public void disconnect() {
@@ -109,50 +131,51 @@ public class Client {
     }
 
     private void process(String content) {
+        System.out.println(content);
         JSONObject root = new JSONObject(content);
-        JSONObject status = root.getJSONObject("status");
-        JSONObject returned = root.getJSONObject("return");
-        boolean access = status.getBoolean("access");
-        String message = status.getString("message");
-        if (returned.get("result").equals("not null")) {
-            if (returned.get("result-value").equals("authentication")) {
-                int userID = returned.getInt("id");
-                JSONArray chatrooms = returned.getJSONArray("chatrooms");
-                for(int i = 0; i < chatrooms.length(); i++) {
-                    Chat chat = new Chat(chatrooms.getJSONObject(i));
-                    chats.add(chat);
-                }
-                JSONArray privates = returned.getJSONArray("private");
-                for(int i = 0; i < privates.length(); i++) {
-                    Friend friend = new Friend(chatrooms.getJSONObject(i));
-                    friends.add(friend);
-                }
+        String returnValue = root.getString("return-value");
+        if(!returnValue.equals("void")) {
+            if (root.has("error") && !root.has("data")) {
+                System.out.println(root.getJSONObject("error"));
+            } else if (root.has("data")) {
+                JSONObject data = root.getJSONObject("data");
+                if (returnValue.equals("authentication")) {
+                    this.id = data.getInt("id");
 
-            } else if (returned.get("result-value").equals("message")) {
-                while (returned.keys().hasNext()) {
-                    //Read the specific Result Content, because a specific result was found
-                    returned.keys().next();
+                    JSONArray chatrooms = data.getJSONArray("chatrooms");
+                    for (int i = 0; i < chatrooms.length(); i++) {
+                        Chat chat = new Chat(chatrooms.getJSONObject(i));
+                        chats.add(chat);
+                    }
+
+                    JSONArray privates = data.getJSONArray("private");
+                    for (int i = 0; i < privates.length(); i++) {
+                        Friend friend = new Friend(privates.getJSONObject(i));
+                        friends.add(friend);
+                    }
+                    //TODO: load Content in the UI
+                } else if (returnValue.equals("message")) {
+                    int senderID = data.getInt("sender-id");
+                    int chatID = data.getInt("chat-id");
+                    String messageContent = data.getString("message");
+                    //TODO: load Content in the UI
+                } else if(returnValue.equals("command")) {
+
                 }
-                //TODO: add more else-if()-blocks for more content values
             } else {
-                if (returned.get("result-value").equals("void")) {
-                    System.out.println("A result was received, but no result was expected");
-                } else {
-                    System.err.println("A result was received, but the result-value is unknown");
-                }
-            }
-        } else if (returned.get("result").equals("null")) {
-            if (returned.get("result-value").equals("void")) {
-                System.out.println("No result was received and no result was expected");
-            } else {
-                System.err.println("No result was received, but a result was expected");
+                System.out.println("Unknown package content");
             }
         } else {
-            System.err.println("No result-key in the return-value was found!");
+            System.out.println("No data expected");
         }
-
-        //TODO: analyse and evaluate message content with process thread
-        //System.out.println("Incoming message: " + message);
+        System.out.println("Friends:");
+        for(Friend friend : friends) {
+            System.out.println(friend.name());
+        }
+        System.out.println("Groups:");
+        for(Chat chat : chats) {
+            System.out.println(chat.name());
+        }
     }
 
 
@@ -186,5 +209,12 @@ public class Client {
                 e.printStackTrace();
             }
         }
+    }
+
+    public List<UserContent> getMessagesByChat(int id) {
+        List<UserContent> content = new ArrayList<>(
+                dataReader.getMessagesByChat(id)
+        );
+        return content;
     }
 }

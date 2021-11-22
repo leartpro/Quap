@@ -1,12 +1,15 @@
 package com.quap.controller.vista.main;
 
 import com.quap.client.Client;
+import com.quap.client.domain.UserContent;
+
+import java.util.List;
 
 public class ProfilController extends MainVistaNavigator{
     private Client client;
 
     @Override
-    public void loadContent(Object... content) {
+    public void loadContent(List<UserContent> content) {
 
     }
 

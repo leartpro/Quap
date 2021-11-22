@@ -2,6 +2,9 @@ package com.quap.client.data;
 
 public class DataTests {
     public static void main(String[] args) {
-        UserdataReader dataReader = new UserdataReader("anonym", "toor");
+        ConfigReader configReader = new ConfigReader("Otto");
+        //TODO define readUser()
+        configReader.createUser();
+        configReader.readUser();
     }
 }
