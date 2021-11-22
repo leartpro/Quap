@@ -1,9 +1,12 @@
 package com.quap.client.data;
 
+import com.quap.client.domain.Message;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 public class UserdataReader{
     private Connection connection;
@@ -38,8 +41,17 @@ public class UserdataReader{
         statement.executeUpdate("create index if not exists newestMessage on messages(created_at)");
     }
 
-    public void getMessagesByChat(int id) {
-
+    public List<Message> getMessagesByChat(int id) {
+        try {
+            statement.executeQuery("" +
+                    "select sender, content, created_at from messages " +
+                    "where chat_id = " + id + " " +
+                    "order by timestamp"
+            );
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public void addMessage(int chat_id) {

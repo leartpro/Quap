@@ -1,0 +1,56 @@
+{
+  "status": {
+    "access": true,
+    "message": "All userdata has been retrieved"
+  },
+  "return": {
+    "id": "5401",
+    "chats": [
+      {
+        "id": "0001",
+        "name": "ourChat",
+        "friend_id": null,
+        "created_at": "245673673",
+        "joined_at": "589653423",
+        "participants": [
+          {
+            "user_id": "5401",
+            "name": "me"
+          },
+          {
+            "user_id": "1235",
+            "name": "t2"
+          },
+          {
+            "user_id": "0026",
+            "name": "friend"
+          }
+        ]
+      },
+      {
+        "id": "0002",
+        "name": "privateChat",
+        "friend_id": "6754",
+        "created_at": "245289567",
+        "joined_at": "583829423",
+        "participants": [
+          {
+            "user_id": "5401",
+            "name": "me"
+          },
+          {
+            "user_id": "0026",
+            "name": "friend"
+          }
+        ]
+      }
+    ],
+    "friends": [
+      {
+        "id": "6754",
+        "user_id": "0026",
+        "name": "friend"
+      }
+    ]
+  }
+}

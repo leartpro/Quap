@@ -22,7 +22,7 @@ public abstract class MainVistaNavigator extends VistaNavigator {
         }
     }
 
-    public abstract void loadContent(Object... content);
+    public abstract <T> void loadContent(T... content);
 
     public abstract void setClient(Client client);
 

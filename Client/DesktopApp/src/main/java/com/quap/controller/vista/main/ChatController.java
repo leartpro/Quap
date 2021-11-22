@@ -39,6 +39,7 @@ public class ChatController extends MainVistaNavigator{
 
     @Override
     public void loadContent(Object... content) {
+        //receives Messages
         for (Object o : content) {
             chatArea.appendText(o + "\n");
         }
