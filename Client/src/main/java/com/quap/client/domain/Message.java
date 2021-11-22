@@ -1,13 +1,14 @@
 package com.quap.client.domain;
 
+import java.sql.Date;
 import java.util.Objects;
 
 public final class Message extends UserContent {
     private final String content;
-    private final String timestamp;
+    private final Date timestamp;
     private final int senderID;
 
-    public Message(String content, String timestamp, int senderID) {
+    public Message(String content, Date timestamp, int senderID) {
         this.content = content;
         this.timestamp = timestamp;
         this.senderID = senderID;
@@ -22,7 +23,7 @@ public final class Message extends UserContent {
         return content;
     }
 
-    public String timestamp() {
+    public Date timestamp() {
         return timestamp;
     }
 

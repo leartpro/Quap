@@ -141,14 +141,16 @@ public class Client {
                 JSONObject data = root.getJSONObject("data");
                 if (returnValue.equals("authentication")) {
                     this.id = data.getInt("id");
+
                     JSONArray chatrooms = data.getJSONArray("chatrooms");
                     for (int i = 0; i < chatrooms.length(); i++) {
                         Chat chat = new Chat(chatrooms.getJSONObject(i));
                         chats.add(chat);
                     }
+
                     JSONArray privates = data.getJSONArray("private");
                     for (int i = 0; i < privates.length(); i++) {
-                        Friend friend = new Friend(chatrooms.getJSONObject(i));
+                        Friend friend = new Friend(privates.getJSONObject(i));
                         friends.add(friend);
                     }
                     //TODO: load Content in the UI
@@ -165,6 +167,14 @@ public class Client {
             }
         } else {
             System.out.println("No data expected");
+        }
+        System.out.println("Friends:");
+        for(Friend friend : friends) {
+            System.out.println(friend.name());
+        }
+        System.out.println("Groups:");
+        for(Chat chat : chats) {
+            System.out.println(chat.name());
         }
     }
 

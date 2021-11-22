@@ -8,18 +8,21 @@ public final class Friend extends UserContent {
     private final String name;
     private final int id;
     private final String created_at;
+    private final int chatID;
 
-    public Friend(String name, int id, String created_at) {
+    public Friend(String name, int id, String created_at, int chatID) {
         this.name = name;
         this.id = id;
         this.created_at = created_at;
+        this.chatID = chatID;
     }
 
     public Friend(JSONObject chat) {
         this(
                 chat.getString("name"),
-                chat.getInt("id"),
-                chat.getString("created_at")
+                chat.getInt("user_id"),
+                chat.getString("created_at"),
+                chat.getInt("chatrooms_id")
         );
     }
 
@@ -30,6 +33,8 @@ public final class Friend extends UserContent {
     public int id() {
         return id;
     }
+
+    public int chatID() { return chatID; }
 
     public String created_at() {
         return created_at;

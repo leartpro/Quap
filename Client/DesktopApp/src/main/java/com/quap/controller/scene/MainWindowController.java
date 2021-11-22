@@ -121,7 +121,7 @@ public class MainWindowController {
             b.setOnAction(e -> {
                 VistaController.loadMainVista(CHAT);
                 currentNode.loadContent(
-                        client.getMessagesByChat(((Friend)friend).id())
+                        client.getMessagesByChat(((Friend)friend).chatID())
                 );
             });
             vBoxButtonHolder.getChildren().add(b);

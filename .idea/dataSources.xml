@@ -1,18 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="data" uuid="671610ae-8b1b-4638-8a30-aa42e58e02fc">
-      <driver-ref>sqlite.xerial</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\Users\lenni\Documents\Progammieren\IdeaProjects\IdeaProjects\Quap\Client\src\main\resources\com\quap\users\exampleUser1\sqlite\db\data.db</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-      <libraries>
-        <library>
-          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.34.0/sqlite-jdbc-3.34.0.jar</url>
-        </library>
-      </libraries>
-    </data-source>
     <data-source source="LOCAL" name="postgres@localhost" uuid="bbbc8cbe-ecfc-4dbd-846d-194bd002699e">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
@@ -24,7 +12,7 @@
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\Users\lenni\Documents\Progammieren\IdeaProjects\IdeaProjects\Quap\Client\src\main\resources\com\quap\users\anonym\sqlite\db\messages.db</jdbc-url>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/Client/src/main/resources/com/quap/users/Otto/sqlite/db/messages.db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
       <libraries>
         <library>
