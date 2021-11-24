@@ -25,7 +25,7 @@ public class Server{
         service = Executors.newCachedThreadPool();
         this.socket = socket;
         status = true;
-        manageClients();
+        //manageClients();
         receiveConnection();
         //TODO: db connection
         //TODO: config reader
@@ -47,7 +47,7 @@ public class Server{
          */
     }
 
-    public void manageClients() {
+    /*public void manageClients() {
         manage = new Thread("Manage") {
             public void run() {
                 while (status) {
@@ -63,7 +63,7 @@ public class Server{
             }
         };
         manage.start();
-    }
+    }*/
 
     public void receiveConnection() {
         Server server = this;
@@ -80,11 +80,12 @@ public class Server{
                     assert client != null;
                     System.out.print("\r\nNew connection from " + client.getInetAddress() + ":" + client.getPort());
                     System.out.println(" to " + socket.getInetAddress() + ":" + socket.getLocalPort());
-                    ClientHandler ch = new ClientHandler(
+                    ClientHandler clientHandler = new ClientHandler(
                             client,
                             UniqueIdentifier.getIdentifier(), //TODO: each Client handler stores his userID
                             server);
-                    service.submit(ch);
+                    service.submit(clientHandler);
+                    handler.add(clientHandler);
                     //TODO: work with return
                     //when return and result is not null -> submit a new ClientHAndler, because the previous failed
                 }
@@ -161,9 +162,14 @@ public class Server{
         }
     }
 
-    public void forwardMessage(int senderID, int userID, String content) {
+    public void forwardMessage(int userID, String message) {
         //TODO: get all ClientHandler by userID
         // then sends to each Client content + senderID
-
+        for(int i = 0; i < handler.size(); i++) {
+            if(handler.get(i).getUserID() == userID) { //TODO: founds himself
+                System.out.println("Send Message from Client:" + userID + " to Client:" + handler.get(i).getUserID());
+                handler.get(i).send(message);
+            }
+        }
     }
 }

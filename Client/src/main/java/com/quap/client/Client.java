@@ -107,24 +107,22 @@ public class Client {
     public void listen() {
         System.out.println("Client is listen...");
         listen = new Thread(() -> {
-            String message = null;
+            String message;
             while (!socket.isClosed() && reader != null) {
                 try {
                     message = reader.readLine();
+                    if (message != null) {
+                        process(message);
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                     listen.interrupt();
-                } finally {
                     try {
                         reader.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                    } catch (IOException io) {
+                        io.printStackTrace();
                     }
                 }
-                if (message == null) {
-                    continue;
-                }
-                process(message);
             }
         });
         listen.start();
@@ -134,47 +132,36 @@ public class Client {
         System.out.println(content);
         JSONObject root = new JSONObject(content);
         String returnValue = root.getString("return-value");
-        if(!returnValue.equals("void")) {
+        if (!returnValue.equals("void")) {
             if (root.has("error") && !root.has("data")) {
                 System.out.println(root.getJSONObject("error"));
             } else if (root.has("data")) {
                 JSONObject data = root.getJSONObject("data");
-                if (returnValue.equals("authentication")) {
+                if (returnValue.equals("authentication")) {//TODO: load Content in the UI
                     this.id = data.getInt("id");
-
                     JSONArray chatrooms = data.getJSONArray("chatrooms");
                     for (int i = 0; i < chatrooms.length(); i++) {
                         Chat chat = new Chat(chatrooms.getJSONObject(i));
                         chats.add(chat);
                     }
-
                     JSONArray privates = data.getJSONArray("private");
                     for (int i = 0; i < privates.length(); i++) {
                         Friend friend = new Friend(privates.getJSONObject(i));
                         friends.add(friend);
                     }
-                    //TODO: load Content in the UI
-                } else if (returnValue.equals("message")) {
-                    int senderID = data.getInt("sender-id");
-                    int chatID = data.getInt("chat-id");
+                } else if (returnValue.equals("message")) {//TODO: load Content in the UI
+                    int senderID = data.getInt("sender_id");
+                    int chatID = data.getInt("chat_id");
                     String messageContent = data.getString("message");
-                    //TODO: load Content in the UI
-                } else if(returnValue.equals("command")) {
+                    System.out.println("senderID: " + senderID + ", chatID: " + chatID + ", message: " + messageContent);
+                } else if (returnValue.equals("command")) {
 
                 }
             } else {
-                System.out.println("Unknown package content");
+                System.err.println("Unknown package content");
             }
         } else {
             System.out.println("No data expected");
-        }
-        System.out.println("Friends:");
-        for(Friend friend : friends) {
-            System.out.println(friend.name());
-        }
-        System.out.println("Groups:");
-        for(Chat chat : chats) {
-            System.out.println(chat.name());
         }
     }
 
@@ -185,10 +172,13 @@ public class Client {
 
     public void sendMessage(String message) {
         JSONObject json = new JSONObject();
-        json.put("message", message);
-        json.put("chat_id", chatID);
-        json.put("sender_id", id);
-        String output = prefixes.get(Prefixes.MESSAGE) + message + suffixes.get(Suffixes.MESSAGE);
+        json.put("return-value", "message");
+        JSONObject data = new JSONObject();
+        data.put("message", message);
+        data.put("chat_id", chatID);
+        data.put("sender_id", id);
+        json.put("data", data);
+        String output = prefixes.get(Prefixes.MESSAGE) + json + suffixes.get(Suffixes.MESSAGE);
         System.out.println("Send Message from Client to Server: \n" + output);
         writer.println(output);
     }

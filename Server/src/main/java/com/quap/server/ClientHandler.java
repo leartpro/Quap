@@ -5,9 +5,10 @@ import org.json.JSONObject;
 
 import java.io.*;
 import java.net.Socket;
-import java.net.SocketException;
 import java.net.URISyntaxException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.Callable;
 
 public class ClientHandler implements Callable {
@@ -44,11 +45,14 @@ public class ClientHandler implements Callable {
 
     private void listen() {
         listen = new Thread(() -> {
-            String message = null;
+            String message;
             while (!socket.isClosed() && reader != null) {
                 try {
                     message = reader.readLine();
-                } catch (SocketException e) {
+                    if (message != null) {
+                        process(message);
+                    }
+                } catch (IOException e) {
                     e.printStackTrace();
                     listen.interrupt();
                     try {
@@ -56,14 +60,7 @@ public class ClientHandler implements Callable {
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
-                    //System.exit(0);
-                } catch (IOException e) {
-                    e.printStackTrace();
                 }
-                if(message == null) {
-                    continue;
-                }
-                process(message);
             }
         });
         listen.start();
@@ -76,15 +73,26 @@ public class ClientHandler implements Callable {
         switch (message.charAt(2)) {
             case 'm' -> {
                 System.out.println("message found:" + content);
-                JSONObject json = new JSONObject(content);
-                String userMessage = json.getString("message");
-                int chatID = json.getInt("chat_id");
-                int senderID = json.getInt("sender_id");
+                UserdataReader dbReader = null;
+                try {
+                    dbReader = new UserdataReader();
+                } catch (SQLException | URISyntaxException e) {
+                    e.printStackTrace();
+                }
+
+                JSONObject input = new JSONObject(content).getJSONObject("data");
+                //String userMessage = input.getString("message");
+                int chatID = input.getInt("chat_id");
+                //int senderID = input.getInt("sender_id");
                 //TODO: send to other client handler
                 // receive message status success, rejected, lost, etc.
 
-                //TODO: get all userIds by the chat ID, then send to each founded userID message + senderID
-                server.forwardMessage(senderID, chatID/*TODO: replace with userID in loop*/, userMessage);
+                List<Integer> userIds = new ArrayList<>(dbReader.userIDsByChat(chatID));
+                for (Integer id : userIds) {
+                    if(id != userID) { //dont sends to himself
+                        server.forwardMessage(id, content);
+                    }
+                }
             }
             case 'c' -> {
                 System.out.println("command found");
@@ -110,15 +118,15 @@ public class ClientHandler implements Callable {
                 } else {
                     result = dbReader.insertUser(name, password);
                 }
+                userID = new JSONObject(result).getJSONObject("data").getInt("id");
+
                 send(result);
                 //TODO: set userID here
-                JSONObject resultJSON = new JSONObject(result);
-                userID = resultJSON.getJSONObject("data").getInt("id");
             }
         }
     }
 
-    private void send(String message) {
+    public void send(String message) {
         System.out.println("Server Message to Client: " + message);
         writer.println(message);
     }
