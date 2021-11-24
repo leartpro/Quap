@@ -12,6 +12,7 @@ import java.util.concurrent.Callable;
 
 public class ClientHandler implements Callable {
     private final int ID;
+    private int userID;
     private final Socket socket;
     private final Server server;
     private Thread listen; //because listen is the only method call in run(), the clientHandler will quit when the listen Thread is interrupted
@@ -25,6 +26,7 @@ public class ClientHandler implements Callable {
         this.socket = socket;
         this.ID = ID;
         this.server = server;
+        userID = -1;
 
         try {
             input = socket.getInputStream();
@@ -82,7 +84,7 @@ public class ClientHandler implements Callable {
                 // receive message status success, rejected, lost, etc.
 
                 //TODO: get all userIds by the chat ID, then send to each founded userID message + senderID
-                server.forwardMessage(senderID, chatID, userMessage);
+                server.forwardMessage(senderID, chatID/*TODO: replace with userID in loop*/, userMessage);
             }
             case 'c' -> {
                 System.out.println("command found");
@@ -109,6 +111,9 @@ public class ClientHandler implements Callable {
                     result = dbReader.insertUser(name, password);
                 }
                 send(result);
+                //TODO: set userID here
+                JSONObject resultJSON = new JSONObject(result);
+                userID = resultJSON.getJSONObject("data").getInt("id");
             }
         }
     }
@@ -120,6 +125,10 @@ public class ClientHandler implements Callable {
 
     public int getID() {
         return ID;
+    }
+
+    public int getUserID() {
+        return userID;
     }
 
     public ServerClient getClient() {
