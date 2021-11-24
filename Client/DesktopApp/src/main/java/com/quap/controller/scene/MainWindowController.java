@@ -123,6 +123,7 @@ public class MainWindowController {
                 currentNode.loadContent(
                         client.getMessagesByChat(((Friend)friend).chatID())
                 );
+                client.setCurrentChatID(((Friend)friend).id());
             });
             vBoxButtonHolder.getChildren().add(b);
         }
@@ -141,6 +142,7 @@ public class MainWindowController {
                 currentNode.loadContent(
                         client.getMessagesByChat(((Chat)chat).id())
                 );
+                client.setCurrentChatID(((Chat)chat).id());
             });
             vBoxButtonHolder.getChildren().add(b);
         }
@@ -174,6 +176,7 @@ public class MainWindowController {
                 currentNode.loadContent(
                         client.getMessagesByChat(((Friend)friend).id())
                 );
+                client.setCurrentChatID(((Friend)friend).id());
             });
             vBoxButtonHolder.getChildren().add(b);
         }

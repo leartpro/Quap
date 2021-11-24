@@ -6,31 +6,24 @@ import java.net.Socket;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-public class Server implements Runnable  {
+public class Server{
     private final ExecutorService service;
     private final ServerSocket socket;
-    private final Thread run;
     private Thread manage;
     private Thread receive;
 
     private final List<ClientHandler> handler = new ArrayList<>();
     private final List<ClientHandler> onlineHandlers = new ArrayList<>();
-    private boolean status;
+    private final boolean status;
 
 
     public Server(ServerSocket socket) {
         service = Executors.newCachedThreadPool();
         this.socket = socket;
-        run = new Thread( this, "Server");
-        run.start();
-    }
-
-    public void run() {
         status = true;
         manageClients();
         receiveConnection();
@@ -39,12 +32,11 @@ public class Server implements Runnable  {
         /*ConfigReader configReader = new ConfigReader();
         configReader.loadDefaultProperties();*/
 
-
-
         /*
         TODO: Server wirft Threads als Future raus und startet jedes mal neu, solange status==true!
 
          */
+        /*
         service.execute(new CommandListener());
         Scanner scanner = new Scanner(System.in);
         while (status) {
@@ -52,8 +44,8 @@ public class Server implements Runnable  {
             //TODO: manage commands
         }
         scanner.close();
+         */
     }
-
 
     public void manageClients() {
         manage = new Thread("Manage") {
@@ -74,6 +66,7 @@ public class Server implements Runnable  {
     }
 
     public void receiveConnection() {
+        Server server = this;
         receive = new Thread("Receive") {
             public void run() {
                 while (status) {
@@ -87,7 +80,11 @@ public class Server implements Runnable  {
                     assert client != null;
                     System.out.print("\r\nNew connection from " + client.getInetAddress() + ":" + client.getPort());
                     System.out.println(" to " + socket.getInetAddress() + ":" + socket.getLocalPort());
-                    service.submit(new ClientHandler(client, UniqueIdentifier.getIdentifier()));
+                    ClientHandler ch = new ClientHandler(
+                            client,
+                            UniqueIdentifier.getIdentifier(), //TODO: each Client handler stores his userID
+                            server);
+                    service.submit(ch);
                     //TODO: work with return
                     //when return and result is not null -> submit a new ClientHAndler, because the previous failed
                 }
@@ -162,5 +159,11 @@ public class Server implements Runnable  {
             }
             );
         }
+    }
+
+    public void forwardMessage(int senderID, int userID, String content) {
+        //TODO: get all ClientHandler by userID
+        // then sends to each Client content + senderID
+
     }
 }

@@ -13,6 +13,7 @@ import java.util.concurrent.Callable;
 public class ClientHandler implements Callable {
     private final int ID;
     private final Socket socket;
+    private final Server server;
     private Thread listen; //because listen is the only method call in run(), the clientHandler will quit when the listen Thread is interrupted
 
     private InputStream input;
@@ -20,9 +21,10 @@ public class ClientHandler implements Callable {
     private OutputStream output;
     private final PrintWriter writer;
 
-    public ClientHandler(Socket socket, int ID) {
+    public ClientHandler(Socket socket, int ID, Server server) {
         this.socket = socket;
         this.ID = ID;
+        this.server = server;
 
         try {
             input = socket.getInputStream();
@@ -70,8 +72,21 @@ public class ClientHandler implements Callable {
         System.out.println(message);
         System.out.println(content);
         switch (message.charAt(2)) {
-            case 'm' -> System.out.println("message found");
-            case 'c' -> System.out.println("command found");
+            case 'm' -> {
+                System.out.println("message found:" + content);
+                JSONObject json = new JSONObject(content);
+                String userMessage = json.getString("message");
+                int chatID = json.getInt("chat_id");
+                int senderID = json.getInt("sender_id");
+                //TODO: send to other client handler
+                // receive message status success, rejected, lost, etc.
+
+                //TODO: get all userIds by the chat ID, then send to each founded userID message + senderID
+                server.forwardMessage(senderID, chatID, userMessage);
+            }
+            case 'c' -> {
+                System.out.println("command found");
+            }
             case 'a' -> {
                 System.out.println("authentication found");
                 //TODO: run database access as future
@@ -89,10 +104,8 @@ public class ClientHandler implements Callable {
 
                 String result;
                 if (existing) {
-                    System.out.println("verifyUser(" + name + "," + password + ")");
                     result = dbReader.verifyUser(name, password);
                 } else {
-                    System.out.println("insertUser(" + name + "," + password + ")");
                     result = dbReader.insertUser(name, password);
                 }
                 send(result);

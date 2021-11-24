@@ -49,7 +49,9 @@ public class UserdataReader{
                     "order by created_at"
             );
             while(result.next()) {
-                messages.add(new Message(result.getString("content"), result.getDate("created_at"), result.getInt("sender")));
+                messages.add(new Message(result.getString("content"),
+                        result.getDate("created_at"),
+                        result.getInt("sender")));
             }
         } catch (SQLException e) {
             e.printStackTrace();

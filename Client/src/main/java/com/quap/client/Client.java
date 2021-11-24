@@ -33,7 +33,7 @@ public class Client {
     private PrintWriter writer;
     private final List<Friend> friends = new ArrayList();
     private final List<Chat> chats = new ArrayList();
-    private int id;
+    private int id, chatID;
     private String username;
     private String password;
     UserdataReader dataReader;
@@ -184,8 +184,12 @@ public class Client {
     }
 
     public void sendMessage(String message) {
+        JSONObject json = new JSONObject();
+        json.put("message", message);
+        json.put("chat_id", chatID);
+        json.put("sender_id", id);
         String output = prefixes.get(Prefixes.MESSAGE) + message + suffixes.get(Suffixes.MESSAGE);
-        System.out.println("Send Message from Client to Server: \n" + message);
+        System.out.println("Send Message from Client to Server: \n" + output);
         writer.println(output);
     }
 
@@ -216,5 +220,9 @@ public class Client {
                 dataReader.getMessagesByChat(id)
         );
         return content;
+    }
+
+    public void setCurrentChatID(int chatID) {
+        this.chatID = chatID;
     }
 }

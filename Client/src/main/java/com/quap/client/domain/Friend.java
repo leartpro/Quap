@@ -2,6 +2,7 @@ package com.quap.client.domain;
 
 import org.json.JSONObject;
 
+import java.util.Date;
 import java.util.Objects;
 
 public final class Friend extends UserContent {
@@ -73,11 +74,11 @@ public final class Friend extends UserContent {
 
     @Override
     public int getId() {
-        return 0;
+        return id;
     }
 
     @Override
-    public String getTime() {
-        return null;
+    public Date getTime() {
+        return new Date(created_at);
     }
 }
