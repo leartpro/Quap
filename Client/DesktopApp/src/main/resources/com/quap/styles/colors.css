@@ -2,3 +2,31 @@
   -fx-background-color: "transparent" ;
   -fx-background: "transparent";
 }
+
+.background {
+  -fx-background-color: #202225;
+}
+
+.ground {
+  -fx-background-color: #2F3136;
+}
+
+.foreground {
+  -fx-background-color: #36393F;
+}
+
+.selectOnDark {
+  -fx-background-color: #32353B;
+}
+
+.selectOnLight {
+  -fx-background-color: #393C43;
+}
+
+.label {
+  -fx-background-color: #72767D;
+}
+
+.font {
+  -fx-text-fill: #FFFFFF;
+}
