@@ -4,12 +4,12 @@
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.BorderPane?>
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.popup.PopupController">
+<BorderPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.popup.PopupController">
     <center>
-        <ScrollPane fx:id="scrollContent" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+        <ScrollPane fx:id="scrollContent"/>
     </center>
     <bottom>
-        <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <ButtonBar BorderPane.alignment="CENTER">
             <buttons>
                 <Button fx:id="btnClose" mnemonicParsing="false" onAction="#closePopup" text="Close" />
             </buttons>

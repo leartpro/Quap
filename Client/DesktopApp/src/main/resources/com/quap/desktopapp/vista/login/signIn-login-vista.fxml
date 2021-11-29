@@ -10,6 +10,6 @@
         <TextField fx:id="txtUsername" onKeyTyped="#validateUsername" />
         <Label fx:id="lblPassword" text="Password" />
         <PasswordField fx:id="txtPassword" onKeyTyped="#validatePassword" />
-        <ListView prefHeight="200.0" prefWidth="200.0" />
+        <ListView />
     </VBox>
 </StackPane>
