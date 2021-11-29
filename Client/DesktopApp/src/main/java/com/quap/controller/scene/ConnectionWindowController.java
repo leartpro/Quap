@@ -77,7 +77,7 @@ public class ConnectionWindowController implements Initializable {
         return () -> {
             Platform.runLater(() -> loadingLabel.setText("Open Connection..."));
             try {
-                client = new Client("localhost", 80); //local socketAddress to bind to
+                client = new Client("localhost", 0); //local socketAddress to bind to
             } catch (IOException e) {
                 e.printStackTrace();
                 return false;

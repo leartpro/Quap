@@ -111,7 +111,6 @@ public class ClientHandler implements Callable {
                 String name = json.getString("name");
                 String password = json.getString("password");
                 boolean existing = json.getBoolean("existing");
-
                 String result;
                 if (existing) {
                     result = dbReader.verifyUser(name, password);

@@ -163,9 +163,11 @@ public class Server{
     }
 
     public void forwardMessage(int userID, String message) {
+        System.out.println("forward message from " + userID);
         //TODO: get all ClientHandler by userID
         // then sends to each Client content + senderID
         for(int i = 0; i < handler.size(); i++) {
+            System.out.println("UserID: " + handler.get(i).getUserID());
             if(handler.get(i).getUserID() == userID) { //TODO: founds himself
                 System.out.println("Send Message from Client:" + userID + " to Client:" + handler.get(i).getUserID());
                 handler.get(i).send(message);

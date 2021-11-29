@@ -36,7 +36,7 @@ public class Client {
     private int id, chatID;
     private String username;
     private String password;
-    UserdataReader dataReader;
+    private UserdataReader dataReader;
 
     {
         try {
@@ -154,8 +154,10 @@ public class Client {
                     int chatID = data.getInt("chat_id");
                     String messageContent = data.getString("message");
                     System.out.println("senderID: " + senderID + ", chatID: " + chatID + ", message: " + messageContent);
+                    dataReader.addMessage(chatID, senderID, messageContent);
+                    //TODO: make MainWindowController update by db update
                 } else if (returnValue.equals("command")) {
-
+                    System.out.println("command found");
                 }
             } else {
                 System.err.println("Unknown package content");

@@ -59,8 +59,15 @@ public class UserdataReader{
         return messages;
     }
 
-    public void addMessage(int chat_id) {
-
+    public void addMessage(int chat_id, int sender_id, String content) { //TODO: prevent sql injections
+        try {
+            statement.executeQuery("" +
+                    "INSERT INTO messages(chat_id, sender_id, content) " +
+                    "VALUES(" + chat_id + ", " + sender_id + ", " + content + ")"
+            );
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void getPrivateChats() {
