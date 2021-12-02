@@ -13,12 +13,12 @@
          </VBox>
       </top>
       <bottom>
-         <HBox BorderPane.alignment="CENTER">
+         <VBox BorderPane.alignment="CENTER">
             <children>
-               <Label fx:id="lblLoading" text="Loading" textFill="#fffdfd" HBox.hgrow="SOMETIMES" />
-               <ProgressBar fx:id="progressBar" maxWidth="1.7976931348623157E308" progress="0.0" HBox.hgrow="ALWAYS" />
+               <Label fx:id="lblLoading" text="Loading" textFill="#fffdfd" VBox.vgrow="SOMETIMES" />
+               <ProgressBar fx:id="progressBar" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS" />
             </children>
-         </HBox>
+         </VBox>
       </bottom>
    </BorderPane>
 </VBox>

@@ -3,7 +3,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox styleClass="splashBackground" stylesheets="@../../styles/layouts.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.scene.ConnectionWindowController">
@@ -16,12 +15,12 @@
          </VBox>
       </top>
       <bottom>
-         <HBox BorderPane.alignment="CENTER">
+         <VBox BorderPane.alignment="CENTER">
             <children>
-               <Label fx:id="lblLoading" text="Loading" textFill="#fffdfd" HBox.hgrow="SOMETIMES" />
-               <ProgressBar fx:id="progressBar" maxWidth="1.7976931348623157E308" progress="0.0" HBox.hgrow="ALWAYS" />
+               <Label fx:id="lblLoading" text="Loading" textFill="#fffdfd" VBox.vgrow="SOMETIMES" />
+               <ProgressBar fx:id="progressBar" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS" />
             </children>
-         </HBox>
+         </VBox>
       </bottom>
    </BorderPane>
 </VBox>

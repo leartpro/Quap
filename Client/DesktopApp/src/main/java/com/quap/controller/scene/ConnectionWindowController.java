@@ -7,6 +7,8 @@ import com.quap.utils.WindowMoveHelper;
 import javafx.application.Platform;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -38,12 +40,17 @@ public class ConnectionWindowController implements Initializable {
     private static Label loadingLabel;
     private static final double EPSILON = 0.0000005;
     ProgressService service = new ProgressService();
+    ProgressTask progressTask = new ProgressTask();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadingLabel = lblLoading;
+        progressBar.setMaxWidth(Double.MAX_VALUE);
+        progressBar.setProgress(0);
+        progressBar.progressProperty().unbind();
         progressBar.progressProperty().bind(
-                service.progressProperty()
+                //service.progressProperty()
+                progressTask.progressProperty()
         );
         // color the bar green when the work is complete.
         progressBar.progressProperty().addListener(observable -> {
@@ -51,11 +58,42 @@ public class ConnectionWindowController implements Initializable {
                 progressBar.setStyle("-fx-accent: forestgreen;");
             }
         });
+
+        progressTask.addEventHandler(WorkerStateEvent.WORKER_STATE_SUCCEEDED, new EventHandler<WorkerStateEvent>() {
+            @Override
+            public void handle(WorkerStateEvent event) {
+                System.out.println("ProgressBar is done!");
+            }
+        });
+        /*final Task<Void> task = new Task<Void>() {
+            final int N_ITERATIONS = 100;
+
+            @Override
+            protected Void call() throws Exception {
+                for (int i = 0; i < N_ITERATIONS; i++) {
+                    updateProgress(i + 1, N_ITERATIONS);
+                    // sleep is used to simulate doing some work which takes some time....
+                    Thread.sleep(10);
+                }
+
+                return null;
+            }
+        };
+        progressBar.progressProperty().bind(
+                task.progressProperty()
+        );
+        // color the bar green when the work is complete.
+        progressBar.progressProperty().addListener(observable -> {
+            if (progressBar.getProgress() >= 1 - EPSILON) {
+                progressBar.setStyle("-fx-accent: forestgreen;");
+            }
+        });*/
     }
 
     public void addProgress() {
-        service = new ProgressService();
-        Platform.runLater(() -> service.start());
+        //service = new ProgressService();
+        //Platform.runLater(() -> service.start());
+        Platform.runLater(() -> new Thread(progressTask).start());
     }
 
     public ConnectionWindowController() {
@@ -215,6 +253,19 @@ public class ConnectionWindowController implements Initializable {
                     return null;
                 }
             };
+        }
+    }
+
+    private class ProgressTask extends Task<Void> {
+        final int N_ITERATIONS = 100;
+        @Override
+        protected Void call() throws Exception {
+            for (int i = 0; i < N_ITERATIONS; i++) {
+                updateProgress(i + 1, N_ITERATIONS);
+                Thread.sleep(10);
+            }
+
+            return null;
         }
     }
 }
