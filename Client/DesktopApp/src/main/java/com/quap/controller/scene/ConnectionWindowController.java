@@ -5,12 +5,15 @@ import com.quap.controller.VistaController;
 import com.quap.desktopapp.LauncherPreloader;
 import com.quap.utils.WindowMoveHelper;
 import javafx.application.Platform;
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -27,12 +30,32 @@ public class ConnectionWindowController implements Initializable {
     private Client client;
 
     @FXML
-    Label lblLoading;
+    private Label lblLoading;
+
+    @FXML
+    private ProgressBar progressBar = new ProgressBar();
+
     private static Label loadingLabel;
+    private static final double EPSILON = 0.0000005;
+    ProgressService service = new ProgressService();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadingLabel = lblLoading;
+        progressBar.progressProperty().bind(
+                service.progressProperty()
+        );
+        // color the bar green when the work is complete.
+        progressBar.progressProperty().addListener(observable -> {
+            if (progressBar.getProgress() >= 1 - EPSILON) {
+                progressBar.setStyle("-fx-accent: forestgreen;");
+            }
+        });
+    }
+
+    public void addProgress() {
+        service = new ProgressService();
+        Platform.runLater(() -> service.start());
     }
 
     public ConnectionWindowController() {
@@ -75,7 +98,12 @@ public class ConnectionWindowController implements Initializable {
 
     public Callable<Boolean> connect() {
         return () -> {
-            Platform.runLater(() -> loadingLabel.setText("Open Connection..."));
+            Platform.runLater(() -> loadingLabel.setText("Open Connection"));
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             try {
                 client = new Client("localhost", 0); //local socketAddress to bind to
             } catch (IOException e) {
@@ -88,19 +116,26 @@ public class ConnectionWindowController implements Initializable {
 
     public Callable<Boolean> openConnection() {
         return () -> {
-            Platform.runLater(() -> loadingLabel.setText("Open Connection..."));
+            Platform.runLater(() -> loadingLabel.setText("Open Connection."));
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             try {
                 client.openConnection();
             } catch (IOException e) {
                 e.printStackTrace();
                 return false;
             }
+            Platform.runLater(() -> loadingLabel.setText("Open Connection.."));
             try {
                 client.setConnection();
             } catch (IOException e) {
                 e.printStackTrace();
                 return false;
             }
+            Platform.runLater(() -> loadingLabel.setText("Open Connection..."));
             return true;
         };
     }
@@ -108,7 +143,12 @@ public class ConnectionWindowController implements Initializable {
     public Callable<Boolean> confirmConnection() {
         return () -> {
             System.out.println("confirm connection");
-            Platform.runLater(() -> loadingLabel.setText("Open Connection..."));
+            Platform.runLater(() -> loadingLabel.setText("Confirm Connection"));
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             client.listen();
             return true;
         };
@@ -117,6 +157,11 @@ public class ConnectionWindowController implements Initializable {
     public Callable<Boolean> launchWindow() {
         return () -> {
             Platform.runLater(() -> loadingLabel.setText("Loading Login"));
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             Platform.runLater(task);
             return (Boolean) task.get();
         };
@@ -155,4 +200,21 @@ public class ConnectionWindowController implements Initializable {
             return true;
         }
     });
+
+    private class ProgressService extends Service<Void> {
+        @Override
+        protected Task<Void> createTask() {
+            return new Task<>() {
+                final int N_ITERATIONS = 25;
+                @Override
+                protected Void call() throws Exception {
+                    for (int i = 0; i < N_ITERATIONS; i++) {
+                        updateProgress(i + 1, N_ITERATIONS);
+                        Thread.sleep(10);
+                    }
+                    return null;
+                }
+            };
+        }
+    }
 }

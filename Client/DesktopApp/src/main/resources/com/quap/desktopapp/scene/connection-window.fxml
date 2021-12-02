@@ -6,7 +6,7 @@
 <VBox styleClass="splashBackground" stylesheets="@../../styles/layouts.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.scene.ConnectionWindowController">
    <BorderPane VBox.vgrow="ALWAYS">
       <top>
-         <VBox BorderPane.alignment="CENTER">
+         <VBox prefHeight="400.0" prefWidth="600.0" BorderPane.alignment="CENTER">
             <children>
                <Label text="Quap" textFill="WHITE" />
             </children>
@@ -15,8 +15,8 @@
       <bottom>
          <HBox BorderPane.alignment="CENTER">
             <children>
-               <Label fx:id="lblLoading" text="Loading" textFill="#fffdfd" HBox.hgrow="NEVER" />
-               <ProgressBar styleClass="indicator" stylesheets="@../../styles/colors.css" HBox.hgrow="ALWAYS" />
+               <Label fx:id="lblLoading" text="Loading" textFill="#fffdfd" HBox.hgrow="SOMETIMES" />
+               <ProgressBar fx:id="progressBar" maxWidth="1.7976931348623157E308" progress="0.0" HBox.hgrow="ALWAYS" />
             </children>
          </HBox>
       </bottom>

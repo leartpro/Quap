@@ -60,6 +60,7 @@ public class Launcher extends Application {
                     e.printStackTrace();
                 }
                 if (result) {
+                    init.addProgress();
                     switch (optional.get()) {
                         case 0 -> {
                             System.out.println(0);

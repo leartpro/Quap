@@ -2,9 +2,6 @@
 
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
-<VBox fx:id="list" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-      xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.quap.controller.vista.main.ListController">
-    <ListView fx:id="listView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-              VBox.vgrow="ALWAYS"/>
+<VBox fx:id="list" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.vista.main.ListController">
+    <ListView fx:id="listView" VBox.vgrow="ALWAYS"/>
 </VBox>

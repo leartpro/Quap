@@ -9,7 +9,7 @@
         <map/>
         <node name="users">
           <map/>
-          <node name="anonym">
+          <node name="Anonym">
             <map/>
             <node name="preferences">
               <map/>
