@@ -61,11 +61,6 @@ public class Launcher extends Application {
                 }
                 if (result) {
                     init.addProgress();
-                    try { //TODO: does slow the init process for testing and debugging
-                        Thread.sleep(3000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
                     switch (optional.get()) {
                         case 0 -> {
                             System.out.println(0);

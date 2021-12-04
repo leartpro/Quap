@@ -3,8 +3,11 @@ package com.quap.controller.scene;
 import com.quap.client.Client;
 import com.quap.client.domain.Chat;
 import com.quap.client.domain.Friend;
+import com.quap.client.domain.Message;
 import com.quap.client.domain.UserContent;
+import com.quap.client.utils.ClientObserver;
 import com.quap.controller.VistaController;
+import com.quap.controller.vista.main.ChatController;
 import com.quap.controller.vista.main.MainVistaNavigator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,7 +27,7 @@ import java.io.IOException;
 
 import static com.quap.controller.VistaController.CHAT;
 
-public class MainWindowController {
+public class MainWindowController implements ClientObserver {
 
     private MainVistaNavigator currentNode;
     private double lastX = 0.0d, lastY = 0.0d, lastWidth = 0.0d, lastHeight = 0.0d;
@@ -37,6 +40,7 @@ public class MainWindowController {
     private Label lblServer_IP;
 
     public static Client client;
+    private String currentNodeID;
 
     @FXML
     public void initialize() {
@@ -53,10 +57,11 @@ public class MainWindowController {
 
     public void setVista(Node node, MainVistaNavigator controller) { //set the current node is called by VistaController
         if (node.getId().equals("chat") || node.getId().equals("list") || node.getId().equals("profile") || node.getId().equals("settings")) {
+            currentNodeID = node.getId();
             currentNode = controller;
             currentNode.setClient(client);
         } else {
-            IllegalArgumentException e;
+            throw new IllegalArgumentException();
         }
         stackContent.getChildren().setAll(node);
     }
@@ -123,7 +128,7 @@ public class MainWindowController {
                 currentNode.loadContent(
                         client.getMessagesByChat(((Friend)friend).chatID())
                 );
-                client.setCurrentChatID(((Friend)friend).id());
+                client.setCurrentChatID(((Friend)friend).chatID());
             });
             vBoxButtonHolder.getChildren().add(b);
         }
@@ -174,11 +179,19 @@ public class MainWindowController {
             b.setOnAction(e -> {
                 VistaController.loadMainVista(CHAT);
                 currentNode.loadContent(
-                        client.getMessagesByChat(((Friend)friend).id())
+                        client.getMessagesByChat(((Friend)friend).chatID())
                 );
-                client.setCurrentChatID(((Friend)friend).id());
+                client.setCurrentChatID(((Friend)friend).chatID());
             });
             vBoxButtonHolder.getChildren().add(b);
+        }
+    }
+
+    @Override
+    public void messageEvent(Message message) {
+        System.out.println("messageEvent");
+        if(currentNodeID.equals("chat")) {
+            ((ChatController)currentNode).addMessage(message);
         }
     }
 }

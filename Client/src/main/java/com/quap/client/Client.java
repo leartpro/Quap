@@ -3,7 +3,9 @@ package com.quap.client;
 import com.quap.client.data.UserdataReader;
 import com.quap.client.domain.Chat;
 import com.quap.client.domain.Friend;
+import com.quap.client.domain.Message;
 import com.quap.client.domain.UserContent;
+import com.quap.client.utils.ClientObserver;
 import com.quap.client.utils.Prefixes;
 import com.quap.client.utils.Suffixes;
 import org.json.JSONArray;
@@ -17,7 +19,9 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -37,6 +41,7 @@ public class Client {
     private String username;
     private String password;
     private UserdataReader dataReader;
+    private final List<ClientObserver> observers = new ArrayList<>();
 
     {
         try {
@@ -153,6 +158,9 @@ public class Client {
                     int senderID = data.getInt("sender_id");
                     int chatID = data.getInt("chat_id");
                     String messageContent = data.getString("message");
+                    for(ClientObserver c: observers) {
+                        c.messageEvent(new Message(messageContent, Date.from(Instant.now()), senderID));
+                    }
                     System.out.println("senderID: " + senderID + ", chatID: " + chatID + ", message: " + messageContent);
                     dataReader.addMessage(chatID, senderID, messageContent);
                     //TODO: make MainWindowController update by db update
@@ -216,5 +224,13 @@ public class Client {
 
     public void setCurrentChatID(int chatID) {
         this.chatID = chatID;
+    }
+
+    public void addObserver(ClientObserver observer) {
+        observers.add(observer);
+    }
+
+    public void removeObserver(ClientObserver observer) {
+        observers.remove(observer);
     }
 }

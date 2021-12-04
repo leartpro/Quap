@@ -1,6 +1,6 @@
 package com.quap.client.domain;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.Objects;
 
 public final class Message extends UserContent {

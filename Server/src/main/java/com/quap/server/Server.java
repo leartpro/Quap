@@ -168,7 +168,7 @@ public class Server{
         // then sends to each Client content + senderID
         for(int i = 0; i < handler.size(); i++) {
             System.out.println("UserID: " + handler.get(i).getUserID());
-            if(handler.get(i).getUserID() == userID) { //TODO: founds himself
+            if(handler.get(i).getUserID() == userID) {
                 System.out.println("Send Message from Client:" + userID + " to Client:" + handler.get(i).getUserID());
                 handler.get(i).send(message);
             }

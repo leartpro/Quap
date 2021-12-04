@@ -61,9 +61,9 @@ public class UserdataReader{
 
     public void addMessage(int chat_id, int sender_id, String content) { //TODO: prevent sql injections
         try {
-            statement.executeQuery("" +
-                    "INSERT INTO messages(chat_id, sender_id, content) " +
-                    "VALUES(" + chat_id + ", " + sender_id + ", " + content + ")"
+            statement.executeUpdate("" +
+                    "insert into messages(chat_id, sender, content) " +
+                    "values(" + chat_id + ", " + sender_id + ", '" + content + "')"
             );
         } catch (SQLException e) {
             e.printStackTrace();

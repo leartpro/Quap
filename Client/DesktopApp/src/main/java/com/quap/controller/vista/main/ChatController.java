@@ -1,6 +1,7 @@
 package com.quap.controller.vista.main;
 
 import com.quap.client.Client;
+import com.quap.client.domain.Message;
 import com.quap.client.domain.UserContent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
@@ -49,5 +50,9 @@ public class ChatController extends MainVistaNavigator{
     @Override
     public void setClient(Client client) {
         this.client = client;
+    }
+
+    public void addMessage(Message message) {
+        chatArea.appendText(message + "\n");
     }
 }

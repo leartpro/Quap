@@ -207,11 +207,9 @@ public class UserdataReader {
         ResultSet result = null;
 
         try {
-            result = statement.executeQuery("" +
-                    "SELECT id " +
-                    "FROM users " +
-                    "LEFT JOIN participants " +
-                    "ON participants.user_id = users.id " +
+            result = statement.executeQuery("" + //TODO ???
+                    "SELECT user_id " +
+                    "FROM participants " +
                     "WHERE chatroom_id =" + chatID + ";"
             );
         } catch (SQLException e) {
@@ -220,7 +218,7 @@ public class UserdataReader {
         try {
             assert result != null;
             while(result.next()) {
-                userIDs.add(result.getInt("id"));
+                userIDs.add(result.getInt("user_id"));
             }
         } catch (SQLException e) {
             e.printStackTrace();

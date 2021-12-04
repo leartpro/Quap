@@ -81,17 +81,13 @@ public class ClientHandler implements Callable {
                 }
 
                 JSONObject input = new JSONObject(content).getJSONObject("data");
-                //String userMessage = input.getString("message");
                 int chatID = input.getInt("chat_id");
-                //int senderID = input.getInt("sender_id");
-                //TODO: send to other client handler
-                // receive message status success, rejected, lost, etc.
-
+                //TODO: receive message status success, rejected, lost, etc.
                 List<Integer> userIds = new ArrayList<>(dbReader.userIDsByChat(chatID));
                 for (Integer id : userIds) {
-                    if(id != userID) { //dont sends to himself
+                    //if(id != userID) { //dont sends to himself
                         server.forwardMessage(id, content);
-                    }
+                    //}
                 }
             }
             case 'c' -> {
