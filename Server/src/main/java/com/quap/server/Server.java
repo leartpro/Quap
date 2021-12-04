@@ -6,45 +6,37 @@ import java.net.Socket;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-public class Server implements Runnable  {
+public class Server{
     private final ExecutorService service;
     private final ServerSocket socket;
-    private final Thread run;
     private Thread manage;
     private Thread receive;
 
     private final List<ClientHandler> handler = new ArrayList<>();
     private final List<ClientHandler> onlineHandlers = new ArrayList<>();
-    private boolean status;
+    private final boolean status;
 
 
     public Server(ServerSocket socket) {
         service = Executors.newCachedThreadPool();
         this.socket = socket;
-        run = new Thread( this, "Server");
-        run.start();
-    }
-
-    public void run() {
         status = true;
-        manageClients();
+        //manageClients();
         receiveConnection();
         //TODO: db connection
         //TODO: config reader
         /*ConfigReader configReader = new ConfigReader();
         configReader.loadDefaultProperties();*/
 
-
-
         /*
         TODO: Server wirft Threads als Future raus und startet jedes mal neu, solange status==true!
 
          */
+        /*
         service.execute(new CommandListener());
         Scanner scanner = new Scanner(System.in);
         while (status) {
@@ -52,10 +44,10 @@ public class Server implements Runnable  {
             //TODO: manage commands
         }
         scanner.close();
+         */
     }
 
-
-    public void manageClients() {
+    /*public void manageClients() {
         manage = new Thread("Manage") {
             public void run() {
                 while (status) {
@@ -71,9 +63,10 @@ public class Server implements Runnable  {
             }
         };
         manage.start();
-    }
+    }*/
 
     public void receiveConnection() {
+        Server server = this;
         receive = new Thread("Receive") {
             public void run() {
                 while (status) {
@@ -87,7 +80,12 @@ public class Server implements Runnable  {
                     assert client != null;
                     System.out.print("\r\nNew connection from " + client.getInetAddress() + ":" + client.getPort());
                     System.out.println(" to " + socket.getInetAddress() + ":" + socket.getLocalPort());
-                    service.submit(new ClientHandler(client, UniqueIdentifier.getIdentifier()));
+                    ClientHandler clientHandler = new ClientHandler(
+                            client,
+                            UniqueIdentifier.getIdentifier(), //TODO: each Client handler stores his userID
+                            server);
+                    service.submit(clientHandler);
+                    handler.add(clientHandler);
                     //TODO: work with return
                     //when return and result is not null -> submit a new ClientHAndler, because the previous failed
                 }
@@ -161,6 +159,19 @@ public class Server implements Runnable  {
                 }
             }
             );
+        }
+    }
+
+    public void forwardMessage(int userID, String message) {
+        System.out.println("forward message from " + userID);
+        //TODO: get all ClientHandler by userID
+        // then sends to each Client content + senderID
+        for(int i = 0; i < handler.size(); i++) {
+            System.out.println("UserID: " + handler.get(i).getUserID());
+            if(handler.get(i).getUserID() == userID) {
+                System.out.println("Send Message from Client:" + userID + " to Client:" + handler.get(i).getUserID());
+                handler.get(i).send(message);
+            }
         }
     }
 }

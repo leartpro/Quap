@@ -17,24 +17,24 @@ public class ConfigReader {
     }
 
     public void createUser() {
-        init(username);
-        initLocalProperties(username);
-        initLocalPreferences(username);
+        init();
+        initLocalProperties();
+        initLocalPreferences();
     }
 
     public void deleteUser() {
-        delete(username);
-        deleteLocalProperties(username);
-        deleteLocalPreferences(username);
+        delete();
+        deleteLocalProperties();
+        deleteLocalPreferences();
     }
 
     public void readUser() {
-        read(username);
-        readLocalProperties(username);
-        readLocalPreference(username);
+        read();
+        readLocalProperties();
+        readLocalPreference();
     }
 
-    private void initLocalPreferences(String username) {
+    private void initLocalPreferences() {
 
         //set default values here
         prefs.putInt("bind_port", 80);
@@ -58,7 +58,7 @@ public class ConfigReader {
         }
     }
 
-    private void initLocalProperties(String username) {
+    private void initLocalProperties() {
         InputStream propsInput = ClassLoader
                 .getSystemResourceAsStream(
                         "Client/src/main/resources/com/quap/users/"
@@ -82,7 +82,7 @@ public class ConfigReader {
         }
     }
 
-    private void init(String username) {
+    private void init() {
         //TODO: mkdir() might not the best and most modern solution
         String rootPath = "Client/src/main/resources/com/quap/users/" + username;
         File sqlFolder, prefFolder;
@@ -101,22 +101,33 @@ public class ConfigReader {
         }
     }
 
-    private void deleteLocalPreferences(String username) {
+    private void deleteLocalPreferences() {
     }
 
-    private void deleteLocalProperties(String username) {
+    private void deleteLocalProperties() {
     }
 
-    private void delete(String username) {
+    private void delete() {
     }
 
-    private void readLocalPreference(String username) {
+    private void readLocalPreference() {
     }
 
-    private void readLocalProperties(String username) {
+    private void readLocalProperties() {
     }
 
-    private void read(String username) {
+    private void read() {
+    }
+
+    public void validateUser() {
+        String rootPath = "Client/src/main/resources/com/quap/users/" + username;
+        File folder = new File(rootPath);
+        if(folder.exists()) {
+            readUser();
+        } else {
+            createUser();
+            System.err.println("The user was not found, a new one was created");
+        }
     }
 
     //TODO: add listener for all main config-vars

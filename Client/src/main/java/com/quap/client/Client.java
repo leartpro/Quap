@@ -3,7 +3,9 @@ package com.quap.client;
 import com.quap.client.data.UserdataReader;
 import com.quap.client.domain.Chat;
 import com.quap.client.domain.Friend;
+import com.quap.client.domain.Message;
 import com.quap.client.domain.UserContent;
+import com.quap.client.utils.ClientObserver;
 import com.quap.client.utils.Prefixes;
 import com.quap.client.utils.Suffixes;
 import org.json.JSONArray;
@@ -17,7 +19,9 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -33,10 +37,11 @@ public class Client {
     private PrintWriter writer;
     private final List<Friend> friends = new ArrayList();
     private final List<Chat> chats = new ArrayList();
-    private int id;
+    private int id, chatID;
     private String username;
     private String password;
-    UserdataReader dataReader;
+    private UserdataReader dataReader;
+    private final List<ClientObserver> observers = new ArrayList<>();
 
     {
         try {
@@ -107,24 +112,22 @@ public class Client {
     public void listen() {
         System.out.println("Client is listen...");
         listen = new Thread(() -> {
-            String message = null;
+            String message;
             while (!socket.isClosed() && reader != null) {
                 try {
                     message = reader.readLine();
+                    if (message != null) {
+                        process(message);
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                     listen.interrupt();
-                } finally {
                     try {
                         reader.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                    } catch (IOException io) {
+                        io.printStackTrace();
                     }
                 }
-                if (message == null) {
-                    continue;
-                }
-                process(message);
             }
         });
         listen.start();
@@ -134,47 +137,41 @@ public class Client {
         System.out.println(content);
         JSONObject root = new JSONObject(content);
         String returnValue = root.getString("return-value");
-        if(!returnValue.equals("void")) {
+        if (!returnValue.equals("void")) {
             if (root.has("error") && !root.has("data")) {
                 System.out.println(root.getJSONObject("error"));
             } else if (root.has("data")) {
                 JSONObject data = root.getJSONObject("data");
-                if (returnValue.equals("authentication")) {
+                if (returnValue.equals("authentication")) {//TODO: load Content in the UI
                     this.id = data.getInt("id");
-
                     JSONArray chatrooms = data.getJSONArray("chatrooms");
                     for (int i = 0; i < chatrooms.length(); i++) {
                         Chat chat = new Chat(chatrooms.getJSONObject(i));
                         chats.add(chat);
                     }
-
                     JSONArray privates = data.getJSONArray("private");
                     for (int i = 0; i < privates.length(); i++) {
                         Friend friend = new Friend(privates.getJSONObject(i));
                         friends.add(friend);
                     }
-                    //TODO: load Content in the UI
-                } else if (returnValue.equals("message")) {
-                    int senderID = data.getInt("sender-id");
-                    int chatID = data.getInt("chat-id");
+                } else if (returnValue.equals("message")) {//TODO: load Content in the UI
+                    int senderID = data.getInt("sender_id");
+                    int chatID = data.getInt("chat_id");
                     String messageContent = data.getString("message");
-                    //TODO: load Content in the UI
-                } else if(returnValue.equals("command")) {
-
+                    for(ClientObserver c: observers) {
+                        c.messageEvent(new Message(messageContent, Date.from(Instant.now()), senderID));
+                    }
+                    System.out.println("senderID: " + senderID + ", chatID: " + chatID + ", message: " + messageContent);
+                    dataReader.addMessage(chatID, senderID, messageContent);
+                    //TODO: make MainWindowController update by db update
+                } else if (returnValue.equals("command")) {
+                    System.out.println("command found");
                 }
             } else {
-                System.out.println("Unknown package content");
+                System.err.println("Unknown package content");
             }
         } else {
             System.out.println("No data expected");
-        }
-        System.out.println("Friends:");
-        for(Friend friend : friends) {
-            System.out.println(friend.name());
-        }
-        System.out.println("Groups:");
-        for(Chat chat : chats) {
-            System.out.println(chat.name());
         }
     }
 
@@ -184,8 +181,15 @@ public class Client {
     }
 
     public void sendMessage(String message) {
-        String output = prefixes.get(Prefixes.MESSAGE) + message + suffixes.get(Suffixes.MESSAGE);
-        System.out.println("Send Message from Client to Server: \n" + message);
+        JSONObject json = new JSONObject();
+        json.put("return-value", "message");
+        JSONObject data = new JSONObject();
+        data.put("message", message);
+        data.put("chat_id", chatID);
+        data.put("sender_id", id);
+        json.put("data", data);
+        String output = prefixes.get(Prefixes.MESSAGE) + json + suffixes.get(Suffixes.MESSAGE);
+        System.out.println("Send Message from Client to Server: \n" + output);
         writer.println(output);
     }
 
@@ -216,5 +220,17 @@ public class Client {
                 dataReader.getMessagesByChat(id)
         );
         return content;
+    }
+
+    public void setCurrentChatID(int chatID) {
+        this.chatID = chatID;
+    }
+
+    public void addObserver(ClientObserver observer) {
+        observers.add(observer);
+    }
+
+    public void removeObserver(ClientObserver observer) {
+        observers.remove(observer);
     }
 }

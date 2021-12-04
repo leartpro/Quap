@@ -49,7 +49,9 @@ public class UserdataReader{
                     "order by created_at"
             );
             while(result.next()) {
-                messages.add(new Message(result.getString("content"), result.getDate("created_at"), result.getInt("sender")));
+                messages.add(new Message(result.getString("content"),
+                        result.getDate("created_at"),
+                        result.getInt("sender")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -57,8 +59,15 @@ public class UserdataReader{
         return messages;
     }
 
-    public void addMessage(int chat_id) {
-
+    public void addMessage(int chat_id, int sender_id, String content) { //TODO: prevent sql injections
+        try {
+            statement.executeUpdate("" +
+                    "insert into messages(chat_id, sender, content) " +
+                    "values(" + chat_id + ", " + sender_id + ", '" + content + "')"
+            );
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void getPrivateChats() {

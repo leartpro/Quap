@@ -1,10 +1,12 @@
 package com.quap.client.domain;
 
+import java.util.Date;
+
 public abstract class UserContent {
 
     public abstract String display();
 
     public abstract int getId();
 
-    public abstract String getTime();
+    public abstract Date getTime();
 }

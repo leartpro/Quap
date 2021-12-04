@@ -2,6 +2,7 @@ package com.quap.client.domain;
 
 import org.json.JSONObject;
 
+import java.util.Date;
 import java.util.Objects;
 
 public final class Chat extends UserContent {
@@ -82,7 +83,7 @@ public final class Chat extends UserContent {
     }
 
     @Override
-    public String getTime() {
-        return null;
+    public Date getTime() {
+        return new Date(joined_at);
     }
 }

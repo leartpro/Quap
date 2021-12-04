@@ -5,6 +5,8 @@ import org.json.JSONObject;
 
 import java.net.URISyntaxException;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserdataReader {
     final Connection connection;
@@ -198,6 +200,36 @@ public class UserdataReader {
             }
         }
         return json;
+    }
+
+    public List<Integer> userIDsByChat(int chatID) {
+        List<Integer> userIDs = new ArrayList<>();
+        ResultSet result = null;
+
+        try {
+            result = statement.executeQuery("" + //TODO ???
+                    "SELECT user_id " +
+                    "FROM participants " +
+                    "WHERE chatroom_id =" + chatID + ";"
+            );
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            assert result != null;
+            while(result.next()) {
+                userIDs.add(result.getInt("user_id"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                result.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return userIDs;
     }
 
     private JSONArray usersByChat(int chatID) {

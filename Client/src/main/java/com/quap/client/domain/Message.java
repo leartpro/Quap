@@ -1,6 +1,6 @@
 package com.quap.client.domain;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.Objects;
 
 public final class Message extends UserContent {
@@ -12,11 +12,6 @@ public final class Message extends UserContent {
         this.content = content;
         this.timestamp = timestamp;
         this.senderID = senderID;
-    }
-
-    @Override
-    public String toString() {
-        return content;
     }
 
     public String content() {
@@ -47,17 +42,29 @@ public final class Message extends UserContent {
     }
 
     @Override
+    public String toString() {
+        return "Message[" +
+                "content=" + content + ", " +
+                "timestamp=" + timestamp + ", " +
+                "senderID=" + senderID + ']';
+    }
+
+
+    @Override
     public String display() {
-        return content;
+        return "Message[" +
+                "content=" + content + ", " +
+                "timestamp=" + timestamp + ", " +
+                "senderID=" + senderID + ']';
     }
 
     @Override
     public int getId() {
-        return 0;
+        return senderID;
     }
 
     @Override
-    public String getTime() {
-        return null;
+    public Date getTime() {
+        return timestamp;
     }
 }

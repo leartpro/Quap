@@ -129,6 +129,8 @@ public class LoginWindowController {
         tasks.put(0, completionService.submit(() -> {
             ConfigReader configReader = new ConfigReader(name);
             if (!existingUser) {
+                configReader.validateUser();
+            } else {
                 configReader.createUser();
                 configReader.readUser();
             }

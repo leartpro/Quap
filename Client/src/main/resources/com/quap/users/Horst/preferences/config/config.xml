@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE preferences SYSTEM "http://java.sun.com/dtd/preferences.dtd">
+<preferences EXTERNAL_XML_VERSION="1.0">
+  <root type="user">
+    <map/>
+    <node name="com">
+      <map/>
+      <node name="quap">
+        <map/>
+        <node name="users">
+          <map/>
+          <node name="Horst">
+            <map/>
+            <node name="preferences">
+              <map/>
+              <node name="settings">
+                <map>
+                  <entry key="bind_port" value="80"/>
+                  <entry key="bind_address" value="localhost"/>
+                </map>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+  </root>
+</preferences>
