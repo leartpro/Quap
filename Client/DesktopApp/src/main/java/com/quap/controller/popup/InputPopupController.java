@@ -25,10 +25,16 @@ public class InputPopupController {
     //gives to user request back to the client object
     @FXML
     void submit(ActionEvent event) {
-        if(type.equals("chatrooms")) { //TODO:
+        if(type.equals("chatrooms")) {
             System.out.println("Füge Chatroom hinzu");
+            //TODO: erstelle den chatroom anfrage zum server
+            // Server Sendet chatroom zurück und UI wird über observer updated
+            // add a boolean to the participant table, wichs shows, if the current user has already joined or is just invited
         } else if(type.equals("friends")) {
             System.out.println("Füge Friend hinzu");
+            //TODO: erstelle den chatroom anfrage zum server
+            // Server Sendet chatroom zurück und UI wird über observer updated
+            // check if there if only one entrance(just request) in the friends table or two(solid friends)
         }
     }
 
