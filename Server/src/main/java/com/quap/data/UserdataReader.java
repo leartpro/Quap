@@ -144,7 +144,6 @@ public class UserdataReader {
         ResultSet result = null;
         JSONArray json = new JSONArray();
         try {
-            //no problemo
             result = statement.executeQuery("" +
                     "SELECT users.name, users.id AS user_id, chatrooms.id AS chatrooms_id, chatrooms.created_at " +
                     "FROM friends " +
@@ -182,7 +181,8 @@ public class UserdataReader {
                     "FROM participants " +
                     "LEFT JOIN chatrooms " +
                     "ON chatrooms.id = chatroom_id " +
-                    "WHERE user_id = " + id
+                    "WHERE user_id = " + id + " " +
+                    "and chatrooms.is_private = false"
             );
         } catch (SQLException e) {
             e.printStackTrace();

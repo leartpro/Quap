@@ -2,11 +2,16 @@ package com.quap.controller.vista.main;
 
 import com.quap.client.Client;
 import com.quap.client.domain.UserContent;
+import com.quap.controller.SceneController;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 import javafx.util.Callback;
 
 import java.util.List;
@@ -15,17 +20,29 @@ public class ListController extends MainVistaNavigator{
     private Client client;
 
     @FXML
-    private ListView<UserContent> listView = new ListView<UserContent>();
+    private ListView<UserContent> listView = new ListView<>();
 
     @FXML
     public void initialize() {
         MenuItem info, chat, delete;
         ContextMenu contextMenu;
-        info = new MenuItem("show history");
-        chat = new MenuItem("play");
+        info = new MenuItem("info");
+        chat = new MenuItem("chat");
         delete = new MenuItem("delete");
         contextMenu = new ContextMenu(info, chat, delete);
         listView.setCellFactory(ContextMenuListCell.forListView(contextMenu, (listView) -> new ChatListCell()));
+        listView.setOnMouseClicked(event -> {
+            UserContent selectedContent = listView.getSelectionModel().getSelectedItem();
+            //TODO: test wich kind of content it is, then jump to it with MaWiCo.selectContent(currentContent)
+            //TODO: jump to the specific chat
+        });
+        info.setOnAction(e -> showInfo(listView.getSelectionModel().getSelectedItem().display()));  //TODO:
+    }
+
+    private void showInfo(String info) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/quap/desktopapp/popup/popup.fxml"));
+        Stage primaryStage = (Stage) Stage.getWindows().stream().filter(Window::isShowing).findFirst().orElse(null);
+        SceneController.submitPopup(loader, primaryStage, info);
     }
 
     @Override
@@ -38,6 +55,12 @@ public class ListController extends MainVistaNavigator{
     @Override
     public void setClient(Client client) {
         this.client = client;
+    }
+
+    public void addUserContent(ActionEvent actionEvent) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/quap/desktopapp/popup/inputPopup.fxml"));
+        Stage primaryStage = (Stage) Stage.getWindows().stream().filter(Window::isShowing).findFirst().orElse(null);
+        SceneController.submitPopup(loader, primaryStage, null);
     }
 
     public static class ContextMenuListCell<T> extends ListCell<T> {

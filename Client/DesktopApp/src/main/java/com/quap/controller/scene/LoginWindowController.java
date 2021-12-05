@@ -196,10 +196,10 @@ public class LoginWindowController {
                                             stage.setMinWidth(600);
                                             stage.setMinHeight(400);
                                             MainWindowController mainWindowController = loader.getController();
+                                            VistaController.setMainWindowController(mainWindowController);
                                             mainWindowController.setClient(client);
                                             //mainWindowController.setConfiguration(configuration);
                                             //TODO: give more attributes to main scene controller
-                                            VistaController.setMainWindowController(mainWindowController);
                                             //VistaController.loadMainVista(VistaController.LIST); //TODO: necessary?
                                             //TODO: receive future result and validate
                                             stage.show();

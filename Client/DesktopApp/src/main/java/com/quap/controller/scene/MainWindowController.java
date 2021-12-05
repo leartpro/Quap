@@ -100,6 +100,7 @@ public class MainWindowController implements ClientObserver {
 
     public void close(ActionEvent actionEvent) {
         ((Button) actionEvent.getSource()).getScene().getWindow().hide();
+        //TODO: close the window way faster
     }
 
     public void settings(ActionEvent actionEvent) {
@@ -121,14 +122,14 @@ public class MainWindowController implements ClientObserver {
         currentNode.loadContent(client.getFriends());
         vBoxButtonHolder.getChildren().clear();
 
-        for(UserContent friend : client.getFriends()) {
-            Button b = new Button(((Friend)friend).name());
+        for (UserContent friend : client.getFriends()) {
+            Button b = new Button(((Friend) friend).name());
             b.setOnAction(e -> {
                 VistaController.loadMainVista(CHAT);
                 currentNode.loadContent(
-                        client.getMessagesByChat(((Friend)friend).chatID())
+                        client.getMessagesByChat(((Friend) friend).chatID())
                 );
-                client.setCurrentChatID(((Friend)friend).chatID());
+                client.setCurrentChatID(((Friend) friend).chatID());
             });
             vBoxButtonHolder.getChildren().add(b);
         }
@@ -140,14 +141,14 @@ public class MainWindowController implements ClientObserver {
         currentNode.loadContent(client.getChats());
         vBoxButtonHolder.getChildren().clear();
 
-        for(UserContent chat : client.getChats()) {
-            Button b = new Button(((Chat)chat).name());
+        for (UserContent chat : client.getChats()) {
+            Button b = new Button(((Chat) chat).name());
             b.setOnAction(e -> {
                 VistaController.loadMainVista(CHAT);
                 currentNode.loadContent(
-                        client.getMessagesByChat(((Chat)chat).id())
+                        client.getMessagesByChat(((Chat) chat).id())
                 );
-                client.setCurrentChatID(((Chat)chat).id());
+                client.setCurrentChatID(((Chat) chat).id());
             });
             vBoxButtonHolder.getChildren().add(b);
         }
@@ -168,30 +169,18 @@ public class MainWindowController implements ClientObserver {
 
     public void setClient(Client client) {
         MainWindowController.client = client;
+        MainWindowController.client.addObserver(this);
         lblServer_IP.setText(lblServer_IP.getText() + " " + client.getConnectionInfo());
 
         //load the userdata into the default UI page
-        currentNode.loadContent(client.getFriends());
-        vBoxButtonHolder.getChildren().clear();
-
-        for(UserContent friend : client.getFriends()) {
-            Button b = new Button(((Friend)friend).name());
-            b.setOnAction(e -> {
-                VistaController.loadMainVista(CHAT);
-                currentNode.loadContent(
-                        client.getMessagesByChat(((Friend)friend).chatID())
-                );
-                client.setCurrentChatID(((Friend)friend).chatID());
-            });
-            vBoxButtonHolder.getChildren().add(b);
-        }
+        friends(null);
     }
 
     @Override
     public void messageEvent(Message message) {
         System.out.println("messageEvent");
-        if(currentNodeID.equals("chat")) {
-            ((ChatController)currentNode).addMessage(message);
+        if (currentNodeID.equals("chat")) {
+            ((ChatController) currentNode).addMessage(message);
         }
     }
 }

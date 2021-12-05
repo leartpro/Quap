@@ -5,6 +5,7 @@ import org.json.JSONObject;
 
 import java.io.*;
 import java.net.Socket;
+import java.net.SocketException;
 import java.net.URISyntaxException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -52,7 +53,7 @@ public class ClientHandler implements Callable {
                     if (message != null) {
                         process(message);
                     }
-                } catch (IOException e) {
+                } catch (SocketException e) {
                     e.printStackTrace();
                     listen.interrupt();
                     try {
@@ -60,6 +61,9 @@ public class ClientHandler implements Callable {
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
+                } catch(IOException e) {
+                    e.printStackTrace();
+                    this.disconnect();
                 }
             }
         });

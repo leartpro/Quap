@@ -1,7 +1,7 @@
 package com.quap.controller;
 
 import com.quap.controller.popup.PopupController;
-import com.quap.utils.ResizeHelper;
+import com.quap.utils.WindowMoveHelper;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -32,7 +32,8 @@ public class SceneController {
         inputStage.initStyle(StageStyle.UNDECORATED);
         inputStage.initOwner(primaryStage);
         inputStage.setScene(newScene);
-        ResizeHelper.addResizeListener(inputStage);
+        //ResizeHelper.addResizeListener(inputStage);
+        WindowMoveHelper.addMoveListener(inputStage);
         inputStage.showAndWait();
     }
 }
