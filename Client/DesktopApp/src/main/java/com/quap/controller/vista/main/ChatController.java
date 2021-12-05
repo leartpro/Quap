@@ -23,6 +23,7 @@ public class ChatController extends MainVistaNavigator{
 
     @FXML
     private TextArea chatArea = new TextArea();
+    private String type;
 
     @FXML
     public void initialize() {
@@ -45,6 +46,11 @@ public class ChatController extends MainVistaNavigator{
         for (Object o : content) {
             chatArea.appendText(o + "\n");
         }
+    }
+
+    @Override
+    public void setType(String id) {
+        this.type = id;
     }
 
     @Override

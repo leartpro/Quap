@@ -29,6 +29,8 @@ public abstract class MainVistaNavigator extends VistaNavigator {
 
     public abstract void setClient(Client client);
 
+    public abstract void setType(String id);
+
     //methods for main controllers
 
 

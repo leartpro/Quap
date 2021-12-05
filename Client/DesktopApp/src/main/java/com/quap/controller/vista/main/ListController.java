@@ -18,6 +18,7 @@ import java.util.List;
 
 public class ListController extends MainVistaNavigator{
     private Client client;
+    private String type;
 
     @FXML
     private ListView<UserContent> listView = new ListView<>();
@@ -57,10 +58,15 @@ public class ListController extends MainVistaNavigator{
         this.client = client;
     }
 
+    @Override
+    public void setType(String id) {
+        this.type = id;
+    }
+
     public void addUserContent(ActionEvent actionEvent) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/quap/desktopapp/popup/inputPopup.fxml"));
         Stage primaryStage = (Stage) Stage.getWindows().stream().filter(Window::isShowing).findFirst().orElse(null);
-        SceneController.submitPopup(loader, primaryStage, null);
+        SceneController.submitInputPopup(loader, primaryStage, type);
     }
 
     public static class ContextMenuListCell<T> extends ListCell<T> {

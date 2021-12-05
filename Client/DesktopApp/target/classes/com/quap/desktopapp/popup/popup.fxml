@@ -6,7 +6,6 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-
 <BorderPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.popup.PopupController">
     <center>
         <ScrollPane fx:id="scrollContent" minHeight="200.0" minWidth="400.0" prefHeight="200.0" prefWidth="400.0" />

@@ -40,7 +40,7 @@ public class MainWindowController implements ClientObserver {
     private Label lblServer_IP;
 
     public static Client client;
-    private String currentNodeID;
+    public String currentNodeID;
 
     @FXML
     public void initialize() {
@@ -120,6 +120,7 @@ public class MainWindowController implements ClientObserver {
         VistaController.loadMainVista(VistaController.LIST);
         //load the userdata into the default UI page
         currentNode.loadContent(client.getFriends());
+        currentNode.setType("friends");
         vBoxButtonHolder.getChildren().clear();
 
         for (UserContent friend : client.getFriends()) {
@@ -139,6 +140,7 @@ public class MainWindowController implements ClientObserver {
         VistaController.loadMainVista(VistaController.LIST);
         //load the userdata into the default UI page
         currentNode.loadContent(client.getChats());
+        currentNode.setType("chatrooms");
         vBoxButtonHolder.getChildren().clear();
 
         for (UserContent chat : client.getChats()) {
