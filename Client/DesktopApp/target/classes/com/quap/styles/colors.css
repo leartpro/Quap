@@ -1,30 +1,32 @@
+* {
+  -background-color: #202225;
+  -ground-color: #2F3136;
+  -foreground-color: #36393F;
+  -selectOnDark-color: #393C43;
+  -selectOnLight-color: #32353B;
+  -text-color: #FFFFFF;
+  -text-field-color: #40444B;
+}
+
 .background {
-  -fx-background-color: #202225;
+  -fx-background-color: -background-color;
 }
 
 .ground {
-  -fx-background-color: #2F3136;
+  -fx-background-color: -ground-color;
 }
 
 .foreground {
-  -fx-background-color: #36393F;
-}
-
-.selectOnDark {
-  -fx-background-color: #32353B;
-}
-
-.selectOnLight {
-  -fx-background-color: #393C43;
+  -fx-background-color: -foreground-color;
 }
 
 .scroll-pane {
-  -fx-background: #36393F;
+  -fx-background: -foreground-color;
 }
 
 .list-view,
-.text-area{
-  -fx-control-inner-background: #36393F;
+.text-area {
+  -fx-control-inner-background: -foreground-color;
 }
 
 .list-cell {
@@ -32,38 +34,39 @@
 }
 
 .label {
-  -fx-background-color: #72767D;
-  -fx-text-fill: #FFFFFF;
+  -fx-text-fill: -text-color;
+  -fx-background-color: transparent;
 }
 
 .button {
-  -fx-text-fill: #FFFFFF;
+  -fx-text-fill: -text-color;
   -fx-background-color: transparent;
 }
 
 .button:hover {
-  -fx-background-color: #32353B;
+  -fx-background-color: -selectOnLight-color;
 }
 
 .list-cell:focused {
-  -fx-background-color: #32353B;
+  -fx-background-color: -selectOnLight-color;
 }
 
 .menu,
 .menu-item {
-  -fx-background-color: #36393F;
-  -fx-background: #36393F;
+  -fx-background-color: -foreground-color;
+  -fx-background: -foreground-color;
 }
 
 .menu:hover,
 .menu-item:hover {
-  -fx-background-color: #32353B;
+  -fx-background-color: -selectOnLight-color;
 }
 
 .context-menu {
-  -fx-background-color: #36393F;
+  -fx-background-color: -ground-color;
 }
 
 .text-field {
-  -fx-background-color: #40444B;
+  -fx-background-color: -text-field-color;
+  -fx-text-fill: -text-color;
 }

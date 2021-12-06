@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="400.0" prefWidth="600.0" styleClass="background" stylesheets="@../../styles/colors.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.scene.LoginWindowController">
+<VBox maxHeight="360.0" maxWidth="480.0" minHeight="360.0" minWidth="480.0" styleClass="background" stylesheets="@../../styles/colors.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.scene.LoginWindowController">
    <Label fx:id="headerLabel" text="Quap" textFill="WHITE" VBox.vgrow="NEVER" />
    <StackPane fx:id="vistaHolder" styleClass="foreground" VBox.vgrow="ALWAYS" />
    <CheckBox fx:id="checkAnonymMode" mnemonicParsing="false" onAction="#switchMode" text="Anonym Mode" textFill="WHITE" VBox.vgrow="NEVER" />

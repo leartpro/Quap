@@ -2,9 +2,9 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<BorderPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.popup.InputPopupController">
+<BorderPane styleClass="background" stylesheets="@../../styles/colors.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.popup.InputPopupController">
     <bottom>
-        <ButtonBar BorderPane.alignment="CENTER">
+        <ButtonBar styleClass="ground" BorderPane.alignment="CENTER">
             <buttons>
             <Button mnemonicParsing="false" onAction="#submit" text="Submit" />
                 <Button fx:id="btnClose" mnemonicParsing="false" onAction="#closePopup" text="Close" />
@@ -12,7 +12,7 @@
         </ButtonBar>
     </bottom>
     <top>
-        <HBox BorderPane.alignment="CENTER">
+        <HBox styleClass="ground" BorderPane.alignment="CENTER">
             <children>
                 <Label text="InputPopup" />
             </children>

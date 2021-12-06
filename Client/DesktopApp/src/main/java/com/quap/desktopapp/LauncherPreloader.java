@@ -12,12 +12,14 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.util.Objects;
+
 public class LauncherPreloader extends Preloader {
 
     private Stage preLoaderStage;
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/com/quap/desktopapp/scene/connection-window.fxml"));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/quap/desktopapp/scene/connection-window.fxml")));
         Scene scene;
         String osName = System.getProperty("os.name");
         if( osName != null && osName.startsWith("Windows") ) {

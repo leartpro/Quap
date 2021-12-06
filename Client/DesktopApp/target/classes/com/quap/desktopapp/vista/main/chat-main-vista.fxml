@@ -4,10 +4,10 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
-<VBox fx:id="chat" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.vista.main.ChatController">
-   <ScrollPane fx:id="chatPane" fitToHeight="true" fitToWidth="true" VBox.vgrow="ALWAYS">
+<VBox fx:id="chat" styleClass="background" stylesheets="@../../../styles/colors.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.vista.main.ChatController">
+   <ScrollPane fx:id="chatPane" fitToHeight="true" fitToWidth="true" styleClass="foreground" VBox.vgrow="ALWAYS">
       <content>
-         <TextArea fx:id="chatArea" wrapText="true" />
+         <TextArea fx:id="chatArea" styleClass="foreground" wrapText="true" />
       </content>
    </ScrollPane>
    <TextField fx:id="textConsole" onKeyPressed="#send" VBox.vgrow="ALWAYS" />

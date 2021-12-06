@@ -230,12 +230,7 @@ public class ConnectionWindowController implements Initializable {
                 stage.initStyle(StageStyle.UNDECORATED);
             }
             stage.setScene(scene);
-            stage.setMinWidth(600);
-            stage.setMinHeight(400);
-            stage.setWidth(600);
-            stage.setHeight(400);
             LoginWindowController loginWindowController = loader.getController();
-
             loginWindowController.setClient(client);
             VistaController.setLoginWindowController(loginWindowController);
             VistaController.loadLoginVista(VistaController.SignIn);
