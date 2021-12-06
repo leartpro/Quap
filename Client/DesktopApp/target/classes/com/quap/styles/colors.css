@@ -35,7 +35,6 @@
 
 .label {
   -fx-text-fill: -text-color;
-  -fx-background-color: transparent;
 }
 
 .button {

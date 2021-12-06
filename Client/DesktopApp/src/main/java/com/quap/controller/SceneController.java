@@ -38,8 +38,8 @@ public class SceneController {
         inputStage.showAndWait();
     }
 
-    public static void submitInputPopup(FXMLLoader loader, Stage primaryStage, String type) {
-        Stage inputStage;
+    public static String submitInputPopup(FXMLLoader loader, Stage primaryStage) {
+        CallbackStage inputStage;
         Scene newScene = null;
         try {
             newScene = new Scene(loader.load());
@@ -47,13 +47,19 @@ public class SceneController {
             ex.printStackTrace();
         }
         InputPopupController popupController = loader.getController();
-        popupController.addType(type);
-        inputStage = new Stage();
+        inputStage = new CallbackStage();
         inputStage.initStyle(StageStyle.UNDECORATED);
         inputStage.initOwner(primaryStage);
         inputStage.setScene(newScene);
-        //ResizeHelper.addResizeListener(inputStage);
         WindowMoveHelper.addMoveListener(inputStage);
-        inputStage.showAndWait();
+        String input = inputStage.showAndReturn(popupController);
+        return input;
+    }
+
+    private static class CallbackStage extends Stage {
+        public String showAndReturn(InputPopupController controller) {
+            super.showAndWait();
+            return controller.get();
+        }
     }
 }

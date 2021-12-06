@@ -3,7 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<VBox stylesheets="@../../styles/colors.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.scene.MainWindowController">
+<VBox styleClass="background" stylesheets="@../../styles/colors.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.scene.MainWindowController">
     <BorderPane VBox.vgrow="ALWAYS">
         <center>
             <VBox alignment="CENTER" BorderPane.alignment="CENTER">

@@ -6,6 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 public class InputPopupController {
     @FXML
@@ -13,11 +14,12 @@ public class InputPopupController {
 
     @FXML
     private TextField userInput;
-    private String type;
+    private String returnValue;
 
     @FXML
     void closePopup(ActionEvent actionEvent) {
         btnClose.setDisable(true);
+        returnValue = null;
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.close();
     }
@@ -25,20 +27,13 @@ public class InputPopupController {
     //gives to user request back to the client object
     @FXML
     void submit(ActionEvent event) {
-        if(type.equals("chatrooms")) {
-            System.out.println("Füge Chatroom hinzu");
-            //TODO: erstelle den chatroom anfrage zum server
-            // Server Sendet chatroom zurück und UI wird über observer updated
-            // add a boolean to the participant table, wichs shows, if the current user has already joined or is just invited
-        } else if(type.equals("friends")) {
-            System.out.println("Füge Friend hinzu");
-            //TODO: erstelle den chatroom anfrage zum server
-            // Server Sendet chatroom zurück und UI wird über observer updated
-            // check if there if only one entrance(just request) in the friends table or two(solid friends)
-        }
+        btnClose.setDisable(true);
+        returnValue = userInput.getText();
+        Stage stage = (Stage) Stage.getWindows().stream().filter(Window::isShowing).findFirst().orElse(null);
+        stage.close();
     }
 
-    public void addType(String type) {
-        this.type = type;
+    public String get() {
+        return returnValue;
     }
 }
