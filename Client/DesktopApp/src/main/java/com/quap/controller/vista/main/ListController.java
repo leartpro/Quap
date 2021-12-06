@@ -73,11 +73,13 @@ public class ListController extends MainVistaNavigator{
                 //TODO: erstelle den chatroom anfrage zum server
                 // Server Sendet chatroom zurück und UI wird über observer updated
                 // add a boolean to the participant table, which shows, if the current user has already joined or is just invited
+                client.addChatroom(input);
             } else if (type.equals("friends")) {
                 System.out.println("request user: " + input);
                 //TODO: erstelle den chatroom anfrage zum server
                 // Server Sendet chatroom zurück und UI wird über observer updated
                 // check if there if only one entrance(just request) in the friends table or two(solid friends)
+                client.addFriend(input);
             }
         }
     }

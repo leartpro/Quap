@@ -233,4 +233,17 @@ public class Client {
     public void removeObserver(ClientObserver observer) {
         observers.remove(observer);
     }
+
+    public void addChatroom(String input) {//TODO:
+        JSONObject json = new JSONObject();
+        json.put("type", "create-chat");
+        JSONObject data = new JSONObject();
+        //TODO: complete method...
+        //
+        sendCommand(json.toString());
+    }
+
+    public void addFriend(String input) { //TODO:
+
+    }
 }
