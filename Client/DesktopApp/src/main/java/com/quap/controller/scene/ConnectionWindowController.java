@@ -39,7 +39,7 @@ public class ConnectionWindowController implements Initializable {
 
     private static Label loadingLabel;
     private static final double EPSILON = 0.0000005;
-    ProgressService service = new ProgressService();
+    //ProgressService service = new ProgressService();
     ProgressTask progressTask = new ProgressTask();
 
     @Override
@@ -145,7 +145,8 @@ public class ConnectionWindowController implements Initializable {
             try {
                 client = new Client("localhost", 0); //local socketAddress to bind to
             } catch (IOException e) {
-                e.printStackTrace();
+                //e.printStackTrace();
+                System.out.println("Error");
                 return false;
             }
             return true;
@@ -163,7 +164,8 @@ public class ConnectionWindowController implements Initializable {
             try {
                 client.openConnection();
             } catch (IOException e) {
-                e.printStackTrace();
+                //e.printStackTrace();
+                System.out.println("Error");
                 return false;
             }
             Platform.runLater(() -> loadingLabel.setText("Open Connection.."));
@@ -228,6 +230,10 @@ public class ConnectionWindowController implements Initializable {
                 stage.initStyle(StageStyle.UNDECORATED);
             }
             stage.setScene(scene);
+            stage.setMinWidth(600);
+            stage.setMinHeight(400);
+            stage.setWidth(600);
+            stage.setHeight(400);
             LoginWindowController loginWindowController = loader.getController();
 
             loginWindowController.setClient(client);

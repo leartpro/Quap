@@ -21,7 +21,7 @@ public class ListController extends MainVistaNavigator{
     private String type;
 
     @FXML
-    private ListView<UserContent> listView = new ListView<>();
+    private ListView<UserContent> listView;
 
     @FXML
     public void initialize() {
@@ -87,6 +87,7 @@ public class ListController extends MainVistaNavigator{
         protected void updateItem(UserContent content, boolean isEmpty) {
             super.updateItem(content, isEmpty);
             if(content != null && !isEmpty) {
+                //setDisabled(false);
                 setText(content.display());
             }
         }

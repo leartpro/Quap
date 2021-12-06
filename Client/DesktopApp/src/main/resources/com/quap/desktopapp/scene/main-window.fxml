@@ -3,15 +3,15 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<VBox xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.scene.MainWindowController">
+<VBox stylesheets="@../../styles/colors.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.scene.MainWindowController">
     <BorderPane VBox.vgrow="ALWAYS">
         <center>
             <VBox alignment="CENTER" BorderPane.alignment="CENTER">
-                <StackPane fx:id="stackContent" VBox.vgrow="ALWAYS" />
+                <StackPane fx:id="stackContent" styleClass="foreground" VBox.vgrow="ALWAYS" />
             </VBox>
         </center>
         <left>
-            <VBox BorderPane.alignment="CENTER">
+            <VBox styleClass="ground" stylesheets="@../../styles/colors.css" BorderPane.alignment="CENTER">
                 <VBox alignment="CENTER" VBox.vgrow="NEVER">
                     <children>
                         <Button mnemonicParsing="false" onAction="#friends" text="Friends" />
@@ -28,14 +28,14 @@
                 <opaqueInsets>
                     <Insets />
                 </opaqueInsets>
-                <Label alignment="CENTER" text="Quap" HBox.hgrow="NEVER" />
-                <Pane  HBox.hgrow="ALWAYS" />
-                <Label fx:id="lblServer_IP" text="Server IP" HBox.hgrow="SOMETIMES" />
+                <Label alignment="CENTER" text="Quap" textFill="WHITE" HBox.hgrow="NEVER" />
+                <Pane styleClass="background" HBox.hgrow="ALWAYS" />
+                <Label fx:id="lblServer_IP" text="Server IP" textFill="WHITE" HBox.hgrow="SOMETIMES" />
             </HBox>
         </bottom>
         <top>
-            <HBox BorderPane.alignment="CENTER">
-                <MenuBar HBox.hgrow="ALWAYS">
+            <HBox styleClass="background" BorderPane.alignment="CENTER">
+                <MenuBar styleClass="background" HBox.hgrow="ALWAYS">
                     <Menu mnemonicParsing="false" text="Connection">
                         <MenuItem mnemonicParsing="false" text="Disconnect" />
                         <MenuItem mnemonicParsing="false" text="Reconnect" />
@@ -49,9 +49,13 @@
                 </MenuBar>
                 <ButtonBar HBox.hgrow="NEVER">
                     <buttons>
-                        <Button mnemonicParsing="false" onAction="#maximize" text="O" />
-                        <Button mnemonicParsing="false" onAction="#minimize" text="_" />
-                        <Button mnemonicParsing="false" onAction="#close" text="X" />
+                  <HBox maxHeight="1.7976931348623157E308">
+                     <children>
+                              <Button mnemonicParsing="false" onAction="#maximize" text="O" HBox.hgrow="NEVER" />
+                              <Button mnemonicParsing="false" onAction="#minimize" text="_" HBox.hgrow="NEVER" />
+                              <Button mnemonicParsing="false" onAction="#close" text="X" HBox.hgrow="NEVER" />
+                     </children>
+                  </HBox>
                     </buttons>
                 </ButtonBar>
             </HBox>

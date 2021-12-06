@@ -195,6 +195,8 @@ public class LoginWindowController {
                                             stage.setScene(scene);
                                             stage.setMinWidth(600);
                                             stage.setMinHeight(400);
+                                            stage.setWidth(1080);
+                                            stage.setHeight(720);
                                             MainWindowController mainWindowController = loader.getController();
                                             VistaController.setMainWindowController(mainWindowController);
                                             mainWindowController.setClient(client);

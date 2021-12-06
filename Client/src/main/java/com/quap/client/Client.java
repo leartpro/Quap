@@ -158,7 +158,7 @@ public class Client {
                     int senderID = data.getInt("sender_id");
                     int chatID = data.getInt("chat_id");
                     String messageContent = data.getString("message");
-                    for(ClientObserver c: observers) {
+                    for (ClientObserver c : observers) {
                         c.messageEvent(new Message(messageContent, Date.from(Instant.now()), senderID));
                     }
                     System.out.println("senderID: " + senderID + ", chatID: " + chatID + ", message: " + messageContent);

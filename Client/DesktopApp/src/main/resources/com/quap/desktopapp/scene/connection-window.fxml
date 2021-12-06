@@ -16,7 +16,7 @@
          <VBox BorderPane.alignment="CENTER">
             <children>
                <Label fx:id="lblLoading" text="Loading" textFill="#fffdfd" VBox.vgrow="SOMETIMES" />
-               <ProgressBar fx:id="progressBar" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS" />
+               <ProgressBar fx:id="progressBar" maxWidth="1.7976931348623157E308" progress="0.0" VBox.vgrow="ALWAYS" />
             </children>
          </VBox>
       </bottom>
