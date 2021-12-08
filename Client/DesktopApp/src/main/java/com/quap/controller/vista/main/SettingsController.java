@@ -23,4 +23,9 @@ public class SettingsController extends MainVistaNavigator{
     public void setType(String id) {
         this.type = id;
     }
+
+    @Override
+    public String getType() {
+        return type;
+    }
 }

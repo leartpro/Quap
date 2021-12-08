@@ -54,6 +54,11 @@ public class ChatController extends MainVistaNavigator{
     }
 
     @Override
+    public String getType() {
+        return type;
+    }
+
+    @Override
     public void setClient(Client client) {
         this.client = client;
     }

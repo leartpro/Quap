@@ -6,7 +6,6 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 
 public class InputPopupController {
     @FXML
@@ -26,10 +25,10 @@ public class InputPopupController {
 
     //gives to user request back to the client object
     @FXML
-    void submit(ActionEvent event) {
+    void submit(ActionEvent actionEvent) {
         btnClose.setDisable(true);
         returnValue = userInput.getText();
-        Stage stage = (Stage) Stage.getWindows().stream().filter(Window::isShowing).findFirst().orElse(null);
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.close();
     }
 

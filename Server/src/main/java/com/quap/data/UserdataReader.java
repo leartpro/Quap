@@ -100,17 +100,39 @@ public class UserdataReader {
         return userID;
     }
 
-    public boolean addChat(int userID, String chatName, boolean isPrivate) { //TODO: insert user by id
+    public JSONObject addChat(int userID, String chatName, boolean isPrivate) { //TODO: insert user by id
+        JSONObject json = new JSONObject();
+        int chatID = -1;
+        PreparedStatement statement = null;
+        String query = "" +
+                "INSERT INTO chatrooms(name, is_private)" +
+                "VALUES(?,?)";
         try {
-            statement.executeUpdate("" +
-                    "INSERT INTO chatrooms(name, isPrivate)" +
-                    "VALUES(" + chatName + "," + isPrivate + ")"
-            );
+            statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            statement.setString(1, chatName);
+            statement.setBoolean(2, isPrivate);
+            statement.execute();
+            ResultSet result = statement.getGeneratedKeys();
+            if (result.next()) {
+                chatID = result.getInt("id");
+                //TODO:!!! Does not return the right result!!!
+                json.put("chatroom_id", chatID);
+                json.put("name", chatName);
+            }
+            result.close();
+            query = "" +
+                    "INSERT INTO participants(user_id, chatroom_id) " +
+                    "VALUES(?,?)";
+            statement = connection.prepareStatement(query);
+            statement.setInt(1, userID);
+            statement.setInt(2, chatID);
+            statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
+            return null;
         }
-        return true;
+        System.out.println("DB-json:" + json);
+        return json;
     }
 
     public void leaveChat(int chatID, int userID) { //TODO

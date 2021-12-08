@@ -9,6 +9,7 @@ import com.quap.client.utils.ClientObserver;
 import com.quap.controller.VistaController;
 import com.quap.controller.vista.main.ChatController;
 import com.quap.controller.vista.main.MainVistaNavigator;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,6 +25,7 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 
 import java.io.IOException;
+import java.util.Collections;
 
 import static com.quap.controller.VistaController.CHAT;
 
@@ -183,6 +185,32 @@ public class MainWindowController implements ClientObserver {
         System.out.println("messageEvent");
         if (currentNodeID.equals("chat")) {
             ((ChatController) currentNode).addMessage(message);
+        }
+    }
+
+    @Override
+    public void createChatEvent(Chat chat) {//TODO: load the content into the ui by refreshing the sidebar if on the chats window
+        System.out.println("createChatEvent");
+        if(currentNode.getType().equals("chatrooms")) {
+            Platform.runLater(() -> {
+                vBoxButtonHolder.getChildren().clear();
+                for (UserContent content : client.getChats()) {
+                    Button b = new Button(((Chat) content).name());
+                    b.setOnAction(e -> {
+                        VistaController.loadMainVista(CHAT);
+                        currentNode.loadContent(
+                                client.getMessagesByChat(((Chat) content).id())
+                        );
+                        client.setCurrentChatID(((Chat) content).id());
+                    });
+                    vBoxButtonHolder.getChildren().add(b);
+                }
+            });
+            if(currentNodeID.equals("list")) {
+                Platform.runLater(() -> {
+                    currentNode.loadContent(Collections.singletonList(chat));
+                });
+            }
         }
     }
 }

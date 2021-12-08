@@ -61,7 +61,7 @@ public class ClientHandler implements Callable {
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
-                } catch(IOException e) {
+                } catch (IOException e) {
                     e.printStackTrace();
                     this.disconnect();
                 }
@@ -70,7 +70,7 @@ public class ClientHandler implements Callable {
         listen.start();
     }
 
-    private void process(String message) {
+    private void process(String message) {                //TODO: run database access as future
         String content = message.substring(5, (message.length() - 5));
         System.out.println(message);
         System.out.println(content);
@@ -90,16 +90,44 @@ public class ClientHandler implements Callable {
                 List<Integer> userIds = new ArrayList<>(dbReader.userIDsByChat(chatID));
                 for (Integer id : userIds) {
                     //if(id != userID) { //dont sends to himself
-                        server.forwardMessage(id, content);
+                    server.forwardMessage(id, content);
                     //}
                 }
             }
-            case 'c' -> {
+            case 'c' -> { //TODO: new chat is inserted into the db but no result is returned
                 System.out.println("command found");
+                JSONObject data = new JSONObject(content).getJSONObject("data");
+                int senderID = data.getInt("sender_id");
+                UserdataReader dbReader = null;
+                try {
+                    dbReader = new UserdataReader();
+                } catch (SQLException | URISyntaxException e) {
+                    e.printStackTrace();
+                }
+                switch (new JSONObject(content).getString("type")) {
+                    case "create-chat" -> {
+                        String chatName = data.getString("chatname");
+                        JSONObject result = dbReader.addChat(senderID, chatName, false);
+                        JSONObject json = new JSONObject();
+                        json.put("return-value", "command");
+                        System.out.println("Result:" + result.toString());
+                        if(result != null) {
+                            JSONObject returnValue = new JSONObject();
+                            returnValue.put("statement", "create-chat");
+                            returnValue.put("result", result);
+                            json.put("data", returnValue);
+                        } else {
+                            json.put("error", "can not create this chat");
+                        }
+                        send(json.toString());
+                    }
+                    case "add-friend" -> {
+
+                    }
+                }
             }
             case 'a' -> {
                 System.out.println("authentication found");
-                //TODO: run database access as future
                 UserdataReader dbReader = null;
                 try {
                     dbReader = new UserdataReader();

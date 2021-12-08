@@ -142,7 +142,7 @@ public class Client {
                 System.out.println(root.getJSONObject("error"));
             } else if (root.has("data")) {
                 JSONObject data = root.getJSONObject("data");
-                if (returnValue.equals("authentication")) {//TODO: load Content in the UI
+                if (returnValue.equals("authentication")) {
                     this.id = data.getInt("id");
                     JSONArray chatrooms = data.getJSONArray("chatrooms");
                     for (int i = 0; i < chatrooms.length(); i++) {
@@ -166,6 +166,19 @@ public class Client {
                     //TODO: make MainWindowController update by db update
                 } else if (returnValue.equals("command")) {
                     System.out.println("command found");
+                    String statement = data.getString("statement");
+                    switch (statement) {
+                        case "create-chat" -> {
+                            JSONObject result = data.getJSONObject("result");
+                            Chat chat = new Chat(
+                                    result.getString("name"),
+                                    result.getInt("chatroom_id"));
+                            chats.add(chat);
+                            for (ClientObserver c : observers) {
+                                c.createChatEvent(chat);
+                            }
+                        }
+                    }
                 }
             } else {
                 System.err.println("Unknown package content");
@@ -238,8 +251,9 @@ public class Client {
         JSONObject json = new JSONObject();
         json.put("type", "create-chat");
         JSONObject data = new JSONObject();
-        //TODO: complete method...
-        //
+        data.put("chatname", input);
+        data.put("sender_id", id);
+        json.put("data", data);
         sendCommand(json.toString());
     }
 

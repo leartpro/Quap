@@ -37,7 +37,7 @@ public class ListController extends MainVistaNavigator{
             //TODO: test wich kind of content it is, then jump to it with MaWiCo.selectContent(currentContent)
             //TODO: jump to the specific chat
         });
-        info.setOnAction(e -> showInfo(listView.getSelectionModel().getSelectedItem().display()));  //TODO:
+        info.setOnAction(e -> showInfo(listView.getSelectionModel().getSelectedItem().display()));  //TODO: is null
     }
 
     private void showInfo(String info) {
@@ -61,6 +61,11 @@ public class ListController extends MainVistaNavigator{
     @Override
     public void setType(String id) {
         this.type = id;
+    }
+
+    @Override
+    public String getType() {
+        return type;
     }
 
     public void addUserContent(ActionEvent actionEvent) {

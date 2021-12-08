@@ -2,6 +2,7 @@ package com.quap.client.domain;
 
 import org.json.JSONObject;
 
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.Objects;
 
@@ -24,6 +25,15 @@ public final class Chat extends UserContent {
                 chat.getInt("id"),
                 chat.getString("joined_at"),
                 chat.getString("created_at")
+        );
+    }
+
+    public Chat(String name, int id) {
+        this(
+                name,
+                id,
+                LocalTime.now().toString(),
+                LocalTime.now().toString()
         );
     }
 

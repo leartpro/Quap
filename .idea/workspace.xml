@@ -4,10 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="09927819-4efd-4d77-952e-37e9b4faac9c" name="Changes" comment="Add custom Input-Stage">
+    <list default="true" id="09927819-4efd-4d77-952e-37e9b4faac9c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e/entities/entities.dat" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e/entities/entities.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e/entities/entities.dat.values.s" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e/entities/entities.dat.values.s" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e/entities/entities.dat_i" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e/entities/entities.dat_i" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/popup/InputPopupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/popup/InputPopupController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/scene/MainWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/scene/MainWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/main/ChatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/main/ChatController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/main/ListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/main/ListController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/target/classes/com/quap/controller/SceneController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/target/classes/com/quap/controller/SceneController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/main/MainVistaNavigator.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/main/MainVistaNavigator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/main/ProfilController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/main/ProfilController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/main/SettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/main/SettingsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/domain/Chat.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/domain/Chat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/utils/ClientObserver.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/utils/ClientObserver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/resources/com/quap/users/Olaf/preferences/settings/settings.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/resources/com/quap/users/Olaf/preferences/settings/settings.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/resources/com/quap/users/Otto/preferences/settings/settings.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/resources/com/quap/users/Otto/preferences/settings/settings.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/resources/com/quap/users/Otto/sqlite/db/messages.db" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/resources/com/quap/users/Otto/sqlite/db/messages.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/resources/com/quap/users/anonym/preferences/settings/settings.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/resources/com/quap/users/anonym/preferences/settings/settings.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/data/UserdataReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/quap/data/UserdataReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/server/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/quap/server/ClientHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/resources/com/quap/db/create-db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/resources/com/quap/db/create-db.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -189,8 +207,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Launcher" />
-        <item itemvalue="Database Script.insert-sample-db.sql" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Database Script.insert-sample-db.sql" />
         <item itemvalue="Application.DataTests" />
         <item itemvalue="Application.DataTests (1)" />
       </list>
@@ -283,13 +301,8 @@
       <workItem from="1638733654229" duration="1120000" />
       <workItem from="1638736934065" duration="768000" />
       <workItem from="1638805895799" duration="14512000" />
-    </task>
-    <task id="LOCAL-00009" summary="Add Controller connections to fxml files">
-      <created>1634042364855</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1634042364855</updated>
+      <workItem from="1638825607033" duration="290000" />
+      <workItem from="1638960238569" duration="13855000" />
     </task>
     <task id="LOCAL-00010" summary="Add Content in fxml Files">
       <created>1634061836045</created>
@@ -627,7 +640,14 @@
       <option name="project" value="LOCAL" />
       <updated>1638819446973</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="Workspace Commit">
+      <created>1638825881516</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1638825881517</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -662,7 +682,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="Client Initialisation as Future" />
     <MESSAGE value="Runnable Version" />
     <MESSAGE value="Update Properties for Server" />
     <MESSAGE value="Update Querys and UI" />
@@ -687,7 +706,8 @@
     <MESSAGE value="Add dark theme" />
     <MESSAGE value="Update CSS" />
     <MESSAGE value="Add custom Input-Stage" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add custom Input-Stage" />
+    <MESSAGE value="Workspace Commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Workspace Commit" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XPathView.XPathProjectComponent">
