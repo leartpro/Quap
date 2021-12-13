@@ -37,6 +37,15 @@ public final class Chat extends UserContent {
         );
     }
 
+    public Chat(String name, int id, String created_at) {
+        this(
+                name,
+                id,
+                LocalTime.now().toString(),
+                created_at
+        );
+    }
+
     public String name() {
         return name;
     }
@@ -89,7 +98,7 @@ public final class Chat extends UserContent {
 
     @Override
     public int getId() {
-        return 0;
+        return id;
     }
 
     @Override

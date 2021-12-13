@@ -329,4 +329,62 @@ public class UserdataReader {
     }
 
 
+    public int userIDByName(String username) {
+        int userID = -1;
+        ResultSet result = null;
+
+        try {
+            result = statement.executeQuery("" + //TODO ???
+                    "SELECT users.id " +
+                    "FROM users " +
+                    "WHERE users.name = '" + username + "';"
+            );
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            assert result != null;
+            if(result.next()) {
+                userID = result.getInt("id");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                result.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return userID;
+    }
+
+    public JSONObject getChatByID(int chatID) {
+        int userID = -1;
+        ResultSet result = null;
+        JSONObject json = new JSONObject();
+
+        try {
+            result = statement.executeQuery("" + //TODO ???
+                    "SELECT chatrooms.* " +
+                    "FROM chatrooms " +
+                    "WHERE chatrooms.id = " + chatID + ";"
+            );
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            assert result != null;
+            json = resultSetToJSONArray(result).getJSONObject(0);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                result.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return json;
+    }
 }

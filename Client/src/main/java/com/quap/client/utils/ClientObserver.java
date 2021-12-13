@@ -6,4 +6,5 @@ import com.quap.client.domain.Message;
 public interface ClientObserver {
     void messageEvent(Message message);
     void createChatEvent(Chat chat);
+    void inviteEvent(Chat chat, int senderID);
 }

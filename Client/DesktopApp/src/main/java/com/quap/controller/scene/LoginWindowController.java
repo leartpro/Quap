@@ -106,9 +106,11 @@ public class LoginWindowController {
     @FXML
     void switchMode(ActionEvent event) {
         if (checkAnonymMode.isSelected()) {
+            //TODO: test if login data produce true, then decide to toggle of or not
             currentNode.switchMode(true);
             btnLogin.setVisible(true);
         } else {
+            //TODO: disable only if the login data produces false
             currentNode.switchMode(false);
             btnLogin.setVisible(currentNode.validLogin());
         }

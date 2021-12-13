@@ -2,6 +2,8 @@ package com.quap.controller;
 
 import com.quap.controller.popup.InputPopupController;
 import com.quap.controller.popup.PopupController;
+import com.quap.controller.popup.RequestPopupController;
+import com.quap.controller.popup.ReturnPopup;
 import com.quap.utils.WindowMoveHelper;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -52,12 +54,31 @@ public class SceneController {
         inputStage.initOwner(primaryStage);
         inputStage.setScene(newScene);
         WindowMoveHelper.addMoveListener(inputStage);
-        String input = inputStage.showAndReturn(popupController);
+        String input = (String) inputStage.showAndReturn(popupController);
         return input;
     }
 
-    private static class CallbackStage extends Stage {
-        public String showAndReturn(InputPopupController controller) {
+    public static boolean submitRequestPopup(FXMLLoader loader, Stage primaryStage, String message) {
+        CallbackStage requestStage;
+        Scene newScene = null;
+        try {
+            newScene = new Scene(loader.load());
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        RequestPopupController popupController = loader.getController();
+        requestStage = new CallbackStage();
+        requestStage.initStyle(StageStyle.UNDECORATED);
+        requestStage.initOwner(primaryStage);
+        requestStage.setScene(newScene);
+        WindowMoveHelper.addMoveListener(requestStage);
+        popupController.setMessage(message);
+        boolean decision = (boolean) requestStage.showAndReturn(popupController);
+        return decision;
+    }
+
+    private static class CallbackStage<T> extends Stage {
+        public T showAndReturn(ReturnPopup controller) {
             super.showAndWait();
             return controller.get();
         }

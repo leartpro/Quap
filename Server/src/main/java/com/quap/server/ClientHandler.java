@@ -78,12 +78,6 @@ public class ClientHandler implements Callable {
             case 'm' -> {
                 System.out.println("message found:" + content);
                 UserdataReader dbReader = null;
-                try {
-                    dbReader = new UserdataReader();
-                } catch (SQLException | URISyntaxException e) {
-                    e.printStackTrace();
-                }
-
                 JSONObject input = new JSONObject(content).getJSONObject("data");
                 int chatID = input.getInt("chat_id");
                 //TODO: receive message status success, rejected, lost, etc.
@@ -110,7 +104,6 @@ public class ClientHandler implements Callable {
                         JSONObject result = dbReader.addChat(senderID, chatName, false);
                         JSONObject json = new JSONObject();
                         json.put("return-value", "command");
-                        System.out.println("Result:" + result.toString());
                         if(result != null) {
                             JSONObject returnValue = new JSONObject();
                             returnValue.put("statement", "create-chat");
@@ -123,6 +116,32 @@ public class ClientHandler implements Callable {
                     }
                     case "add-friend" -> {
 
+                    }
+                    case "invite-user" -> {
+                        System.out.println("Invite user to chat...");
+                        try {
+                            dbReader = new UserdataReader();
+                        } catch (SQLException | URISyntaxException e) {
+                            e.printStackTrace();
+                        }
+                        String username = data.getString("username");
+                        int userID = dbReader.userIDByName(username);
+                        int chatID = data.getInt("chat_id");
+                        JSONObject chat = dbReader.getChatByID(chatID);
+                        JSONObject json = new JSONObject();
+                        json.put("return-value", "command");
+                        if(chat != null) {
+                            JSONObject returnValue = new JSONObject();
+                            returnValue.put("statement", "invite-chat");
+                            returnValue.put("chat", chat);
+                            returnValue.put("sender_id", senderID);
+                            json.put("data", returnValue);
+                        } else {
+                            json.put("error", "can not create this chat");
+                        }
+                        //TODO: create message which should contain all needed data
+
+                        server.forwardMessage(userID, json.toString());
                     }
                 }
             }

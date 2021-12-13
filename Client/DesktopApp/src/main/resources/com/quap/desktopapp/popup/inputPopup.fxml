@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.*?>
 <BorderPane styleClass="background" stylesheets="@../../styles/colors.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.popup.InputPopupController">
     <bottom>
-        <ButtonBar styleClass="ground" BorderPane.alignment="CENTER">
-            <buttons>
-            <Button mnemonicParsing="false" onAction="#submit" text="Submit" />
-                <Button fx:id="btnClose" mnemonicParsing="false" onAction="#closePopup" text="Close" />
-            </buttons>
-        </ButtonBar>
+      <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT" BorderPane.alignment="CENTER">
+         <children>
+            <Button alignment="CENTER" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#submit" text="Submit" HBox.hgrow="NEVER" />
+                <Button fx:id="btnClose" alignment="CENTER" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#closePopup" text="Close" HBox.hgrow="NEVER" />
+         </children>
+      </HBox>
     </bottom>
     <top>
         <HBox styleClass="ground" BorderPane.alignment="CENTER">

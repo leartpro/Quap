@@ -6,6 +6,7 @@ import com.quap.client.domain.Friend;
 import com.quap.client.domain.Message;
 import com.quap.client.domain.UserContent;
 import com.quap.client.utils.ClientObserver;
+import com.quap.controller.SceneController;
 import com.quap.controller.VistaController;
 import com.quap.controller.vista.main.ChatController;
 import com.quap.controller.vista.main.MainVistaNavigator;
@@ -189,7 +190,7 @@ public class MainWindowController implements ClientObserver {
     }
 
     @Override
-    public void createChatEvent(Chat chat) {//TODO: load the content into the ui by refreshing the sidebar if on the chats window
+    public void createChatEvent(Chat chat) {
         System.out.println("createChatEvent");
         if(currentNode.getType().equals("chatrooms")) {
             Platform.runLater(() -> {
@@ -212,5 +213,14 @@ public class MainWindowController implements ClientObserver {
                 });
             }
         }
+    }
+
+    @Override
+    public void inviteEvent(Chat chat, int senderID) { //TODO: submit requestPopup if the user wants to accept or decline
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/quap/desktopapp/popup/requestPopup.fxml"));
+        Stage primaryStage = (Stage) Stage.getWindows().stream().filter(Window::isShowing).findFirst().orElse(null);
+        String message = "u are invited by: " + "sample user" + "to the chat: " + chat;
+        boolean decision = SceneController.submitRequestPopup(loader, primaryStage, message);
+        System.out.println("user decision:" + decision);
     }
 }
