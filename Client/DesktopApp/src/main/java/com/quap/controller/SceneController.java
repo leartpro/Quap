@@ -58,7 +58,7 @@ public class SceneController {
         return input;
     }
 
-    public static boolean submitRequestPopup(FXMLLoader loader, Stage primaryStage, String message) {
+    public static Boolean submitRequestPopup(FXMLLoader loader, Stage primaryStage, String message) {
         CallbackStage requestStage;
         Scene newScene = null;
         try {

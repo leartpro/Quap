@@ -283,4 +283,8 @@ public class Client {
         json.put("data", data);
         sendCommand(json.toString());
     }
+
+    public void removeLokalChat(Chat chat) {
+        chats.remove(chat);
+    }
 }

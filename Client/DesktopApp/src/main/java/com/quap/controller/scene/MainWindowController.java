@@ -27,7 +27,6 @@ import javafx.stage.Window;
 
 import java.io.IOException;
 import java.util.Collections;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 import static com.quap.controller.VistaController.CHAT;
 
@@ -220,35 +219,18 @@ public class MainWindowController implements ClientObserver {
     public void inviteEvent(Chat chat, int senderID) { //TODO: submit requestPopup if the user wants to accept or decline
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/quap/desktopapp/popup/requestPopup.fxml"));
         Stage primaryStage = (Stage) Stage.getWindows().stream().filter(Window::isShowing).findFirst().orElse(null);
-        String message = "u are invited by: " + "sample user" + "to the chat: " + chat;
-        AtomicBoolean decision = new AtomicBoolean(false);
+        String message = "invited by: " + "sample user" + "to the chat: " + chat;
         Platform.runLater(() -> {
-                    decision.set(SceneController.submitRequestPopup(loader, primaryStage, message));
-                });
-        System.out.println("user decision:" + decision); //TODO: decision is always false
+            boolean decision;
+            decision = SceneController.submitRequestPopup(loader, primaryStage, message);
+            System.out.println("user decision:" + decision);
+            if (decision) {
+                //TODO: send join-chat-request to the server with chat and sender_id
+                System.out.println("send join-chat-request to the server with chat and sender_id...");
 
-        if(decision.get()) {
-            if(currentNode.getType().equals("chatrooms")) {
-                Platform.runLater(() -> {
-                    vBoxButtonHolder.getChildren().clear();
-                    for (UserContent content : client.getChats()) {
-                        Button b = new Button(((Chat) content).name());
-                        b.setOnAction(e -> {
-                            VistaController.loadMainVista(CHAT);
-                            currentNode.loadContent(
-                                    client.getMessagesByChat(((Chat) content).id())
-                            );
-                            client.setCurrentChatID(((Chat) content).id());
-                        });
-                        vBoxButtonHolder.getChildren().add(b);
-                    }
-                });
-                if(currentNodeID.equals("list")) {
-                    Platform.runLater(() -> {
-                        currentNode.loadContent(Collections.singletonList(chat));
-                    });
-                }
+            } else {
+                client.removeLokalChat(chat);
             }
-        }
+        });
     }
 }

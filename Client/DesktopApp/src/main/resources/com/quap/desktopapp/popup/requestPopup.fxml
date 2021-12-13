@@ -6,14 +6,18 @@
 <?import javafx.scene.layout.*?>
 <BorderPane styleClass="background" stylesheets="@../../styles/colors.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.popup.RequestPopupController">
     <top>
-        <HBox styleClass="ground" BorderPane.alignment="CENTER">
+        <HBox maxWidth="1.7976931348623157E308" styleClass="ground" BorderPane.alignment="CENTER">
             <children>
                 <Label text="Popup" />
             </children>
         </HBox>
     </top>
    <center>
-      <TextField fx:id="txtDisplay" editable="false" BorderPane.alignment="CENTER" />
+      <HBox maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="txtDisplay" editable="false" maxWidth="1.7976931348623157E308" HBox.hgrow="SOMETIMES" />
+         </children>
+      </HBox>
    </center>
    <bottom>
       <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
