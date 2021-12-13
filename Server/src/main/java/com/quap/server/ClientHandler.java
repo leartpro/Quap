@@ -78,6 +78,11 @@ public class ClientHandler implements Callable {
             case 'm' -> {
                 System.out.println("message found:" + content);
                 UserdataReader dbReader = null;
+                try {
+                    dbReader = new UserdataReader();
+                } catch (SQLException | URISyntaxException e) {
+                    e.printStackTrace();
+                }
                 JSONObject input = new JSONObject(content).getJSONObject("data");
                 int chatID = input.getInt("chat_id");
                 //TODO: receive message status success, rejected, lost, etc.

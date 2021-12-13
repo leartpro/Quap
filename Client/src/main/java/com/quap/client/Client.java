@@ -182,7 +182,7 @@ public class Client {
                             int senderID = data.getInt("sender_id");
                             Chat chat = new Chat(
                                     chatObject.getString("name"),
-                                    chatObject.getInt("chatroom_id"),
+                                    chatObject.getInt("id"),
                                     chatObject.getString("created_at")
                             );
                             chats.add(chat);

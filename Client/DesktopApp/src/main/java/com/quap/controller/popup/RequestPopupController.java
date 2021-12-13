@@ -17,7 +17,7 @@ public class RequestPopupController extends ReturnPopup{
     @FXML
     private Button btnDecline;
 
-    boolean decision = false;
+    boolean decision;
 
     @FXML
     void accept(ActionEvent actionEvent) {
@@ -39,12 +39,8 @@ public class RequestPopupController extends ReturnPopup{
         txtDisplay.setText(message);
     }
 
-    public boolean getDecision() {
-        return decision;
-    }
-
     @Override
-    public <T> T get() {
-        return null;
+    public Boolean get() {
+        return decision;
     }
 }

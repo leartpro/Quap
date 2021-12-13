@@ -32,6 +32,7 @@ public class InputPopupController extends ReturnPopup{
         stage.close();
     }
 
+    @Override
     public String get() {
         return returnValue;
     }

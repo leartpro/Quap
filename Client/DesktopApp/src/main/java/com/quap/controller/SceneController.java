@@ -73,12 +73,12 @@ public class SceneController {
         requestStage.setScene(newScene);
         WindowMoveHelper.addMoveListener(requestStage);
         popupController.setMessage(message);
-        boolean decision = (boolean) requestStage.showAndReturn(popupController);
+        Boolean decision = (Boolean) requestStage.showAndReturn(popupController);
         return decision;
     }
 
-    private static class CallbackStage<T> extends Stage {
-        public T showAndReturn(ReturnPopup controller) {
+    private static class CallbackStage extends Stage {
+        public Object showAndReturn(ReturnPopup controller) {
             super.showAndWait();
             return controller.get();
         }

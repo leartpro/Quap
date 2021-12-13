@@ -27,6 +27,7 @@ import javafx.stage.Window;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import static com.quap.controller.VistaController.CHAT;
 
@@ -220,7 +221,34 @@ public class MainWindowController implements ClientObserver {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/quap/desktopapp/popup/requestPopup.fxml"));
         Stage primaryStage = (Stage) Stage.getWindows().stream().filter(Window::isShowing).findFirst().orElse(null);
         String message = "u are invited by: " + "sample user" + "to the chat: " + chat;
-        boolean decision = SceneController.submitRequestPopup(loader, primaryStage, message);
-        System.out.println("user decision:" + decision);
+        AtomicBoolean decision = new AtomicBoolean(false);
+        Platform.runLater(() -> {
+                    decision.set(SceneController.submitRequestPopup(loader, primaryStage, message));
+                });
+        System.out.println("user decision:" + decision); //TODO: decision is always false
+
+        if(decision.get()) {
+            if(currentNode.getType().equals("chatrooms")) {
+                Platform.runLater(() -> {
+                    vBoxButtonHolder.getChildren().clear();
+                    for (UserContent content : client.getChats()) {
+                        Button b = new Button(((Chat) content).name());
+                        b.setOnAction(e -> {
+                            VistaController.loadMainVista(CHAT);
+                            currentNode.loadContent(
+                                    client.getMessagesByChat(((Chat) content).id())
+                            );
+                            client.setCurrentChatID(((Chat) content).id());
+                        });
+                        vBoxButtonHolder.getChildren().add(b);
+                    }
+                });
+                if(currentNodeID.equals("list")) {
+                    Platform.runLater(() -> {
+                        currentNode.loadContent(Collections.singletonList(chat));
+                    });
+                }
+            }
+        }
     }
 }
