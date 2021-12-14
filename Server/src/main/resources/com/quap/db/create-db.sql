@@ -13,7 +13,7 @@ CREATE TABLE users
 CREATE TABLE chatrooms
 (
     id         integer primary key generated always as identity,
-    name       varchar   not null check (length(name) <= 12 and length(name) >= 4),
+    name       varchar   not null check (length(name) <= 24 and length(name) >= 4), --TODO: define max length by max display size
     is_private boolean   not null default false,
     created_at timestamp not null default now()
 );

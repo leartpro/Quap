@@ -2,6 +2,7 @@ package com.quap.client.domain;
 
 import org.json.JSONObject;
 
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.Objects;
 
@@ -27,11 +28,29 @@ public final class Chat extends UserContent {
         );
     }
 
+    public Chat(String name, int id) {
+        this(
+                name,
+                id,
+                LocalTime.now().toString(),
+                LocalTime.now().toString()
+        );
+    }
+
+    public Chat(String name, int id, String created_at) {
+        this(
+                name,
+                id,
+                LocalTime.now().toString(),
+                created_at
+        );
+    }
+
     public String name() {
         return name;
     }
 
-    public int id() {
+    public int id() { //TODO: remove id() or getId()
         return id;
     }
 
@@ -70,16 +89,16 @@ public final class Chat extends UserContent {
 
     @Override
     public String display() {
-        return "Chat[" +
-                "name=" + name + ", " +
-                "id=" + id + ", " +
-                "joined_at=" + joined_at + ", " +
-                "created_at=" + created_at + ']';
+        return "Chat: " + "\n" +
+                "name: " + name + "\n" +
+                "id: " + id + "\n" +
+                "joined_at: " + joined_at + "\n" +
+                "created_at: " + created_at + "\n";
     }
 
     @Override
     public int getId() {
-        return 0;
+        return id;
     }
 
     @Override

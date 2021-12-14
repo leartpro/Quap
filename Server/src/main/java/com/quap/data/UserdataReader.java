@@ -100,17 +100,39 @@ public class UserdataReader {
         return userID;
     }
 
-    public boolean addChat(int userID, String chatName, boolean isPrivate) { //TODO: insert user by id
+    public JSONObject addChat(int userID, String chatName, boolean isPrivate) { //TODO: insert user by id
+        JSONObject json = new JSONObject();
+        int chatID = -1;
+        PreparedStatement statement = null;
+        String query = "" +
+                "INSERT INTO chatrooms(name, is_private)" +
+                "VALUES(?,?)";
         try {
-            statement.executeUpdate("" +
-                    "INSERT INTO chatrooms(name, isPrivate)" +
-                    "VALUES(" + chatName + "," + isPrivate + ")"
-            );
+            statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            statement.setString(1, chatName);
+            statement.setBoolean(2, isPrivate);
+            statement.execute();
+            ResultSet result = statement.getGeneratedKeys();
+            if (result.next()) {
+                chatID = result.getInt("id");
+                //TODO:!!! Does not return the right result!!!
+                json.put("chatroom_id", chatID);
+                json.put("name", chatName);
+            }
+            result.close();
+            query = "" +
+                    "INSERT INTO participants(user_id, chatroom_id) " +
+                    "VALUES(?,?)";
+            statement = connection.prepareStatement(query);
+            statement.setInt(1, userID);
+            statement.setInt(2, chatID);
+            statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
+            return null;
         }
-        return true;
+        System.out.println("DB-json:" + json);
+        return json;
     }
 
     public void leaveChat(int chatID, int userID) { //TODO
@@ -144,7 +166,6 @@ public class UserdataReader {
         ResultSet result = null;
         JSONArray json = new JSONArray();
         try {
-            //no problemo
             result = statement.executeQuery("" +
                     "SELECT users.name, users.id AS user_id, chatrooms.id AS chatrooms_id, chatrooms.created_at " +
                     "FROM friends " +
@@ -182,7 +203,8 @@ public class UserdataReader {
                     "FROM participants " +
                     "LEFT JOIN chatrooms " +
                     "ON chatrooms.id = chatroom_id " +
-                    "WHERE user_id = " + id
+                    "WHERE user_id = " + id + " " +
+                    "and chatrooms.is_private = false"
             );
         } catch (SQLException e) {
             e.printStackTrace();
@@ -232,7 +254,7 @@ public class UserdataReader {
         return userIDs;
     }
 
-    private JSONArray usersByChat(int chatID) {
+    public JSONArray usersByChat(int chatID) {
         ResultSet result = null;
         JSONArray json = new JSONArray();
 
@@ -307,4 +329,79 @@ public class UserdataReader {
     }
 
 
+    public int userIDByName(String username) {
+        int userID = -1;
+        ResultSet result = null;
+
+        try {
+            result = statement.executeQuery("" + //TODO ???
+                    "SELECT users.id " +
+                    "FROM users " +
+                    "WHERE users.name = '" + username + "';"
+            );
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            assert result != null;
+            if(result.next()) {
+                userID = result.getInt("id");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                result.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return userID;
+    }
+
+    public JSONObject getChatByID(int chatID) {
+        int userID = -1;
+        ResultSet result = null;
+        JSONObject json = new JSONObject();
+
+        try {
+            result = statement.executeQuery("" + //TODO ???
+                    "SELECT chatrooms.* " +
+                    "FROM chatrooms " +
+                    "WHERE chatrooms.id = " + chatID + ";"
+            );
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            assert result != null;
+            json = resultSetToJSONArray(result).getJSONObject(0);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                result.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return json;
+    }
+
+    public void addUserToChat(int chatID, int senderID) {
+        PreparedStatement statement = null;
+        String query = "" +
+                "INSERT INTO participants(user_id, chatroom_id) " +
+                "VALUES(?,?)";
+        try {
+            statement = connection.prepareStatement(query);
+        statement.setInt(1, senderID);
+        statement.setInt(2, chatID);
+        statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        //TODO: return the chat-object by id
+
+    }
 }

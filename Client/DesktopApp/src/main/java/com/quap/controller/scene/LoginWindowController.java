@@ -106,9 +106,11 @@ public class LoginWindowController {
     @FXML
     void switchMode(ActionEvent event) {
         if (checkAnonymMode.isSelected()) {
+            //TODO: test if login data produce true, then decide to toggle of or not
             currentNode.switchMode(true);
             btnLogin.setVisible(true);
         } else {
+            //TODO: disable only if the login data produces false
             currentNode.switchMode(false);
             btnLogin.setVisible(currentNode.validLogin());
         }
@@ -195,11 +197,13 @@ public class LoginWindowController {
                                             stage.setScene(scene);
                                             stage.setMinWidth(600);
                                             stage.setMinHeight(400);
+                                            stage.setWidth(1080);
+                                            stage.setHeight(720);
                                             MainWindowController mainWindowController = loader.getController();
+                                            VistaController.setMainWindowController(mainWindowController);
                                             mainWindowController.setClient(client);
                                             //mainWindowController.setConfiguration(configuration);
                                             //TODO: give more attributes to main scene controller
-                                            VistaController.setMainWindowController(mainWindowController);
                                             //VistaController.loadMainVista(VistaController.LIST); //TODO: necessary?
                                             //TODO: receive future result and validate
                                             stage.show();

@@ -142,7 +142,7 @@ public class Client {
                 System.out.println(root.getJSONObject("error"));
             } else if (root.has("data")) {
                 JSONObject data = root.getJSONObject("data");
-                if (returnValue.equals("authentication")) {//TODO: load Content in the UI
+                if (returnValue.equals("authentication")) {
                     this.id = data.getInt("id");
                     JSONArray chatrooms = data.getJSONArray("chatrooms");
                     for (int i = 0; i < chatrooms.length(); i++) {
@@ -154,18 +154,62 @@ public class Client {
                         Friend friend = new Friend(privates.getJSONObject(i));
                         friends.add(friend);
                     }
-                } else if (returnValue.equals("message")) {//TODO: load Content in the UI
+                } else if (returnValue.equals("message")) {
                     int senderID = data.getInt("sender_id");
                     int chatID = data.getInt("chat_id");
                     String messageContent = data.getString("message");
-                    for(ClientObserver c: observers) {
+                    for (ClientObserver c : observers) {
                         c.messageEvent(new Message(messageContent, Date.from(Instant.now()), senderID));
                     }
                     System.out.println("senderID: " + senderID + ", chatID: " + chatID + ", message: " + messageContent);
                     dataReader.addMessage(chatID, senderID, messageContent);
-                    //TODO: make MainWindowController update by db update
                 } else if (returnValue.equals("command")) {
                     System.out.println("command found");
+                    String statement = data.getString("statement");
+                    switch (statement) {
+                        case "create-chat" -> {
+                            JSONObject result = data.getJSONObject("result");
+                            Chat chat = new Chat(
+                                    result.getString("name"),
+                                    result.getInt("chatroom_id"));
+                            chats.add(chat);
+                            for (ClientObserver c : observers) {
+                                c.createChatEvent(chat);
+                            }
+                        }
+                        case "invite-chat" -> {
+                            JSONObject chatObject = data.getJSONObject("chat");
+                            int senderID = data.getInt("sender_id");
+                            String senderName = data.getString("sender_name");
+                            JSONArray participants = data.getJSONArray("participants");
+                            List<String> participantsList = new ArrayList<>();
+                            for(int i = 0; i < participants.length(); i++) {
+                                String name = participants.getJSONObject(i).getString("name");
+                                int id = participants.getJSONObject(i).getInt("id");
+                                participantsList.add(name + "#" + id);
+                            }
+                            Chat chat = new Chat(
+                                    chatObject.getString("name"),
+                                    chatObject.getInt("id"),
+                                    chatObject.getString("created_at")
+                            );
+                            for (ClientObserver c : observers) {
+                                c.inviteEvent(chat, senderID, senderName, participantsList);
+                            }
+                        }
+                        case "join-chat" -> {
+                            JSONObject chatObject = data.getJSONObject("chat");
+                            Chat chat = new Chat(
+                                    chatObject.getString("name"),
+                                    chatObject.getInt("id"),
+                                    chatObject.getString("created_at")
+                            );
+                            chats.add(chat);
+                            for (ClientObserver c : observers) {
+                                c.joinChatEvent(chat);
+                            }
+                        }
+                    }
                 }
             } else {
                 System.err.println("Unknown package content");
@@ -232,5 +276,44 @@ public class Client {
 
     public void removeObserver(ClientObserver observer) {
         observers.remove(observer);
+    }
+
+    public void addChatroom(String input) {
+        JSONObject json = new JSONObject();
+        json.put("type", "create-chat");
+        JSONObject data = new JSONObject();
+        data.put("chatname", input);
+        data.put("sender_id", id);
+        json.put("data", data);
+        sendCommand(json.toString());
+    }
+
+    public void addFriend(String input) { //TODO: similar to method addChatroom()
+
+    }
+
+    public void joinChat(int chatID) { //TODO: complete method
+        JSONObject json = new JSONObject();
+        json.put("type", "join-chat");
+        JSONObject data = new JSONObject();
+        data.put("chatroom_id", chatID);
+        data.put("sender_id", id);
+        json.put("data", data);
+        sendCommand(json.toString());
+    }
+
+    public void inviteUser(String username, int chatID) {
+        JSONObject json = new JSONObject();
+        json.put("type", "invite-user");
+        JSONObject data = new JSONObject();
+        data.put("username", username);
+        data.put("chat_id", chatID);
+        data.put("sender_id", id);
+        json.put("data", data);
+        sendCommand(json.toString());
+    }
+
+    public void removeLokalChat(Chat chat) {
+        chats.remove(chat);
     }
 }

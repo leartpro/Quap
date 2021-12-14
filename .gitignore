@@ -1,0 +1,9 @@
+/Server/target/
+/Client/target/
+/Client/DesktopApp/target/
+/.idea/codeStyles/
+/.idea/dataSources/
+/.idea/inspectionProfiles/
+/.idea/dataSources.local.xml
+/.idea/dataSources.xml
+/.idea/discord.xml

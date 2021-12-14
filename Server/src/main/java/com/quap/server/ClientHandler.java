@@ -1,10 +1,12 @@
 package com.quap.server;
 
 import com.quap.data.UserdataReader;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.*;
 import java.net.Socket;
+import java.net.SocketException;
 import java.net.URISyntaxException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -52,7 +54,7 @@ public class ClientHandler implements Callable {
                     if (message != null) {
                         process(message);
                     }
-                } catch (IOException e) {
+                } catch (SocketException e) {
                     e.printStackTrace();
                     listen.interrupt();
                     try {
@@ -60,13 +62,16 @@ public class ClientHandler implements Callable {
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    this.disconnect();
                 }
             }
         });
         listen.start();
     }
 
-    private void process(String message) {
+    private void process(String message) {                //TODO: run database access as future
         String content = message.substring(5, (message.length() - 5));
         System.out.println(message);
         System.out.println(content);
@@ -79,23 +84,99 @@ public class ClientHandler implements Callable {
                 } catch (SQLException | URISyntaxException e) {
                     e.printStackTrace();
                 }
-
                 JSONObject input = new JSONObject(content).getJSONObject("data");
                 int chatID = input.getInt("chat_id");
                 //TODO: receive message status success, rejected, lost, etc.
                 List<Integer> userIds = new ArrayList<>(dbReader.userIDsByChat(chatID));
                 for (Integer id : userIds) {
                     //if(id != userID) { //dont sends to himself
-                        server.forwardMessage(id, content);
+                    server.forwardMessage(id, content);
                     //}
                 }
             }
-            case 'c' -> {
+            case 'c' -> { //TODO: new chat is inserted into the db but no result is returned
                 System.out.println("command found");
+                JSONObject data = new JSONObject(content).getJSONObject("data");
+                int senderID = data.getInt("sender_id");
+                UserdataReader dbReader = null;
+                try {
+                    dbReader = new UserdataReader();
+                } catch (SQLException | URISyntaxException e) {
+                    e.printStackTrace();
+                }
+                switch (new JSONObject(content).getString("type")) {
+                    case "create-chat" -> {
+                        String chatName = data.getString("chatname");
+                        JSONObject result = dbReader.addChat(senderID, chatName, false);
+                        JSONObject json = new JSONObject();
+                        json.put("return-value", "command");
+                        if(result != null) {
+                            JSONObject returnValue = new JSONObject();
+                            returnValue.put("statement", "create-chat");
+                            returnValue.put("result", result);
+                            json.put("data", returnValue);
+                        } else {
+                            json.put("error", "can not create this chat");
+                        }
+                        send(json.toString());
+                    }
+                    case "add-friend" -> {
+
+                    }
+                    case "invite-user" -> {
+                        System.out.println("Invite user to chat...");
+                        try {
+                            dbReader = new UserdataReader();
+                        } catch (SQLException | URISyntaxException e) {
+                            e.printStackTrace();
+                        }
+                        String username = data.getString("username");
+                        int userID = dbReader.userIDByName(username);
+                        int chatID = data.getInt("chat_id");
+                        JSONObject chat = dbReader.getChatByID(chatID);
+                        JSONArray participants = dbReader.usersByChat(chatID);
+                        JSONObject json = new JSONObject();
+                        json.put("return-value", "command");
+                        if(chat != null) {
+                            JSONObject returnValue = new JSONObject();
+                            returnValue.put("statement", "invite-chat");
+                            returnValue.put("chat", chat);
+                            returnValue.put("sender_id", senderID);
+                            returnValue.put("sender_name", username);
+                            returnValue.put("participants" , participants);
+                            json.put("data", returnValue);
+                        } else {
+                            json.put("error", "can not create this chat");
+                        }
+                        //TODO: create message which should contain all needed data
+
+                        server.forwardMessage(userID, json.toString());
+                    }
+                    case "join-chat" -> {
+                        int chatID = data.getInt("chatroom_id");
+                        try {
+                            dbReader = new UserdataReader();
+                        } catch (SQLException | URISyntaxException e) {
+                            e.printStackTrace();
+                        }
+                        dbReader.addUserToChat(chatID, senderID);
+                        JSONObject chat = dbReader.getChatByID(chatID);
+                        JSONObject json = new JSONObject();
+                        json.put("return-value", "command");
+                        if(chat != null) {
+                            JSONObject returnValue = new JSONObject();
+                            returnValue.put("statement", "join-chat");
+                            returnValue.put("chat", chat);
+                            json.put("data", returnValue);
+                        } else {
+                            json.put("error", "can not join this chat");
+                        }
+                        send(json.toString());
+                    }
+                }
             }
             case 'a' -> {
                 System.out.println("authentication found");
-                //TODO: run database access as future
                 UserdataReader dbReader = null;
                 try {
                     dbReader = new UserdataReader();

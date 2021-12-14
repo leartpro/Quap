@@ -31,6 +31,7 @@ public class Launcher extends Application {
     public void init() {
         final ExecutorService executor = Executors.newCachedThreadPool();
         final CompletionService<Boolean> completionService = new ExecutorCompletionService<>(executor);
+        boolean success = true;
         List<HashMap<Integer, Future<Boolean>>> taskList = new ArrayList<>();
         HashMap<Integer, Future<Boolean>> tasks = new HashMap<>();
 
@@ -43,7 +44,7 @@ public class Launcher extends Application {
 
         tasks.put(0, completionService.submit(init.connect()));
         taskList.add(tasks);
-        for(int i = 0; i < 4; i++) {
+        for(int i = 0; i < 4; i++) { //TODO: errors are not handled right
             for (Map<Integer, Future<Boolean>> pair : taskList) {
                 System.out.println(pair);
                 taskList.remove(pair);
@@ -85,27 +86,17 @@ public class Launcher extends Application {
                             return;
                         }
                     }
+                } else {
+                    success = false;
                 }
             }
         }
 
-        while (!executor.isTerminated()) {
-            Future<Boolean> future = null;
-            try {
-                future = completionService.take();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            if(!success && !executor.isTerminated()) {
+                executor.shutdownNow();
+                System.err.println("Client initialisation failed");
+                System.exit(-1);
             }
-            try {
-                assert future != null;
-                if(!future.get()) {
-                    executor.shutdownNow();
-                    System.err.println("Client initialisation failed");
-                }
-            } catch (InterruptedException | ExecutionException e) {
-                e.printStackTrace();
-            }
-        }
         executor.shutdown();
     }
 

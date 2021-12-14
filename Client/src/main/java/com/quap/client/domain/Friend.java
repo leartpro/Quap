@@ -18,12 +18,12 @@ public final class Friend extends UserContent {
         this.chatID = chatID;
     }
 
-    public Friend(JSONObject chat) {
+    public Friend(JSONObject friend) {
         this(
-                chat.getString("name"),
-                chat.getInt("user_id"),
-                chat.getString("created_at"),
-                chat.getInt("chatrooms_id")
+                friend.getString("name"),
+                friend.getInt("user_id"),
+                friend.getString("created_at"),
+                friend.getInt("chatrooms_id")
         );
     }
 
