@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
+import java.util.List;
 
 /*
     stores general managing methods for scenes
@@ -58,7 +59,7 @@ public class SceneController {
         return input;
     }
 
-    public static Boolean submitRequestPopup(FXMLLoader loader, Stage primaryStage, String message) {
+    public static Boolean submitRequestPopup(FXMLLoader loader, Stage primaryStage, List<String> info) {
         CallbackStage requestStage;
         Scene newScene = null;
         try {
@@ -72,7 +73,7 @@ public class SceneController {
         requestStage.initOwner(primaryStage);
         requestStage.setScene(newScene);
         WindowMoveHelper.addMoveListener(requestStage);
-        popupController.setMessage(message);
+        popupController.setMessage(info);
         Boolean decision = (Boolean) requestStage.showAndReturn(popupController);
         return decision;
     }

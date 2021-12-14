@@ -50,7 +50,7 @@ public final class Chat extends UserContent {
         return name;
     }
 
-    public int id() {
+    public int id() { //TODO: remove id() or getId()
         return id;
     }
 
@@ -89,11 +89,11 @@ public final class Chat extends UserContent {
 
     @Override
     public String display() {
-        return "Chat[" +
-                "name=" + name + ", " +
-                "id=" + id + ", " +
-                "joined_at=" + joined_at + ", " +
-                "created_at=" + created_at + ']';
+        return "Chat: " + "\n" +
+                "name: " + name + "\n" +
+                "id: " + id + "\n" +
+                "joined_at: " + joined_at + "\n" +
+                "created_at: " + created_at + "\n";
     }
 
     @Override

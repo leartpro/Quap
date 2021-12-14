@@ -26,7 +26,10 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
 
 import static com.quap.controller.VistaController.CHAT;
 
@@ -216,21 +219,59 @@ public class MainWindowController implements ClientObserver {
     }
 
     @Override
-    public void inviteEvent(Chat chat, int senderID) { //TODO: submit requestPopup if the user wants to accept or decline
+    public void inviteEvent(Chat chat, int senderID, String senderName, List<String> participants) { //TODO: submit requestPopup if the user wants to accept or decline
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/quap/desktopapp/popup/requestPopup.fxml"));
         Stage primaryStage = (Stage) Stage.getWindows().stream().filter(Window::isShowing).findFirst().orElse(null);
         String message = "invited by: " + "sample user" + "to the chat: " + chat;
+        List<String> info = new ArrayList<>();
+        info.add("Invited by: " + senderName + "#" + senderID);
+        Scanner scanner = new Scanner(chat.display());
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
+            info.add(line);
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append("participants: " + "\n");
+        for(String participant : participants) {
+            sb.append(participant).append("\n");
+        }
+        info.add(sb.toString());
+        scanner.close();
         Platform.runLater(() -> {
             boolean decision;
-            decision = SceneController.submitRequestPopup(loader, primaryStage, message);
+            decision = SceneController.submitRequestPopup(loader, primaryStage, info);
             System.out.println("user decision:" + decision);
             if (decision) {
                 //TODO: send join-chat-request to the server with chat and sender_id
                 System.out.println("send join-chat-request to the server with chat and sender_id...");
-
-            } else {
-                client.removeLokalChat(chat);
+                client.joinChat(chat.id());
             }
         });
+    }
+
+    @Override
+    public void joinChatEvent(Chat chat) { //TODO: complete method
+        System.out.println("joinChatEvent");
+        if(currentNode.getType().equals("chatrooms")) {
+            Platform.runLater(() -> {
+                vBoxButtonHolder.getChildren().clear();
+                for (UserContent content : client.getChats()) {
+                    Button b = new Button(((Chat) content).name());
+                    b.setOnAction(e -> {
+                        VistaController.loadMainVista(CHAT);
+                        currentNode.loadContent(
+                                client.getMessagesByChat(((Chat) content).id())
+                        );
+                        client.setCurrentChatID(((Chat) content).id());
+                    });
+                    vBoxButtonHolder.getChildren().add(b);
+                }
+            });
+            if(currentNodeID.equals("list")) {
+                Platform.runLater(() -> {
+                    currentNode.loadContent(Collections.singletonList(chat));
+                });
+            }
+        }
     }
 }

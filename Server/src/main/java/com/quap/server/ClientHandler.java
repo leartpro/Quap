@@ -1,6 +1,7 @@
 package com.quap.server;
 
 import com.quap.data.UserdataReader;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.*;
@@ -133,6 +134,7 @@ public class ClientHandler implements Callable {
                         int userID = dbReader.userIDByName(username);
                         int chatID = data.getInt("chat_id");
                         JSONObject chat = dbReader.getChatByID(chatID);
+                        JSONArray participants = dbReader.usersByChat(chatID);
                         JSONObject json = new JSONObject();
                         json.put("return-value", "command");
                         if(chat != null) {
@@ -140,6 +142,8 @@ public class ClientHandler implements Callable {
                             returnValue.put("statement", "invite-chat");
                             returnValue.put("chat", chat);
                             returnValue.put("sender_id", senderID);
+                            returnValue.put("sender_name", username);
+                            returnValue.put("participants" , participants);
                             json.put("data", returnValue);
                         } else {
                             json.put("error", "can not create this chat");
@@ -147,6 +151,27 @@ public class ClientHandler implements Callable {
                         //TODO: create message which should contain all needed data
 
                         server.forwardMessage(userID, json.toString());
+                    }
+                    case "join-chat" -> {
+                        int chatID = data.getInt("chatroom_id");
+                        try {
+                            dbReader = new UserdataReader();
+                        } catch (SQLException | URISyntaxException e) {
+                            e.printStackTrace();
+                        }
+                        dbReader.addUserToChat(chatID, senderID);
+                        JSONObject chat = dbReader.getChatByID(chatID);
+                        JSONObject json = new JSONObject();
+                        json.put("return-value", "command");
+                        if(chat != null) {
+                            JSONObject returnValue = new JSONObject();
+                            returnValue.put("statement", "join-chat");
+                            returnValue.put("chat", chat);
+                            json.put("data", returnValue);
+                        } else {
+                            json.put("error", "can not join this chat");
+                        }
+                        send(json.toString());
                     }
                 }
             }

@@ -4,12 +4,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
+
+import java.util.List;
 
 public class RequestPopupController extends ReturnPopup{
     @FXML
-    private TextField txtDisplay;
+    private TextArea txtDisplay;
 
     @FXML
     private Button btnAccept;
@@ -35,8 +37,10 @@ public class RequestPopupController extends ReturnPopup{
         stage.close();
     }
 
-    public void setMessage(String message) {
-        txtDisplay.setText(message);
+    public void setMessage(List<String> info) {
+        for(String line : info) {
+            txtDisplay.appendText(line + "\n");
+        }
     }
 
     @Override

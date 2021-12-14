@@ -254,7 +254,7 @@ public class UserdataReader {
         return userIDs;
     }
 
-    private JSONArray usersByChat(int chatID) {
+    public JSONArray usersByChat(int chatID) {
         ResultSet result = null;
         JSONArray json = new JSONArray();
 
@@ -386,5 +386,22 @@ public class UserdataReader {
             }
         }
         return json;
+    }
+
+    public void addUserToChat(int chatID, int senderID) {
+        PreparedStatement statement = null;
+        String query = "" +
+                "INSERT INTO participants(user_id, chatroom_id) " +
+                "VALUES(?,?)";
+        try {
+            statement = connection.prepareStatement(query);
+        statement.setInt(1, senderID);
+        statement.setInt(2, chatID);
+        statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        //TODO: return the chat-object by id
+
     }
 }

@@ -180,6 +180,25 @@ public class Client {
                         case "invite-chat" -> {
                             JSONObject chatObject = data.getJSONObject("chat");
                             int senderID = data.getInt("sender_id");
+                            String senderName = data.getString("sender_name");
+                            JSONArray participants = data.getJSONArray("participants");
+                            List<String> participantsList = new ArrayList<>();
+                            for(int i = 0; i < participants.length(); i++) {
+                                String name = participants.getJSONObject(i).getString("name");
+                                int id = participants.getJSONObject(i).getInt("id");
+                                participantsList.add(name + "#" + id);
+                            }
+                            Chat chat = new Chat(
+                                    chatObject.getString("name"),
+                                    chatObject.getInt("id"),
+                                    chatObject.getString("created_at")
+                            );
+                            for (ClientObserver c : observers) {
+                                c.inviteEvent(chat, senderID, senderName, participantsList);
+                            }
+                        }
+                        case "join-chat" -> {
+                            JSONObject chatObject = data.getJSONObject("chat");
                             Chat chat = new Chat(
                                     chatObject.getString("name"),
                                     chatObject.getInt("id"),
@@ -187,7 +206,7 @@ public class Client {
                             );
                             chats.add(chat);
                             for (ClientObserver c : observers) {
-                                c.inviteEvent(chat, senderID);
+                                c.joinChatEvent(chat);
                             }
                         }
                     }
@@ -271,6 +290,16 @@ public class Client {
 
     public void addFriend(String input) { //TODO: similar to method addChatroom()
 
+    }
+
+    public void joinChat(int chatID) { //TODO: complete method
+        JSONObject json = new JSONObject();
+        json.put("type", "join-chat");
+        JSONObject data = new JSONObject();
+        data.put("chatroom_id", chatID);
+        data.put("sender_id", id);
+        json.put("data", data);
+        sendCommand(json.toString());
     }
 
     public void inviteUser(String username, int chatID) {
