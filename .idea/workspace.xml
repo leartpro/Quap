@@ -5,44 +5,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="09927819-4efd-4d77-952e-37e9b4faac9c" name="Changes" comment="Complete Chat-Invite-Feature">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e/entities/entities.dat" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e/entities/entities.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e/entities/entities.dat.values" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e/entities/entities.dat.values" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e/entities/entities.dat.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e/entities/entities.dat.values.at" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e/entities/entities.dat.values.s" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e/entities/entities.dat.values.s" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e/entities/entities.dat_i" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e/entities/entities.dat_i" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/target/classes/com/quap/controller/SceneController$CallbackStage.class" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/target/classes/com/quap/controller/SceneController$CallbackStage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/target/classes/com/quap/controller/SceneController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/target/classes/com/quap/controller/SceneController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/target/classes/com/quap/controller/popup/InputPopupController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/target/classes/com/quap/controller/popup/InputPopupController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/target/classes/com/quap/controller/scene/LoginWindowController$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/target/classes/com/quap/controller/scene/LoginWindowController$1$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/target/classes/com/quap/controller/scene/LoginWindowController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/target/classes/com/quap/controller/scene/LoginWindowController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/target/classes/com/quap/controller/scene/LoginWindowController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/target/classes/com/quap/controller/scene/LoginWindowController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/target/classes/com/quap/controller/scene/MainWindowController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/target/classes/com/quap/controller/scene/MainWindowController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/target/classes/com/quap/controller/vista/main/ChatController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/target/classes/com/quap/controller/vista/main/ChatController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/target/classes/com/quap/controller/vista/main/ListController$ChatListCell.class" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/target/classes/com/quap/controller/vista/main/ListController$ChatListCell.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/target/classes/com/quap/controller/vista/main/ListController$ContextMenuListCell.class" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/target/classes/com/quap/controller/vista/main/ListController$ContextMenuListCell.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/target/classes/com/quap/controller/vista/main/ListController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/target/classes/com/quap/controller/vista/main/ListController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/target/classes/com/quap/controller/vista/main/MainVistaNavigator.class" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/target/classes/com/quap/controller/vista/main/MainVistaNavigator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/target/classes/com/quap/controller/vista/main/ProfilController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/target/classes/com/quap/controller/vista/main/ProfilController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/target/classes/com/quap/controller/vista/main/SettingsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/target/classes/com/quap/controller/vista/main/SettingsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/target/classes/com/quap/desktopapp/popup/inputPopup.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/target/classes/com/quap/desktopapp/popup/inputPopup.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/target/classes/com/quap/desktopapp/vista/main/chat-main-vista.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/target/classes/com/quap/desktopapp/vista/main/chat-main-vista.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/target/classes/com/quap/desktopapp/vista/main/list-main-vista.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/target/classes/com/quap/desktopapp/vista/main/list-main-vista.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/resources/com/quap/users/Horst/preferences/settings/settings.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/resources/com/quap/users/Horst/preferences/settings/settings.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/resources/com/quap/users/Horst/sqlite/db/messages.db" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/resources/com/quap/users/Horst/sqlite/db/messages.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/resources/com/quap/users/Olaf/preferences/settings/settings.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/resources/com/quap/users/Olaf/preferences/settings/settings.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/resources/com/quap/users/Olaf/sqlite/db/messages.db" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/resources/com/quap/users/Olaf/sqlite/db/messages.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/resources/com/quap/users/Otto/preferences/settings/settings.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/resources/com/quap/users/Otto/preferences/settings/settings.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/resources/com/quap/users/Otto/sqlite/db/messages.db" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/resources/com/quap/users/Otto/sqlite/db/messages.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/resources/com/quap/users/anonym/preferences/settings/settings.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/resources/com/quap/users/anonym/preferences/settings/settings.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/target/classes/com/quap/client/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/Client/target/classes/com/quap/client/Client.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/target/classes/com/quap/client/domain/Chat.class" beforeDir="false" afterPath="$PROJECT_DIR$/Client/target/classes/com/quap/client/domain/Chat.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/target/classes/com/quap/client/domain/Friend.class" beforeDir="false" afterPath="$PROJECT_DIR$/Client/target/classes/com/quap/client/domain/Friend.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/target/classes/com/quap/client/utils/ClientObserver.class" beforeDir="false" afterPath="$PROJECT_DIR$/Client/target/classes/com/quap/client/utils/ClientObserver.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/target/classes/com/quap/data/UserdataReader.class" beforeDir="false" afterPath="$PROJECT_DIR$/Server/target/classes/com/quap/data/UserdataReader.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/target/classes/com/quap/db/create-db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Server/target/classes/com/quap/db/create-db.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/target/classes/com/quap/server/ClientHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/Server/target/classes/com/quap/server/ClientHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/SceneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/SceneController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/VistaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/VistaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/scene/ConnectionWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/scene/ConnectionWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/scene/LoginWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/scene/LoginWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/scene/MainWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/scene/MainWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/main/ListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/main/ListController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/main/MainVistaNavigator.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/main/MainVistaNavigator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/desktopapp/Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/desktopapp/Launcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/utils/ResizeHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/utils/ResizeHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/utils/WindowMoveHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/utils/WindowMoveHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/quap/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/data/OrderedProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/quap/data/OrderedProperties.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/data/UserdataReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/quap/data/UserdataReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/server/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/quap/server/ClientHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/quap/server/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/server/UniqueIdentifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/quap/server/UniqueIdentifier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/resources/com/quap/db/insert-sample-db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/resources/com/quap/db/insert-sample-db.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,19 +142,6 @@
     </option>
   </component>
   <component name="RunManager" selected="Application.Launcher">
-    <configuration name="DataTests (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.quap.data.DataTests" />
-      <module name="Server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.quap.data.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="DataTests" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.quap.client.data.DataTests" />
       <module name="Client" />
@@ -208,6 +184,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="create-db.sql" type="DatabaseScript" editBeforeRun="true" temporary="true" nameIsGenerated="true">
+      <script-file value="$PROJECT_DIR$/Server/src/main/resources/com/quap/db/create-db.sql" />
+      <script-mode>FILE</script-mode>
+      <method v="2" />
+    </configuration>
     <configuration name="insert-sample-db.sql" type="DatabaseScript" editBeforeRun="true" temporary="true" nameIsGenerated="true">
       <script-file value="$PROJECT_DIR$/Server/src/main/resources/com/quap/db/insert-sample-db.sql" />
       <script-mode>FILE</script-mode>
@@ -218,16 +199,16 @@
       <item itemvalue="Application.Launcher" />
       <item itemvalue="Application.DataTests" />
       <item itemvalue="Application.Main" />
-      <item itemvalue="Application.DataTests (1)" />
       <item itemvalue="Database Script.insert-sample-db.sql" />
+      <item itemvalue="Database Script.create-db.sql" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Launcher" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Database Script.create-db.sql" />
         <item itemvalue="Database Script.insert-sample-db.sql" />
         <item itemvalue="Application.DataTests" />
-        <item itemvalue="Application.DataTests (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -323,21 +304,9 @@
       <workItem from="1639058885038" duration="4166000" />
       <workItem from="1639222742448" duration="2877000" />
       <workItem from="1639415629604" duration="12086000" />
-      <workItem from="1639477952826" duration="7288000" />
-    </task>
-    <task id="LOCAL-00015" summary="UI development">
-      <created>1636414306180</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1636414306180</updated>
-    </task>
-    <task id="LOCAL-00016" summary="UI development and bug fixing">
-      <created>1636501602316</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1636501602316</updated>
+      <workItem from="1639477952826" duration="7753000" />
+      <workItem from="1639586623308" duration="3087000" />
+      <workItem from="1639591824771" duration="6319000" />
     </task>
     <task id="LOCAL-00017" summary="Client Server Communication">
       <created>1636565889407</created>
@@ -668,7 +637,21 @@
       <option name="project" value="LOCAL" />
       <updated>1639486697526</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="Add .gitignore">
+      <created>1639487376739</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1639487376739</updated>
+    </task>
+    <task id="LOCAL-00065" summary="Update gitignore">
+      <created>1639588499678</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1639588499679</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -679,7 +662,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="develop" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -703,8 +698,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="General Improvement" />
-    <MESSAGE value="Process Method in Client" />
     <MESSAGE value="Load Content from Client in UI" />
     <MESSAGE value="Generic Content from Client in UI" />
     <MESSAGE value="V1" />
@@ -728,7 +721,9 @@
     <MESSAGE value="Update invite Event" />
     <MESSAGE value="UI Bug Fixes" />
     <MESSAGE value="Complete Chat-Invite-Feature" />
-    <option name="LAST_COMMIT_MESSAGE" value="Complete Chat-Invite-Feature" />
+    <MESSAGE value="Add .gitignore" />
+    <MESSAGE value="Update gitignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update gitignore" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XPathView.XPathProjectComponent">

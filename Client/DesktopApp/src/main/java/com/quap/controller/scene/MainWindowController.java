@@ -211,9 +211,7 @@ public class MainWindowController implements ClientObserver {
                 }
             });
             if(currentNodeID.equals("list")) {
-                Platform.runLater(() -> {
-                    currentNode.loadContent(Collections.singletonList(chat));
-                });
+                Platform.runLater(() -> currentNode.loadContent(Collections.singletonList(chat)));
             }
         }
     }
@@ -224,7 +222,7 @@ public class MainWindowController implements ClientObserver {
         Stage primaryStage = (Stage) Stage.getWindows().stream().filter(Window::isShowing).findFirst().orElse(null);
         String message = "invited by: " + "sample user" + "to the chat: " + chat;
         List<String> info = new ArrayList<>();
-        info.add("Invited by: " + senderName + "#" + senderID);
+        info.add("Invited by: " + senderName + "#" + senderID); //TODO: senderName is self
         Scanner scanner = new Scanner(chat.display());
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
@@ -268,9 +266,7 @@ public class MainWindowController implements ClientObserver {
                 }
             });
             if(currentNodeID.equals("list")) {
-                Platform.runLater(() -> {
-                    currentNode.loadContent(Collections.singletonList(chat));
-                });
+                Platform.runLater(() -> currentNode.loadContent(Collections.singletonList(chat)));
             }
         }
     }

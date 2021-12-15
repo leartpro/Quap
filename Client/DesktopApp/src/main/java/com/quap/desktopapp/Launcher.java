@@ -49,7 +49,7 @@ public class Launcher extends Application {
                 System.out.println(pair);
                 taskList.remove(pair);
                 Optional<Integer> optional = pair.keySet().stream().findFirst();
-                if (!optional.isPresent()) {
+                if (optional.isEmpty()) {
                     return;
                 }
                 Integer key = optional.get();

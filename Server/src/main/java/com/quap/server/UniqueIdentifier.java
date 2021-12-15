@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class UniqueIdentifier {
-    private static final List<Integer> ids = new ArrayList<Integer>();
+    private static final List<Integer> ids = new ArrayList<>();
     private static final int RANGE = 10000;
     private static int index = 0;
 

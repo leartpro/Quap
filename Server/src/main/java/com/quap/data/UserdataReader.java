@@ -21,41 +21,26 @@ public class UserdataReader {
     }
 
     //Sign up
-    public String insertUser(String name, String password) { //TODO: message format
+    public JSONObject insertUser(String name, String password) { //TODO: message format
         System.out.println("insertUser(" + name + "," + password + ")");
         PreparedStatement statement;
         JSONObject json = new JSONObject();
-        json.put("return-value", "void");
+        json.put("return-value", "authentication");
         String query = "" +
                 "INSERT INTO users(name, password)" +
                 "VALUES(?,?)";
-        int userID = getUserID(name, null);
-        if (userID != -1) { //user already exists
-            json.put("error", "User already exists");
-            return json.toString();
-        } else {
-            try {
-                statement = connection.prepareStatement(query);
-                statement.setString(1, name);
-                statement.setString(2, password);
-                statement.executeUpdate();
-                json.put("data", "null");
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+        try {
+            statement = connection.prepareStatement(query);
+            statement.setString(1, name);
+            statement.setString(2, password);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        return json.toString();
-    }
-
-    //Sign In
-    public String verifyUser(String name, String password) { //TODO: message format
-        System.out.println("verifyUser(" + name + "," + password + ")");
-        JSONObject json = new JSONObject();
-        json.put("return-value", "authentication");
-        int userID = getUserID(name, password);
+        int userID = getUserID(name, null);
         if (userID == -1) {
-            json.put("error", "Request was rejected, because the given name or password is incorrect");
-            return json.toString();
+            json.put("error", "User already exists");
+            return json;
         } else {
             JSONObject data = new JSONObject();
             data.put("id", userID);
@@ -63,7 +48,26 @@ public class UserdataReader {
             data.put("private", chatsByUser(userID));
             json.put("data", data);
         }
-        return json.toString(); //user json
+        return json;
+    }
+
+    //Sign In
+    public JSONObject verifyUser(String name, String password) { //TODO: message format
+        System.out.println("verifyUser(" + name + "," + password + ")");
+        JSONObject json = new JSONObject();
+        json.put("return-value", "authentication");
+        int userID = getUserID(name, password);
+        if (userID == -1) {
+            json.put("error", "Request was rejected, because the given name or password is incorrect");
+            return json;
+        } else {
+            JSONObject data = new JSONObject();
+            data.put("id", userID);
+            data.put("chatrooms", chatroomsByUser(userID));
+            data.put("private", chatsByUser(userID));
+            json.put("data", data);
+        }
+        return json; //user json
     }
 
     private int getUserID(String name, String password) {
@@ -103,7 +107,7 @@ public class UserdataReader {
     public JSONObject addChat(int userID, String chatName, boolean isPrivate) { //TODO: insert user by id
         JSONObject json = new JSONObject();
         int chatID = -1;
-        PreparedStatement statement = null;
+        PreparedStatement statement;
         String query = "" +
                 "INSERT INTO chatrooms(name, is_private)" +
                 "VALUES(?,?)";
@@ -185,6 +189,7 @@ public class UserdataReader {
             e.printStackTrace();
         } finally {
             try {
+                assert result != null;
                 result.close();
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -216,6 +221,7 @@ public class UserdataReader {
             e.printStackTrace();
         } finally {
             try {
+                assert result != null;
                 result.close();
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -239,13 +245,14 @@ public class UserdataReader {
         }
         try {
             assert result != null;
-            while(result.next()) {
+            while (result.next()) {
                 userIDs.add(result.getInt("user_id"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             try {
+                assert result != null;
                 result.close();
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -276,6 +283,7 @@ public class UserdataReader {
             e.printStackTrace();
         } finally {
             try {
+                assert result != null;
                 result.close();
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -315,12 +323,12 @@ public class UserdataReader {
 
     private JSONArray resultSetToJSONArray(ResultSet rs) throws SQLException {
         JSONArray json = new JSONArray();
-        ResultSetMetaData rsmd = rs.getMetaData();
+        ResultSetMetaData rsMetaData = rs.getMetaData();
         while (rs.next()) {
-            int numColumns = rsmd.getColumnCount();
+            int numColumns = rsMetaData.getColumnCount();
             JSONObject obj = new JSONObject();
             for (int i = 1; i <= numColumns; i++) {
-                String column_name = rsmd.getColumnName(i);
+                String column_name = rsMetaData.getColumnName(i);
                 obj.put(column_name, rs.getObject(column_name));
             }
             json.put(obj);
@@ -344,13 +352,14 @@ public class UserdataReader {
         }
         try {
             assert result != null;
-            if(result.next()) {
+            if (result.next()) {
                 userID = result.getInt("id");
             }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             try {
+                assert result != null;
                 result.close();
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -380,6 +389,8 @@ public class UserdataReader {
             e.printStackTrace();
         } finally {
             try {
+                assert result != null;
+                assert result != null;
                 result.close();
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -389,15 +400,15 @@ public class UserdataReader {
     }
 
     public void addUserToChat(int chatID, int senderID) {
-        PreparedStatement statement = null;
+        PreparedStatement statement;
         String query = "" +
                 "INSERT INTO participants(user_id, chatroom_id) " +
                 "VALUES(?,?)";
         try {
             statement = connection.prepareStatement(query);
-        statement.setInt(1, senderID);
-        statement.setInt(2, chatID);
-        statement.executeUpdate();
+            statement.setInt(1, senderID);
+            statement.setInt(2, chatID);
+            statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }

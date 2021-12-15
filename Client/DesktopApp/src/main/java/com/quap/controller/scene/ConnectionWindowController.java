@@ -8,7 +8,6 @@ import javafx.application.Platform;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -59,12 +58,7 @@ public class ConnectionWindowController implements Initializable {
             }
         });
 
-        progressTask.addEventHandler(WorkerStateEvent.WORKER_STATE_SUCCEEDED, new EventHandler<WorkerStateEvent>() {
-            @Override
-            public void handle(WorkerStateEvent event) {
-                System.out.println("ProgressBar is done!");
-            }
-        });
+        progressTask.addEventHandler(WorkerStateEvent.WORKER_STATE_SUCCEEDED, event -> System.out.println("ProgressBar is done!"));
         /*final Task<Void> task = new Task<Void>() {
             final int N_ITERATIONS = 100;
 
@@ -240,7 +234,7 @@ public class ConnectionWindowController implements Initializable {
         }
     });
 
-    private class ProgressService extends Service<Void> {
+    private static class ProgressService extends Service<Void> {
         @Override
         protected Task<Void> createTask() {
             return new Task<>() {
@@ -257,7 +251,7 @@ public class ConnectionWindowController implements Initializable {
         }
     }
 
-    private class ProgressTask extends Task<Void> {
+    private static class ProgressTask extends Task<Void> {
         final int N_ITERATIONS = 100;
         @Override
         protected Void call() throws Exception {

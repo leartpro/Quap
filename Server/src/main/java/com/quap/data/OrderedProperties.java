@@ -5,10 +5,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
 
-/**
- * @author https://github.com/etiennestuder
+/*
+  @author https://github.com/etiennestuder
  * @source https://github.com/etiennestuder/java-ordered-properties/tree/master/src/main/java/nu/studer/java/util
- * TODO: may modify this implementation to add comments to the prop. file
  */
 
 /**

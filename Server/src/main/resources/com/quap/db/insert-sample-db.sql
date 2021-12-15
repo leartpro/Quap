@@ -16,5 +16,7 @@ INSERT INTO participants(user_id, chatroom_id) VALUES(3, 2);
 INSERT INTO friends(friend1_id, friend2_id, chat_id) VALUES(2, 1, 1);
 INSERT INTO friends(friend1_id, friend2_id, chat_id) VALUES(1, 2, 1);
 INSERT INTO friends(friend1_id, friend2_id, chat_id) VALUES(1, 3, 1);
+INSERT INTO friends(friend1_id, friend2_id, chat_id) VALUES(3, 1, 1);
+
 
 

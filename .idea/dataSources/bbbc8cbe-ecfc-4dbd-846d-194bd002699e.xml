@@ -785,8 +785,8 @@ false YEKT
 false Z
 false Zulu
 </TimeZones>
-      <IntrospectionStateNumber>1132</IntrospectionStateNumber>
-      <StartupTime>1638703180</StartupTime>
+      <IntrospectionStateNumber>1249</IntrospectionStateNumber>
+      <StartupTime>1638959770</StartupTime>
     </root>
     <database id="2" parent="1" name="postgres">
       <ObjectId>13754</ObjectId>
@@ -802,7 +802,7 @@ false Zulu
 13388||-9223372036854775808|U|G
 13388||10|U|G</Grants>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>1133</IntrospectionStateNumber>
+      <IntrospectionStateNumber>1250</IntrospectionStateNumber>
       <Current>1</Current>
       <Relations>sequence|table|16404|16405|1
 sequence|table|16414|16415|1
@@ -811,9 +811,9 @@ sequence|table|16462|16463|1
 sequence|table|16490|16491|1
 sequence|table|16504|16505|1
 sequence|table|16520|16521|1
-sequence|table|17280|17281|1
-sequence|table|17293|17294|1
-sequence|table|17320|17321|1
+sequence|table|25725|25726|1
+sequence|table|25738|25739|1
+sequence|table|25765|25766|1
 </Relations>
     </database>
     <role id="3" parent="1" name="pg_database_owner">
@@ -893,7 +893,7 @@ sequence|table|17320|17321|1
       <Comment>standard public schema</Comment>
       <StateNumber>527</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>1133</IntrospectionStateNumber>
+      <IntrospectionStateNumber>1250</IntrospectionStateNumber>
       <Current>1</Current>
     </schema>
     <extension id="21" parent="2" name="adminpack">
@@ -1017,52 +1017,52 @@ sequence|table|17320|17321|1
       <DataType>bigint|0s</DataType>
     </sequence>
     <sequence id="36" parent="20" name="chatrooms_id_seq">
-      <ObjectId>17293</ObjectId>
+      <ObjectId>25738</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>1104</StateNumber>
+      <StateNumber>1245</StateNumber>
       <DataType>integer|0s</DataType>
     </sequence>
     <sequence id="37" parent="20" name="friends_id_seq">
-      <ObjectId>17320</ObjectId>
+      <ObjectId>25765</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>1106</StateNumber>
+      <StateNumber>1247</StateNumber>
       <DataType>integer|0s</DataType>
     </sequence>
     <sequence id="38" parent="20" name="users_id_seq">
-      <ObjectId>17280</ObjectId>
+      <ObjectId>25725</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>1103</StateNumber>
+      <StateNumber>1244</StateNumber>
       <DataType>integer|0s</DataType>
     </sequence>
     <table id="39" parent="20" name="chatrooms">
-      <ObjectId>17294</ObjectId>
+      <ObjectId>25739</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>1105</StateNumber>
+      <StateNumber>1246</StateNumber>
       <AccessMethodId>2</AccessMethodId>
     </table>
     <table id="40" parent="20" name="friends">
-      <ObjectId>17321</ObjectId>
+      <ObjectId>25766</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>1106</StateNumber>
+      <StateNumber>1247</StateNumber>
       <AccessMethodId>2</AccessMethodId>
     </table>
     <table id="41" parent="20" name="participants">
-      <ObjectId>17304</ObjectId>
+      <ObjectId>25749</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>1105</StateNumber>
+      <StateNumber>1246</StateNumber>
       <AccessMethodId>2</AccessMethodId>
     </table>
     <table id="42" parent="20" name="users">
-      <ObjectId>17281</ObjectId>
+      <ObjectId>25726</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>1105</StateNumber>
+      <StateNumber>1246</StateNumber>
       <AccessMethodId>2</AccessMethodId>
     </table>
     <column id="43" parent="39" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1104</StateNumber>
+      <StateNumber>1245</StateNumber>
       <TypeId>23</TypeId>
       <IdentityKind>always</IdentityKind>
     </column>
@@ -1070,14 +1070,14 @@ sequence|table|17320|17321|1
       <Position>2</Position>
       <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1104</StateNumber>
+      <StateNumber>1245</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="45" parent="39" name="is_private">
       <Position>3</Position>
       <DataType>boolean|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1104</StateNumber>
+      <StateNumber>1245</StateNumber>
       <DefaultExpression>false</DefaultExpression>
       <TypeId>16</TypeId>
     </column>
@@ -1085,13 +1085,13 @@ sequence|table|17320|17321|1
       <Position>4</Position>
       <DataType>timestamp|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1104</StateNumber>
+      <StateNumber>1245</StateNumber>
       <DefaultExpression>now()</DefaultExpression>
       <TypeId>1114</TypeId>
     </column>
     <index id="47" parent="39" name="chatrooms_pkey">
-      <ObjectId>17302</ObjectId>
-      <StateNumber>1104</StateNumber>
+      <ObjectId>25747</ObjectId>
+      <StateNumber>1245</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
@@ -1100,23 +1100,23 @@ sequence|table|17320|17321|1
       <AccessMethodId>403</AccessMethodId>
     </index>
     <key id="48" parent="39" name="chatrooms_pkey">
-      <ObjectId>17303</ObjectId>
-      <StateNumber>1104</StateNumber>
+      <ObjectId>25748</ObjectId>
+      <StateNumber>1245</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>chatrooms_pkey</UnderlyingIndexName>
     </key>
     <check id="49" parent="39" name="chatrooms_name_check">
-      <ObjectId>17299</ObjectId>
-      <StateNumber>1104</StateNumber>
+      <ObjectId>25744</ObjectId>
+      <StateNumber>1245</StateNumber>
       <ColNames>name</ColNames>
-      <Predicate>(length((name)::text) &lt;= 12) AND (length((name)::text) &gt;= 4)</Predicate>
+      <Predicate>(length((name)::text) &lt;= 24) AND (length((name)::text) &gt;= 4)</Predicate>
     </check>
     <column id="50" parent="40" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1106</StateNumber>
+      <StateNumber>1247</StateNumber>
       <TypeId>23</TypeId>
       <IdentityKind>always</IdentityKind>
     </column>
@@ -1124,26 +1124,26 @@ sequence|table|17320|17321|1
       <Position>2</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1106</StateNumber>
+      <StateNumber>1247</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <column id="52" parent="40" name="friend2_id">
       <Position>3</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1106</StateNumber>
+      <StateNumber>1247</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <column id="53" parent="40" name="chat_id">
       <Position>4</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1106</StateNumber>
+      <StateNumber>1247</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <index id="54" parent="40" name="friends_pkey">
-      <ObjectId>17324</ObjectId>
-      <StateNumber>1106</StateNumber>
+      <ObjectId>25769</ObjectId>
+      <StateNumber>1247</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
@@ -1152,8 +1152,8 @@ sequence|table|17320|17321|1
       <AccessMethodId>403</AccessMethodId>
     </index>
     <index id="55" parent="40" name="friends_friend1_id_friend2_id_key">
-      <ObjectId>17326</ObjectId>
-      <StateNumber>1106</StateNumber>
+      <ObjectId>25771</ObjectId>
+      <StateNumber>1247</StateNumber>
       <ColNames>friend1_id
 friend2_id</ColNames>
       <Unique>1</Unique>
@@ -1162,24 +1162,24 @@ friend2_id</ColNames>
       <AccessMethodId>403</AccessMethodId>
     </index>
     <key id="56" parent="40" name="friends_pkey">
-      <ObjectId>17325</ObjectId>
-      <StateNumber>1106</StateNumber>
+      <ObjectId>25770</ObjectId>
+      <StateNumber>1247</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>friends_pkey</UnderlyingIndexName>
     </key>
     <key id="57" parent="40" name="friends_friend1_id_friend2_id_key">
-      <ObjectId>17327</ObjectId>
-      <StateNumber>1106</StateNumber>
+      <ObjectId>25772</ObjectId>
+      <StateNumber>1247</StateNumber>
       <ColNames>friend1_id
 friend2_id</ColNames>
       <UnderlyingIndexName>friends_friend1_id_friend2_id_key</UnderlyingIndexName>
     </key>
     <foreign-key id="58" parent="40" name="friends_friend1_id_fkey">
-      <ObjectId>17328</ObjectId>
-      <StateNumber>1106</StateNumber>
+      <ObjectId>25773</ObjectId>
+      <StateNumber>1247</StateNumber>
       <ColNames>friend1_id</ColNames>
-      <RefTableId>17281</RefTableId>
+      <RefTableId>25726</RefTableId>
       <RefColPositions>1</RefColPositions>
       <RefTableName>users</RefTableName>
       <RefKeyName>users_pkey</RefKeyName>
@@ -1187,10 +1187,10 @@ friend2_id</ColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
     <foreign-key id="59" parent="40" name="friends_friend2_id_fkey">
-      <ObjectId>17333</ObjectId>
-      <StateNumber>1106</StateNumber>
+      <ObjectId>25778</ObjectId>
+      <StateNumber>1247</StateNumber>
       <ColNames>friend2_id</ColNames>
-      <RefTableId>17281</RefTableId>
+      <RefTableId>25726</RefTableId>
       <RefColPositions>1</RefColPositions>
       <RefTableName>users</RefTableName>
       <RefKeyName>users_pkey</RefKeyName>
@@ -1198,10 +1198,10 @@ friend2_id</ColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
     <foreign-key id="60" parent="40" name="friends_chat_id_fkey">
-      <ObjectId>17338</ObjectId>
-      <StateNumber>1106</StateNumber>
+      <ObjectId>25783</ObjectId>
+      <StateNumber>1247</StateNumber>
       <ColNames>chat_id</ColNames>
-      <RefTableId>17294</RefTableId>
+      <RefTableId>25739</RefTableId>
       <RefColPositions>1</RefColPositions>
       <RefTableName>chatrooms</RefTableName>
       <RefKeyName>chatrooms_pkey</RefKeyName>
@@ -1212,27 +1212,27 @@ friend2_id</ColNames>
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1105</StateNumber>
+      <StateNumber>1246</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <column id="62" parent="41" name="chatroom_id">
       <Position>2</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1105</StateNumber>
+      <StateNumber>1246</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <column id="63" parent="41" name="created_at">
       <Position>3</Position>
       <DataType>timestamp|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1105</StateNumber>
+      <StateNumber>1246</StateNumber>
       <DefaultExpression>now()</DefaultExpression>
       <TypeId>1114</TypeId>
     </column>
     <index id="64" parent="41" name="participants_user_id_chatroom_id_key">
-      <ObjectId>17308</ObjectId>
-      <StateNumber>1105</StateNumber>
+      <ObjectId>25753</ObjectId>
+      <StateNumber>1246</StateNumber>
       <ColNames>user_id
 chatroom_id</ColNames>
       <Unique>1</Unique>
@@ -1241,17 +1241,17 @@ chatroom_id</ColNames>
       <AccessMethodId>403</AccessMethodId>
     </index>
     <key id="65" parent="41" name="participants_user_id_chatroom_id_key">
-      <ObjectId>17309</ObjectId>
-      <StateNumber>1105</StateNumber>
+      <ObjectId>25754</ObjectId>
+      <StateNumber>1246</StateNumber>
       <ColNames>user_id
 chatroom_id</ColNames>
       <UnderlyingIndexName>participants_user_id_chatroom_id_key</UnderlyingIndexName>
     </key>
     <foreign-key id="66" parent="41" name="participants_user_id_fkey">
-      <ObjectId>17310</ObjectId>
-      <StateNumber>1105</StateNumber>
+      <ObjectId>25755</ObjectId>
+      <StateNumber>1246</StateNumber>
       <ColNames>user_id</ColNames>
-      <RefTableId>17281</RefTableId>
+      <RefTableId>25726</RefTableId>
       <RefColPositions>1</RefColPositions>
       <RefTableName>users</RefTableName>
       <RefKeyName>users_pkey</RefKeyName>
@@ -1259,10 +1259,10 @@ chatroom_id</ColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
     <foreign-key id="67" parent="41" name="participants_chatroom_id_fkey">
-      <ObjectId>17315</ObjectId>
-      <StateNumber>1105</StateNumber>
+      <ObjectId>25760</ObjectId>
+      <StateNumber>1246</StateNumber>
       <ColNames>chatroom_id</ColNames>
-      <RefTableId>17294</RefTableId>
+      <RefTableId>25739</RefTableId>
       <RefColPositions>1</RefColPositions>
       <RefTableName>chatrooms</RefTableName>
       <RefKeyName>chatrooms_pkey</RefKeyName>
@@ -1273,7 +1273,7 @@ chatroom_id</ColNames>
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1103</StateNumber>
+      <StateNumber>1244</StateNumber>
       <TypeId>23</TypeId>
       <IdentityKind>always</IdentityKind>
     </column>
@@ -1281,27 +1281,27 @@ chatroom_id</ColNames>
       <Position>2</Position>
       <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1103</StateNumber>
+      <StateNumber>1244</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="70" parent="42" name="password">
       <Position>3</Position>
       <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1103</StateNumber>
+      <StateNumber>1244</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="71" parent="42" name="created_at">
       <Position>4</Position>
       <DataType>timestamp|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1103</StateNumber>
+      <StateNumber>1244</StateNumber>
       <DefaultExpression>now()</DefaultExpression>
       <TypeId>1114</TypeId>
     </column>
     <index id="72" parent="42" name="users_pkey">
-      <ObjectId>17289</ObjectId>
-      <StateNumber>1103</StateNumber>
+      <ObjectId>25734</ObjectId>
+      <StateNumber>1244</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
@@ -1310,8 +1310,8 @@ chatroom_id</ColNames>
       <AccessMethodId>403</AccessMethodId>
     </index>
     <index id="73" parent="42" name="users_name_key">
-      <ObjectId>17291</ObjectId>
-      <StateNumber>1103</StateNumber>
+      <ObjectId>25736</ObjectId>
+      <StateNumber>1244</StateNumber>
       <ColNames>name</ColNames>
       <Unique>1</Unique>
       <CollationIds>100</CollationIds>
@@ -1320,27 +1320,27 @@ chatroom_id</ColNames>
       <AccessMethodId>403</AccessMethodId>
     </index>
     <key id="74" parent="42" name="users_pkey">
-      <ObjectId>17290</ObjectId>
-      <StateNumber>1103</StateNumber>
+      <ObjectId>25735</ObjectId>
+      <StateNumber>1244</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>users_pkey</UnderlyingIndexName>
     </key>
     <key id="75" parent="42" name="users_name_key">
-      <ObjectId>17292</ObjectId>
-      <StateNumber>1103</StateNumber>
+      <ObjectId>25737</ObjectId>
+      <StateNumber>1244</StateNumber>
       <ColNames>name</ColNames>
       <UnderlyingIndexName>users_name_key</UnderlyingIndexName>
     </key>
     <check id="76" parent="42" name="users_name_check">
-      <ObjectId>17285</ObjectId>
-      <StateNumber>1103</StateNumber>
+      <ObjectId>25730</ObjectId>
+      <StateNumber>1244</StateNumber>
       <ColNames>name</ColNames>
       <Predicate>(length((name)::text) &lt;= 12) AND (length((name)::text) &gt;= 4)</Predicate>
     </check>
     <check id="77" parent="42" name="users_password_check">
-      <ObjectId>17286</ObjectId>
-      <StateNumber>1103</StateNumber>
+      <ObjectId>25731</ObjectId>
+      <StateNumber>1244</StateNumber>
       <ColNames>password</ColNames>
       <Predicate>(length((password)::text) &lt;= 12) AND (length((password)::text) &gt;= 8)</Predicate>
     </check>

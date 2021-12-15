@@ -57,7 +57,7 @@ public class LoginWindowController {
         }
     }
 
-    private class Vista extends LoginVistaNavigator {
+    private static class Vista extends LoginVistaNavigator {
         @Override
         public boolean validLogin() {
             return false;
@@ -144,7 +144,7 @@ public class LoginWindowController {
                 System.out.println(pair);
                 taskList.remove(pair);
                 Optional<Integer> optional = pair.keySet().stream().findFirst();
-                if (!optional.isPresent()) {
+                if (optional.isEmpty()) {
                     return;
                 }
                 Integer key = optional.get();

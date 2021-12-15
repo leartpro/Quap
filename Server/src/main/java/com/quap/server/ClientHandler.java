@@ -24,6 +24,7 @@ public class ClientHandler implements Callable {
     private final BufferedReader reader;
     private OutputStream output;
     private final PrintWriter writer;
+    private String name;
 
     public ClientHandler(Socket socket, int ID, Server server) {
         this.socket = socket;
@@ -87,11 +88,10 @@ public class ClientHandler implements Callable {
                 JSONObject input = new JSONObject(content).getJSONObject("data");
                 int chatID = input.getInt("chat_id");
                 //TODO: receive message status success, rejected, lost, etc.
+                assert dbReader != null;
                 List<Integer> userIds = new ArrayList<>(dbReader.userIDsByChat(chatID));
                 for (Integer id : userIds) {
-                    //if(id != userID) { //dont sends to himself
                     server.forwardMessage(id, content);
-                    //}
                 }
             }
             case 'c' -> { //TODO: new chat is inserted into the db but no result is returned
@@ -107,6 +107,7 @@ public class ClientHandler implements Callable {
                 switch (new JSONObject(content).getString("type")) {
                     case "create-chat" -> {
                         String chatName = data.getString("chatname");
+                        assert dbReader != null;
                         JSONObject result = dbReader.addChat(senderID, chatName, false);
                         JSONObject json = new JSONObject();
                         json.put("return-value", "command");
@@ -130,9 +131,11 @@ public class ClientHandler implements Callable {
                         } catch (SQLException | URISyntaxException e) {
                             e.printStackTrace();
                         }
-                        String username = data.getString("username");
-                        int userID = dbReader.userIDByName(username);
-                        int chatID = data.getInt("chat_id");
+                        String username = data.getString("username"); //THe username to send to
+                        String senderName = name;
+                        assert dbReader != null;
+                        int userID = dbReader.userIDByName(username); //The user to send to
+                        int chatID = data.getInt("chat_id"); //the chat to invite to
                         JSONObject chat = dbReader.getChatByID(chatID);
                         JSONArray participants = dbReader.usersByChat(chatID);
                         JSONObject json = new JSONObject();
@@ -148,8 +151,6 @@ public class ClientHandler implements Callable {
                         } else {
                             json.put("error", "can not create this chat");
                         }
-                        //TODO: create message which should contain all needed data
-
                         server.forwardMessage(userID, json.toString());
                     }
                     case "join-chat" -> {
@@ -159,6 +160,7 @@ public class ClientHandler implements Callable {
                         } catch (SQLException | URISyntaxException e) {
                             e.printStackTrace();
                         }
+                        assert dbReader != null;
                         dbReader.addUserToChat(chatID, senderID);
                         JSONObject chat = dbReader.getChatByID(chatID);
                         JSONObject json = new JSONObject();
@@ -188,15 +190,15 @@ public class ClientHandler implements Callable {
                 String name = json.getString("name");
                 String password = json.getString("password");
                 boolean existing = json.getBoolean("existing");
-                String result;
+                JSONObject result;
                 if (existing) {
                     result = dbReader.verifyUser(name, password);
                 } else {
                     result = dbReader.insertUser(name, password);
                 }
-                userID = new JSONObject(result).getJSONObject("data").getInt("id");
-
-                send(result);
+                this.name = name;
+                userID = result.getJSONObject("data").getInt("id");
+                send(result.toString());
                 //TODO: set userID here
             }
         }

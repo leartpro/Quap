@@ -9,9 +9,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class WindowMoveHelper {
-    public WindowMoveHelper(Stage stage) {
-
-    }
 
     public static void addMoveListener(Stage stage) {
         MoveListener moveListener = new MoveListener(stage);
@@ -33,8 +30,7 @@ public class WindowMoveHelper {
         node.addEventHandler(MouseEvent.MOUSE_PRESSED, listener);
         node.addEventHandler(MouseEvent.MOUSE_DRAGGED, listener);
 
-        if (node instanceof Parent) {
-            Parent parent = (Parent) node;
+        if (node instanceof Parent parent) {
             ObservableList<Node> children = parent.getChildrenUnmodifiable();
             for (Node child : children) {
                 addListenerDeeply(child, listener);

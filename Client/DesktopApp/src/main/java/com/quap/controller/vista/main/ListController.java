@@ -126,7 +126,7 @@ public class ListController extends MainVistaNavigator {
         }
     }
 
-    private class ChatListCell extends ListCell<UserContent> {
+    private static class ChatListCell extends ListCell<UserContent> {
         @Override
         protected void updateItem(UserContent content, boolean isEmpty) {
             super.updateItem(content, isEmpty);
