@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="09927819-4efd-4d77-952e-37e9b4faac9c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/desktopapp/scene/main-window2.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/desktopapp/scene/main-window-old.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/desktopapp/scene/main-window.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/desktopapp/scene/main-window.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/desktopapp/scene/main-window2.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/styles/colors.css" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/styles/colors.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -282,14 +285,7 @@
       <workItem from="1639415629604" duration="12086000" />
       <workItem from="1639477952826" duration="7753000" />
       <workItem from="1639586623308" duration="3087000" />
-      <workItem from="1639591824771" duration="9031000" />
-    </task>
-    <task id="LOCAL-00018" summary="Userdata">
-      <created>1636652215139</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1636652215139</updated>
+      <workItem from="1639591824771" duration="11056000" />
     </task>
     <task id="LOCAL-00019" summary="Read Config when logging in">
       <created>1636654951332</created>
@@ -627,7 +623,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639599435986</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="Add alternativ main-window design">
+      <created>1639604776496</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1639604776496</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -674,7 +677,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="Generic Content from Client in UI" />
     <MESSAGE value="V1" />
     <MESSAGE value="Add UserID to ClientHandlers" />
     <MESSAGE value="Client communication" />
@@ -699,7 +701,8 @@
     <MESSAGE value="Add .gitignore" />
     <MESSAGE value="Update gitignore" />
     <MESSAGE value="Bug and Warning fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Bug and Warning fixes" />
+    <MESSAGE value="Add alternativ main-window design" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add alternativ main-window design" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XPathView.XPathProjectComponent">

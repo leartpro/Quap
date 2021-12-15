@@ -50,6 +50,15 @@
   -fx-background-color: -selectOnLight-color;
 }
 
+.menu-bar {
+  -fx-use-system-menu-bar:true;
+  -fx-border:none;
+  -fx-border-style:null;
+  -fx-cursor:hand;
+  -fx-padding:0px;
+  -fx-spacing: 0px;
+}
+
 .menu,
 .menu-item {
   -fx-background-color: -foreground-color;
