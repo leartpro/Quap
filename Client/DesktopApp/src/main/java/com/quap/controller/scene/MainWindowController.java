@@ -19,6 +19,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
@@ -37,16 +39,27 @@ public class MainWindowController implements ClientObserver {
 
     private MainVistaNavigator currentNode;
     private double lastX = 0.0d, lastY = 0.0d, lastWidth = 0.0d, lastHeight = 0.0d;
+    private ToggleGroup menuGroup, submenuGroup;
+    public static Client client;
+    public String currentNodeID;
+
 
     @FXML
-    private StackPane stackContent;
+    private Label lblName;
+    @FXML
+    private ToggleButton btnFriends;
+    @FXML
+    private ToggleButton btnChatrooms;
+    @FXML
+    private ToggleButton btnProfil;
+    @FXML
+    private ToggleButton btnSettings;
     @FXML
     private VBox vBoxButtonHolder;
     @FXML
+    private StackPane stackContent;
+    @FXML
     private Label lblServer_IP;
-
-    public static Client client;
-    public String currentNodeID;
 
     @FXML
     public void initialize() {
@@ -59,6 +72,20 @@ public class MainWindowController implements ClientObserver {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        menuGroup = new ToggleGroup();
+        btnFriends.setToggleGroup(menuGroup);
+        btnChatrooms.setToggleGroup(menuGroup);
+        btnProfil.setToggleGroup(menuGroup);
+        btnSettings.setToggleGroup(menuGroup);
+
+        menuGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue != null) {
+                newValue.setSelected(true);
+                if(oldValue != null) {
+                    oldValue.setSelected(false);
+                }
+            }
+        });
     }
 
     public void setVista(Node node, MainVistaNavigator controller) { //set the current node is called by VistaController

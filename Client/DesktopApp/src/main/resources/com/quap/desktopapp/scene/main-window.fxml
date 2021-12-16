@@ -5,14 +5,14 @@
 <?import javafx.scene.layout.*?>
 <HBox prefHeight="409.0" prefWidth="619.0" styleClass="background" stylesheets="@../../styles/colors.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.scene.MainWindowController">
    <children>
-         <VBox stylesheets="@../../styles/colors.css" HBox.hgrow="SOMETIMES">
-         <Label minHeight="25.0" text="Name" VBox.vgrow="SOMETIMES" />
+         <VBox prefWidth="100.0" stylesheets="@../../styles/colors.css" HBox.hgrow="SOMETIMES">
+         <Label fx:id="lblName" minHeight="25.0" text="Name" VBox.vgrow="SOMETIMES" />
              <VBox alignment="CENTER" styleClass="ground" VBox.vgrow="NEVER">
                  <children>
-                     <Button mnemonicParsing="false" onAction="#friends" text="Friends" />
-                     <Button mnemonicParsing="false" onAction="#chatrooms" text="Chatrooms" />
-                     <Button mnemonicParsing="false" onAction="#profil" text="Profil" />
-                     <Button mnemonicParsing="false" onAction="#settings" text="Settings" />
+               <ToggleButton fx:id="btnFriends" mnemonicParsing="false" onAction="#friends" text="Friends" />
+               <ToggleButton fx:id="btnChatrooms" mnemonicParsing="false" onAction="#chatrooms" text="Chatrooms" />
+               <ToggleButton fx:id="btnProfil" mnemonicParsing="false" onAction="#profil" text="Profil" />
+               <ToggleButton fx:id="btnSettings" mnemonicParsing="false" onAction="#settings" text="Settings" />
                  </children>
              </VBox>
              <VBox fx:id="vBoxButtonHolder" alignment="TOP_CENTER" styleClass="ground" VBox.vgrow="ALWAYS" />

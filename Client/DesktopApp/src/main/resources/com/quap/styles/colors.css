@@ -37,12 +37,16 @@
   -fx-text-fill: -text-color;
 }
 
-.button {
+.button, .toggle-button {
   -fx-text-fill: -text-color;
   -fx-background-color: transparent;
 }
 
-.button:hover {
+.button:hover, .toggle-button:hover {
+  -fx-background-color: -selectOnLight-color;
+}
+
+.toggle-button:selected {
   -fx-background-color: -selectOnLight-color;
 }
 
