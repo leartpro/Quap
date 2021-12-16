@@ -11,8 +11,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e/entities/entities.dat.values.s" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e/entities/entities.dat.values.s" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e/entities/entities.dat_i" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e/entities/entities.dat_i" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/scene/LoginWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/scene/LoginWindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/scene/MainWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/scene/MainWindowController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/desktopapp/scene/main-window.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/desktopapp/scene/main-window.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -290,14 +288,7 @@
       <workItem from="1639477952826" duration="7753000" />
       <workItem from="1639586623308" duration="3087000" />
       <workItem from="1639591824771" duration="11336000" />
-      <workItem from="1639668706361" duration="11165000" />
-    </task>
-    <task id="LOCAL-00021" summary="Refresh db initialization">
-      <created>1636823942787</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1636823942787</updated>
+      <workItem from="1639668706361" duration="12374000" />
     </task>
     <task id="LOCAL-00022" summary="Postgres SQL">
       <created>1636847288349</created>
@@ -635,7 +626,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639678060468</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <task id="LOCAL-00070" summary="Fix Small UI Bugs">
+      <created>1639686659595</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1639686659595</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -682,7 +680,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="Client communication" />
     <MESSAGE value="Add Client - Server -Client Communication" />
     <MESSAGE value="colors.css" />
     <MESSAGE value="Remove Size Properties in FXML" />
@@ -707,7 +704,8 @@
     <MESSAGE value="Add alternativ main-window design" />
     <MESSAGE value="Improve alternativ main-window design" />
     <MESSAGE value="New UI Features" />
-    <option name="LAST_COMMIT_MESSAGE" value="New UI Features" />
+    <MESSAGE value="Fix Small UI Bugs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix Small UI Bugs" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XPathView.XPathProjectComponent">
