@@ -5,9 +5,9 @@
 <?import javafx.scene.layout.*?>
 <HBox prefHeight="409.0" prefWidth="619.0" styleClass="background" stylesheets="@../../styles/colors.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.scene.MainWindowController">
    <children>
-         <VBox prefWidth="100.0" stylesheets="@../../styles/colors.css" HBox.hgrow="SOMETIMES">
-         <Label fx:id="lblName" minHeight="25.0" text="Name" VBox.vgrow="SOMETIMES" />
-             <VBox alignment="CENTER" styleClass="ground" VBox.vgrow="NEVER">
+         <VBox prefWidth="100.0" styleClass="ground" stylesheets="@../../styles/colors.css" HBox.hgrow="NEVER">
+         <Label fx:id="lblName" alignment="CENTER" maxWidth="1.7976931348623157E308" minHeight="25.0" styleClass="background" text="Name" VBox.vgrow="NEVER" />
+             <VBox alignment="CENTER" VBox.vgrow="NEVER">
                  <children>
                <ToggleButton fx:id="btnFriends" mnemonicParsing="false" onAction="#friends" text="Friends" />
                <ToggleButton fx:id="btnChatrooms" mnemonicParsing="false" onAction="#chatrooms" text="Chatrooms" />
@@ -15,7 +15,10 @@
                <ToggleButton fx:id="btnSettings" mnemonicParsing="false" onAction="#settings" text="Settings" />
                  </children>
              </VBox>
-             <VBox fx:id="vBoxButtonHolder" alignment="TOP_CENTER" styleClass="ground" VBox.vgrow="ALWAYS" />
+             <VBox fx:id="vBoxButtonHolder" alignment="TOP_CENTER" VBox.vgrow="ALWAYS">
+            <VBox.margin>
+               <Insets top="25.0" />
+            </VBox.margin></VBox>
          </VBox>
       <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
          <children>

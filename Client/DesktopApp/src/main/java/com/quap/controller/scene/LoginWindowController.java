@@ -202,6 +202,7 @@ public class LoginWindowController {
                                             MainWindowController mainWindowController = loader.getController();
                                             VistaController.setMainWindowController(mainWindowController);
                                             mainWindowController.setClient(client);
+                                            mainWindowController.setName(name);
                                             //mainWindowController.setConfiguration(configuration);
                                             //TODO: give more attributes to main scene controller
                                             //VistaController.loadMainVista(VistaController.LIST); //TODO: necessary?

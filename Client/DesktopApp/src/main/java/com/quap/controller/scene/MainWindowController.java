@@ -169,6 +169,10 @@ public class MainWindowController implements ClientObserver {
         }
     }
 
+    public void setName(String name) {
+        lblName.setText(name);
+    }
+
     public void chatrooms(ActionEvent actionEvent) {
         VistaController.loadMainVista(VistaController.LIST);
         //load the userdata into the default UI page
