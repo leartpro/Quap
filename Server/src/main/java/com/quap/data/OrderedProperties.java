@@ -36,6 +36,7 @@ import java.util.*;
  *
  * @see Properties
  */
+@SuppressWarnings("ALL")
 public final class OrderedProperties implements Serializable {
 
     private static final long serialVersionUID = 1L;

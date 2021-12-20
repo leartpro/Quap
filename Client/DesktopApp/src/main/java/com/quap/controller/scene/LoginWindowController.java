@@ -2,7 +2,6 @@ package com.quap.controller.scene;
 
 import com.quap.client.Client;
 import com.quap.client.data.ConfigReader;
-import com.quap.controller.VistaController;
 import com.quap.controller.vista.VistaNavigator;
 import com.quap.controller.vista.login.LoginVistaNavigator;
 import com.quap.utils.ResizeHelper;
@@ -22,7 +21,7 @@ import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.*;
 
-public class LoginWindowController {
+public class LoginWindowController extends WindowController{
     private String name, password;
     private final Vista vista = new Vista();
     private LoginVistaNavigator currentNode;
@@ -41,9 +40,9 @@ public class LoginWindowController {
         this.password = "example!50AB";*/
     }
 
-    public void setVista(Parent node, LoginVistaNavigator controller) {
+    public void setVista(Parent node, VistaNavigator controller) {
         if (node.getId().equals("signUp") || node.getId().equals("signIn")) {
-            currentNode = controller;
+            currentNode = (LoginVistaNavigator)controller;
         } else {
             IllegalArgumentException e;
         }
@@ -200,7 +199,6 @@ public class LoginWindowController {
                                             stage.setWidth(1080);
                                             stage.setHeight(720);
                                             MainWindowController mainWindowController = loader.getController();
-                                            VistaController.setMainWindowController(mainWindowController);
                                             mainWindowController.setClient(client);
                                             mainWindowController.setName(name);
                                             //mainWindowController.setConfiguration(configuration);

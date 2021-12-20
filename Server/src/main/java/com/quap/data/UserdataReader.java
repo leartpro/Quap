@@ -182,20 +182,7 @@ public class UserdataReader {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        try {
-            assert result != null;
-            json = resultSetToJSONArray(result);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                assert result != null;
-                result.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        return json;
+        return getObjects(result, json);
     }
 
     private JSONArray chatroomsByUser(int id) {
@@ -214,20 +201,7 @@ public class UserdataReader {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        try {
-            assert result != null;
-            json = resultSetToJSONArray(result);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                assert result != null;
-                result.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        return json;
+        return getObjects(result, json);
     }
 
     public List<Integer> userIDsByChat(int chatID) {
@@ -276,6 +250,10 @@ public class UserdataReader {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return getObjects(result, json);
+    }
+
+    private JSONArray getObjects(ResultSet result, JSONArray json) {
         try {
             assert result != null;
             json = resultSetToJSONArray(result);
@@ -389,7 +367,6 @@ public class UserdataReader {
             e.printStackTrace();
         } finally {
             try {
-                assert result != null;
                 assert result != null;
                 result.close();
             } catch (SQLException e) {

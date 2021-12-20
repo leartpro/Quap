@@ -45,6 +45,7 @@ public class Launcher extends Application {
         tasks.put(0, completionService.submit(init.connect()));
         taskList.add(tasks);
         for(int i = 0; i < 4; i++) { //TODO: errors are not handled right
+            //TODO: move to runtime package
             for (Map<Integer, Future<Boolean>> pair : taskList) {
                 System.out.println(pair);
                 taskList.remove(pair);

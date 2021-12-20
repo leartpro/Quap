@@ -7,6 +7,7 @@ import com.quap.client.domain.UserContent;
 import com.quap.client.utils.ClientObserver;
 import com.quap.controller.SceneController;
 import com.quap.controller.VistaController;
+import com.quap.controller.vista.VistaNavigator;
 import com.quap.controller.vista.main.ChatController;
 import com.quap.controller.vista.main.MainVistaNavigator;
 import javafx.application.Platform;
@@ -34,7 +35,7 @@ import java.util.Scanner;
 
 import static com.quap.controller.VistaController.CHAT;
 
-public class MainWindowController implements ClientObserver {
+public class MainWindowController extends WindowController implements ClientObserver {
 
     private MainVistaNavigator currentNode;
     private double lastX = 0.0d, lastY = 0.0d, lastWidth = 0.0d, lastHeight = 0.0d;
@@ -88,10 +89,10 @@ public class MainWindowController implements ClientObserver {
         });
     }
 
-    public void setVista(Node node, MainVistaNavigator controller) { //set the current node is called by VistaController
+    public void setVista(Parent node, VistaNavigator controller) { //set the current node is called by VistaController
         if (node.getId().equals("chat") || node.getId().equals("list") || node.getId().equals("profile") || node.getId().equals("settings")) {
             currentNodeID = node.getId();
-            currentNode = controller;
+            currentNode = (MainVistaNavigator)controller;
             currentNode.setClient(client);
         } else {
             throw new IllegalArgumentException();
@@ -150,7 +151,7 @@ public class MainWindowController implements ClientObserver {
     }
 
     public void friends(ActionEvent actionEvent) {
-        VistaController.loadMainVista(VistaController.LIST);
+        VistaController.loadVista(VistaController.LIST, this);
         currentNode.loadContent(new ArrayList<>(client.getFriends()));
         currentNode.setType("friends");
         loadButtons(client.getFriends());
@@ -162,7 +163,7 @@ public class MainWindowController implements ClientObserver {
         for(UserContent content : data) {
             ToggleButton b = new ToggleButton(content.content());
             b.setOnAction(e -> {
-                VistaController.loadMainVista(CHAT);
+                VistaController.loadVista(CHAT, this);
                 currentNode.loadContent(
                         client.getMessagesByChat(content.chatID())
                 );
@@ -178,7 +179,7 @@ public class MainWindowController implements ClientObserver {
     }
 
     public void chatrooms(ActionEvent actionEvent) {
-        VistaController.loadMainVista(VistaController.LIST);
+        VistaController.loadVista(VistaController.LIST, this);
         currentNode.loadContent(new ArrayList<>(client.getChats()));
         currentNode.setType("chatrooms");
         loadButtons(client.getChats());

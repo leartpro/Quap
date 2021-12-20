@@ -226,8 +226,7 @@ public class ConnectionWindowController implements Initializable {
             stage.setScene(scene);
             LoginWindowController loginWindowController = loader.getController();
             loginWindowController.setClient(client);
-            VistaController.setLoginWindowController(loginWindowController);
-            VistaController.loadLoginVista(VistaController.SignIn);
+            VistaController.loadVista(VistaController.SignIn, loginWindowController);
             stage.show();
             WindowMoveHelper.addMoveListener(stage);
             return true;

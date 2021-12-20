@@ -2,6 +2,7 @@ package com.quap.controller;
 
 import com.quap.controller.scene.LoginWindowController;
 import com.quap.controller.scene.MainWindowController;
+import com.quap.controller.scene.WindowController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 
@@ -22,7 +23,7 @@ public class VistaController {
     private static LoginWindowController loginWindowController;
     private static MainWindowController mainWindowController;
 
-    public static void loadLoginVista(String fxml) {
+    /*public static void loadLoginVista(String fxml) {
         Parent node;
         FXMLLoader loader;
         try {
@@ -32,9 +33,21 @@ public class VistaController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }*/
+
+    public static void loadVista(String fxml, WindowController controller) {
+        Parent node;
+        FXMLLoader loader;
+        try {
+            loader = new FXMLLoader(VistaController.class.getResource(fxml));
+            node = loader.load();
+            controller.setVista(node, loader.getController());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public static void loadMainVista(String fxml) {
+    /*public static void loadMainVista(String fxml) {
         Parent node;
         FXMLLoader loader;
         try {
@@ -44,9 +57,10 @@ public class VistaController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
-    public static void setLoginWindowController(LoginWindowController loginWindowController) {
+    //TODO: solve with observer instead
+    /*public static void setLoginWindowController(LoginWindowController loginWindowController) {
         VistaController.loginWindowController = loginWindowController;
     }
 
@@ -56,5 +70,5 @@ public class VistaController {
 
     public static void setMainWindowController(MainWindowController mainWindowController) {
         VistaController.mainWindowController = mainWindowController;
-    }
+    }*/
 }
