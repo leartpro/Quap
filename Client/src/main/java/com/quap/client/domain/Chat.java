@@ -3,8 +3,6 @@ package com.quap.client.domain;
 import org.json.JSONObject;
 
 import java.time.LocalTime;
-import java.util.Date;
-import java.util.Objects;
 
 public final class Chat extends UserContent {
     private final String name;
@@ -46,11 +44,12 @@ public final class Chat extends UserContent {
         );
     }
 
-    public String name() {
-        return name;
-    }
+    public String name() { return name; }
 
-    public int id() { //TODO: remove id() or getId()
+    public int chatID() { return id; }
+
+    @Override
+    public int id() {
         return id;
     }
 
@@ -60,22 +59,6 @@ public final class Chat extends UserContent {
 
     public String created_at() {
         return created_at;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == this) return true;
-        if (obj == null || obj.getClass() != this.getClass()) return false;
-        var that = (Chat) obj;
-        return Objects.equals(this.name, that.name) &&
-                this.id == that.id &&
-                Objects.equals(this.joined_at, that.joined_at) &&
-                Objects.equals(this.created_at, that.created_at);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, id, joined_at, created_at);
     }
 
     @Override
@@ -97,12 +80,7 @@ public final class Chat extends UserContent {
     }
 
     @Override
-    public int getId() {
-        return id;
-    }
-
-    @Override
-    public Date getTime() {
-        return new Date(joined_at);
+    public String content() {
+        return name;
     }
 }

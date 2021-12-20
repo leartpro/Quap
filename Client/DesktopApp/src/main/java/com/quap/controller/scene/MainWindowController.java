@@ -2,7 +2,6 @@ package com.quap.controller.scene;
 
 import com.quap.client.Client;
 import com.quap.client.domain.Chat;
-import com.quap.client.domain.Friend;
 import com.quap.client.domain.Message;
 import com.quap.client.domain.UserContent;
 import com.quap.client.utils.ClientObserver;
@@ -73,6 +72,7 @@ public class MainWindowController implements ClientObserver {
             e.printStackTrace();
         }
         menuGroup = new ToggleGroup();
+        submenuGroup = new ToggleGroup();
         btnFriends.setToggleGroup(menuGroup);
         btnChatrooms.setToggleGroup(menuGroup);
         btnProfil.setToggleGroup(menuGroup);
@@ -151,20 +151,24 @@ public class MainWindowController implements ClientObserver {
 
     public void friends(ActionEvent actionEvent) {
         VistaController.loadMainVista(VistaController.LIST);
-        //load the userdata into the default UI page
-        currentNode.loadContent(client.getFriends());
+        currentNode.loadContent(new ArrayList<>(client.getFriends()));
         currentNode.setType("friends");
-        vBoxButtonHolder.getChildren().clear();
+        loadButtons(client.getFriends());
+    }
 
-        for (UserContent friend : client.getFriends()) {
-            Button b = new Button(((Friend) friend).name());
+    public void loadButtons(List<UserContent> data) {
+        vBoxButtonHolder.getChildren().clear();
+        submenuGroup.getToggles().clear();
+        for(UserContent content : data) {
+            ToggleButton b = new ToggleButton(content.content());
             b.setOnAction(e -> {
                 VistaController.loadMainVista(CHAT);
                 currentNode.loadContent(
-                        client.getMessagesByChat(((Friend) friend).chatID())
+                        client.getMessagesByChat(content.chatID())
                 );
-                client.setCurrentChatID(((Friend) friend).chatID());
+                client.setCurrentChatID(content.chatID());
             });
+            b.setToggleGroup(submenuGroup);
             vBoxButtonHolder.getChildren().add(b);
         }
     }
@@ -175,22 +179,9 @@ public class MainWindowController implements ClientObserver {
 
     public void chatrooms(ActionEvent actionEvent) {
         VistaController.loadMainVista(VistaController.LIST);
-        //load the userdata into the default UI page
-        currentNode.loadContent(client.getChats());
+        currentNode.loadContent(new ArrayList<>(client.getChats()));
         currentNode.setType("chatrooms");
-        vBoxButtonHolder.getChildren().clear();
-
-        for (UserContent chat : client.getChats()) {
-            Button b = new Button(((Chat) chat).name());
-            b.setOnAction(e -> {
-                VistaController.loadMainVista(CHAT);
-                currentNode.loadContent(
-                        client.getMessagesByChat(((Chat) chat).id())
-                );
-                client.setCurrentChatID(((Chat) chat).id());
-            });
-            vBoxButtonHolder.getChildren().add(b);
-        }
+        loadButtons(client.getChats());
     }
 
     public void profil(ActionEvent actionEvent) {
@@ -227,20 +218,7 @@ public class MainWindowController implements ClientObserver {
     public void createChatEvent(Chat chat) {
         System.out.println("createChatEvent");
         if(currentNode.getType().equals("chatrooms")) {
-            Platform.runLater(() -> {
-                vBoxButtonHolder.getChildren().clear();
-                for (UserContent content : client.getChats()) {
-                    Button b = new Button(((Chat) content).name());
-                    b.setOnAction(e -> {
-                        VistaController.loadMainVista(CHAT);
-                        currentNode.loadContent(
-                                client.getMessagesByChat(((Chat) content).id())
-                        );
-                        client.setCurrentChatID(((Chat) content).id());
-                    });
-                    vBoxButtonHolder.getChildren().add(b);
-                }
-            });
+            Platform.runLater(() -> loadButtons(client.getChats()));
             if(currentNodeID.equals("list")) {
                 Platform.runLater(() -> currentNode.loadContent(Collections.singletonList(chat)));
             }
@@ -251,7 +229,7 @@ public class MainWindowController implements ClientObserver {
     public void inviteEvent(Chat chat, int senderID, String senderName, List<String> participants) { //TODO: submit requestPopup if the user wants to accept or decline
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/quap/desktopapp/popup/requestPopup.fxml"));
         Stage primaryStage = (Stage) Stage.getWindows().stream().filter(Window::isShowing).findFirst().orElse(null);
-        String message = "invited by: " + "sample user" + "to the chat: " + chat;
+        //String message = "invited by: " + "sample user" + "to the chat: " + chat;
         List<String> info = new ArrayList<>();
         info.add("Invited by: " + senderName + "#" + senderID); //TODO: senderName is self
         Scanner scanner = new Scanner(chat.display());
@@ -273,7 +251,7 @@ public class MainWindowController implements ClientObserver {
             if (decision) {
                 //TODO: send join-chat-request to the server with chat and sender_id
                 System.out.println("send join-chat-request to the server with chat and sender_id...");
-                client.joinChat(chat.id());
+                client.joinChat(chat.chatID());
             }
         });
     }
@@ -282,20 +260,7 @@ public class MainWindowController implements ClientObserver {
     public void joinChatEvent(Chat chat) { //TODO: complete method
         System.out.println("joinChatEvent");
         if(currentNode.getType().equals("chatrooms")) {
-            Platform.runLater(() -> {
-                vBoxButtonHolder.getChildren().clear();
-                for (UserContent content : client.getChats()) {
-                    Button b = new Button(((Chat) content).name());
-                    b.setOnAction(e -> {
-                        VistaController.loadMainVista(CHAT);
-                        currentNode.loadContent(
-                                client.getMessagesByChat(((Chat) content).id())
-                        );
-                        client.setCurrentChatID(((Chat) content).id());
-                    });
-                    vBoxButtonHolder.getChildren().add(b);
-                }
-            });
+            Platform.runLater(() -> loadButtons(client.getChats()));
             if(currentNodeID.equals("list")) {
                 Platform.runLater(() -> currentNode.loadContent(Collections.singletonList(chat)));
             }

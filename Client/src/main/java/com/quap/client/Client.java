@@ -1,10 +1,7 @@
 package com.quap.client;
 
 import com.quap.client.data.UserdataReader;
-import com.quap.client.domain.Chat;
-import com.quap.client.domain.Friend;
-import com.quap.client.domain.Message;
-import com.quap.client.domain.UserContent;
+import com.quap.client.domain.*;
 import com.quap.client.utils.ClientObserver;
 import com.quap.client.utils.Prefixes;
 import com.quap.client.utils.Suffixes;
@@ -261,7 +258,7 @@ public class Client {
         }
     }
 
-    public List<UserContent> getMessagesByChat(int id) {
+    public List<Content> getMessagesByChat(int id) {
         return new ArrayList<>(
                 dataReader.getMessagesByChat(id)
         );

@@ -1,6 +1,7 @@
 package com.quap.controller.vista.main;
 
 import com.quap.client.Client;
+import com.quap.client.domain.Content;
 import com.quap.client.domain.UserContent;
 import com.quap.controller.SceneController;
 import javafx.event.ActionEvent;
@@ -51,7 +52,7 @@ public class ListController extends MainVistaNavigator {
                 if (input != null && !input.equals("")) {
                     switch (type) {
                         case "chatrooms" -> {
-                            int chatId = listView.getSelectionModel().getSelectedItem().getId(); //TODO: is 0
+                            int chatId = listView.getSelectionModel().getSelectedItem().id(); //TODO: is 0
                             client.inviteUser(input, chatId);
                         }
                         case "friends" -> {
@@ -70,9 +71,9 @@ public class ListController extends MainVistaNavigator {
     }
 
     @Override
-    public void loadContent(List<UserContent> content) {
-        for (UserContent c : content) {
-            listView.getItems().add(c);
+    public void loadContent(List<Content> content) {
+        for (Content c : content) {
+            listView.getItems().add((UserContent)c);
         }
     }
 

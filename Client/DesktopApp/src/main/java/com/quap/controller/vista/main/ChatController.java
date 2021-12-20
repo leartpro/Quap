@@ -1,8 +1,8 @@
 package com.quap.controller.vista.main;
 
 import com.quap.client.Client;
+import com.quap.client.domain.Content;
 import com.quap.client.domain.Message;
-import com.quap.client.domain.UserContent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
@@ -26,23 +26,17 @@ public class ChatController extends MainVistaNavigator{
     private String type;
 
     @FXML
-    public void initialize() {
-
-    }
-
-    @FXML
-    public void send(KeyEvent keyEvent) {
+    public void send(KeyEvent keyEvent) { //TODO: box shake event
         if(keyEvent.getCode() == KeyCode.ENTER) {
             if(textConsole.getText().length() > 0) {
                 client.sendMessage(textConsole.getText());
             }
             textConsole.setText("");
         }
-        //TODO: box shake event
     }
 
     @Override
-    public void loadContent(List<UserContent> content) {
+    public void loadContent(List<Content> content) {
         for (Object o : content) {
             chatArea.appendText(o + "\n");
         }
