@@ -1,4 +1,4 @@
 package com.quap.controller.vista;
 
-public interface MainVistaObserver {
+public interface MainVistaObserver extends VistaObserver {
 }

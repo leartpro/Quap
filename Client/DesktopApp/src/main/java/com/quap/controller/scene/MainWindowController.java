@@ -7,6 +7,7 @@ import com.quap.client.domain.UserContent;
 import com.quap.client.utils.ClientObserver;
 import com.quap.controller.SceneController;
 import com.quap.controller.VistaController;
+import com.quap.controller.vista.MainVistaObserver;
 import com.quap.controller.vista.VistaNavigator;
 import com.quap.controller.vista.main.ChatController;
 import com.quap.controller.vista.main.MainVistaNavigator;
@@ -35,7 +36,7 @@ import java.util.Scanner;
 
 import static com.quap.controller.VistaController.CHAT;
 
-public class MainWindowController extends WindowController implements ClientObserver {
+public class MainWindowController extends WindowController implements ClientObserver, MainVistaObserver {
 
     private MainVistaNavigator currentNode;
     private double lastX = 0.0d, lastY = 0.0d, lastWidth = 0.0d, lastHeight = 0.0d;

@@ -1,6 +1,7 @@
 package com.quap.controller.vista.login;
 
 import com.quap.controller.VistaController;
+import com.quap.controller.vista.LoginVistaObserver;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -9,8 +10,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Paint;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SignUpController extends LoginVistaNavigator {
     private String username = "Anonym", password = "";
+
+    private final List<LoginVistaObserver> observers = new ArrayList<>();
 
 
 
@@ -43,7 +49,9 @@ public class SignUpController extends LoginVistaNavigator {
         } else {
             lblPasswordConfirm.setTextFill(Paint.valueOf("red"));
         }
-        loginWindowController.toggleLogin(validLogin());
+        for (LoginVistaObserver c : observers) {
+            c.toggleLoginEvent(validLogin());
+        }
     }
 
     @Override
@@ -93,34 +101,35 @@ public class SignUpController extends LoginVistaNavigator {
     }
 
     @FXML
-    void validatePassword(KeyEvent keyEvent) { //TODO: resolve duplications with node controller
+    void validatePassword(KeyEvent keyEvent) {
         password = txtPassword.getText();
-        if(password.matches("(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,12}")) {
-            lblPassword.setTextFill(Paint.valueOf("green"));
-        } else if(password.length()==0) {
-            lblPassword.setTextFill(Paint.valueOf("gray"));
-        } else {
-            lblPassword.setTextFill(Paint.valueOf("red"));
+        LoginVistaNavigator.validatePassword(password, lblPassword);
+        for (LoginVistaObserver c : observers) {
+            c.toggleLoginEvent(validLogin());
         }
-        loginWindowController.toggleLogin(validLogin());
     }
 
     public void validateUsername(KeyEvent keyEvent) {
         username = txtUsername.getText();
-        if(username.matches("[a-zA-Z]{4,12}")) {
-            lblUsername.setTextFill(Paint.valueOf("green"));
-        } else if(username.length()==0) {
-            lblUsername.setTextFill(Paint.valueOf("gray"));
-        } else {
-            lblUsername.setTextFill(Paint.valueOf("red"));
+        LoginVistaNavigator.validateUsername(username, lblUsername);
+        for (LoginVistaObserver c : observers) {
+            c.toggleLoginEvent(validLogin());
         }
-        loginWindowController.toggleLogin(validLogin());
     }
 
     @FXML
     void signIn(ActionEvent event) {
-        VistaController.loadLoginVista(VistaController.SignIn);
+        for (LoginVistaObserver c : observers) {
+            c.swapVistaEvent(VistaController.SignIn);
+        }
     }
 
+    public void addObserver(LoginVistaObserver observer) {
+        observers.add(observer);
+    }
+
+    public void removeObserver(LoginVistaObserver observer) {
+        observers.remove(observer);
+    }
 
 }

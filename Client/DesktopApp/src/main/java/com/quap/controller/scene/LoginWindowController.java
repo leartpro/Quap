@@ -2,6 +2,8 @@ package com.quap.controller.scene;
 
 import com.quap.client.Client;
 import com.quap.client.data.ConfigReader;
+import com.quap.controller.VistaController;
+import com.quap.controller.vista.LoginVistaObserver;
 import com.quap.controller.vista.VistaNavigator;
 import com.quap.controller.vista.login.LoginVistaNavigator;
 import com.quap.utils.ResizeHelper;
@@ -21,7 +23,7 @@ import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.*;
 
-public class LoginWindowController extends WindowController{
+public class LoginWindowController extends WindowController implements LoginVistaObserver {
     private String name, password;
     private final Vista vista = new Vista();
     private LoginVistaNavigator currentNode;
@@ -44,8 +46,9 @@ public class LoginWindowController extends WindowController{
         if (node.getId().equals("signUp") || node.getId().equals("signIn")) {
             currentNode = (LoginVistaNavigator)controller;
         } else {
-            IllegalArgumentException e;
+            throw new IllegalArgumentException();
         }
+        currentNode.addObserver(this);
         vistaHolder.getChildren().setAll(node);
         if (node.getId().equals("signUp")) {
             existingUser = false;
@@ -56,7 +59,17 @@ public class LoginWindowController extends WindowController{
         }
     }
 
-    private static class Vista extends LoginVistaNavigator {
+    @Override
+    public void swapVistaEvent(String vista) {
+        VistaController.loadVista(vista, this);
+    }
+
+    @Override
+    public void toggleLoginEvent(boolean isValid) {
+        btnLogin.setVisible(isValid);
+    }
+
+    private static class Vista extends LoginVistaNavigator { //TODO: delete this class!!!
         @Override
         public boolean validLogin() {
             return false;
@@ -75,6 +88,11 @@ public class LoginWindowController extends WindowController{
         @Override
         public String getPassword() {
             return null;
+        }
+
+        @Override
+        public void addObserver(LoginVistaObserver observer) {
+
         }
 
         public VistaNavigator getVistaByID(String ID) {
@@ -113,10 +131,6 @@ public class LoginWindowController extends WindowController{
             currentNode.switchMode(false);
             btnLogin.setVisible(currentNode.validLogin());
         }
-    }
-
-    public void toggleLogin(boolean isValid) {
-        btnLogin.setVisible(isValid);
     }
 
     public void login(ActionEvent actionEvent) {

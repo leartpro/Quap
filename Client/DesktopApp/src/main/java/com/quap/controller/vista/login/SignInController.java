@@ -1,7 +1,7 @@
 package com.quap.controller.vista.login;
 
 import com.quap.controller.VistaController;
-import com.quap.controller.scene.LoginWindowController;
+import com.quap.controller.vista.LoginVistaObserver;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -10,9 +10,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Paint;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SignInController extends LoginVistaNavigator {
     private String username = "Anonym", password = "";
-    private final LoginWindowController loginWindowController = VistaController.getLoginWindowController();
+    private final List<LoginVistaObserver> observers = new ArrayList<>();
 
     @FXML
     private TextField txtUsername = new TextField();
@@ -72,31 +75,34 @@ public class SignInController extends LoginVistaNavigator {
     @FXML
     void validatePassword(KeyEvent keyEvent) {
         password = txtPassword.getText();
-        if(password.matches("(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,12}")) {
-            lblPassword.setTextFill(Paint.valueOf("green"));
-        } else if(password.length()==0) {
-            lblPassword.setTextFill(Paint.valueOf("gray"));
-        } else {
-            lblPassword.setTextFill(Paint.valueOf("red"));
+        LoginVistaNavigator.validatePassword(password, lblPassword);
+        for (LoginVistaObserver c : observers) {
+            c.toggleLoginEvent(validLogin());
         }
-        loginWindowController.toggleLogin(validLogin());
     }
 
     public void validateUsername(KeyEvent keyEvent) {
         username = txtUsername.getText();
-        if(username.matches("[a-zA-Z]{4,12}")) {
-            lblUsername.setTextFill(Paint.valueOf("green"));
-        } else if(username.length()==0) {
-            lblUsername.setTextFill(Paint.valueOf("gray"));
-        } else {
-            lblUsername.setTextFill(Paint.valueOf("red"));
+        LoginVistaNavigator.validateUsername(username, lblUsername);
+        for (LoginVistaObserver c : observers) {
+            c.toggleLoginEvent(validLogin());
         }
-        loginWindowController.toggleLogin(validLogin());
     }
 
     @FXML
     void signUp(ActionEvent event) {
-        VistaController.loadLoginVista(VistaController.SignUp); //TODO: cant be this
+        for (LoginVistaObserver c : observers) {
+            c.swapVistaEvent(VistaController.SignUp);
+        }
+    }
+
+
+    public void addObserver(LoginVistaObserver observer) {
+        observers.add(observer);
+    }
+
+    public void removeObserver(LoginVistaObserver observer) {
+        observers.remove(observer);
     }
 
 }

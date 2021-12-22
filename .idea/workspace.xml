@@ -8,25 +8,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="09927819-4efd-4d77-952e-37e9b4faac9c" name="Changes" comment="Fix Small UI Bugs">
-      <change afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/scene/WindowController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/LoginVistaObserver.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/MainVistaObserver.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/VistaObserver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e/entities/entities.dat" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e/entities/entities.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e/entities/entities.dat.values" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e/entities/entities.dat.values" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e/entities/entities.dat.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e/entities/entities.dat.values.at" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e/entities/entities.dat.values.s" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e/entities/entities.dat.values.s" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e/entities/entities.dat_i" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e/entities/entities.dat_i" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/VistaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/VistaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/scene/ConnectionWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/scene/ConnectionWindowController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/scene/LoginWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/scene/LoginWindowController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/scene/MainWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/scene/MainWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/LoginVistaObserver.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/LoginVistaObserver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/MainVistaObserver.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/MainVistaObserver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/login/LoginVistaNavigator.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/login/LoginVistaNavigator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/login/SignInController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/login/SignInController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/login/SignUpController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/login/SignUpController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/desktopapp/Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/desktopapp/Launcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/data/OrderedProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/quap/data/OrderedProperties.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/data/UserdataReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/quap/data/UserdataReader.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -306,14 +300,8 @@
       <workItem from="1639591824771" duration="11336000" />
       <workItem from="1639668706361" duration="12400000" />
       <workItem from="1640018196339" duration="5980000" />
-      <workItem from="1640028882683" duration="5966000" />
-    </task>
-    <task id="LOCAL-00024" summary="Fix Warnings">
-      <created>1636849752734</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1636849752734</updated>
+      <workItem from="1640028882683" duration="6565000" />
+      <workItem from="1640208882375" duration="2062000" />
     </task>
     <task id="LOCAL-00025" summary="Fix Warnings">
       <created>1636850301054</created>
@@ -651,7 +639,14 @@
       <option name="project" value="LOCAL" />
       <updated>1640029742545</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="Fix duplicated Code (unstable Version)">
+      <created>1640038815092</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1640038815092</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -698,7 +693,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="colors.css" />
     <MESSAGE value="Remove Size Properties in FXML" />
     <MESSAGE value="Progress Bar" />
     <MESSAGE value="Progress Bar update" />
@@ -723,7 +717,8 @@
     <MESSAGE value="New UI Features" />
     <MESSAGE value="Fix Small UI Bugs" />
     <MESSAGE value="Fix Duplicated Code Warning" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix Duplicated Code Warning" />
+    <MESSAGE value="Fix duplicated Code (unstable Version)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix duplicated Code (unstable Version)" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XPathView.XPathProjectComponent">
