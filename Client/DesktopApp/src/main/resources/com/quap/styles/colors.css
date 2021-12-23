@@ -21,7 +21,7 @@
 }
 
 .scroll-pane {
-  -fx-background: -foreground-color;
+  -fx-background: transparent;
 }
 
 .list-view,
@@ -39,19 +39,19 @@
 
 .button, .toggle-button {
   -fx-text-fill: -text-color;
-  -fx-background-color: transparent;
+  -fx-background-color: -selectOnLight-color;
 }
 
 .button:hover, .toggle-button:hover {
-  -fx-background-color: -selectOnLight-color;
+  -fx-background-color: -selectOnDark-color;
 }
 
 .toggle-button:selected {
-  -fx-background-color: -selectOnLight-color;
+  -fx-background-color: -selectOnDark-color;
 }
 
 .list-cell:focused {
-  -fx-background-color: -selectOnLight-color;
+  -fx-background-color: -selectOnDark-color;
 }
 
 .menu-bar {

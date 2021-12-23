@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <VBox styleClass="background" stylesheets="@../../styles/colors.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.scene.MainWindowController">
    <children>
-         <HBox styleClass="background">
+         <HBox alignment="CENTER" styleClass="background">
          <Label fx:id="lblName" alignment="CENTER" minWidth="100.0" styleClass="background" text="Name" />
              <MenuBar styleClass="background" HBox.hgrow="NEVER">
                  <Menu mnemonicParsing="false" text="Connection">
@@ -24,9 +24,9 @@
                  <buttons>
                <HBox maxHeight="1.7976931348623157E308">
                   <children>
-                           <Button mnemonicParsing="false" onAction="#maximize" text="O" HBox.hgrow="NEVER" />
-                           <Button mnemonicParsing="false" onAction="#minimize" text="_" HBox.hgrow="NEVER" />
-                           <Button mnemonicParsing="false" onAction="#close" text="X" HBox.hgrow="NEVER" />
+                           <Button mnemonicParsing="false" onAction="#maximize" style="-fx-background-color: transparent;" text="O" HBox.hgrow="NEVER" />
+                           <Button mnemonicParsing="false" onAction="#minimize" style="-fx-background-color: transparent;" text="_" HBox.hgrow="NEVER" />
+                           <Button mnemonicParsing="false" onAction="#close" style="-fx-background-color: transparent;" text="X" HBox.hgrow="NEVER" />
                   </children>
                </HBox>
                  </buttons>
@@ -35,19 +35,39 @@
       <HBox VBox.vgrow="ALWAYS">
          <children>
                <VBox prefWidth="100.0" styleClass="ground" stylesheets="@../../styles/colors.css" HBox.hgrow="NEVER">
-                   <VBox alignment="CENTER" VBox.vgrow="NEVER">
+                   <VBox alignment="CENTER" spacing="5.0" VBox.vgrow="NEVER">
                        <children>
-                     <ToggleButton fx:id="btnFriends" mnemonicParsing="false" onAction="#friends" text="Friends" />
-                     <ToggleButton fx:id="btnChatrooms" mnemonicParsing="false" onAction="#chatrooms" text="Chatrooms" />
-                     <ToggleButton fx:id="btnProfil" mnemonicParsing="false" onAction="#profil" text="Profil" />
-                     <ToggleButton fx:id="btnSettings" mnemonicParsing="false" onAction="#settings" text="Settings" />
+                     <ToggleButton fx:id="btnFriends" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#friends" text="Friends" />
+                     <ToggleButton fx:id="btnChatrooms" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#chatrooms" text="Chatrooms" />
+                     <ToggleButton fx:id="btnProfil" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#profil" text="Profil" />
+                     <ToggleButton fx:id="btnSettings" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#settings" text="Settings" />
                        </children>
+                  <VBox.margin>
+                     <Insets />
+                  </VBox.margin>
+                  <padding>
+                     <Insets left="5.0" right="5.0" />
+                  </padding>
                    </VBox>
-                   <VBox fx:id="vBoxButtonHolder" alignment="TOP_CENTER" VBox.vgrow="ALWAYS">
+               <ScrollPane hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" styleClass="ground" vbarPolicy="NEVER" VBox.vgrow="ALWAYS">
                   <VBox.margin>
                      <Insets top="25.0" />
                   </VBox.margin>
-               </VBox>
+                  <content>
+                         <VBox fx:id="vBoxButtonHolder" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" spacing="5.0">
+                        <children>
+                           <Button maxWidth="1.7976931348623157E308" minWidth="90.0" mnemonicParsing="false" text="Button">
+                              <VBox.margin>
+                                 <Insets />
+                              </VBox.margin>
+                           </Button>
+                           <Button layoutX="15.0" layoutY="10.0" maxWidth="1.7976931348623157E308" minWidth="90.0" mnemonicParsing="false" text="Button" />
+                        </children></VBox>
+                  </content>
+                  <padding>
+                     <Insets left="5.0" right="5.0" />
+                  </padding>
+               </ScrollPane>
                </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                <children>

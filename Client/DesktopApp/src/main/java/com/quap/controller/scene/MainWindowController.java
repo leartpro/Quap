@@ -46,6 +46,8 @@ public class MainWindowController extends WindowController implements ClientObse
 
 
     @FXML
+    private VBox vBoxButtonHolder;
+    @FXML
     private Label lblName;
     @FXML
     private ToggleButton btnFriends;
@@ -55,8 +57,6 @@ public class MainWindowController extends WindowController implements ClientObse
     private ToggleButton btnProfil;
     @FXML
     private ToggleButton btnSettings;
-    @FXML
-    private VBox vBoxButtonHolder;
     @FXML
     private StackPane stackContent;
     @FXML
@@ -171,6 +171,7 @@ public class MainWindowController extends WindowController implements ClientObse
                 client.setCurrentChatID(content.chatID());
             });
             b.setToggleGroup(submenuGroup);
+            b.setMaxWidth(Double.MAX_VALUE);
             vBoxButtonHolder.getChildren().add(b);
         }
     }

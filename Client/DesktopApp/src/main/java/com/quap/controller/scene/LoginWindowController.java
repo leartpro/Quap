@@ -25,7 +25,6 @@ import java.util.concurrent.*;
 
 public class LoginWindowController extends WindowController implements LoginVistaObserver {
     private String name, password;
-    private final Vista vista = new Vista();
     private LoginVistaNavigator currentNode;
     private Client client;
     private boolean existingUser;
@@ -69,37 +68,6 @@ public class LoginWindowController extends WindowController implements LoginVist
         btnLogin.setVisible(isValid);
     }
 
-    private static class Vista extends LoginVistaNavigator { //TODO: delete this class!!!
-        @Override
-        public boolean validLogin() {
-            return false;
-        }
-
-        @Override
-        public void switchMode(boolean isSelected) {
-
-        }
-
-        @Override
-        public String getName() {
-            return null;
-        }
-
-        @Override
-        public String getPassword() {
-            return null;
-        }
-
-        @Override
-        public void addObserver(LoginVistaObserver observer) {
-
-        }
-
-        public VistaNavigator getVistaByID(String ID) {
-            return super.getVistaByID(ID);
-        }
-    }
-
     @FXML
     private StackPane vistaHolder;
 
@@ -113,9 +81,7 @@ public class LoginWindowController extends WindowController implements LoginVist
     public void initialize() {
         checkAnonymMode.setSelected(false);
         btnLogin.setVisible(false);
-        currentNode = (LoginVistaNavigator) vista.getVistaByID("signUp");
-        System.out.println(currentNode.getClass().getSimpleName());
-        System.out.println("ID:" + currentNode.getId());
+        VistaController.loadVista(VistaController.SignUp, this);
     }
 
 
