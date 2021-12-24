@@ -41,7 +41,7 @@ public class ListController extends MainVistaNavigator {
             //TODO: jump to the specific chat
         });
         //TODO: is null
-        info.setOnAction(event -> showInfo(listView.getSelectionModel().getSelectedItem().display(), event));
+        info.setOnAction(event -> showInfo(listView.getSelectionModel().getSelectedItem().display(), info));
         invite.setOnAction(new EventHandler<>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -64,9 +64,9 @@ public class ListController extends MainVistaNavigator {
         });
     }
 
-    private void showInfo(String info, ActionEvent actionEvent) {
+    private void showInfo(String info, MenuItem item) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/quap/desktopapp/popup/popup.fxml"));
-        Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        Stage primaryStage = (Stage) item.getParentPopup().getOwnerWindow();
         SceneController.submitPopup(loader, primaryStage, info);
     }
 
