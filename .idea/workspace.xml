@@ -9,31 +9,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="09927819-4efd-4d77-952e-37e9b4faac9c" name="Changes" comment="Fix Small UI Bugs">
-      <change afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/images/739500715atom-electron-proton-orbit-structure-animated-gif-4.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/images/bestanimationscom.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/images/shubham-dhage-fmCr42xCLtk-unsplash.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/runtime/OrderedProcessChain.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/runtime/ProcessChain.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/images/splashBackground-old.gif" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e/entities/entities.dat" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e/entities/entities.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e/entities/entities.dat.values" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e/entities/entities.dat.values" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e/entities/entities.dat.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e/entities/entities.dat.values.at" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e/entities/entities.dat.values.s" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e/entities/entities.dat.values.s" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e/entities/entities.dat_i" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e/entities/entities.dat_i" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/VistaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/VistaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/scene/ConnectionWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/scene/ConnectionWindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/scene/LoginWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/scene/LoginWindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/scene/MainWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/scene/MainWindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/main/ChatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/main/ChatController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/main/ListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/main/ListController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/main/MainVistaNavigator.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/main/MainVistaNavigator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/desktopapp/Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/desktopapp/Launcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/desktopapp/LauncherPreloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/desktopapp/LauncherPreloader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/desktopapp/scene/connection-window.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/desktopapp/scene/connection-window.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/styles/layouts.css" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/styles/layouts.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/data/UserdataReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/data/UserdataReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/domain/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/domain/Message.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/data/UserdataReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/quap/data/UserdataReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/images/bestanimationscom.gif" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/images/bestanimationscom-bk.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/images/shubham-dhage-fmCr42xCLtk-unsplash.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/images/shubham-dhage-fmCr42xCLtk-unsplash-bk.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/images/splashBackground.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/images/splashBackground.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/styles/colors.css" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/styles/colors.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -318,13 +306,7 @@
       <workItem from="1640342954173" duration="4476000" />
       <workItem from="1640437183555" duration="4967000" />
       <workItem from="1640515914492" duration="13819000" />
-    </task>
-    <task id="LOCAL-00028" summary="some SQL Querys">
-      <created>1637063910985</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1637063910985</updated>
+      <workItem from="1640534530603" duration="3695000" />
     </task>
     <task id="LOCAL-00029" summary="more SQL Querys">
       <created>1637073599736</created>
@@ -662,7 +644,14 @@
       <option name="project" value="LOCAL" />
       <updated>1640355178035</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="Fix Small UI Bugs">
+      <created>1640534567439</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1640534567439</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

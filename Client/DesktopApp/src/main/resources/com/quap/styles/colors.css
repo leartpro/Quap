@@ -82,3 +82,13 @@
   -fx-background-color: -text-field-color;
   -fx-text-fill: -text-color;
 }
+
+.progress-bar > .track {
+  -fx-text-box-border: transparent;
+  -fx-control-inner-background: transparent;
+  -fx-background-color: transparent;
+}
+
+.progress-bar .bar {
+  -fx-background-color: -selectOnDark-color;
+}
