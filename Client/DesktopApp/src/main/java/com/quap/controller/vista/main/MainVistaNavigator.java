@@ -10,7 +10,6 @@ public abstract class MainVistaNavigator extends VistaNavigator {
 
     @Override
      protected VistaNavigator getVistaByID(String id) {
-        //TODO:
         switch (id) {
             case "list":
                 return new ListController();

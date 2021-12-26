@@ -134,8 +134,8 @@ public class MainWindowController extends WindowController implements ClientObse
     }
 
     public void close(ActionEvent actionEvent) {
-        ((Button) actionEvent.getSource()).getScene().getWindow().hide();
-        //TODO: close the window way faster
+        //TODO: finish necessary tasks as daemon thread
+        ((Stage)(((Button)actionEvent.getSource()).getScene().getWindow())).close();
     }
 
     public void settings(ActionEvent actionEvent) {
@@ -229,12 +229,11 @@ public class MainWindowController extends WindowController implements ClientObse
     }
 
     @Override
-    public void inviteEvent(Chat chat, int senderID, String senderName, List<String> participants) { //TODO: submit requestPopup if the user wants to accept or decline
+    public void inviteEvent(Chat chat, int senderID, String senderName, List<String> participants) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/quap/desktopapp/popup/requestPopup.fxml"));
         Stage primaryStage = (Stage) Stage.getWindows().stream().filter(Window::isShowing).findFirst().orElse(null);
-        //String message = "invited by: " + "sample user" + "to the chat: " + chat;
         List<String> info = new ArrayList<>();
-        info.add("Invited by: " + senderName + "#" + senderID); //TODO: senderName is self
+        info.add("Invited by: " + senderName + "#" + senderID);
         Scanner scanner = new Scanner(chat.display());
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();

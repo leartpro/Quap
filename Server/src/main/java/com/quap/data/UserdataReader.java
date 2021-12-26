@@ -104,7 +104,7 @@ public class UserdataReader {
         return userID;
     }
 
-    public JSONObject addChat(int userID, String chatName, boolean isPrivate) { //TODO: insert user by id
+    public JSONObject addChat(int userID, String chatName, boolean isPrivate) {
         JSONObject json = new JSONObject();
         int chatID = -1;
         PreparedStatement statement;

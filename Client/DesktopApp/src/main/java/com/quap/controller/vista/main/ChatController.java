@@ -37,8 +37,8 @@ public class ChatController extends MainVistaNavigator{
 
     @Override
     public void loadContent(List<Content> content) {
-        for (Object o : content) {
-            chatArea.appendText(o + "\n");
+        for (Content o : content) {
+            chatArea.appendText(o.content() + "\n");
         }
     }
 
@@ -58,6 +58,6 @@ public class ChatController extends MainVistaNavigator{
     }
 
     public void addMessage(Message message) {
-        chatArea.appendText(message + "\n");
+        chatArea.appendText(message.content() + "\n");
     }
 }

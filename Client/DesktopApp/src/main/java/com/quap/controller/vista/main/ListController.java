@@ -37,10 +37,8 @@ public class ListController extends MainVistaNavigator {
         listView.setCellFactory(ContextMenuListCell.forListView(contextMenu, (listView) -> new ChatListCell()));
         listView.setOnMouseClicked(event -> {
             UserContent selectedContent = listView.getSelectionModel().getSelectedItem();
-            //TODO: test wich kind of content it is, then jump to it with MaWiCo.selectContent(currentContent)
-            //TODO: jump to the specific chat
+            //TODO: test wich kind of content it is, then jump to it(specific chat) with MaWiCo.selectContent(currentContent)
         });
-        //TODO: is null
         info.setOnAction(event -> showInfo(listView.getSelectionModel().getSelectedItem().display(), info));
         invite.setOnAction(new EventHandler<>() {
             @Override
@@ -99,15 +97,11 @@ public class ListController extends MainVistaNavigator {
         if (input != null && !input.equals("")) {
             if (type.equals("chatrooms")) {
                 System.out.println("erstelle chatroom: " + input);
-                //TODO: erstelle den chatroom anfrage zum server
-                // Server Sendet chatroom zurück und UI wird über observer updated
-                // add a boolean to the participant table, which shows, if the current user has already joined or is just invited
+                //TODO: add a boolean to the participant table, which shows, if the current user has already joined or is just invited
                 client.addChatroom(input);
             } else if (type.equals("friends")) {
                 System.out.println("request user: " + input);
-                //TODO: erstelle den chatroom anfrage zum server
-                // Server Sendet chatroom zurück und UI wird über observer updated
-                // check if there if only one entrance(just request) in the friends table or two(solid friends)
+                //TODO: check if there if only one entrance(just request) in the friends table or two(solid friends)
                 client.addFriend(input);
             }
         }

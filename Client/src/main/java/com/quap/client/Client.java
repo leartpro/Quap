@@ -16,7 +16,6 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -85,6 +84,7 @@ public class Client {
         json.put("password", this.password);
         json.put("existing", existing);
         sendAuthentication(json.toString());
+        //TODO: wait until authentication confirmation is arrived
     }
 
     public void connectDB() {
@@ -156,7 +156,7 @@ public class Client {
                         int chatID = data.getInt("chat_id");
                         String messageContent = data.getString("message");
                         for (ClientObserver c : observers) {
-                            c.messageEvent(new Message(messageContent, Date.from(Instant.now()), senderID));
+                            c.messageEvent(new Message(messageContent, new Date(), senderID));
                         }
                         System.out.println("senderID: " + senderID + ", chatID: " + chatID + ", message: " + messageContent);
                         dataReader.addMessage(chatID, senderID, messageContent);
