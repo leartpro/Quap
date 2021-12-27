@@ -31,8 +31,8 @@ public class Client {
     private Thread listen;
     private BufferedReader reader;
     private PrintWriter writer;
-    private final List<Friend> friends = new ArrayList();
-    private final List<Chat> chats = new ArrayList();
+    private final ArrayList<Friend> friends = new ArrayList<>();
+    private final ArrayList<Chat> chats = new ArrayList<>();
     private int id, chatID;
     private String username;
     private String password;

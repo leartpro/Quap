@@ -42,36 +42,6 @@ public class ConnectionWindowController implements Initializable {
         System.out.println("init");
         loadingLabel = lblLoading;
         prBar = progressBar;
-        /*progressBar.progressProperty().bind(
-                new Task<>() {
-                    final int N_ITERATIONS = 100;
-                    @Override
-                    protected Void call() throws Exception {
-                        for (int i = 0; i < N_ITERATIONS; i++) {
-                            updateProgress(i + 1, N_ITERATIONS);
-                            Thread.sleep(10);
-                        }
-                        return null;
-                    }
-                }.progressProperty()
-        );*/
-        /*prBar.progressProperty().bind(new Task<>() {
-                    final int N_ITERATIONS = 100;
-                    @Override
-                    protected Object call() throws InterruptedException {
-                        for (int i = 0; i < N_ITERATIONS; i++) {
-                            updateProgress(i + 1, N_ITERATIONS);
-                            Thread.sleep(500);
-                        }
-                        return null;
-                    }
-                }.progressProperty()
-        );
-        prBar.progressProperty().addListener(observable -> {
-            if (prBar.getProgress() >= 1 - EPSILON) {
-                prBar.setStyle("-fx-accent: forestgreen;");
-            }
-        });*/
     }
 
     public void increaseProgress() {

@@ -3,10 +3,12 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<VBox styleClass="background" stylesheets="@../../styles/colors.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.scene.MainWindowController">
+<?import java.lang.String?>
+<?import java.net.URL?>
+<VBox minHeight="400.0" minWidth="600.0" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.scene.MainWindowController">
    <children>
-         <HBox alignment="CENTER" styleClass="background">
-         <Label fx:id="lblName" alignment="CENTER" minWidth="100.0" styleClass="background" text="Name" />
+         <HBox alignment="CENTER">
+         <Label fx:id="lblName" alignment="CENTER" minWidth="100.0" styleClass="name" text="Name" />
              <MenuBar styleClass="background" HBox.hgrow="NEVER">
                  <Menu mnemonicParsing="false" text="Connection">
                      <MenuItem mnemonicParsing="false" text="Disconnect" />
@@ -31,6 +33,10 @@
                </HBox>
                  </buttons>
              </ButtonBar>
+         <styleClass>
+            <String fx:value="background" />
+            <String fx:value="head" />
+         </styleClass>
          </HBox>
       <HBox VBox.vgrow="ALWAYS">
          <children>
@@ -54,15 +60,7 @@
                      <Insets top="25.0" />
                   </VBox.margin>
                   <content>
-                         <VBox fx:id="vBoxButtonHolder" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" spacing="5.0">
-                        <children>
-                           <Button maxWidth="1.7976931348623157E308" minWidth="90.0" mnemonicParsing="false" text="Button">
-                              <VBox.margin>
-                                 <Insets />
-                              </VBox.margin>
-                           </Button>
-                           <Button layoutX="15.0" layoutY="10.0" maxWidth="1.7976931348623157E308" minWidth="90.0" mnemonicParsing="false" text="Button" />
-                        </children></VBox>
+                         <VBox fx:id="vBoxButtonHolder" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" spacing="5.0" />
                   </content>
                   <padding>
                      <Insets left="5.0" right="5.0" />
@@ -76,13 +74,21 @@
             </VBox>
          </children>
       </HBox>
-         <HBox alignment="CENTER" maxHeight="1.7976931348623157E308">
+         <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" styleClass="bottom">
              <opaqueInsets>
                  <Insets />
              </opaqueInsets>
-             <Label alignment="CENTER" text="Quap" textFill="WHITE" HBox.hgrow="NEVER" />
+             <Label alignment="CENTER" styleClass="name" text="Quap" textFill="WHITE" HBox.hgrow="NEVER" />
              <Pane maxHeight="-Infinity" minHeight="-Infinity" styleClass="background" HBox.hgrow="ALWAYS" />
-             <Label fx:id="lblServer_IP" text="Server IP" textFill="WHITE" HBox.hgrow="SOMETIMES" />
+             <Label fx:id="lblServer_IP" styleClass="name" text="Server IP" textFill="WHITE" HBox.hgrow="SOMETIMES" />
          </HBox>
    </children>
+   <stylesheets>
+      <URL value="@../../styles/colors.css" />
+      <URL value="@../../styles/layouts.css" />
+   </stylesheets>
+   <styleClass>
+      <String fx:value="background" />
+      <String fx:value="mainScreen" />
+   </styleClass>
 </VBox>

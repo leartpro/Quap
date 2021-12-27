@@ -70,8 +70,8 @@ public class UserdataReader {
             statement.setInt(2, sender_id);
             statement.setString(3, content);
             statement.execute();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
         }
     }
 }

@@ -63,7 +63,10 @@
   -fx-spacing: 0px;
 }
 
-.menu,
+.name{
+  -fx-text-fill: #385A99;
+}
+
 .menu-item {
   -fx-background-color: -foreground-color;
   -fx-background: -foreground-color;

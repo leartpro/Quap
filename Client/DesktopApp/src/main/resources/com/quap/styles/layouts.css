@@ -14,3 +14,40 @@
     -fx-padding:0;
 }
 
+.loadingScreen {
+    -fx-padding: 4px;
+    -fx-border-insets: 4px;
+    -fx-background-insets: 4px;
+}
+
+.loginScreen > .label, .loginScreen > .check-box {
+    -fx-padding: 4px 8px;
+    -fx-border-insets: 4px 8px;
+    -fx-background-insets: 4px 8px;
+}
+
+.loginScreen > .button{
+    -fx-padding: 0px 0px 4px;
+    -fx-border-insets: 0px 0px 4px;
+    -fx-background-insets: 0px 0px 4px;
+}
+
+.mainScreen > *{
+    -fx-padding: 0px 4px;
+    -fx-border-insets: 0px 4px;
+    -fx-background-insets: 0px 4px;
+}
+
+.mainScreen > .head {
+    -fx-padding: 4px 4px 0px;
+    -fx-border-insets: 4px 4px 0px;
+    -fx-background-insets: 4px 4px 0px;
+}
+
+.mainScreen > .bottom {
+    -fx-padding: 0px 4px 4px;
+    -fx-border-insets: 0px 4px 4px;
+    -fx-background-insets: 0px 4px 4px;
+}
+
+

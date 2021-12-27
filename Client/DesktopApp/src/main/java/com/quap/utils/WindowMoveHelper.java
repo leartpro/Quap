@@ -12,9 +12,6 @@ public class WindowMoveHelper {
 
     public static void addMoveListener(Stage stage) {
         MoveListener moveListener = new MoveListener(stage);
-        /*stage.getScene().addEventHandler(MouseEvent.DRAG_DETECTED, moveListener);
-        stage.getScene().addEventHandler(MouseEvent.MOUSE_DRAGGED, moveListener);
-        stage.getScene().addEventHandler(MouseEvent.MOUSE_RELEASED, moveListener);*/
         stage.getScene().addEventHandler(MouseEvent.MOUSE_PRESSED, moveListener);
         stage.getScene().addEventHandler(MouseEvent.MOUSE_DRAGGED, moveListener);
         ObservableList<Node> children = stage.getScene().getRoot().getChildrenUnmodifiable();
@@ -24,9 +21,6 @@ public class WindowMoveHelper {
     }
 
     private static void addListenerDeeply(Node node, EventHandler<MouseEvent> listener) {
-        /*node.addEventHandler(MouseEvent.DRAG_DETECTED, listener);
-        node.addEventHandler(MouseEvent.MOUSE_DRAGGED, listener);
-        node.addEventHandler(MouseEvent.MOUSE_RELEASED, listener);*/
         node.addEventHandler(MouseEvent.MOUSE_PRESSED, listener);
         node.addEventHandler(MouseEvent.MOUSE_DRAGGED, listener);
 
