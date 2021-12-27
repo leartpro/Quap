@@ -42,6 +42,10 @@
   -fx-background-color: -selectOnLight-color;
 }
 
+.defaultButton {
+  -fx-background-color: transparent;
+}
+
 .button:hover, .toggle-button:hover {
   -fx-background-color: -selectOnDark-color;
 }

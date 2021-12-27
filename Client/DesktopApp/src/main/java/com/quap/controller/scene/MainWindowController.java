@@ -171,7 +171,8 @@ public class MainWindowController extends WindowController implements ClientObse
                 client.setCurrentChatID(content.chatID());
             });
             b.setToggleGroup(submenuGroup);
-            b.setMaxWidth(Double.MAX_VALUE);
+            b.setMinWidth(90);
+            b.setMaxWidth(90);
             vBoxButtonHolder.getChildren().add(b);
         }
     }

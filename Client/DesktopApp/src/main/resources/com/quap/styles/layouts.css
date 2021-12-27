@@ -1,8 +1,3 @@
-.splashBackground {
-    -fx-background-image: url("../images/splashBackground.jpg");
-    -fx-background-size: 100% 100%;
-}
-
 .list-view .scroll-bar:horizontal .increment-arrow,
 .list-view .scroll-bar:horizontal .decrement-arrow,
 .list-view .scroll-bar:horizontal .increment-button,
@@ -15,21 +10,35 @@
 }
 
 .loadingScreen {
-    -fx-padding: 4px;
-    -fx-border-insets: 4px;
-    -fx-background-insets: 4px;
+    -fx-padding: 8px;
+    -fx-border-insets: 8px;
+    -fx-background-insets: 8px;
+
+    -fx-background-image: url("../images/splashBackground.jpg");
+    -fx-background-size: 100% 100%;
 }
 
-.loginScreen > .label, .loginScreen > .check-box {
-    -fx-padding: 4px 8px;
-    -fx-border-insets: 4px 8px;
-    -fx-background-insets: 4px 8px;
+.loginScreen > .label, .loginScreen > .check-box{
+    -fx-padding: 0px 8px;
+    -fx-border-insets: 0px 8px;
+    -fx-background-insets: 0px 8px;
 }
 
-.loginScreen > .button{
-    -fx-padding: 0px 0px 4px;
-    -fx-border-insets: 0px 0px 4px;
-    -fx-background-insets: 0px 0px 4px;
+.loginVista > .label, .loginVista > .text-field, .loginVista > .list-view {
+    -fx-padding: 0px 8px;
+    -fx-border-insets: 0px 8px;
+    -fx-background-insets: 0px 8px;
+}
+
+.loginVista > .text-field {
+    -fx-min-height: 25px;
+    -fx-padding: 0px 8px;
+    -fx-border-insets: 0px 8px;
+    -fx-background-insets: 0px 8px;
+}
+
+.loginVista > .list-view, .loginVista > .button, .loginVista > .text-field{
+    -fx-background-radius: 8px;
 }
 
 .mainScreen > *{
@@ -50,4 +59,27 @@
     -fx-background-insets: 0px 4px 4px;
 }
 
+.toggle-button {
+    -fx-background-radius: 16px;
+}
 
+/*TODO: put in main classes and create main vista+popup classes*/
+.menu {
+    -fx-background-radius: 16px;
+}
+
+.context-menu {
+    -fx-background-radius: 16px;
+}
+
+.area {
+    -fx-background-radius: 8px;
+}
+
+.area-left {
+    -fx-background-radius: 8px 0px 0px 8px;
+}
+
+.area-right {
+    -fx-background-radius: 0px 8px 8px 0px;
+}

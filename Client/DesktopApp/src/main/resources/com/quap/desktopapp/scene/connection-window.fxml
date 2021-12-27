@@ -3,9 +3,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.layout.*?>
-<?import java.lang.String?>
 <?import java.net.URL?>
-<VBox minHeight="270.0" minWidth="480.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.scene.ConnectionWindowController">
+<VBox minHeight="270.0" minWidth="480.0" styleClass="loadingScreen" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.scene.ConnectionWindowController">
    <Label text="Quap" textFill="WHITE" />
    <Pane VBox.vgrow="ALWAYS" />
    <Label fx:id="lblLoading" text="Loading" textFill="#fffdfd" VBox.vgrow="SOMETIMES" />
@@ -14,8 +13,4 @@
       <URL value="@../../styles/layouts.css" />
       <URL value="@../../styles/colors.css" />
    </stylesheets>
-   <styleClass>
-      <String fx:value="splashBackground" />
-      <String fx:value="loadingScreen" />
-   </styleClass>
 </VBox>

@@ -3,7 +3,7 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import java.lang.String?>
+<?import java.lang.*?>
 <?import java.net.URL?>
 <VBox minHeight="400.0" minWidth="600.0" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.scene.MainWindowController">
    <children>
@@ -38,9 +38,9 @@
             <String fx:value="head" />
          </styleClass>
          </HBox>
-      <HBox VBox.vgrow="ALWAYS">
+      <HBox styleClass="area" VBox.vgrow="ALWAYS">
          <children>
-               <VBox prefWidth="100.0" styleClass="ground" stylesheets="@../../styles/colors.css" HBox.hgrow="NEVER">
+               <VBox prefWidth="100.0" stylesheets="@../../styles/colors.css" HBox.hgrow="NEVER">
                    <VBox alignment="CENTER" spacing="5.0" VBox.vgrow="NEVER">
                        <children>
                      <ToggleButton fx:id="btnFriends" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#friends" text="Friends" />
@@ -49,13 +49,13 @@
                      <ToggleButton fx:id="btnSettings" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#settings" text="Settings" />
                        </children>
                   <VBox.margin>
-                     <Insets />
+                     <Insets top="5.0" />
                   </VBox.margin>
                   <padding>
                      <Insets left="5.0" right="5.0" />
                   </padding>
                    </VBox>
-               <ScrollPane hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" styleClass="ground" vbarPolicy="NEVER" VBox.vgrow="ALWAYS">
+               <ScrollPane hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" vbarPolicy="NEVER" VBox.vgrow="ALWAYS">
                   <VBox.margin>
                      <Insets top="25.0" />
                   </VBox.margin>
@@ -65,11 +65,23 @@
                   <padding>
                      <Insets left="5.0" right="5.0" />
                   </padding>
+                  <styleClass>
+                     <String fx:value="ground" />
+                     <String fx:value="area-left" />
+                  </styleClass>
                </ScrollPane>
+               <styleClass>
+                  <String fx:value="ground" />
+                  <String fx:value="area-left" />
+               </styleClass>
                </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                <children>
-                      <StackPane fx:id="stackContent" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="foreground" VBox.vgrow="ALWAYS" />
+                      <StackPane fx:id="stackContent" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
+                     <styleClass>
+                        <String fx:value="foreground" />
+                        <String fx:value="area-right" />
+                     </styleClass></StackPane>
                </children>
             </VBox>
          </children>

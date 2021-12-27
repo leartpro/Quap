@@ -1,13 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.VBox?>
-<VBox fx:id="signIn" styleClass="ground" stylesheets="@../../../styles/colors.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.vista.login.SignInController">
-     <Button mnemonicParsing="false" onAction="#signUp" text="Sign Up" />
+<?import javafx.scene.layout.*?>
+<?import java.lang.String?>
+<?import java.net.URL?>
+<VBox fx:id="signIn" spacing="4.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.vista.login.SignInController">
+     <Button mnemonicParsing="false" onAction="#signUp" text="Sign Up">
+      <VBox.margin>
+         <Insets left="8.0" top="4.0" />
+      </VBox.margin></Button>
      <Label fx:id="lblUsername" text="Username" />
      <TextField fx:id="txtUsername" onKeyTyped="#validateUsername" />
      <Label fx:id="lblPassword" text="Password" />
-     <PasswordField fx:id="txtPassword" onKeyTyped="#validatePassword" />
-     <ListView styleClass="foreground" VBox.vgrow="ALWAYS" />
+     <PasswordField fx:id="txtPassword" onKeyTyped="#validatePassword">
+      <VBox.margin>
+         <Insets bottom="8.0" />
+      </VBox.margin></PasswordField>
+     <ListView maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="foreground" VBox.vgrow="ALWAYS">
+      <VBox.margin>
+         <Insets bottom="4.0" />
+      </VBox.margin></ListView>
+   <stylesheets>
+      <URL value="@../../../styles/colors.css" />
+      <URL value="@../../../styles/layouts.css" />
+   </stylesheets>
+   <styleClass>
+      <String fx:value="ground" />
+      <String fx:value="loginVista" />
+   </styleClass>
  </VBox>
