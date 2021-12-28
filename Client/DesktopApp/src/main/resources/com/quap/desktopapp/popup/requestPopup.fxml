@@ -4,11 +4,13 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.*?>
-<BorderPane styleClass="background" stylesheets="@../../styles/colors.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.popup.RequestPopupController">
+<?import java.lang.String?>
+<?import java.net.URL?>
+<BorderPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.popup.RequestPopupController">
     <top>
         <HBox maxWidth="1.7976931348623157E308" styleClass="ground" BorderPane.alignment="CENTER">
             <children>
-                <Label text="Popup" />
+                <Label styleClass="ground" text="Popup" />
             </children>
         </HBox>
     </top>
@@ -27,4 +29,12 @@
          </children>
       </HBox>
    </bottom>
+   <stylesheets>
+      <URL value="@../../styles/colors.css" />
+      <URL value="@../../styles/layouts.css" />
+   </stylesheets>
+   <styleClass>
+      <String fx:value="background" />
+      <String fx:value="popup" />
+   </styleClass>
 </BorderPane>

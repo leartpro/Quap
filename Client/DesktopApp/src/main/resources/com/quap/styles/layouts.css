@@ -59,16 +59,11 @@
     -fx-background-insets: 0px 4px 4px;
 }
 
-.toggle-button {
+.button-holder > .toggle-button {
     -fx-background-radius: 16px;
 }
 
-/*TODO: put in main classes and create main vista+popup classes*/
 .menu {
-    -fx-background-radius: 16px;
-}
-
-.context-menu {
     -fx-background-radius: 16px;
 }
 
@@ -82,4 +77,30 @@
 
 .area-right {
     -fx-background-radius: 0px 8px 8px 0px;
+}
+
+.popup > * > .label {
+    -fx-padding: 4px 8px;
+    -fx-border-insets: 4px 8px;
+    -fx-background-insets: 4px 8px;
+}
+
+.popup > * > .button, .popup > * > * > .button {
+    -fx-border-insets: 4px 8px;
+    -fx-background-insets: 4px 8px;
+    -fx-min-width: 75;
+    -fx-min-height: 30;
+}
+
+/*.popup > .scroll-pane {
+    -fx-padding: 0px 4px;
+    -fx-border-insets: 0px 4px;
+    -fx-background-insets: 0px 4px;
+}*/
+
+.popup > .text-field {
+    -fx-border-insets: 0px 4px;
+    -fx-background-insets: 0px 4px;
+
+    -fx-background-radius: 8px;
 }

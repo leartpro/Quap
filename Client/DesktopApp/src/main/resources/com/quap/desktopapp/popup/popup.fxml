@@ -6,7 +6,9 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<BorderPane styleClass="background" stylesheets="@../../styles/colors.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.popup.PopupController">
+<?import java.lang.String?>
+<?import java.net.URL?>
+<BorderPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.popup.PopupController">
     <center>
         <ScrollPane fx:id="scrollContent" minHeight="200.0" minWidth="400.0" prefHeight="200.0" prefWidth="400.0" styleClass="foreground" />
     </center>
@@ -24,4 +26,12 @@
          </children>
       </HBox>
    </top>
+   <stylesheets>
+      <URL value="@../../styles/colors.css" />
+      <URL value="@../../styles/layouts.css" />
+   </stylesheets>
+   <styleClass>
+      <String fx:value="background" />
+      <String fx:value="popup" />
+   </styleClass>
 </BorderPane>

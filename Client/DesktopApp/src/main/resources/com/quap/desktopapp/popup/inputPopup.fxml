@@ -4,7 +4,9 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.*?>
-<BorderPane styleClass="background" stylesheets="@../../styles/colors.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.popup.InputPopupController">
+<?import java.lang.String?>
+<?import java.net.URL?>
+<BorderPane minHeight="100.0" minWidth="200.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.popup.InputPopupController">
     <bottom>
       <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT" BorderPane.alignment="CENTER">
          <children>
@@ -23,4 +25,12 @@
    <center>
       <TextField fx:id="userInput" BorderPane.alignment="CENTER" />
    </center>
+   <stylesheets>
+      <URL value="@../../styles/colors.css" />
+      <URL value="@../../styles/layouts.css" />
+   </stylesheets>
+   <styleClass>
+      <String fx:value="background" />
+      <String fx:value="popup" />
+   </styleClass>
 </BorderPane>

@@ -24,9 +24,31 @@
   -fx-background: transparent;
 }
 
-.list-view,
-.text-area {
+.list-view/*,
+.text-area*/ {
   -fx-control-inner-background: -foreground-color;
+}
+
+/*.text-area {
+  -fx-background-color: -foreground-color;
+  -fx-border-color: -foreground-color;
+
+}
+
+.text-area .content {
+  -fx-background-color: -foreground-color;
+}*/
+
+.text-area{
+  -fx-background-color: -foreground-color, -foreground-color;
+}
+
+.text-area .content {
+  -fx-background-color: -foreground-color;
+}
+
+.text-area:focused .content {
+  -fx-background-color: -foreground-color;
 }
 
 .list-cell {
@@ -76,7 +98,7 @@
   -fx-background: -foreground-color;
 }
 
-.menu:hover,
+.menu:hover, .menu:showing,
 .menu-item:hover {
   -fx-background-color: -selectOnLight-color;
 }

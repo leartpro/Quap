@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.*?>
 <?import java.net.URL?>
 <VBox fx:id="list" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="foreground" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.vista.main.ListController">
    <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="foreground" vbarPolicy="NEVER" VBox.vgrow="ALWAYS">
@@ -14,7 +14,10 @@
    </ScrollPane>
    <HBox alignment="CENTER" maxWidth="1.7976931348623157E308">
       <children>
-         <Button mnemonicParsing="false" onAction="#addUserContent" text="+" HBox.hgrow="NEVER" />
+         <Button mnemonicParsing="false" onAction="#addUserContent" text="+" HBox.hgrow="NEVER">
+            <HBox.margin>
+               <Insets bottom="4.0" top="4.0" />
+            </HBox.margin></Button>
       </children>
    </HBox>
    <stylesheets>

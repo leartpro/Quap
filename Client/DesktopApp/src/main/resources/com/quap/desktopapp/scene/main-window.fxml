@@ -41,7 +41,7 @@
       <HBox styleClass="area" VBox.vgrow="ALWAYS">
          <children>
                <VBox prefWidth="100.0" stylesheets="@../../styles/colors.css" HBox.hgrow="NEVER">
-                   <VBox alignment="CENTER" spacing="5.0" VBox.vgrow="NEVER">
+                   <VBox alignment="CENTER" spacing="5.0" styleClass="button-holder" VBox.vgrow="NEVER">
                        <children>
                      <ToggleButton fx:id="btnFriends" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#friends" text="Friends" />
                      <ToggleButton fx:id="btnChatrooms" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#chatrooms" text="Chatrooms" />
@@ -60,7 +60,7 @@
                      <Insets top="25.0" />
                   </VBox.margin>
                   <content>
-                         <VBox fx:id="vBoxButtonHolder" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" spacing="5.0" />
+                         <VBox fx:id="vBoxButtonHolder" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" spacing="5.0" styleClass="button-holder" />
                   </content>
                   <padding>
                      <Insets left="5.0" right="5.0" />

@@ -17,7 +17,7 @@ public record Message(String content, Date timestamp, int senderID) implements C
     private static Date formatDate(Date date) {
         String stringDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
         try {
-            date = new SimpleDateFormat("yyyy-MM-dd").parse(stringDate);
+            return new SimpleDateFormat("yyyy-MM-dd").parse(stringDate);
         } catch (ParseException e) {
             e.printStackTrace();
         }
