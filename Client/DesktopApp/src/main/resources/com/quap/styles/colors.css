@@ -22,11 +22,13 @@
 
 .scroll-pane {
   -fx-background: transparent;
+  -fx-text-fill: -text-color;
 }
 
 .list-view/*,
 .text-area*/ {
   -fx-control-inner-background: -foreground-color;
+  -fx-text-fill: -text-color;
 }
 
 /*.text-area {
@@ -41,10 +43,12 @@
 
 .text-area{
   -fx-background-color: -foreground-color, -foreground-color;
+  -fx-text-fill: -text-color;
 }
 
 .text-area .content {
   -fx-background-color: -foreground-color;
+  -fx-text-fill: -text-color;
 }
 
 .text-area:focused .content {

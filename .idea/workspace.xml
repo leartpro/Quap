@@ -4,33 +4,27 @@
     <option name="SCOPE_TYPE" value="3" />
     <option name="SHOW_STRUCTURE" value="true" />
   </component>
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="DesktopApp:jar" />
+      <artifact name="Server:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="09927819-4efd-4d77-952e-37e9b4faac9c" name="Changes" comment="Fix Small UI Bugs">
-      <change afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/utils/PseudoSelector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/DesktopApp_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/Server_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/src/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/53ec68b9-f170-41d3-88e9-4e6735662d8b.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/53ec68b9-f170-41d3-88e9-4e6735662d8b.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/9288384a-559a-430a-8490-8790fafd9c32.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/9288384a-559a-430a-8490-8790fafd9c32.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e/entities/entities.dat" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e/entities/entities.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e/entities/entities.dat.values" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e/entities/entities.dat.values" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e/entities/entities.dat.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e/entities/entities.dat.values.at" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e/entities/entities.dat.values.s" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e/entities/entities.dat.values.s" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e/entities/entities.dat_i" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e/entities/entities.dat_i" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/dbb5348a-fd45-415e-b09f-88b0956388a0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/dbb5348a-fd45-415e-b09f-88b0956388a0.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/desktopapp/popup/inputPopup.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/desktopapp/popup/inputPopup.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/desktopapp/popup/popup.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/desktopapp/popup/popup.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/desktopapp/popup/requestPopup.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/desktopapp/popup/requestPopup.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/desktopapp/scene/main-window.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/desktopapp/scene/main-window.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/desktopapp/vista/main/chat-main-vista.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/desktopapp/vista/main/chat-main-vista.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/desktopapp/vista/main/list-main-vista.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/desktopapp/vista/main/list-main-vista.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/styles/colors.css" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/styles/colors.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/styles/layouts.css" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/styles/layouts.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/domain/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/domain/Message.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,6 +98,7 @@
     <property name="RunConfigurationTargetLRU" value="bbbc8cbe-ecfc-4dbd-846d-194bd002699e&#10;bbbc8cbe-ecfc-4dbd-846d-194bd002699e/database/&quot;postgres&quot;/schema/&quot;public&quot;" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="TODO_SCOPE" value="Module 'DesktopApp'" />
     <property name="ToolWindowCommit.ShowToolbar" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -112,10 +107,10 @@
     <property name="extract.method.default.visibility" value="private" />
     <property name="jdk.selected.JAVA_MODULE" value="openjdk-16" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/desktopapp" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/images" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/out/artifacts/DesktopApp_jar/DesktopApp.jar" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.1321004" />
     <property name="project.structure.side.proportion" value="0.3607306" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
@@ -207,6 +202,8 @@
       <item itemvalue="Application.Main" />
       <item itemvalue="Database Script.insert-sample-db.sql" />
       <item itemvalue="Database Script.create-db.sql" />
+      <item itemvalue="JAR Application.Server" />
+      <item itemvalue="JAR Application.Client" />
     </list>
     <recent_temporary>
       <list>
@@ -327,6 +324,7 @@
       <workItem from="1640629307530" duration="1225000" />
       <workItem from="1640634747866" duration="1866000" />
       <workItem from="1640704933857" duration="8253000" />
+      <workItem from="1640886197083" duration="1123000" />
     </task>
     <task id="LOCAL-00032" summary="Client Initialisation as Future">
       <created>1637173082671</created>
