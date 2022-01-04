@@ -13,7 +13,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.InetAddress;
-import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
@@ -24,13 +23,12 @@ import java.util.List;
 public class Client {
     private final HashMap<Prefixes, String> prefixes = new HashMap<>();
     private final HashMap<Suffixes, String> suffixes = new HashMap<>();
-    private Socket socket = new Socket();
-    private String name;
     private final int port;
-    private final InetAddress address;
+    private final Socket socket;
     private Thread listen;
-    private BufferedReader reader;
-    private PrintWriter writer;
+    InetAddress address;
+    private final BufferedReader reader;
+    private final PrintWriter writer;
     private final ArrayList<Friend> friends = new ArrayList<>();
     private final ArrayList<Chat> chats = new ArrayList<>();
     private int id, chatID;
@@ -41,7 +39,8 @@ public class Client {
 
     {
         try {
-            name = InetAddress.getLocalHost().getHostName();
+            String name = InetAddress.getLocalHost().getHostName();
+            System.out.println(name);
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }
@@ -56,7 +55,11 @@ public class Client {
     public Client(String address, int port) throws IOException {
         this.address = InetAddress.getByName(address);
         this.port = port;
-        socket.bind(new InetSocketAddress(address, port));
+        socket = new Socket(InetAddress.getByName("192.168.178.69"), 8192); //java.net.ConnectException: Connection refused: connect
+        //socket.bind(null);
+        writer = new PrintWriter(socket.getOutputStream(), true);
+        reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        listen();
     }
 
     public List<UserContent> getFriends() {
@@ -65,15 +68,6 @@ public class Client {
 
     public List<UserContent> getChats() {
         return new ArrayList<>(chats);
-    }
-
-    public void openConnection() throws IOException {
-        socket = new Socket(InetAddress.getByName("192.168.178.69"), 8192); //java.net.ConnectException: Connection refused: connect
-    }
-
-    public void setConnection() throws IOException {
-        writer = new PrintWriter(socket.getOutputStream(), true);
-        reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
     }
 
     public void authorize(String name, String password, boolean existing) {
@@ -92,16 +86,11 @@ public class Client {
     }
 
     public void disconnect() {
+        listen.interrupt();
+        //todo: finish the listen thread
         new Thread(this::closeSocket).start();
-        /*new Thread(() -> {
-            synchronized (socket) {
-                try {
-                    socket.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();*/
+        //TODO: send disconnect message to server
+        // if anonym mode, clear all data
     }
 
     public void listen() {
@@ -119,6 +108,7 @@ public class Client {
                     listen.interrupt();
                     try {
                         reader.close();
+                        writer.close();
                     } catch (IOException io) {
                         io.printStackTrace();
                     }
@@ -220,7 +210,7 @@ public class Client {
 
 
     public String getConnectionInfo() {
-        return String.valueOf(socket.getRemoteSocketAddress());
+        return address.getCanonicalHostName()+":"+port + " --> " + socket.getRemoteSocketAddress();
     }
 
     public void sendMessage(String message) {
@@ -311,7 +301,15 @@ public class Client {
         sendCommand(json.toString());
     }
 
-    public void removeLokalChat(Chat chat) {
+    public void deleteChat(Chat chat) {
         chats.remove(chat);
+        //TODO: delete messages by chat
+        JSONObject json = new JSONObject();
+        json.put("type", "delete-chat");
+        JSONObject data = new JSONObject();
+        data.put("chat_id", chat.id());
+        data.put("sender_id", id);
+        json.put("data", data);
+        sendCommand(json.toString());
     }
 }

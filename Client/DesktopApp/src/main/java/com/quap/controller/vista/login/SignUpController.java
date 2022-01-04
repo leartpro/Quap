@@ -131,5 +131,4 @@ public class SignUpController extends LoginVistaNavigator {
     public void removeObserver(LoginVistaObserver observer) {
         observers.remove(observer);
     }
-
 }

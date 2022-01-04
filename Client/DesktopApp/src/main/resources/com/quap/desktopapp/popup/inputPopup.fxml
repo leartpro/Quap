@@ -8,18 +8,17 @@
 <?import java.net.URL?>
 <BorderPane minHeight="100.0" minWidth="200.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.popup.InputPopupController">
     <bottom>
-      <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT" BorderPane.alignment="CENTER">
-         <children>
-            <Button alignment="CENTER" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#submit" text="Submit" HBox.hgrow="NEVER" />
-                <Button fx:id="btnClose" alignment="CENTER" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#closePopup" text="Close" HBox.hgrow="NEVER" />
-         </children>
-      </HBox>
+        <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT"
+              BorderPane.alignment="CENTER">
+            <Button alignment="CENTER" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#submit"
+                    text="Submit" HBox.hgrow="NEVER"/>
+            <Button fx:id="btnClose" alignment="CENTER" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT"
+                    onAction="#closePopup" text="Close" HBox.hgrow="NEVER"/>
+        </HBox>
     </bottom>
     <top>
         <HBox styleClass="ground" BorderPane.alignment="CENTER">
-            <children>
-                <Label text="InputPopup" />
-            </children>
+            <Label text="InputPopup"/>
         </HBox>
     </top>
    <center>

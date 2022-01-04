@@ -3,6 +3,7 @@ package com.quap.controller.vista.main;
 import com.quap.client.Client;
 import com.quap.client.domain.Content;
 import com.quap.client.domain.Message;
+import com.quap.controller.vista.MainVistaObserver;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
@@ -10,10 +11,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ChatController extends MainVistaNavigator{
     private Client client;
+    private final List<MainVistaObserver> observers = new ArrayList<>();
 
     @FXML
     private ScrollPane chatPane = new ScrollPane();
@@ -50,6 +53,16 @@ public class ChatController extends MainVistaNavigator{
     @Override
     public String getType() {
         return type;
+    }
+
+    @Override
+    public void addObserver(MainVistaObserver observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void removeObserver(MainVistaObserver observer) {
+        observers.remove(observer);
     }
 
     @Override

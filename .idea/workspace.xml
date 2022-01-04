@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="AnalysisUIOptions">
+    <option name="SPLITTER_PROPORTION" value="0.585034" />
     <option name="SCOPE_TYPE" value="3" />
     <option name="SHOW_STRUCTURE" value="true" />
   </component>
@@ -15,16 +16,56 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="09927819-4efd-4d77-952e-37e9b4faac9c" name="Changes" comment="Fix Small UI Bugs">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/DesktopApp_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/Server_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/src/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/markdown.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/templateLanguages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/53ec68b9-f170-41d3-88e9-4e6735662d8b.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/53ec68b9-f170-41d3-88e9-4e6735662d8b.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/9288384a-559a-430a-8490-8790fafd9c32.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/9288384a-559a-430a-8490-8790fafd9c32.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/bbbc8cbe-ecfc-4dbd-846d-194bd002699e.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/dbb5348a-fd45-415e-b09f-88b0956388a0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/dbb5348a-fd45-415e-b09f-88b0956388a0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__eu_hansolo_tilesfx_17_0_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__eu_hansolo_tilesfx_17_0_11.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__net_synedra_validatorfx_0_1_13.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_synedra_validatorfx_0_2_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_controlsfx_controlsfx_11_1_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_controlsfx_controlsfx_11_1_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_8_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_8_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_8_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_8_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_8_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_8_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_8_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_8_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_swing_17_0_0_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_swing_win_17_0_2_ea_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_swing_win_17_0_0_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_swing_17_0_2_ea_1.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/styles/colors.css" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/styles/colors.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/DesktopApp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/DesktopApp.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/scene/ConnectionWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/scene/ConnectionWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/scene/MainWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/scene/MainWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/MainVistaObserver.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/MainVistaObserver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/VistaNavigator.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/VistaNavigator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/login/LoginVistaNavigator.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/login/LoginVistaNavigator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/login/SignInController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/login/SignInController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/login/SignUpController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/login/SignUpController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/main/ChatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/main/ChatController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/main/ListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/main/ListController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/main/MainVistaNavigator.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/main/MainVistaNavigator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/main/ProfilController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/main/ProfilController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/main/SettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/main/SettingsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/desktopapp/Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/desktopapp/Launcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/desktopapp/popup/inputPopup.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/desktopapp/popup/inputPopup.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/desktopapp/popup/popup.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/desktopapp/popup/popup.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/desktopapp/popup/requestPopup.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/desktopapp/popup/requestPopup.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/desktopapp/scene/login-window.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/desktopapp/scene/login-window.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/desktopapp/scene/main-window.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/desktopapp/scene/main-window.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/desktopapp/vista/login/signIn-login-vista.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/desktopapp/vista/login/signIn-login-vista.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/desktopapp/vista/login/signUp-login-vista.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/desktopapp/vista/login/signUp-login-vista.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/desktopapp/vista/main/chat-main-vista.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/desktopapp/vista/main/chat-main-vista.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/desktopapp/vista/main/list-main-vista.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/desktopapp/vista/main/list-main-vista.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/desktopapp/vista/main/profile-main-vista.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/desktopapp/vista/main/profile-main-vista.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/desktopapp/vista/main/settings-main-vista.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/desktopapp/vista/main/settings-main-vista.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/styles/layouts.css" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/styles/layouts.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/runtime/OrderedProcessChain.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/runtime/ProcessChain.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/data/UserdataReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/quap/data/UserdataReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/server/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/quap/server/ClientHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/server/ServerClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/quap/server/ServerClient.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +119,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedIndex" value="1" />
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="2" />
@@ -107,14 +148,14 @@
     <property name="extract.method.default.visibility" value="private" />
     <property name="jdk.selected.JAVA_MODULE" value="openjdk-16" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/desktopapp" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/out/artifacts/DesktopApp_jar/DesktopApp.jar" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/images/splashBackground.jpg" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.1321004" />
     <property name="project.structure.side.proportion" value="0.3607306" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="Errors" />
+    <property name="settings.editor.selected.configurable" value="Settings.Markdown" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -143,12 +184,15 @@
     </option>
   </component>
   <component name="RunManager" selected="Application.Launcher">
-    <configuration name="DataTests" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.quap.client.data.DataTests" />
-      <module name="Client" />
+    <configuration name="Launcher" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
+      <envs>
+        <env name="--add-modules" value="javafx.swing,javafx.graphics,javafx.fxml,javafx.media,javafx.web --add-reads javafx.graphics=ALL-UNNAMED --add-opens javafx.controls/com.sun.javafx.charts=ALL-UNNAMED --add-opens javafx.graphics/com.sun.javafx.iio=ALL-UNNAMED --add-opens javafx.graphics/com.sun.javafx.iio.common=ALL-UNNAMED --add-opens javafx.graphics/com.sun.javafx.css=ALL-UNNAMED --add-opens javafx.base/com.sun.javafx.runtime=ALL-UNNAME" />
+      </envs>
+      <option name="MAIN_CLASS_NAME" value="com.quap.desktopapp.Launcher" />
+      <module name="DesktopApp" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.quap.client.data.*" />
+          <option name="PATTERN" value="com.quap.desktopapp.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -156,11 +200,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Launcher" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
-      <envs>
-        <env name="--add-modules" value="javafx.swing,javafx.graphics,javafx.fxml,javafx.media,javafx.web --add-reads javafx.graphics=ALL-UNNAMED --add-opens javafx.controls/com.sun.javafx.charts=ALL-UNNAMED --add-opens javafx.graphics/com.sun.javafx.iio=ALL-UNNAMED --add-opens javafx.graphics/com.sun.javafx.iio.common=ALL-UNNAMED --add-opens javafx.graphics/com.sun.javafx.css=ALL-UNNAMED --add-opens javafx.base/com.sun.javafx.runtime=ALL-UNNAME" />
-      </envs>
-      <option name="MAIN_CLASS_NAME" value="com.quap.desktopapp.Launcher" />
+    <configuration name="LauncherPreloader" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.quap.desktopapp.LauncherPreloader" />
       <module name="DesktopApp" />
       <extension name="coverage">
         <pattern>
@@ -198,8 +239,8 @@
     </configuration>
     <list>
       <item itemvalue="Application.Launcher" />
-      <item itemvalue="Application.DataTests" />
       <item itemvalue="Application.Main" />
+      <item itemvalue="Application.LauncherPreloader" />
       <item itemvalue="Database Script.insert-sample-db.sql" />
       <item itemvalue="Database Script.create-db.sql" />
       <item itemvalue="JAR Application.Server" />
@@ -209,9 +250,9 @@
       <list>
         <item itemvalue="Application.Launcher" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.LauncherPreloader" />
         <item itemvalue="Database Script.create-db.sql" />
         <item itemvalue="Database Script.insert-sample-db.sql" />
-        <item itemvalue="Application.DataTests" />
       </list>
     </recent_temporary>
   </component>
@@ -324,14 +365,15 @@
       <workItem from="1640629307530" duration="1225000" />
       <workItem from="1640634747866" duration="1866000" />
       <workItem from="1640704933857" duration="8253000" />
-      <workItem from="1640886197083" duration="1123000" />
-    </task>
-    <task id="LOCAL-00032" summary="Client Initialisation as Future">
-      <created>1637173082671</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1637173082671</updated>
+      <workItem from="1640886197083" duration="2812000" />
+      <workItem from="1640891858915" duration="262000" />
+      <workItem from="1640897786225" duration="691000" />
+      <workItem from="1640899451716" duration="801000" />
+      <workItem from="1640948404661" duration="14338000" />
+      <workItem from="1641123527473" duration="4863000" />
+      <workItem from="1641137883086" duration="2583000" />
+      <workItem from="1641216689017" duration="9908000" />
+      <workItem from="1641305885751" duration="1862000" />
     </task>
     <task id="LOCAL-00033" summary="Runnable Version">
       <created>1637184184670</created>
@@ -669,7 +711,14 @@
       <option name="project" value="LOCAL" />
       <updated>1640623930554</updated>
     </task>
-    <option name="localTasksCounter" value="81" />
+    <task id="LOCAL-00081" summary="Add executables and fix small UI-Bug">
+      <created>1640888219725</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1640888219725</updated>
+    </task>
+    <option name="localTasksCounter" value="82" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -715,7 +764,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="Add UI Features" />
     <MESSAGE value="Add TODOs" />
     <MESSAGE value="Add dark theme" />
     <MESSAGE value="Update CSS" />
@@ -740,7 +788,8 @@
     <MESSAGE value="Awesome splash-background" />
     <MESSAGE value="Fix Small Warnings and add layouts" />
     <MESSAGE value="Improve UI" />
-    <option name="LAST_COMMIT_MESSAGE" value="Improve UI" />
+    <MESSAGE value="Add executables and fix small UI-Bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add executables and fix small UI-Bug" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XPathView.XPathProjectComponent">

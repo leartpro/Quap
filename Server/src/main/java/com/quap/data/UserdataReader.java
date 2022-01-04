@@ -20,8 +20,7 @@ public class UserdataReader {
         statement = connection.createStatement();
     }
 
-    //Sign up
-    public JSONObject insertUser(String name, String password) { //TODO: message format
+    public JSONObject insertUser(String name, String password) {
         System.out.println("insertUser(" + name + "," + password + ")");
         PreparedStatement statement;
         JSONObject json = new JSONObject();
@@ -51,8 +50,7 @@ public class UserdataReader {
         return json;
     }
 
-    //Sign In
-    public JSONObject verifyUser(String name, String password) { //TODO: message format
+    public JSONObject verifyUser(String name, String password) {
         System.out.println("verifyUser(" + name + "," + password + ")");
         JSONObject json = new JSONObject();
         json.put("return-value", "authentication");
@@ -67,7 +65,7 @@ public class UserdataReader {
             data.put("private", chatsByUser(userID));
             json.put("data", data);
         }
-        return json; //user json
+        return json;
     }
 
     private int getUserID(String name, String password) {
@@ -137,6 +135,22 @@ public class UserdataReader {
         }
         System.out.println("DB-json:" + json);
         return json;
+    }
+
+    public void deleteUserFromChat(int userID, int chatID) {
+        PreparedStatement statement;
+        String query = "" +
+                "DELETE FROM participants " +
+                "WHERE user_id = ? " +
+                "AND chatroom_id = ?";
+        try {
+            statement = connection.prepareStatement(query);
+            statement.setInt(1, userID);
+            statement.setInt(2, chatID);
+            statement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void leaveChat(int chatID, int userID) { //TODO

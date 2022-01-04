@@ -9,25 +9,19 @@
 <BorderPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.popup.RequestPopupController">
     <top>
         <HBox maxWidth="1.7976931348623157E308" styleClass="ground" BorderPane.alignment="CENTER">
-            <children>
-                <Label styleClass="ground" text="Popup" />
-            </children>
+            <Label styleClass="ground" text="Popup"/>
         </HBox>
     </top>
    <center>
-      <HBox maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
-         <children>
-            <TextArea fx:id="txtDisplay" editable="false" HBox.hgrow="SOMETIMES" />
-         </children>
-      </HBox>
+       <HBox maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
+           <TextArea fx:id="txtDisplay" editable="false" HBox.hgrow="SOMETIMES"/>
+       </HBox>
    </center>
    <bottom>
-      <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
-         <children>
-            <Button fx:id="btnAccept" mnemonicParsing="false" onAction="#accept" text="Accept" />
-            <Button fx:id="btnDecline" mnemonicParsing="false" onAction="#decline" text="Decline" />
-         </children>
-      </HBox>
+       <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
+           <Button fx:id="btnAccept" mnemonicParsing="false" onAction="#accept" text="Accept"/>
+           <Button fx:id="btnDecline" mnemonicParsing="false" onAction="#decline" text="Decline"/>
+       </HBox>
    </bottom>
    <stylesheets>
       <URL value="@../../styles/colors.css" />

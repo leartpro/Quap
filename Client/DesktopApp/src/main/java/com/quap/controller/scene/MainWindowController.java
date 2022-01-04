@@ -92,9 +92,13 @@ public class MainWindowController extends WindowController implements ClientObse
 
     public void setVista(Parent node, VistaNavigator controller) { //set the current node is called by VistaController
         if (node.getId().equals("chat") || node.getId().equals("list") || node.getId().equals("profile") || node.getId().equals("settings")) {
+            if(currentNode != null) {
+                currentNode.removeObserver(this);
+            }
             currentNodeID = node.getId();
             currentNode = (MainVistaNavigator)controller;
             currentNode.setClient(client);
+            currentNode.addObserver(this);
         } else {
             throw new IllegalArgumentException();
         }
@@ -135,6 +139,8 @@ public class MainWindowController extends WindowController implements ClientObse
 
     public void close(ActionEvent actionEvent) {
         //TODO: finish necessary tasks as daemon thread
+        client.removeObserver(this);
+        client.disconnect();
         ((Stage)(((Button)actionEvent.getSource()).getScene().getWindow())).close();
     }
 
@@ -265,6 +271,22 @@ public class MainWindowController extends WindowController implements ClientObse
         if(currentNode.getType().equals("chatrooms")) {
             Platform.runLater(() -> loadButtons(client.getChats()));
             if(currentNodeID.equals("list")) {
+                Platform.runLater(() -> currentNode.loadContent(Collections.singletonList(chat)));
+            }
+        }
+    }
+
+    @Override
+    public void deleteChatEvent(Chat chat) {
+        System.out.println("deleteChatEvent");
+        /*if(currentNode.getType().equals("chatrooms")) {
+            chatrooms(new ActionEvent()); //TODO: this is a problem, because the current node cant change while observers are iterated
+        }*/
+        if(currentNode.getType().equals("chatrooms")) {
+            Platform.runLater(() -> loadButtons(client.getChats()));
+            if(currentNodeID.equals("list")) {
+                //TODO: does duplicate the content because the content is never deleted
+                // solution would be to add a defaulte delete all to the loadContent() method and add an additional addContent(Content content) method
                 Platform.runLater(() -> currentNode.loadContent(Collections.singletonList(chat)));
             }
         }

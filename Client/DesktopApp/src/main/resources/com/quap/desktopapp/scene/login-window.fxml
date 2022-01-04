@@ -8,16 +8,15 @@
 <?import java.lang.String?>
 <?import java.net.URL?>
 <VBox maxHeight="360.0" maxWidth="480.0" minHeight="360.0" minWidth="480.0" spacing="4.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.scene.LoginWindowController">
-   <Label fx:id="headerLabel" text="Quap" textFill="WHITE" VBox.vgrow="NEVER" />
+   <Label text="Quap" textFill="WHITE" VBox.vgrow="NEVER" />
    <StackPane fx:id="vistaHolder" styleClass="foreground" VBox.vgrow="ALWAYS" />
    <CheckBox fx:id="checkAnonymMode" mnemonicParsing="false" onAction="#switchMode" text="Anonym Mode" textFill="WHITE" VBox.vgrow="NEVER" />
    <HBox alignment="CENTER" styleClass="loginScreen" VBox.vgrow="SOMETIMES">
-      <children>
-         <Button fx:id="btnLogin" minHeight="25.0" minWidth="40.0" mnemonicParsing="false" onAction="#login" text="Login">
-            <HBox.margin>
-               <Insets bottom="4.0" top="4.0" />
-            </HBox.margin></Button>
-      </children>
+      <Button fx:id="btnLogin" minHeight="25.0" minWidth="40.0" mnemonicParsing="false" onAction="#login" text="Login">
+         <HBox.margin>
+            <Insets bottom="4.0" top="4.0"/>
+         </HBox.margin>
+      </Button>
    </HBox>
    <stylesheets>
       <URL value="@../../styles/colors.css" />

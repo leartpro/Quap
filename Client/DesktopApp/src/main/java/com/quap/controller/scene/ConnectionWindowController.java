@@ -44,6 +44,29 @@ public class ConnectionWindowController implements Initializable {
         prBar = progressBar;
     }
 
+   /* public ConnectionWindowController() {
+        //increaseProgress();
+        Platform.runLater(() -> loadingLabel.setText("Open Connection"));
+        try {
+            client = new Client("localhost", 0); //local socketAddress to bind to
+            //client.listen();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Error");
+        }
+    }*/
+    public void connect() {
+        increaseProgress();
+        Platform.runLater(() -> loadingLabel.setText("Open Connection"));
+        try {
+            client = new Client("localhost", 0); //local socketAddress to bind to
+            //client.listen();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Error");
+        }
+    }
+
     public void increaseProgress() {
         if (progress < 1) {
             for(int i = 0; i < 25; i++) {
@@ -59,39 +82,23 @@ public class ConnectionWindowController implements Initializable {
         }
     }
 
-    public void connect() {
+    /*public void connect() {
         increaseProgress();
         Platform.runLater(() -> loadingLabel.setText("Open Connection"));
         try {
             client = new Client("localhost", 0); //local socketAddress to bind to
+            client.listen();
         } catch (IOException e) {
             System.out.println("Error");
         }
-    }
+    }*/
 
-    public void openConnection() {
-        increaseProgress();
-        Platform.runLater(() -> loadingLabel.setText("Open Connection."));
-        try {
-            client.openConnection();
-        } catch (IOException e) {
-            System.out.println("Error");
-        }
-        Platform.runLater(() -> loadingLabel.setText("Open Connection.."));
-        try {
-            client.setConnection();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Platform.runLater(() -> loadingLabel.setText("Open Connection..."));
-    }
-
-    public void confirmConnection() {
+    /*public void confirmConnection() {
         increaseProgress();
         System.out.println("confirm connection");
         Platform.runLater(() -> loadingLabel.setText("Confirm Connection"));
         client.listen();
-    }
+    }*/
 
     public void launchWindow() {
         increaseProgress();

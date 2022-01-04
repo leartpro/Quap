@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="postgres@localhost">
-  <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.23">
+  <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.31">
     <root id="1">
-      <ServerVersion>14.1</ServerVersion>
       <DateStyle>dmy</DateStyle>
+      <IntrospectionStateNumber>1249</IntrospectionStateNumber>
+      <ServerVersion>14.1</ServerVersion>
+      <StartupTime>1638959770</StartupTime>
       <TimeZones>true ACDT
 true ACSST
 false ACST
@@ -785,12 +787,10 @@ false YEKT
 false Z
 false Zulu
 </TimeZones>
-      <IntrospectionStateNumber>1249</IntrospectionStateNumber>
-      <StartupTime>1638959770</StartupTime>
     </root>
     <database id="2" parent="1" name="postgres">
-      <ObjectId>13754</ObjectId>
       <Comment>default administrative connection database</Comment>
+      <Current>1</Current>
       <Grants>11||10|C|G
 11||-9223372036854775808|U|G
 11||10|U|G
@@ -801,9 +801,8 @@ false Zulu
 13388||10|C|G
 13388||-9223372036854775808|U|G
 13388||10|U|G</Grants>
-      <Owner>postgres</Owner>
       <IntrospectionStateNumber>1250</IntrospectionStateNumber>
-      <Current>1</Current>
+      <ObjectId>13754</ObjectId>
       <Relations>sequence|table|16404|16405|1
 sequence|table|16414|16415|1
 sequence|table|16438|16439|1
@@ -815,6 +814,7 @@ sequence|table|25725|25726|1
 sequence|table|25738|25739|1
 sequence|table|25765|25766|1
 </Relations>
+      <OwnerName>postgres</OwnerName>
     </database>
     <role id="3" parent="1" name="pg_database_owner">
       <ObjectId>6171</ObjectId>
@@ -853,496 +853,503 @@ sequence|table|25765|25766|1
       <ObjectId>4570</ObjectId>
     </role>
     <role id="14" parent="1" name="postgres">
-      <ObjectId>10</ObjectId>
+      <BypassRls>1</BypassRls>
+      <CanLogin>1</CanLogin>
       <CreateDb>1</CreateDb>
       <CreateRole>1</CreateRole>
-      <CanLogin>1</CanLogin>
-      <SuperRole>1</SuperRole>
+      <ObjectId>10</ObjectId>
       <Replication>1</Replication>
-      <BypassRls>1</BypassRls>
+      <SuperRole>1</SuperRole>
     </role>
     <tablespace id="15" parent="1" name="pg_default">
       <ObjectId>1663</ObjectId>
-      <Owner>postgres</Owner>
       <StateNumber>1</StateNumber>
+      <OwnerName>postgres</OwnerName>
     </tablespace>
     <tablespace id="16" parent="1" name="pg_global">
       <ObjectId>1664</ObjectId>
-      <Owner>postgres</Owner>
       <StateNumber>1</StateNumber>
+      <OwnerName>postgres</OwnerName>
     </tablespace>
-    <schema id="17" parent="2" name="information_schema">
-      <ObjectId>13388</ObjectId>
-      <StateNumber>533</StateNumber>
-      <Owner>postgres</Owner>
-    </schema>
-    <schema id="18" parent="2" name="pg_catalog">
-      <ObjectId>11</ObjectId>
-      <Comment>system catalog schema</Comment>
-      <StateNumber>526</StateNumber>
-      <Owner>postgres</Owner>
-    </schema>
-    <schema id="19" parent="2" name="pgagent">
-      <ObjectId>16394</ObjectId>
-      <Comment>pgAgent system tables</Comment>
-      <StateNumber>735</StateNumber>
-      <Owner>postgres</Owner>
-    </schema>
-    <schema id="20" parent="2" name="public">
-      <ObjectId>2200</ObjectId>
-      <Comment>standard public schema</Comment>
-      <StateNumber>527</StateNumber>
-      <Owner>postgres</Owner>
-      <IntrospectionStateNumber>1250</IntrospectionStateNumber>
-      <Current>1</Current>
-    </schema>
-    <extension id="21" parent="2" name="adminpack">
-      <ObjectId>16384</ObjectId>
+    <access-method id="17" parent="2" name="brin">
+      <Comment>block range index (BRIN) access method</Comment>
+      <ObjectId>3580</ObjectId>
+      <StateNumber>1</StateNumber>
+      <Type>index</Type>
+      <HandlerId>335</HandlerId>
+      <HandlerName>brinhandler</HandlerName>
+      <HandlerParentName>pg_catalog</HandlerParentName>
+    </access-method>
+    <access-method id="18" parent="2" name="btree">
+      <Comment>b-tree index access method</Comment>
+      <ObjectId>403</ObjectId>
+      <StateNumber>1</StateNumber>
+      <Type>index</Type>
+      <HandlerId>330</HandlerId>
+      <HandlerName>bthandler</HandlerName>
+      <HandlerParentName>pg_catalog</HandlerParentName>
+    </access-method>
+    <access-method id="19" parent="2" name="gin">
+      <Comment>GIN index access method</Comment>
+      <ObjectId>2742</ObjectId>
+      <StateNumber>1</StateNumber>
+      <Type>index</Type>
+      <HandlerId>333</HandlerId>
+      <HandlerName>ginhandler</HandlerName>
+      <HandlerParentName>pg_catalog</HandlerParentName>
+    </access-method>
+    <access-method id="20" parent="2" name="gist">
+      <Comment>GiST index access method</Comment>
+      <ObjectId>783</ObjectId>
+      <StateNumber>1</StateNumber>
+      <Type>index</Type>
+      <HandlerId>332</HandlerId>
+      <HandlerName>gisthandler</HandlerName>
+      <HandlerParentName>pg_catalog</HandlerParentName>
+    </access-method>
+    <access-method id="21" parent="2" name="hash">
+      <Comment>hash index access method</Comment>
+      <ObjectId>405</ObjectId>
+      <StateNumber>1</StateNumber>
+      <Type>index</Type>
+      <HandlerId>331</HandlerId>
+      <HandlerName>hashhandler</HandlerName>
+      <HandlerParentName>pg_catalog</HandlerParentName>
+    </access-method>
+    <access-method id="22" parent="2" name="heap">
+      <Comment>heap table access method</Comment>
+      <ObjectId>2</ObjectId>
+      <StateNumber>1</StateNumber>
+      <Type>table</Type>
+      <HandlerId>3</HandlerId>
+      <HandlerName>heap_tableam_handler</HandlerName>
+      <HandlerParentName>pg_catalog</HandlerParentName>
+    </access-method>
+    <access-method id="23" parent="2" name="spgist">
+      <Comment>SP-GiST index access method</Comment>
+      <ObjectId>4000</ObjectId>
+      <StateNumber>1</StateNumber>
+      <Type>index</Type>
+      <HandlerId>334</HandlerId>
+      <HandlerName>spghandler</HandlerName>
+      <HandlerParentName>pg_catalog</HandlerParentName>
+    </access-method>
+    <extension id="24" parent="2" name="adminpack">
       <Comment>administrative functions for PostgreSQL</Comment>
+      <ObjectId>16384</ObjectId>
       <StateNumber>734</StateNumber>
       <Version>2.1</Version>
-      <SchemaName>pg_catalog</SchemaName>
-      <SchemaId>11</SchemaId>
+      <ExtSchemaId>11</ExtSchemaId>
+      <ExtSchemaName>pg_catalog</ExtSchemaName>
     </extension>
-    <extension id="22" parent="2" name="pgagent">
-      <ObjectId>16395</ObjectId>
+    <extension id="25" parent="2" name="pgagent">
       <Comment>A PostgreSQL job scheduler</Comment>
+      <ObjectId>16395</ObjectId>
       <StateNumber>735</StateNumber>
       <Version>4.2</Version>
-      <SchemaName>pgagent</SchemaName>
-      <SchemaId>16394</SchemaId>
+      <ExtSchemaId>16394</ExtSchemaId>
+      <ExtSchemaName>pgagent</ExtSchemaName>
     </extension>
-    <extension id="23" parent="2" name="plpgsql">
-      <ObjectId>13740</ObjectId>
+    <extension id="26" parent="2" name="plpgsql">
       <Comment>PL/pgSQL procedural language</Comment>
+      <ObjectId>13740</ObjectId>
       <StateNumber>687</StateNumber>
       <Version>1.0</Version>
-      <SchemaName>pg_catalog</SchemaName>
-      <SchemaId>11</SchemaId>
+      <ExtSchemaId>11</ExtSchemaId>
+      <ExtSchemaName>pg_catalog</ExtSchemaName>
     </extension>
-    <language id="24" parent="2" name="c">
-      <ObjectId>13</ObjectId>
+    <language id="27" parent="2" name="c">
       <Comment>dynamically-loaded C functions</Comment>
+      <ObjectId>13</ObjectId>
       <StateNumber>1</StateNumber>
       <ValidatorName>fmgr_c_validator</ValidatorName>
       <ValidatorSchema>pg_catalog</ValidatorSchema>
     </language>
-    <language id="25" parent="2" name="internal">
-      <ObjectId>12</ObjectId>
+    <language id="28" parent="2" name="internal">
       <Comment>built-in functions</Comment>
+      <ObjectId>12</ObjectId>
       <StateNumber>1</StateNumber>
       <ValidatorName>fmgr_internal_validator</ValidatorName>
       <ValidatorSchema>pg_catalog</ValidatorSchema>
     </language>
-    <language id="26" parent="2" name="plpgsql">
-      <ObjectId>13744</ObjectId>
+    <language id="29" parent="2" name="plpgsql">
       <Comment>PL/pgSQL procedural language</Comment>
-      <StateNumber>687</StateNumber>
-      <Trusted>1</Trusted>
       <HandlerName>plpgsql_call_handler</HandlerName>
       <HandlerSchema>pg_catalog</HandlerSchema>
       <InlineHandlerName>plpgsql_inline_handler</InlineHandlerName>
       <InlineHandlerSchema>pg_catalog</InlineHandlerSchema>
+      <ObjectId>13744</ObjectId>
+      <StateNumber>687</StateNumber>
+      <Trusted>1</Trusted>
       <ValidatorName>plpgsql_validator</ValidatorName>
       <ValidatorSchema>pg_catalog</ValidatorSchema>
     </language>
-    <language id="27" parent="2" name="sql">
-      <ObjectId>14</ObjectId>
+    <language id="30" parent="2" name="sql">
       <Comment>SQL-language functions</Comment>
+      <ObjectId>14</ObjectId>
       <StateNumber>1</StateNumber>
       <Trusted>1</Trusted>
       <ValidatorName>fmgr_sql_validator</ValidatorName>
       <ValidatorSchema>pg_catalog</ValidatorSchema>
     </language>
-    <access-method id="28" parent="2" name="brin">
-      <ObjectId>3580</ObjectId>
-      <Comment>block range index (BRIN) access method</Comment>
-      <StateNumber>1</StateNumber>
-      <Type>index</Type>
-      <Handler>pg_catalog.brinhandler</Handler>
-      <HandlerId>335</HandlerId>
-    </access-method>
-    <access-method id="29" parent="2" name="btree">
-      <ObjectId>403</ObjectId>
-      <Comment>b-tree index access method</Comment>
-      <StateNumber>1</StateNumber>
-      <Type>index</Type>
-      <Handler>pg_catalog.bthandler</Handler>
-      <HandlerId>330</HandlerId>
-    </access-method>
-    <access-method id="30" parent="2" name="gin">
-      <ObjectId>2742</ObjectId>
-      <Comment>GIN index access method</Comment>
-      <StateNumber>1</StateNumber>
-      <Type>index</Type>
-      <Handler>pg_catalog.ginhandler</Handler>
-      <HandlerId>333</HandlerId>
-    </access-method>
-    <access-method id="31" parent="2" name="gist">
-      <ObjectId>783</ObjectId>
-      <Comment>GiST index access method</Comment>
-      <StateNumber>1</StateNumber>
-      <Type>index</Type>
-      <Handler>pg_catalog.gisthandler</Handler>
-      <HandlerId>332</HandlerId>
-    </access-method>
-    <access-method id="32" parent="2" name="hash">
-      <ObjectId>405</ObjectId>
-      <Comment>hash index access method</Comment>
-      <StateNumber>1</StateNumber>
-      <Type>index</Type>
-      <Handler>pg_catalog.hashhandler</Handler>
-      <HandlerId>331</HandlerId>
-    </access-method>
-    <access-method id="33" parent="2" name="heap">
-      <ObjectId>2</ObjectId>
-      <Comment>heap table access method</Comment>
-      <StateNumber>1</StateNumber>
-      <Type>table</Type>
-      <Handler>pg_catalog.heap_tableam_handler</Handler>
-      <HandlerId>3</HandlerId>
-    </access-method>
-    <access-method id="34" parent="2" name="spgist">
-      <ObjectId>4000</ObjectId>
-      <Comment>SP-GiST index access method</Comment>
-      <StateNumber>1</StateNumber>
-      <Type>index</Type>
-      <Handler>pg_catalog.spghandler</Handler>
-      <HandlerId>334</HandlerId>
-    </access-method>
-    <sequence id="35" parent="20" name="user_id_seq">
-      <ObjectId>16781</ObjectId>
-      <Owner>postgres</Owner>
-      <StateNumber>844</StateNumber>
+    <schema id="31" parent="2" name="information_schema">
+      <ObjectId>13388</ObjectId>
+      <StateNumber>533</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </schema>
+    <schema id="32" parent="2" name="pg_catalog">
+      <Comment>system catalog schema</Comment>
+      <ObjectId>11</ObjectId>
+      <StateNumber>526</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </schema>
+    <schema id="33" parent="2" name="pgagent">
+      <Comment>pgAgent system tables</Comment>
+      <ObjectId>16394</ObjectId>
+      <StateNumber>735</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </schema>
+    <schema id="34" parent="2" name="public">
+      <Comment>standard public schema</Comment>
+      <Current>1</Current>
+      <IntrospectionStateNumber>1250</IntrospectionStateNumber>
+      <ObjectId>2200</ObjectId>
+      <StateNumber>527</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </schema>
+    <sequence id="35" parent="34" name="user_id_seq">
       <DataType>bigint|0s</DataType>
+      <ObjectId>16781</ObjectId>
+      <StateNumber>844</StateNumber>
+      <OwnerName>postgres</OwnerName>
     </sequence>
-    <sequence id="36" parent="20" name="chatrooms_id_seq">
+    <sequence id="36" parent="34" name="chatrooms_id_seq">
+      <DataType>integer|0s</DataType>
       <ObjectId>25738</ObjectId>
-      <Owner>postgres</Owner>
       <StateNumber>1245</StateNumber>
-      <DataType>integer|0s</DataType>
+      <OwnerName>postgres</OwnerName>
     </sequence>
-    <sequence id="37" parent="20" name="friends_id_seq">
+    <sequence id="37" parent="34" name="friends_id_seq">
+      <DataType>integer|0s</DataType>
       <ObjectId>25765</ObjectId>
-      <Owner>postgres</Owner>
       <StateNumber>1247</StateNumber>
-      <DataType>integer|0s</DataType>
+      <OwnerName>postgres</OwnerName>
     </sequence>
-    <sequence id="38" parent="20" name="users_id_seq">
+    <sequence id="38" parent="34" name="users_id_seq">
+      <DataType>integer|0s</DataType>
       <ObjectId>25725</ObjectId>
-      <Owner>postgres</Owner>
       <StateNumber>1244</StateNumber>
-      <DataType>integer|0s</DataType>
+      <OwnerName>postgres</OwnerName>
     </sequence>
-    <table id="39" parent="20" name="chatrooms">
+    <table id="39" parent="34" name="chatrooms">
       <ObjectId>25739</ObjectId>
-      <Owner>postgres</Owner>
       <StateNumber>1246</StateNumber>
       <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
     </table>
-    <table id="40" parent="20" name="friends">
+    <table id="40" parent="34" name="friends">
       <ObjectId>25766</ObjectId>
-      <Owner>postgres</Owner>
       <StateNumber>1247</StateNumber>
       <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
     </table>
-    <table id="41" parent="20" name="participants">
+    <table id="41" parent="34" name="participants">
       <ObjectId>25749</ObjectId>
-      <Owner>postgres</Owner>
       <StateNumber>1246</StateNumber>
       <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
     </table>
-    <table id="42" parent="20" name="users">
+    <table id="42" parent="34" name="users">
       <ObjectId>25726</ObjectId>
-      <Owner>postgres</Owner>
       <StateNumber>1246</StateNumber>
       <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
     </table>
-    <column id="43" parent="39" name="id">
-      <Position>1</Position>
+    <check id="43" parent="39" name="chatrooms_name_check">
+      <ColNames>name</ColNames>
+      <ObjectId>25744</ObjectId>
+      <Predicate>(length((name)::text) &lt;= 24) AND (length((name)::text) &gt;= 4)</Predicate>
+      <StateNumber>1245</StateNumber>
+    </check>
+    <column id="44" parent="39" name="id">
       <DataType>integer|0s</DataType>
+      <IdentityKind>always</IdentityKind>
       <NotNull>1</NotNull>
+      <Position>1</Position>
       <StateNumber>1245</StateNumber>
       <TypeId>23</TypeId>
-      <IdentityKind>always</IdentityKind>
     </column>
-    <column id="44" parent="39" name="name">
-      <Position>2</Position>
+    <column id="45" parent="39" name="name">
       <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
+      <Position>2</Position>
       <StateNumber>1245</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="45" parent="39" name="is_private">
-      <Position>3</Position>
+    <column id="46" parent="39" name="is_private">
       <DataType>boolean|0s</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>1245</StateNumber>
       <DefaultExpression>false</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StateNumber>1245</StateNumber>
       <TypeId>16</TypeId>
     </column>
-    <column id="46" parent="39" name="created_at">
-      <Position>4</Position>
+    <column id="47" parent="39" name="created_at">
       <DataType>timestamp|0s</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>1245</StateNumber>
       <DefaultExpression>now()</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+      <StateNumber>1245</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <index id="47" parent="39" name="chatrooms_pkey">
-      <ObjectId>25747</ObjectId>
-      <StateNumber>1245</StateNumber>
-      <ColNames>id</ColNames>
-      <Unique>1</Unique>
-      <Primary>1</Primary>
-      <CollationIds>0</CollationIds>
+    <index id="48" parent="39" name="chatrooms_pkey">
       <ClassIds>1978</ClassIds>
+      <ColNames>id</ColNames>
+      <CollationIds>0</CollationIds>
+      <ObjectId>25747</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>1245</StateNumber>
+      <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="48" parent="39" name="chatrooms_pkey">
-      <ObjectId>25748</ObjectId>
-      <StateNumber>1245</StateNumber>
+    <key id="49" parent="39" name="chatrooms_pkey">
       <ColNames>id</ColNames>
+      <ObjectId>25748</ObjectId>
       <Primary>1</Primary>
+      <StateNumber>1245</StateNumber>
       <UnderlyingIndexName>chatrooms_pkey</UnderlyingIndexName>
     </key>
-    <check id="49" parent="39" name="chatrooms_name_check">
-      <ObjectId>25744</ObjectId>
-      <StateNumber>1245</StateNumber>
-      <ColNames>name</ColNames>
-      <Predicate>(length((name)::text) &lt;= 24) AND (length((name)::text) &gt;= 4)</Predicate>
-    </check>
     <column id="50" parent="40" name="id">
-      <Position>1</Position>
       <DataType>integer|0s</DataType>
+      <IdentityKind>always</IdentityKind>
       <NotNull>1</NotNull>
+      <Position>1</Position>
       <StateNumber>1247</StateNumber>
       <TypeId>23</TypeId>
-      <IdentityKind>always</IdentityKind>
     </column>
     <column id="51" parent="40" name="friend1_id">
-      <Position>2</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
+      <Position>2</Position>
       <StateNumber>1247</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <column id="52" parent="40" name="friend2_id">
-      <Position>3</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
+      <Position>3</Position>
       <StateNumber>1247</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <column id="53" parent="40" name="chat_id">
-      <Position>4</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
+      <Position>4</Position>
       <StateNumber>1247</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <index id="54" parent="40" name="friends_pkey">
-      <ObjectId>25769</ObjectId>
+    <foreign-key id="54" parent="40" name="friends_friend1_id_fkey">
+      <ColNames>friend1_id</ColNames>
+      <ObjectId>25773</ObjectId>
+      <OnDelete>cascade</OnDelete>
+      <RefColNames>id</RefColNames>
+      <RefColPositions>1</RefColPositions>
+      <RefKeyName>users_pkey</RefKeyName>
       <StateNumber>1247</StateNumber>
-      <ColNames>id</ColNames>
-      <Unique>1</Unique>
-      <Primary>1</Primary>
-      <CollationIds>0</CollationIds>
+      <RefTableId>25726</RefTableId>
+      <RefTableName>users</RefTableName>
+    </foreign-key>
+    <foreign-key id="55" parent="40" name="friends_friend2_id_fkey">
+      <ColNames>friend2_id</ColNames>
+      <ObjectId>25778</ObjectId>
+      <OnDelete>cascade</OnDelete>
+      <RefColNames>id</RefColNames>
+      <RefColPositions>1</RefColPositions>
+      <RefKeyName>users_pkey</RefKeyName>
+      <StateNumber>1247</StateNumber>
+      <RefTableId>25726</RefTableId>
+      <RefTableName>users</RefTableName>
+    </foreign-key>
+    <foreign-key id="56" parent="40" name="friends_chat_id_fkey">
+      <ColNames>chat_id</ColNames>
+      <ObjectId>25783</ObjectId>
+      <OnDelete>cascade</OnDelete>
+      <RefColNames>id</RefColNames>
+      <RefColPositions>1</RefColPositions>
+      <RefKeyName>chatrooms_pkey</RefKeyName>
+      <StateNumber>1247</StateNumber>
+      <RefTableId>25739</RefTableId>
+      <RefTableName>chatrooms</RefTableName>
+    </foreign-key>
+    <index id="57" parent="40" name="friends_pkey">
       <ClassIds>1978</ClassIds>
+      <ColNames>id</ColNames>
+      <CollationIds>0</CollationIds>
+      <ObjectId>25769</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>1247</StateNumber>
+      <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <index id="55" parent="40" name="friends_friend1_id_friend2_id_key">
+    <index id="58" parent="40" name="friends_friend1_id_friend2_id_key">
+      <ClassIds>1978,1978</ClassIds>
+      <ColNames>friend1_id
+friend2_id</ColNames>
+      <CollationIds>0,0</CollationIds>
       <ObjectId>25771</ObjectId>
       <StateNumber>1247</StateNumber>
-      <ColNames>friend1_id
-friend2_id</ColNames>
       <Unique>1</Unique>
-      <CollationIds>0,0</CollationIds>
-      <ClassIds>1978,1978</ClassIds>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="56" parent="40" name="friends_pkey">
-      <ObjectId>25770</ObjectId>
-      <StateNumber>1247</StateNumber>
+    <key id="59" parent="40" name="friends_pkey">
       <ColNames>id</ColNames>
+      <ObjectId>25770</ObjectId>
       <Primary>1</Primary>
+      <StateNumber>1247</StateNumber>
       <UnderlyingIndexName>friends_pkey</UnderlyingIndexName>
     </key>
-    <key id="57" parent="40" name="friends_friend1_id_friend2_id_key">
-      <ObjectId>25772</ObjectId>
-      <StateNumber>1247</StateNumber>
+    <key id="60" parent="40" name="friends_friend1_id_friend2_id_key">
       <ColNames>friend1_id
 friend2_id</ColNames>
+      <ObjectId>25772</ObjectId>
+      <StateNumber>1247</StateNumber>
       <UnderlyingIndexName>friends_friend1_id_friend2_id_key</UnderlyingIndexName>
     </key>
-    <foreign-key id="58" parent="40" name="friends_friend1_id_fkey">
-      <ObjectId>25773</ObjectId>
-      <StateNumber>1247</StateNumber>
-      <ColNames>friend1_id</ColNames>
-      <RefTableId>25726</RefTableId>
-      <RefColPositions>1</RefColPositions>
-      <RefTableName>users</RefTableName>
-      <RefKeyName>users_pkey</RefKeyName>
-      <RefColNames>id</RefColNames>
-      <OnDelete>cascade</OnDelete>
-    </foreign-key>
-    <foreign-key id="59" parent="40" name="friends_friend2_id_fkey">
-      <ObjectId>25778</ObjectId>
-      <StateNumber>1247</StateNumber>
-      <ColNames>friend2_id</ColNames>
-      <RefTableId>25726</RefTableId>
-      <RefColPositions>1</RefColPositions>
-      <RefTableName>users</RefTableName>
-      <RefKeyName>users_pkey</RefKeyName>
-      <RefColNames>id</RefColNames>
-      <OnDelete>cascade</OnDelete>
-    </foreign-key>
-    <foreign-key id="60" parent="40" name="friends_chat_id_fkey">
-      <ObjectId>25783</ObjectId>
-      <StateNumber>1247</StateNumber>
-      <ColNames>chat_id</ColNames>
-      <RefTableId>25739</RefTableId>
-      <RefColPositions>1</RefColPositions>
-      <RefTableName>chatrooms</RefTableName>
-      <RefKeyName>chatrooms_pkey</RefKeyName>
-      <RefColNames>id</RefColNames>
-      <OnDelete>cascade</OnDelete>
-    </foreign-key>
     <column id="61" parent="41" name="user_id">
-      <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
+      <Position>1</Position>
       <StateNumber>1246</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <column id="62" parent="41" name="chatroom_id">
-      <Position>2</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
+      <Position>2</Position>
       <StateNumber>1246</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <column id="63" parent="41" name="created_at">
-      <Position>3</Position>
       <DataType>timestamp|0s</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>1246</StateNumber>
       <DefaultExpression>now()</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StateNumber>1246</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <index id="64" parent="41" name="participants_user_id_chatroom_id_key">
+    <foreign-key id="64" parent="41" name="participants_user_id_fkey">
+      <ColNames>user_id</ColNames>
+      <ObjectId>25755</ObjectId>
+      <OnDelete>cascade</OnDelete>
+      <RefColNames>id</RefColNames>
+      <RefColPositions>1</RefColPositions>
+      <RefKeyName>users_pkey</RefKeyName>
+      <StateNumber>1246</StateNumber>
+      <RefTableId>25726</RefTableId>
+      <RefTableName>users</RefTableName>
+    </foreign-key>
+    <foreign-key id="65" parent="41" name="participants_chatroom_id_fkey">
+      <ColNames>chatroom_id</ColNames>
+      <ObjectId>25760</ObjectId>
+      <OnDelete>cascade</OnDelete>
+      <RefColNames>id</RefColNames>
+      <RefColPositions>1</RefColPositions>
+      <RefKeyName>chatrooms_pkey</RefKeyName>
+      <StateNumber>1246</StateNumber>
+      <RefTableId>25739</RefTableId>
+      <RefTableName>chatrooms</RefTableName>
+    </foreign-key>
+    <index id="66" parent="41" name="participants_user_id_chatroom_id_key">
+      <ClassIds>1978,1978</ClassIds>
+      <ColNames>user_id
+chatroom_id</ColNames>
+      <CollationIds>0,0</CollationIds>
       <ObjectId>25753</ObjectId>
       <StateNumber>1246</StateNumber>
-      <ColNames>user_id
-chatroom_id</ColNames>
       <Unique>1</Unique>
-      <CollationIds>0,0</CollationIds>
-      <ClassIds>1978,1978</ClassIds>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="65" parent="41" name="participants_user_id_chatroom_id_key">
+    <key id="67" parent="41" name="participants_user_id_chatroom_id_key">
+      <ColNames>user_id
+chatroom_id</ColNames>
       <ObjectId>25754</ObjectId>
       <StateNumber>1246</StateNumber>
-      <ColNames>user_id
-chatroom_id</ColNames>
       <UnderlyingIndexName>participants_user_id_chatroom_id_key</UnderlyingIndexName>
     </key>
-    <foreign-key id="66" parent="41" name="participants_user_id_fkey">
-      <ObjectId>25755</ObjectId>
-      <StateNumber>1246</StateNumber>
-      <ColNames>user_id</ColNames>
-      <RefTableId>25726</RefTableId>
-      <RefColPositions>1</RefColPositions>
-      <RefTableName>users</RefTableName>
-      <RefKeyName>users_pkey</RefKeyName>
-      <RefColNames>id</RefColNames>
-      <OnDelete>cascade</OnDelete>
-    </foreign-key>
-    <foreign-key id="67" parent="41" name="participants_chatroom_id_fkey">
-      <ObjectId>25760</ObjectId>
-      <StateNumber>1246</StateNumber>
-      <ColNames>chatroom_id</ColNames>
-      <RefTableId>25739</RefTableId>
-      <RefColPositions>1</RefColPositions>
-      <RefTableName>chatrooms</RefTableName>
-      <RefKeyName>chatrooms_pkey</RefKeyName>
-      <RefColNames>id</RefColNames>
-      <OnDelete>cascade</OnDelete>
-    </foreign-key>
-    <column id="68" parent="42" name="id">
-      <Position>1</Position>
+    <check id="68" parent="42" name="users_name_check">
+      <ColNames>name</ColNames>
+      <ObjectId>25730</ObjectId>
+      <Predicate>(length((name)::text) &lt;= 12) AND (length((name)::text) &gt;= 4)</Predicate>
+      <StateNumber>1244</StateNumber>
+    </check>
+    <check id="69" parent="42" name="users_password_check">
+      <ColNames>password</ColNames>
+      <ObjectId>25731</ObjectId>
+      <Predicate>(length((password)::text) &lt;= 12) AND (length((password)::text) &gt;= 8)</Predicate>
+      <StateNumber>1244</StateNumber>
+    </check>
+    <column id="70" parent="42" name="id">
       <DataType>integer|0s</DataType>
+      <IdentityKind>always</IdentityKind>
       <NotNull>1</NotNull>
+      <Position>1</Position>
       <StateNumber>1244</StateNumber>
       <TypeId>23</TypeId>
-      <IdentityKind>always</IdentityKind>
     </column>
-    <column id="69" parent="42" name="name">
+    <column id="71" parent="42" name="name">
+      <DataType>varchar|0s</DataType>
+      <NotNull>1</NotNull>
       <Position>2</Position>
-      <DataType>varchar|0s</DataType>
-      <NotNull>1</NotNull>
       <StateNumber>1244</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="70" parent="42" name="password">
+    <column id="72" parent="42" name="password">
+      <DataType>varchar|0s</DataType>
+      <NotNull>1</NotNull>
       <Position>3</Position>
-      <DataType>varchar|0s</DataType>
-      <NotNull>1</NotNull>
       <StateNumber>1244</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="71" parent="42" name="created_at">
-      <Position>4</Position>
+    <column id="73" parent="42" name="created_at">
       <DataType>timestamp|0s</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>1244</StateNumber>
       <DefaultExpression>now()</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+      <StateNumber>1244</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <index id="72" parent="42" name="users_pkey">
-      <ObjectId>25734</ObjectId>
-      <StateNumber>1244</StateNumber>
-      <ColNames>id</ColNames>
-      <Unique>1</Unique>
-      <Primary>1</Primary>
-      <CollationIds>0</CollationIds>
+    <index id="74" parent="42" name="users_pkey">
       <ClassIds>1978</ClassIds>
+      <ColNames>id</ColNames>
+      <CollationIds>0</CollationIds>
+      <ObjectId>25734</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>1244</StateNumber>
+      <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <index id="73" parent="42" name="users_name_key">
-      <ObjectId>25736</ObjectId>
-      <StateNumber>1244</StateNumber>
+    <index id="75" parent="42" name="users_name_key">
+      <ClassIds>3126</ClassIds>
       <ColNames>name</ColNames>
-      <Unique>1</Unique>
       <CollationIds>100</CollationIds>
       <CollationNames>default</CollationNames>
-      <ClassIds>3126</ClassIds>
+      <ObjectId>25736</ObjectId>
+      <StateNumber>1244</StateNumber>
+      <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="74" parent="42" name="users_pkey">
-      <ObjectId>25735</ObjectId>
-      <StateNumber>1244</StateNumber>
+    <key id="76" parent="42" name="users_pkey">
       <ColNames>id</ColNames>
+      <ObjectId>25735</ObjectId>
       <Primary>1</Primary>
+      <StateNumber>1244</StateNumber>
       <UnderlyingIndexName>users_pkey</UnderlyingIndexName>
     </key>
-    <key id="75" parent="42" name="users_name_key">
+    <key id="77" parent="42" name="users_name_key">
+      <ColNames>name</ColNames>
       <ObjectId>25737</ObjectId>
       <StateNumber>1244</StateNumber>
-      <ColNames>name</ColNames>
       <UnderlyingIndexName>users_name_key</UnderlyingIndexName>
     </key>
-    <check id="76" parent="42" name="users_name_check">
-      <ObjectId>25730</ObjectId>
-      <StateNumber>1244</StateNumber>
-      <ColNames>name</ColNames>
-      <Predicate>(length((name)::text) &lt;= 12) AND (length((name)::text) &gt;= 4)</Predicate>
-    </check>
-    <check id="77" parent="42" name="users_password_check">
-      <ObjectId>25731</ObjectId>
-      <StateNumber>1244</StateNumber>
-      <ColNames>password</ColNames>
-      <Predicate>(length((password)::text) &lt;= 12) AND (length((password)::text) &gt;= 8)</Predicate>
-    </check>
   </database-model>
 </dataSource>

@@ -104,5 +104,4 @@ public class SignInController extends LoginVistaNavigator {
     public void removeObserver(LoginVistaObserver observer) {
         observers.remove(observer);
     }
-
 }

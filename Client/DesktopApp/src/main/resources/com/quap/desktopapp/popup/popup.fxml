@@ -20,11 +20,9 @@
         </ButtonBar>
     </bottom>
    <top>
-      <HBox styleClass="ground" BorderPane.alignment="CENTER">
-         <children>
-            <Label text="Popup" />
-         </children>
-      </HBox>
+       <HBox styleClass="ground" BorderPane.alignment="CENTER">
+           <Label text="Popup"/>
+       </HBox>
    </top>
    <stylesheets>
       <URL value="@../../styles/colors.css" />
