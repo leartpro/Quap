@@ -1,4 +1,4 @@
-![image](.\Client\DesktopApp\src\main\resources\com\quap\images\splashBackground.jpg)
+![Quap](.\Client\DesktopApp\src\main\resources\com\quap\images\splashBackground.jpg)
 
 CONTENTS OF THIS FILE
 ---------------------
