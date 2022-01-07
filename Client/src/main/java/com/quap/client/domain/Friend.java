@@ -2,9 +2,6 @@ package com.quap.client.domain;
 
 import org.json.JSONObject;
 
-import java.util.Date;
-import java.util.Objects;
-
 public final class Friend extends UserContent {
     private final String name;
     private final int id;
@@ -31,29 +28,12 @@ public final class Friend extends UserContent {
         return name;
     }
 
-    public int id() {
-        return id;
-    }
+    public int id() { return id; }
 
     public int chatID() { return chatID; }
 
     public String created_at() {
         return created_at;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == this) return true;
-        if (obj == null || obj.getClass() != this.getClass()) return false;
-        var that = (Friend) obj;
-        return Objects.equals(this.name, that.name) &&
-                this.id == that.id &&
-                Objects.equals(this.created_at, that.created_at);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, id, created_at);
     }
 
     @Override
@@ -73,12 +53,7 @@ public final class Friend extends UserContent {
     }
 
     @Override
-    public int getId() {
-        return id;
-    }
-
-    @Override
-    public Date getTime() {
-        return new Date(created_at);
+    public String content() {
+        return name;
     }
 }

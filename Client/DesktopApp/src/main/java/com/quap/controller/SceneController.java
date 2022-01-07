@@ -55,8 +55,7 @@ public class SceneController {
         inputStage.initOwner(primaryStage);
         inputStage.setScene(newScene);
         WindowMoveHelper.addMoveListener(inputStage);
-        String input = (String) inputStage.showAndReturn(popupController);
-        return input;
+        return (String) inputStage.showAndReturn(popupController);
     }
 
     public static Boolean submitRequestPopup(FXMLLoader loader, Stage primaryStage, List<String> info) {
@@ -74,8 +73,7 @@ public class SceneController {
         requestStage.setScene(newScene);
         WindowMoveHelper.addMoveListener(requestStage);
         popupController.setMessage(info);
-        Boolean decision = (Boolean) requestStage.showAndReturn(popupController);
-        return decision;
+        return (Boolean) requestStage.showAndReturn(popupController);
     }
 
     private static class CallbackStage extends Stage {

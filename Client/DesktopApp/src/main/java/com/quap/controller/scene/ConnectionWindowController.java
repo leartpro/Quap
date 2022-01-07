@@ -5,10 +5,6 @@ import com.quap.controller.VistaController;
 import com.quap.desktopapp.LauncherPreloader;
 import com.quap.utils.WindowMoveHelper;
 import javafx.application.Platform;
-import javafx.concurrent.Service;
-import javafx.concurrent.Task;
-import javafx.concurrent.WorkerStateEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -22,8 +18,6 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.concurrent.Callable;
-import java.util.concurrent.FutureTask;
 
 /*
     The loading screen of this application
@@ -35,238 +29,108 @@ public class ConnectionWindowController implements Initializable {
     private Label lblLoading;
 
     @FXML
-    private ProgressBar progressBar = new ProgressBar();
+    private ProgressBar progressBar;
 
     private static Label loadingLabel;
+    private static ProgressBar prBar;
     private static final double EPSILON = 0.0000005;
-    //ProgressService service = new ProgressService();
-    ProgressTask progressTask = new ProgressTask();
+    double progress;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        System.out.println("init");
         loadingLabel = lblLoading;
-        progressBar.setMaxWidth(Double.MAX_VALUE);
-        progressBar.setProgress(0);
-        progressBar.progressProperty().unbind();
-        progressBar.progressProperty().bind(
-                //service.progressProperty()
-                progressTask.progressProperty()
-        );
-        // color the bar green when the work is complete.
-        progressBar.progressProperty().addListener(observable -> {
-            if (progressBar.getProgress() >= 1 - EPSILON) {
-                progressBar.setStyle("-fx-accent: forestgreen;");
-            }
-        });
-
-        progressTask.addEventHandler(WorkerStateEvent.WORKER_STATE_SUCCEEDED, new EventHandler<WorkerStateEvent>() {
-            @Override
-            public void handle(WorkerStateEvent event) {
-                System.out.println("ProgressBar is done!");
-            }
-        });
-        /*final Task<Void> task = new Task<Void>() {
-            final int N_ITERATIONS = 100;
-
-            @Override
-            protected Void call() throws Exception {
-                for (int i = 0; i < N_ITERATIONS; i++) {
-                    updateProgress(i + 1, N_ITERATIONS);
-                    // sleep is used to simulate doing some work which takes some time....
-                    Thread.sleep(10);
-                }
-
-                return null;
-            }
-        };
-        progressBar.progressProperty().bind(
-                task.progressProperty()
-        );
-        // color the bar green when the work is complete.
-        progressBar.progressProperty().addListener(observable -> {
-            if (progressBar.getProgress() >= 1 - EPSILON) {
-                progressBar.setStyle("-fx-accent: forestgreen;");
-            }
-        });*/
+        prBar = progressBar;
     }
 
-    public void addProgress() {
-        //service = new ProgressService();
-        //Platform.runLater(() -> service.start());
-        Platform.runLater(() -> new Thread(progressTask).start());
+   /* public ConnectionWindowController() {
+        //increaseProgress();
+        Platform.runLater(() -> loadingLabel.setText("Open Connection"));
+        try {
+            client = new Client("localhost", 0); //local socketAddress to bind to
+            //client.listen();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Error");
+        }
+    }*/
+    public void connect() {
+        increaseProgress();
+        Platform.runLater(() -> loadingLabel.setText("Open Connection"));
+        try {
+            client = new Client("localhost", 0); //local socketAddress to bind to
+            //client.listen();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Error");
+        }
     }
 
-    public ConnectionWindowController() {
-        //TODO: start setupProjectThread as Future and let lauchWindow access later the returned data
-        Thread loadingDummyThread = new Thread(() -> {
-            StringBuilder text = new StringBuilder("Loading");
-            for (int i = 0; i < 3; i++) {
-                String finalText = text.toString();
-                Platform.runLater(() -> loadingLabel.setText(finalText));
+    public void increaseProgress() {
+        if (progress < 1) {
+            for(int i = 0; i < 25; i++) {
+                progress += 0.01;
+                prBar.setProgress(progress);
+                //System.out.println(Double.toString(Math.round(progress * 100)) + "%");
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(10);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                text.append(".");
             }
-        });
-        loadingDummyThread.start();
-        try {
-            loadingDummyThread.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
+    }
 
-        /*Thread setupProjectStructure = new Thread(() -> {
-            Platform.runLater(() -> loadingLabel.setText("Create Project-File-System"));
-
-            ConfigReader configReader = new ConfigReader("anonym");
-            configReader.createUser();
-            UserdataReader dataReader = new UserdataReader("anonym", "toor");
-
-        });
-        setupProjectStructure.start();
+    /*public void connect() {
+        increaseProgress();
+        Platform.runLater(() -> loadingLabel.setText("Open Connection"));
         try {
-            setupProjectStructure.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }*/
-    }
-
-    public Callable<Boolean> connect() {
-        return () -> {
-            Platform.runLater(() -> loadingLabel.setText("Open Connection"));
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            try {
-                client = new Client("localhost", 0); //local socketAddress to bind to
-            } catch (IOException e) {
-                //e.printStackTrace();
-                System.out.println("Error");
-                return false;
-            }
-            return true;
-        };
-    }
-
-    public Callable<Boolean> openConnection() {
-        return () -> {
-            Platform.runLater(() -> loadingLabel.setText("Open Connection."));
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            try {
-                client.openConnection();
-            } catch (IOException e) {
-                //e.printStackTrace();
-                System.out.println("Error");
-                return false;
-            }
-            Platform.runLater(() -> loadingLabel.setText("Open Connection.."));
-            try {
-                client.setConnection();
-            } catch (IOException e) {
-                e.printStackTrace();
-                return false;
-            }
-            Platform.runLater(() -> loadingLabel.setText("Open Connection..."));
-            return true;
-        };
-    }
-
-    public Callable<Boolean> confirmConnection() {
-        return () -> {
-            System.out.println("confirm connection");
-            Platform.runLater(() -> loadingLabel.setText("Confirm Connection"));
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            client = new Client("localhost", 0); //local socketAddress to bind to
             client.listen();
-            return true;
-        };
-    }
-
-    public Callable<Boolean> launchWindow() {
-        return () -> {
-            Platform.runLater(() -> loadingLabel.setText("Loading Login"));
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            Platform.runLater(task);
-            return (Boolean) task.get();
-        };
-    }
-
-    final FutureTask task = new FutureTask(new Callable<Boolean>() {
-        @Override
-        public Boolean call() {
-            Stage stage = new Stage();
-            Parent root;
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(VistaController.LOGIN));
-            try {
-                root = loader.load();
-            } catch (IOException e) {
-                e.printStackTrace();
-                return false;
-            }
-            Scene scene;
-            final String osName = System.getProperty("os.name");
-            if (osName != null && osName.startsWith("Windows")) {
-                scene = (new LauncherPreloader.ShadowScene()).getShadowScene(root);
-                stage.initStyle(StageStyle.TRANSPARENT);
-            } else {
-                assert root != null;
-                scene = new Scene(root);
-                stage.initStyle(StageStyle.UNDECORATED);
-            }
-            stage.setScene(scene);
-            LoginWindowController loginWindowController = loader.getController();
-            loginWindowController.setClient(client);
-            VistaController.setLoginWindowController(loginWindowController);
-            VistaController.loadLoginVista(VistaController.SignIn);
-            stage.show();
-            WindowMoveHelper.addMoveListener(stage);
-            return true;
+        } catch (IOException e) {
+            System.out.println("Error");
         }
-    });
+    }*/
 
-    private class ProgressService extends Service<Void> {
-        @Override
-        protected Task<Void> createTask() {
-            return new Task<>() {
-                final int N_ITERATIONS = 25;
-                @Override
-                protected Void call() throws Exception {
-                    for (int i = 0; i < N_ITERATIONS; i++) {
-                        updateProgress(i + 1, N_ITERATIONS);
-                        Thread.sleep(10);
-                    }
-                    return null;
+    /*public void confirmConnection() {
+        increaseProgress();
+        System.out.println("confirm connection");
+        Platform.runLater(() -> loadingLabel.setText("Confirm Connection"));
+        client.listen();
+    }*/
+
+    public void launchWindow() {
+        increaseProgress();
+        Platform.runLater(() -> loadingLabel.setText("Loading Login"));
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                Stage stage = new Stage();
+                Parent root = null;
+                FXMLLoader loader = new FXMLLoader(getClass().getResource(VistaController.LOGIN));
+                try {
+                    root = loader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-            };
-        }
-    }
-
-    private class ProgressTask extends Task<Void> {
-        final int N_ITERATIONS = 100;
-        @Override
-        protected Void call() throws Exception {
-            for (int i = 0; i < N_ITERATIONS; i++) {
-                updateProgress(i + 1, N_ITERATIONS);
-                Thread.sleep(10);
+                Scene scene;
+                final String osName = System.getProperty("os.name");
+                if (osName != null && osName.startsWith("Windows")) {
+                    scene = (new LauncherPreloader.ShadowScene()).getShadowScene(root);
+                    stage.initStyle(StageStyle.TRANSPARENT);
+                } else {
+                    assert root != null;
+                    scene = new Scene(root);
+                    stage.initStyle(StageStyle.UNDECORATED);
+                }
+                stage.setScene(scene);
+                LoginWindowController loginWindowController = loader.getController();
+                loginWindowController.setClient(client);
+                VistaController.loadVista(VistaController.SignIn, loginWindowController);
+                stage.show();
+                WindowMoveHelper.addMoveListener(stage);
             }
-
-            return null;
-        }
+        });
     }
 }

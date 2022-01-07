@@ -21,12 +21,38 @@
 }
 
 .scroll-pane {
-  -fx-background: -foreground-color;
+  -fx-background: transparent;
+  -fx-text-fill: -text-color;
 }
 
-.list-view,
-.text-area {
+.list-view/*,
+.text-area*/ {
   -fx-control-inner-background: -foreground-color;
+  -fx-text-fill: -text-color;
+}
+
+/*.text-area {
+  -fx-background-color: -foreground-color;
+  -fx-border-color: -foreground-color;
+
+}
+
+.text-area .content {
+  -fx-background-color: -foreground-color;
+}*/
+
+.text-area{
+  -fx-background-color: -foreground-color, -foreground-color;
+  -fx-text-fill: -text-color;
+}
+
+.text-area .content {
+  -fx-background-color: -foreground-color;
+  -fx-text-fill: -text-color;
+}
+
+.text-area:focused .content {
+  -fx-background-color: -foreground-color;
 }
 
 .list-cell {
@@ -37,26 +63,46 @@
   -fx-text-fill: -text-color;
 }
 
-.button {
+.button, .toggle-button {
   -fx-text-fill: -text-color;
+  -fx-background-color: -selectOnLight-color;
+}
+
+.defaultButton {
   -fx-background-color: transparent;
 }
 
-.button:hover {
-  -fx-background-color: -selectOnLight-color;
+.button:hover, .toggle-button:hover {
+  -fx-background-color: -selectOnDark-color;
+}
+
+.toggle-button:selected {
+  -fx-background-color: -selectOnDark-color;
 }
 
 .list-cell:focused {
-  -fx-background-color: -selectOnLight-color;
+  -fx-background-color: -selectOnDark-color;
 }
 
-.menu,
+.menu-bar {
+  -fx-use-system-menu-bar:true;
+  -fx-border:none;
+  -fx-border-style:null;
+  -fx-cursor:hand;
+  -fx-padding:0px;
+  -fx-spacing: 0px;
+}
+
+.name{
+  -fx-text-fill: #385A99;
+}
+
 .menu-item {
   -fx-background-color: -foreground-color;
   -fx-background: -foreground-color;
 }
 
-.menu:hover,
+.menu:hover, .menu:showing,
 .menu-item:hover {
   -fx-background-color: -selectOnLight-color;
 }
@@ -68,4 +114,14 @@
 .text-field {
   -fx-background-color: -text-field-color;
   -fx-text-fill: -text-color;
+}
+
+.progress-bar > .track {
+  -fx-text-box-border: transparent;
+  -fx-control-inner-background: transparent;
+  -fx-background-color: transparent;
+}
+
+.progress-bar .bar {
+  -fx-background-color: -selectOnDark-color;
 }

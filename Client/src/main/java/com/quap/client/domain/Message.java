@@ -1,45 +1,10 @@
 package com.quap.client.domain;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Objects;
 
-public final class Message extends UserContent {
-    private final String content;
-    private final Date timestamp;
-    private final int senderID;
-
-    public Message(String content, Date timestamp, int senderID) {
-        this.content = content;
-        this.timestamp = timestamp;
-        this.senderID = senderID;
-    }
-
-    public String content() {
-        return content;
-    }
-
-    public Date timestamp() {
-        return timestamp;
-    }
-
-    public int senderID() {
-        return senderID;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == this) return true;
-        if (obj == null || obj.getClass() != this.getClass()) return false;
-        var that = (Message) obj;
-        return Objects.equals(this.content, that.content) &&
-                Objects.equals(this.timestamp, that.timestamp) &&
-                this.senderID == that.senderID;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(content, timestamp, senderID);
-    }
+public record Message(String content, Date timestamp, int senderID) implements Content {
 
     @Override
     public String toString() {
@@ -49,22 +14,22 @@ public final class Message extends UserContent {
                 "senderID=" + senderID + ']';
     }
 
+    private static Date formatDate(Date date) {
+        String stringDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
+        try {
+            return new SimpleDateFormat("yyyy-MM-dd").parse(stringDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
+    }
 
-    @Override
     public String display() {
-        return "Message[" +
-                "content=" + content + ", " +
-                "timestamp=" + timestamp + ", " +
-                "senderID=" + senderID + ']';
+        return timestamp + " " + senderID + ": " + content;
     }
 
     @Override
-    public int getId() {
-        return senderID;
-    }
-
-    @Override
-    public Date getTime() {
-        return timestamp;
+    public String content() {
+        return formatDate(timestamp) + " " + senderID + ": " + content;
     }
 }

@@ -59,8 +59,7 @@ public class ConfigReader {
     }
 
     public HashMap<String, String> getProperties() {
-        HashMap<String, String> properties = new HashMap<>();
-        properties.putAll((Map<? extends String, ? extends String>) props.entrySet());
+        HashMap<String, String> properties = new HashMap<>((Map<? extends String, ? extends String>) props.entrySet());
         return properties;
     }
 }

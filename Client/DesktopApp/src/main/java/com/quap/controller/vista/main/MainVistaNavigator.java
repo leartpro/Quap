@@ -1,7 +1,8 @@
 package com.quap.controller.vista.main;
 
 import com.quap.client.Client;
-import com.quap.client.domain.UserContent;
+import com.quap.client.domain.Content;
+import com.quap.controller.vista.MainVistaObserver;
 import com.quap.controller.vista.VistaNavigator;
 
 import java.util.List;
@@ -10,28 +11,31 @@ public abstract class MainVistaNavigator extends VistaNavigator {
 
     @Override
      protected VistaNavigator getVistaByID(String id) {
-        //TODO:
-        if(id.equals("list")) {
-            return new ListController();
-        } else if(id.equals("profile")) {
-            return new ProfilController();
-        } else if(id.equals("chat")) {
-            return new ChatController();
-        } else if(id.equals("settings")) {
-            return new SettingsController();
-        } else {
-            IllegalArgumentException e;
-            return null;
+        switch (id) {
+            case "list":
+                return new ListController();
+            case "profile":
+                return new ProfilController();
+            case "chat":
+                return new ChatController();
+            case "settings":
+                return new SettingsController();
+            default:
+                throw new IllegalArgumentException();
         }
     }
 
-    public abstract void loadContent(List<UserContent> content);
+    public abstract void loadContent(List<Content> content);
 
     public abstract void setClient(Client client);
 
     public abstract void setType(String id);
 
     public abstract String getType();
+
+    public abstract void addObserver(MainVistaObserver observer);
+
+    public abstract void removeObserver(MainVistaObserver observer);
 
     //methods for main controllers
 

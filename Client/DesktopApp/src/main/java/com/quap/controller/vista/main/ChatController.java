@@ -1,8 +1,9 @@
 package com.quap.controller.vista.main;
 
 import com.quap.client.Client;
+import com.quap.client.domain.Content;
 import com.quap.client.domain.Message;
-import com.quap.client.domain.UserContent;
+import com.quap.controller.vista.MainVistaObserver;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
@@ -10,10 +11,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ChatController extends MainVistaNavigator{
     private Client client;
+    private final List<MainVistaObserver> observers = new ArrayList<>();
 
     @FXML
     private ScrollPane chatPane = new ScrollPane();
@@ -26,25 +29,19 @@ public class ChatController extends MainVistaNavigator{
     private String type;
 
     @FXML
-    public void initialize() {
-
-    }
-
-    @FXML
-    public void send(KeyEvent keyEvent) {
+    public void send(KeyEvent keyEvent) { //TODO: box shake event
         if(keyEvent.getCode() == KeyCode.ENTER) {
             if(textConsole.getText().length() > 0) {
                 client.sendMessage(textConsole.getText());
             }
             textConsole.setText("");
         }
-        //TODO: box shake event
     }
 
     @Override
-    public void loadContent(List<UserContent> content) {
-        for (Object o : content) {
-            chatArea.appendText(o + "\n");
+    public void loadContent(List<Content> content) {
+        for (Content o : content) {
+            chatArea.appendText(o.content() + "\n");
         }
     }
 
@@ -59,11 +56,21 @@ public class ChatController extends MainVistaNavigator{
     }
 
     @Override
+    public void addObserver(MainVistaObserver observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void removeObserver(MainVistaObserver observer) {
+        observers.remove(observer);
+    }
+
+    @Override
     public void setClient(Client client) {
         this.client = client;
     }
 
     public void addMessage(Message message) {
-        chatArea.appendText(message + "\n");
+        chatArea.appendText(message.content() + "\n");
     }
 }

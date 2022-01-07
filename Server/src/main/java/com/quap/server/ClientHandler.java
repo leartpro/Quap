@@ -2,6 +2,7 @@ package com.quap.server;
 
 import com.quap.data.UserdataReader;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.*;
@@ -24,6 +25,7 @@ public class ClientHandler implements Callable {
     private final BufferedReader reader;
     private OutputStream output;
     private final PrintWriter writer;
+    private String name;
 
     public ClientHandler(Socket socket, int ID, Server server) {
         this.socket = socket;
@@ -87,11 +89,10 @@ public class ClientHandler implements Callable {
                 JSONObject input = new JSONObject(content).getJSONObject("data");
                 int chatID = input.getInt("chat_id");
                 //TODO: receive message status success, rejected, lost, etc.
+                assert dbReader != null;
                 List<Integer> userIds = new ArrayList<>(dbReader.userIDsByChat(chatID));
                 for (Integer id : userIds) {
-                    //if(id != userID) { //dont sends to himself
                     server.forwardMessage(id, content);
-                    //}
                 }
             }
             case 'c' -> { //TODO: new chat is inserted into the db but no result is returned
@@ -107,10 +108,11 @@ public class ClientHandler implements Callable {
                 switch (new JSONObject(content).getString("type")) {
                     case "create-chat" -> {
                         String chatName = data.getString("chatname");
+                        assert dbReader != null;
                         JSONObject result = dbReader.addChat(senderID, chatName, false);
                         JSONObject json = new JSONObject();
                         json.put("return-value", "command");
-                        if(result != null) {
+                        if (result != null) {
                             JSONObject returnValue = new JSONObject();
                             returnValue.put("statement", "create-chat");
                             returnValue.put("result", result);
@@ -120,9 +122,6 @@ public class ClientHandler implements Callable {
                         }
                         send(json.toString());
                     }
-                    case "add-friend" -> {
-
-                    }
                     case "invite-user" -> {
                         System.out.println("Invite user to chat...");
                         try {
@@ -131,25 +130,25 @@ public class ClientHandler implements Callable {
                             e.printStackTrace();
                         }
                         String username = data.getString("username");
+                        String senderName = name;
+                        assert dbReader != null;
                         int userID = dbReader.userIDByName(username);
                         int chatID = data.getInt("chat_id");
                         JSONObject chat = dbReader.getChatByID(chatID);
                         JSONArray participants = dbReader.usersByChat(chatID);
                         JSONObject json = new JSONObject();
                         json.put("return-value", "command");
-                        if(chat != null) {
+                        if (chat != null) {
                             JSONObject returnValue = new JSONObject();
                             returnValue.put("statement", "invite-chat");
                             returnValue.put("chat", chat);
                             returnValue.put("sender_id", senderID);
-                            returnValue.put("sender_name", username);
-                            returnValue.put("participants" , participants);
+                            returnValue.put("sender_name", senderName);
+                            returnValue.put("participants", participants);
                             json.put("data", returnValue);
                         } else {
                             json.put("error", "can not create this chat");
                         }
-                        //TODO: create message which should contain all needed data
-
                         server.forwardMessage(userID, json.toString());
                     }
                     case "join-chat" -> {
@@ -159,11 +158,12 @@ public class ClientHandler implements Callable {
                         } catch (SQLException | URISyntaxException e) {
                             e.printStackTrace();
                         }
+                        assert dbReader != null;
                         dbReader.addUserToChat(chatID, senderID);
                         JSONObject chat = dbReader.getChatByID(chatID);
                         JSONObject json = new JSONObject();
                         json.put("return-value", "command");
-                        if(chat != null) {
+                        if (chat != null) {
                             JSONObject returnValue = new JSONObject();
                             returnValue.put("statement", "join-chat");
                             returnValue.put("chat", chat);
@@ -172,6 +172,34 @@ public class ClientHandler implements Callable {
                             json.put("error", "can not join this chat");
                         }
                         send(json.toString());
+                        json = new JSONObject();
+                        json.put("return-value", "message");
+                        JSONObject returnValue = new JSONObject();
+                        returnValue.put("message", "User " + senderID + "joined the chatroom.");
+                        returnValue.put("chat_id", chatID);
+                        returnValue.put("sender_id", 0); //0 == server
+                        json.put("data", returnValue);
+                        List<Integer> userIds = new ArrayList<>(dbReader.userIDsByChat(chatID));
+                        for (Integer id : userIds) {
+                            server.forwardMessage(id, json.toString());
+                        }
+                    }
+                    case "delete-chat" -> {
+                        int chatID = data.getInt("chat_id");
+                        assert dbReader != null;
+                        dbReader.deleteUserFromChat(senderID, chatID);
+                        //TODO: send user leave chat message into chat if more than one user is left
+                        JSONObject json = new JSONObject();
+                        json.put("return-value", "message");
+                        JSONObject returnValue = new JSONObject();
+                        returnValue.put("message", "User " + senderID + "left the chatroom.");
+                        returnValue.put("chat_id", chatID);
+                        returnValue.put("sender_id", 0); //0 == server
+                        json.put("data", returnValue);
+                        List<Integer> userIds = new ArrayList<>(dbReader.userIDsByChat(chatID));
+                        for (Integer id : userIds) {
+                            server.forwardMessage(id, json.toString());
+                        }
                     }
                 }
             }
@@ -188,16 +216,21 @@ public class ClientHandler implements Callable {
                 String name = json.getString("name");
                 String password = json.getString("password");
                 boolean existing = json.getBoolean("existing");
-                String result;
+                JSONObject result;
                 if (existing) {
                     result = dbReader.verifyUser(name, password);
                 } else {
                     result = dbReader.insertUser(name, password);
                 }
-                userID = new JSONObject(result).getJSONObject("data").getInt("id");
-
-                send(result);
-                //TODO: set userID here
+                this.name = name;
+                try {
+                    userID = result.getJSONObject("data").getInt("id");
+                } catch (JSONException e) {
+                    System.err.println("The user " + name + " was not found.");
+                    result = null; //TODO: error result that the user does not exists or the password or username is false
+                    e.printStackTrace();
+                }
+                send(result.toString());
             }
         }
     }

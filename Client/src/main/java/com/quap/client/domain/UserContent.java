@@ -1,12 +1,6 @@
 package com.quap.client.domain;
 
-import java.util.Date;
-
-public abstract class UserContent {
-
-    public abstract String display();
-
-    public abstract int getId();
-
-    public abstract Date getTime();
+public abstract class UserContent implements Content {
+    public abstract int chatID();
+    public abstract int id();
 }

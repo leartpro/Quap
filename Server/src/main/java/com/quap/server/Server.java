@@ -95,7 +95,7 @@ public class Server{
     }
 
     private void disconnect(int id, boolean status) {
-        ClientHandler c = null;
+        ClientHandler c;
         for (int i = 0; i < handler.size(); i++) {
             if (handler.get(i).getID() == id) {
                 c = handler.get(i);
@@ -107,8 +107,8 @@ public class Server{
     }
 
     public void terminate(boolean status) {
-        for (int i = 0; i < handler.size(); i++) {
-            disconnect(handler.get(i).getID(), true);
+        for (ClientHandler clientHandler : handler) {
+            disconnect(clientHandler.getID(), true);
         }
         status = false;
         try {
@@ -166,11 +166,11 @@ public class Server{
         System.out.println("forward message from " + userID);
         //TODO: get all ClientHandler by userID
         // then sends to each Client content + senderID
-        for(int i = 0; i < handler.size(); i++) {
-            System.out.println("UserID: " + handler.get(i).getUserID());
-            if(handler.get(i).getUserID() == userID) {
-                System.out.println("Send Message from Client:" + userID + " to Client:" + handler.get(i).getUserID());
-                handler.get(i).send(message);
+        for (ClientHandler clientHandler : handler) {
+            System.out.println("UserID: " + clientHandler.getUserID());
+            if (clientHandler.getUserID() == userID) {
+                System.out.println("Send Message from Client:" + userID + " to Client:" + clientHandler.getUserID());
+                clientHandler.send(message);
             }
         }
     }

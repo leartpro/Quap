@@ -30,6 +30,7 @@ public class LauncherPreloader extends Preloader {
             scene = new Scene(root);
             primaryStage.initStyle(StageStyle.UNDECORATED);
         }
+        scene.setFill(null);
         primaryStage.setScene(scene);
         primaryStage.show();
         WindowMoveHelper.addMoveListener(primaryStage);
