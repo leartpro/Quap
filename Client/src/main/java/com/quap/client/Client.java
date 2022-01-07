@@ -99,7 +99,7 @@ public class Client {
             String message;
             while (!socket.isClosed() && reader != null) {
                 try {
-                    message = reader.readLine();
+                    message = reader.readLine(); //java.net.SocketException: Socket closed
                     if (message != null) {
                         process(message);
                     }

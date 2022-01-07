@@ -2,6 +2,7 @@ package com.quap.server;
 
 import com.quap.data.UserdataReader;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.*;
@@ -222,7 +223,13 @@ public class ClientHandler implements Callable {
                     result = dbReader.insertUser(name, password);
                 }
                 this.name = name;
-                userID = result.getJSONObject("data").getInt("id");
+                try {
+                    userID = result.getJSONObject("data").getInt("id");
+                } catch (JSONException e) {
+                    System.err.println("The user " + name + " was not found.");
+                    result = null; //TODO: error result that the user does not exists or the password or username is false
+                    e.printStackTrace();
+                }
                 send(result.toString());
             }
         }
