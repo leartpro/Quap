@@ -201,6 +201,24 @@ public class ClientHandler implements Callable {
                             server.forwardMessage(id, json.toString());
                         }
                     }
+                    case "request-user" -> {
+                        String username = data.getString("username");
+                        int userID = dbReader.userIDByName(username);
+                        String senderName = name;
+                        JSONObject json = new JSONObject();
+                        json.put("return-value", "command");
+                        JSONObject returnValue = new JSONObject();
+                        returnValue.put("statement", "friend-request");
+                        returnValue.put("sender_id", senderID);
+                        returnValue.put("sender_name", senderName);
+                        json.put("data", returnValue);
+                        server.forwardMessage(userID, json.toString());
+                        //TODO: sender ID is already found above only need to get the user by name and request him (live of course)
+
+                    }
+                    case "accept-friend" -> {
+                        //TODO: make an sql entrance
+                    }
                 }
             }
             case 'a' -> {
@@ -227,8 +245,9 @@ public class ClientHandler implements Callable {
                     userID = result.getJSONObject("data").getInt("id");
                 } catch (JSONException e) {
                     System.err.println("The user " + name + " was not found.");
-                    result = null; //TODO: error result that the user does not exists or the password or username is false
-                    e.printStackTrace();
+                    result = new JSONObject(); //TODO: error result that the user does not exists or the password or username is false
+                    result.put("error", "The user " + name + " was not found.");
+                    //e.printStackTrace();
                 }
                 send(result.toString());
             }

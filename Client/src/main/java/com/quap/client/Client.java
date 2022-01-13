@@ -14,6 +14,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -86,8 +87,8 @@ public class Client {
     }
 
     public void disconnect() {
-        listen.interrupt();
         //todo: finish the listen thread
+        listen.interrupt();
         new Thread(this::closeSocket).start();
         //TODO: send disconnect message to server
         // if anonym mode, clear all data
@@ -103,6 +104,8 @@ public class Client {
                     if (message != null) {
                         process(message);
                     }
+                } catch (SocketException se) {
+                    System.err.println("Connection closed");
                 } catch (IOException e) {
                     e.printStackTrace();
                     listen.interrupt();
@@ -124,7 +127,8 @@ public class Client {
         String returnValue = root.getString("return-value");
         if (!returnValue.equals("void")) {
             if (root.has("error") && !root.has("data")) {
-                System.out.println(root.getString("error"));
+                System.err.println(root.getString("error"));
+                //TODO: submit Popup by error event
             } else if (root.has("data")) {
                 JSONObject data = root.getJSONObject("data");
                 switch (returnValue) {
@@ -195,6 +199,17 @@ public class Client {
                                 chats.add(chat);
                                 for (ClientObserver c : observers) {
                                     c.joinChatEvent(chat);
+                                }
+                            }
+                            case "friend-request" -> {
+                                JSONObject chatObject = data.getJSONObject("chat");
+                                int senderID = data.getInt("sender_id");
+                                String senderName = data.getString("sender_name");
+                                Friend friend = new Friend(
+                                        senderName, senderID
+                                );
+                                for (ClientObserver c : observers) {
+                                    c.friendRequestEvent(friend);
                                 }
                             }
                         }
@@ -277,10 +292,16 @@ public class Client {
     }
 
     public void addFriend(String input) { //TODO: similar to method addChatroom()
-
+        JSONObject json = new JSONObject();
+        json.put("type", "request-user");
+        JSONObject data = new JSONObject();
+        data.put("username", input);
+        data.put("sender_id", id);
+        json.put("data", data);
+        sendCommand(json.toString());
     }
 
-    public void joinChat(int chatID) { //TODO: complete method
+    public void joinChat(int chatID) {
         JSONObject json = new JSONObject();
         json.put("type", "join-chat");
         JSONObject data = new JSONObject();
@@ -309,6 +330,17 @@ public class Client {
         JSONObject data = new JSONObject();
         data.put("chat_id", chat.id());
         data.put("sender_id", id);
+        json.put("data", data);
+        sendCommand(json.toString());
+    }
+
+    public void acceptFriend(int id) {
+        JSONObject json = new JSONObject();
+        json.put("type", "accept-friend");
+        JSONObject data = new JSONObject();
+        data.put("username", username);
+        data.put("friend_id", id);
+        data.put("sender_id", this.id);
         json.put("data", data);
         sendCommand(json.toString());
     }

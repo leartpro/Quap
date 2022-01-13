@@ -85,6 +85,8 @@ public class LoginWindowController extends WindowController implements LoginVist
     }
 
     public void login(ActionEvent actionEvent) {
+        //TODO: handle anonym mode
+
         //TODO: run as future the server request and in addition to the db connection and property reading
         String name = currentNode.getName();
         String password = currentNode.getPassword();

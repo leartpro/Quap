@@ -2,6 +2,8 @@ package com.quap.client.domain;
 
 import org.json.JSONObject;
 
+import java.time.LocalTime;
+
 public final class Friend extends UserContent {
     private final String name;
     private final int id;
@@ -21,6 +23,15 @@ public final class Friend extends UserContent {
                 friend.getInt("user_id"),
                 friend.getString("created_at"),
                 friend.getInt("chatrooms_id")
+        );
+    }
+
+    public Friend(String name, int id) {
+        this(
+                name,
+                id,
+                LocalTime.now().toString(),
+                -1
         );
     }
 
@@ -46,10 +57,10 @@ public final class Friend extends UserContent {
 
     @Override
     public String display() {
-        return "Friend[" +
-                "name=" + name + ", " +
-                "id=" + id + ", " +
-                "created_at=" + created_at + ']';
+        return "Friend: " + "\n" +
+                "name: " + name + ", " + "\n" +
+                "id: " + id + ", " + "\n" +
+                "created_at: " + created_at +  "\n";
     }
 
     @Override

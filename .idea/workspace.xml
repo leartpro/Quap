@@ -15,7 +15,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="09927819-4efd-4d77-952e-37e9b4faac9c" name="Changes" comment="">
+    <list default="true" id="09927819-4efd-4d77-952e-37e9b4faac9c" name="Changes" comment="Adding TODOs">
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/53ec68b9-f170-41d3-88e9-4e6735662d8b.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/53ec68b9-f170-41d3-88e9-4e6735662d8b.xml" afterDir="false" />
@@ -41,12 +41,17 @@
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_swing_win_17_0_2_ea_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_swing_linux_17_0_2_ea_1.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_web_win_17_0_0_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_web_linux_17_0_0_1.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/templateLanguages.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/Client.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Client.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/DesktopApp/DesktopApp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/DesktopApp.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/scene/LoginWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/scene/LoginWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/scene/MainWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/scene/MainWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/main/ListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/main/ListController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/domain/Friend.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/domain/Friend.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/utils/ClientObserver.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/utils/ClientObserver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/Server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Server/Server.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/data/UserdataReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/quap/data/UserdataReader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/server/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/quap/server/ClientHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -119,6 +124,7 @@
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
     <property name="RunConfigurationTargetLRU" value="bbbc8cbe-ecfc-4dbd-846d-194bd002699e&#10;bbbc8cbe-ecfc-4dbd-846d-194bd002699e/database/&quot;postgres&quot;/schema/&quot;public&quot;" />
+    <property name="RunOnceActivity.OpenDatabaseViewOnStart" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -130,7 +136,7 @@
     <property name="extract.method.default.visibility" value="private" />
     <property name="jdk.selected.JAVA_MODULE" value="openjdk-16" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/desktopapp" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/images/splashBackground.jpg" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../DataGrip/QuapServer" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Project" />
@@ -221,18 +227,17 @@
     </configuration>
     <list>
       <item itemvalue="Application.Launcher" />
-      <item itemvalue="Application.Main" />
       <item itemvalue="Application.LauncherPreloader" />
-      <item itemvalue="Database Script.insert-sample-db.sql" />
+      <item itemvalue="Application.Main" />
       <item itemvalue="Database Script.create-db.sql" />
-      <item itemvalue="JAR Application.Server" />
+      <item itemvalue="Database Script.insert-sample-db.sql" />
       <item itemvalue="JAR Application.Client" />
+      <item itemvalue="JAR Application.Server" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Launcher" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="Application.LauncherPreloader" />
         <item itemvalue="Database Script.create-db.sql" />
         <item itemvalue="Database Script.insert-sample-db.sql" />
       </list>
@@ -356,20 +361,8 @@
       <workItem from="1641137883086" duration="2583000" />
       <workItem from="1641216689017" duration="9908000" />
       <workItem from="1641305885751" duration="2600000" />
-    </task>
-    <task id="LOCAL-00034" summary="Update Properties for Server">
-      <created>1637253154285</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1637253154285</updated>
-    </task>
-    <task id="LOCAL-00035" summary="Update Querys and UI">
-      <created>1637354966261</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1637354966261</updated>
+      <workItem from="1642092445153" duration="3074000" />
+      <workItem from="1642109678799" duration="2780000" />
     </task>
     <task id="LOCAL-00036" summary="Update Querys">
       <created>1637361857673</created>
@@ -700,7 +693,21 @@
       <option name="project" value="LOCAL" />
       <updated>1641309011112</updated>
     </task>
-    <option name="localTasksCounter" value="83" />
+    <task id="LOCAL-00083" summary="Adding TODOs">
+      <created>1641585753412</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1641585753413</updated>
+    </task>
+    <task id="LOCAL-00084" summary="Adding TODOs">
+      <created>1641585936240</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1641585936240</updated>
+    </task>
+    <option name="localTasksCounter" value="85" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -746,7 +753,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="Add dark theme" />
     <MESSAGE value="Update CSS" />
     <MESSAGE value="Add custom Input-Stage" />
     <MESSAGE value="Workspace Commit" />
@@ -771,7 +777,8 @@
     <MESSAGE value="Improve UI" />
     <MESSAGE value="Add executables and fix small UI-Bug" />
     <MESSAGE value="README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="README.md" />
+    <MESSAGE value="Adding TODOs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding TODOs" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XPathView.XPathProjectComponent">

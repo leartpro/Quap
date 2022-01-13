@@ -134,7 +134,6 @@ public class ListController extends MainVistaNavigator {
         if (input != null && !input.equals("")) {
             if (type.equals("chatrooms")) {
                 System.out.println("erstelle chatroom: " + input);
-                //TODO: add a boolean to the participant table, which shows, if the current user has already joined or is just invited
                 client.addChatroom(input);
             } else if (type.equals("friends")) {
                 System.out.println("request user: " + input);
