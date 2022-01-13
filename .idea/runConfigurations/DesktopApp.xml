@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="DesktopApp" type="JarApplication">
+    <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/DesktopApp_jar/DesktopApp.jar" />
+    <option name="VM_PARAMETERS" value="--module-path \Users\lenni\Desktop\javafx-sdk-17.0.0.1\lib --add-modules=javafx.controls,javafx.fxml" />
+    <option name="WORKING_DIRECTORY" value="C:\Users\lenni\Documents\Progammieren\IdeaProjects\IdeaProjects\Quap" />
+    <option name="ALTERNATIVE_JRE_PATH" />
+    <module name="Client" />
+    <method v="2" />
+  </configuration>
+</component>
