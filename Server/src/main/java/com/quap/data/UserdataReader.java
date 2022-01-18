@@ -406,4 +406,48 @@ public class UserdataReader {
         //TODO: return the chat-object by id
 
     }
+
+    public JSONObject insertFriends(int senderID, int friend_id) {
+        JSONObject json = new JSONObject();
+        PreparedStatement statement;
+        String query = "" +
+                "WITH chat_insert " +
+                "         AS ( " +
+                "        INSERT INTO chatrooms (name, is_private) " +
+                "            VALUES (?, true) " +
+                "            RETURNING chatrooms.id " +
+                "    ) " +
+                "INSERT INTO friends(friend1_id, friend2_id, chat_id) " +
+                "VALUES (?, ?, ( " +
+                "    SELECT id " +
+                "    FROM chat_insert " +
+                ")), " +
+                "        (?, ?, ( " +
+                "            SELECT id " +
+                "            FROM chat_insert " +
+                "        ))";
+        try {
+            statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            statement.setString(1, "privateChat-" + senderID + "-" + friend_id + "/" + friend_id + "-" + senderID);
+            statement.setInt(2, senderID);
+            statement.setInt(3, friend_id);
+            statement.setInt(4, friend_id);
+            statement.setInt(5, senderID);
+            statement.execute();
+            ResultSet result = statement.getGeneratedKeys();
+            int chatID = -1;
+            if (result.next()) {
+                chatID = result.getInt("chat_id");
+            }
+            result.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+        System.out.println("DB-json:" + json);
+        //TODO: send user and chat data to both users
+        //users.name, users.id AS user_id, chatrooms.id AS chatrooms_id, chatrooms.created_at "
+        //            data.put("private", chatsByUser(userID));
+        return json;
+    }
 }

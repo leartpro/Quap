@@ -202,7 +202,7 @@ public class Client {
                                 }
                             }
                             case "friend-request" -> {
-                                JSONObject chatObject = data.getJSONObject("chat");
+                                //JSONObject chatObject = data.getJSONObject("chat");
                                 int senderID = data.getInt("sender_id");
                                 String senderName = data.getString("sender_name");
                                 Friend friend = new Friend(
@@ -338,7 +338,7 @@ public class Client {
         JSONObject json = new JSONObject();
         json.put("type", "accept-friend");
         JSONObject data = new JSONObject();
-        data.put("username", username);
+        //data.put("username", username);
         data.put("friend_id", id);
         data.put("sender_id", this.id);
         json.put("data", data);

@@ -218,6 +218,26 @@ public class ClientHandler implements Callable {
                     }
                     case "accept-friend" -> {
                         //TODO: make an sql entrance
+                        // send a message to both users with the private chat and the friend data
+                        int friendID = data.getInt("friend_id");
+                        JSONObject json = new JSONObject();
+                        json.put("return-value", "command");
+                        JSONObject returnValue = new JSONObject();
+                        returnValue.put("statement", "add-friend");
+                        returnValue.put("private", ""/*TODO*/);
+                        /*each friend object:
+                            friend.getString("name"),
+                            friend.getInt("user_id"),
+                            friend.getString("created_at"),
+                            friend.getInt("chatrooms_id")
+                         */
+                        json.put("data", returnValue);
+                        List<Integer> userIds = new ArrayList<>(List.of(senderID, friendID));
+                        for (Integer id : userIds) {
+                            server.forwardMessage(id, json.toString());
+                        }
+                        JSONObject chat = dbReader.insertFriends(senderID, data.getInt("friend_id"));
+
                     }
                 }
             }
