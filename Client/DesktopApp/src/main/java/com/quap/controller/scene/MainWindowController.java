@@ -300,6 +300,17 @@ public class MainWindowController extends WindowController implements ClientObse
     }
 
     @Override
+    public void addFriendEvent(Friend friend) {
+        System.out.println("createChatEvent");
+        if(currentNode.getType().equals("friends")) {
+            Platform.runLater(() -> loadButtons(client.getFriends()));
+            if(currentNodeID.equals("list")) {
+                Platform.runLater(() -> currentNode.loadContent(Collections.singletonList(friend)));
+            }
+        }
+    }
+
+    @Override
     public void deleteChatEvent(Chat chat) {
         System.out.println("deleteChatEvent");
         /*if(currentNode.getType().equals("chatrooms")) {

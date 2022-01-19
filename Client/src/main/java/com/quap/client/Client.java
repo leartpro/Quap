@@ -212,6 +212,13 @@ public class Client {
                                     c.friendRequestEvent(friend);
                                 }
                             }
+                            case "add-friend" -> {
+                                Friend friend = new Friend(data.getJSONObject("friend"));
+                                friends.add(friend);
+                                for (ClientObserver c : observers) {
+                                    c.addFriendEvent(friend);
+                                }
+                            }
                         }
                     }
                 }

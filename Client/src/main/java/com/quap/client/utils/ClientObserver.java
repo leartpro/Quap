@@ -17,4 +17,6 @@ public interface ClientObserver {
     void joinChatEvent(Chat chat);
 
     void friendRequestEvent(Friend friend);
+
+    void addFriendEvent(Friend friend);
 }
