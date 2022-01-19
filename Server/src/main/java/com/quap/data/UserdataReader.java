@@ -226,7 +226,10 @@ public class UserdataReader {
             result = statement.executeQuery("" + //TODO ???
                     "SELECT user_id " +
                     "FROM participants " +
-                    "WHERE chatroom_id =" + chatID + ";"
+                    "WHERE chatroom_id =" + chatID + " " +
+                    "UNION SELECT friend1_id " +
+                    "FROM friends " +
+                    "WHERE chat_id =" + chatID + ";"
             );
         } catch (SQLException e) {
             e.printStackTrace();
@@ -405,5 +408,76 @@ public class UserdataReader {
         }
         //TODO: return the chat-object by id
 
+    }
+
+    public int insertFriends(int senderID, int friend_id) {
+        JSONObject json = new JSONObject();
+        PreparedStatement statement;
+        String query = "" +
+                "WITH chat_insert " +
+                "         AS ( " +
+                "        INSERT INTO chatrooms (name, is_private) " +
+                "            VALUES (?, true) " +
+                "            RETURNING chatrooms.id " +
+                "    ) " +
+                "INSERT INTO friends(friend1_id, friend2_id, chat_id) " +
+                "VALUES (?, ?, ( " +
+                "    SELECT id " +
+                "    FROM chat_insert " +
+                ")), " +
+                "        (?, ?, ( " +
+                "            SELECT id " +
+                "            FROM chat_insert " +
+                "        ))";
+        int chatID = -1;
+        try {
+            statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            statement.setString(1, "privateChat-" + senderID + "-" + friend_id + "/" + friend_id + "-" + senderID);
+            statement.setInt(2, senderID);
+            statement.setInt(3, friend_id);
+            statement.setInt(4, friend_id);
+            statement.setInt(5, senderID);
+            statement.execute();
+            ResultSet result = statement.getGeneratedKeys();
+            if (result.next()) {
+                chatID = result.getInt("chat_id");
+            }
+            result.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return chatID;
+        }
+        return chatID;
+    }
+
+    public String userNameById(int userID) {
+        String username = "";
+        ResultSet result = null;
+
+        try {
+            result = statement.executeQuery("" + //TODO ???
+                    "SELECT users.name " +
+                    "FROM users " +
+                    "WHERE users.id = '" + userID + "';"
+            );
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            assert result != null;
+            if (result.next()) {
+                username = result.getString("name");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                assert result != null;
+                result.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return username;
     }
 }

@@ -2,6 +2,7 @@ package com.quap.controller.scene;
 
 import com.quap.client.Client;
 import com.quap.client.domain.Chat;
+import com.quap.client.domain.Friend;
 import com.quap.client.domain.Message;
 import com.quap.client.domain.UserContent;
 import com.quap.client.utils.ClientObserver;
@@ -272,6 +273,39 @@ public class MainWindowController extends WindowController implements ClientObse
             Platform.runLater(() -> loadButtons(client.getChats()));
             if(currentNodeID.equals("list")) {
                 Platform.runLater(() -> currentNode.loadContent(Collections.singletonList(chat)));
+            }
+        }
+    }
+
+    @Override
+    public void friendRequestEvent(Friend friend) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/quap/desktopapp/popup/requestPopup.fxml"));
+        Stage primaryStage = (Stage) Stage.getWindows().stream().filter(Window::isShowing).findFirst().orElse(null);
+        List<String> info = new ArrayList<>();
+        info.add("Invited by: " + friend.name() + "#" + friend.id());
+        Scanner scanner = new Scanner(friend.display());
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
+            info.add(line);
+        }
+        scanner.close();
+        Platform.runLater(() -> {
+            boolean decision;
+            decision = SceneController.submitRequestPopup(loader, primaryStage, info);
+            System.out.println("user decision:" + decision);
+            if (decision) {
+                client.acceptFriend(friend.id());
+            }
+        });
+    }
+
+    @Override
+    public void addFriendEvent(Friend friend) {
+        System.out.println("createChatEvent");
+        if(currentNode.getType().equals("friends")) {
+            Platform.runLater(() -> loadButtons(client.getFriends()));
+            if(currentNodeID.equals("list")) {
+                Platform.runLater(() -> currentNode.loadContent(Collections.singletonList(friend)));
             }
         }
     }

@@ -10,6 +10,7 @@ import java.net.Socket;
 import java.net.SocketException;
 import java.net.URISyntaxException;
 import java.sql.SQLException;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -90,7 +91,7 @@ public class ClientHandler implements Callable {
                 int chatID = input.getInt("chat_id");
                 //TODO: receive message status success, rejected, lost, etc.
                 assert dbReader != null;
-                List<Integer> userIds = new ArrayList<>(dbReader.userIDsByChat(chatID));
+                List<Integer> userIds = new ArrayList<>(dbReader.userIDsByChat(chatID)); //TODO: this method does not work for private chats
                 for (Integer id : userIds) {
                     server.forwardMessage(id, content);
                 }
@@ -201,6 +202,50 @@ public class ClientHandler implements Callable {
                             server.forwardMessage(id, json.toString());
                         }
                     }
+                    case "request-user" -> {
+                        String username = data.getString("username");
+                        int userID = dbReader.userIDByName(username);
+                        String senderName = name;
+                        JSONObject json = new JSONObject();
+                        json.put("return-value", "command");
+                        JSONObject returnValue = new JSONObject();
+                        returnValue.put("statement", "friend-request");
+                        returnValue.put("sender_id", senderID);
+                        returnValue.put("sender_name", senderName);
+                        json.put("data", returnValue);
+                        server.forwardMessage(userID, json.toString());
+                        //TODO: sender ID is already found above only need to get the user by name and request him (live of course)
+
+                    }
+                    case "accept-friend" -> {
+                        //TODO: make an sql entrance
+                        // send a message to both users with the private chat and the friend data
+                        int friendID = data.getInt("friend_id");
+                        int chatID = dbReader.insertFriends(senderID, friendID);
+                        JSONObject json = new JSONObject();
+                        json.put("return-value", "command");
+                        JSONObject returnValue = new JSONObject();
+                        returnValue.put("statement", "add-friend");
+                        JSONObject friend = new JSONObject();
+                        friend.put("name", dbReader.userNameById(friendID));
+                        friend.put("user_id", friendID);
+                        friend.put("created_at", LocalTime.now().toString());
+                        friend.put("chatrooms_id", chatID);
+                        returnValue.put("friend", friend);
+                        json.put("data", returnValue);
+                        server.forwardMessage(senderID, json.toString());
+                         //Override friend attribute
+                        friend = new JSONObject();
+                        returnValue.remove("friend");
+
+                        friend.put("name", dbReader.userNameById(senderID));
+                        friend.put("user_id", userID);
+                        friend.put("created_at", LocalTime.now().toString());
+                        friend.put("chatrooms_id", chatID);
+                        returnValue.put("friend", friend);
+                        json.put("data", returnValue);
+                        server.forwardMessage(friendID, json.toString()); //The second index should be the sender.id = friendID
+                    }
                 }
             }
             case 'a' -> {
@@ -227,8 +272,9 @@ public class ClientHandler implements Callable {
                     userID = result.getJSONObject("data").getInt("id");
                 } catch (JSONException e) {
                     System.err.println("The user " + name + " was not found.");
-                    result = null; //TODO: error result that the user does not exists or the password or username is false
-                    e.printStackTrace();
+                    result = new JSONObject(); //TODO: error result that the user does not exists or the password or username is false
+                    result.put("error", "The user " + name + " was not found.");
+                    //e.printStackTrace();
                 }
                 send(result.toString());
             }
