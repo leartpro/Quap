@@ -56,15 +56,12 @@ public class ListController extends MainVistaNavigator {
             Stage primaryStage = (Stage) deleteItem.getParentPopup().getOwnerWindow();
             boolean decision = SceneController.submitRequestPopup(loader, primaryStage, Collections.singletonList("Are you sure to leave and delete this chat?"));
             if (decision) {
-                //TODO: leave chat
-                //TODO: confirm popup
-                //TODO: popups should contain theme specific header label
-                Chat chat = (Chat) listView.getSelectionModel().getSelectedItem(); //TODO: is 0
+                Chat chat = (Chat) listView.getSelectionModel().getSelectedItem();
                 client.deleteChat(chat);
                 //listView.getItems().clear();
                 System.out.println("leave chat action...");
                 System.out.println(observers.size());
-                for (MainVistaObserver c : observers) { //TODO: next index of elemtent is bigger than the total amount of elements
+                for (MainVistaObserver c : observers) {
                     System.out.println(c);
                     c.deleteChatEvent(chat);
                 }
@@ -137,7 +134,6 @@ public class ListController extends MainVistaNavigator {
                 client.addChatroom(input);
             } else if (type.equals("friends")) {
                 System.out.println("request user: " + input);
-                //TODO: check if there if only one entrance(just request) in the friends table or two(solid friends)
                 client.addFriend(input);
             }
         }

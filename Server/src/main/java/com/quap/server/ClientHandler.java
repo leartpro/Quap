@@ -91,12 +91,12 @@ public class ClientHandler implements Callable {
                 int chatID = input.getInt("chat_id");
                 //TODO: receive message status success, rejected, lost, etc.
                 assert dbReader != null;
-                List<Integer> userIds = new ArrayList<>(dbReader.userIDsByChat(chatID)); //TODO: this method does not work for private chats
+                List<Integer> userIds = new ArrayList<>(dbReader.userIDsByChat(chatID));
                 for (Integer id : userIds) {
                     server.forwardMessage(id, content);
                 }
             }
-            case 'c' -> { //TODO: new chat is inserted into the db but no result is returned
+            case 'c' -> {
                 System.out.println("command found");
                 JSONObject data = new JSONObject(content).getJSONObject("data");
                 int senderID = data.getInt("sender_id");
@@ -214,12 +214,9 @@ public class ClientHandler implements Callable {
                         returnValue.put("sender_name", senderName);
                         json.put("data", returnValue);
                         server.forwardMessage(userID, json.toString());
-                        //TODO: sender ID is already found above only need to get the user by name and request him (live of course)
-
                     }
                     case "accept-friend" -> {
-                        //TODO: make an sql entrance
-                        // send a message to both users with the private chat and the friend data
+                        //TODO: fix duplicated code issue
                         int friendID = data.getInt("friend_id");
                         int chatID = dbReader.insertFriends(senderID, friendID);
                         JSONObject json = new JSONObject();
@@ -272,7 +269,7 @@ public class ClientHandler implements Callable {
                     userID = result.getJSONObject("data").getInt("id");
                 } catch (JSONException e) {
                     System.err.println("The user " + name + " was not found.");
-                    result = new JSONObject(); //TODO: error result that the user does not exists or the password or username is false
+                    result = new JSONObject();
                     result.put("error", "The user " + name + " was not found.");
                     //e.printStackTrace();
                 }

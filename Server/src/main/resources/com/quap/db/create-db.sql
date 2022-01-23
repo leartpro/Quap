@@ -28,7 +28,6 @@ CREATE TABLE participants
 );
 
 --shows that two users are friends
---TODO: TRIGGER for friends
 CREATE TABLE friends
 (
     id         integer primary key generated always as identity,

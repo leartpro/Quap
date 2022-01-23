@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="AnalysisUIOptions">
-    <option name="SPLITTER_PROPORTION" value="0.585034" />
+    <option name="SPLITTER_PROPORTION" value="0.88095236" />
     <option name="SCOPE_TYPE" value="3" />
     <option name="SHOW_STRUCTURE" value="true" />
   </component>
@@ -15,13 +15,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="09927819-4efd-4d77-952e-37e9b4faac9c" name="Changes" comment="Friend Feature developing">
+    <list default="true" id="09927819-4efd-4d77-952e-37e9b4faac9c" name="Changes" comment="Friend Feature completion">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/scene/MainWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/scene/MainWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/main/ListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/main/ListController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/utils/ClientObserver.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/utils/ClientObserver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/data/UserdataReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/quap/data/UserdataReader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/server/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/quap/server/ClientHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/quap/server/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/resources/com/quap/db/create-db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/resources/com/quap/db/create-db.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,7 +118,7 @@
     <property name="extract.method.default.visibility" value="private" />
     <property name="jdk.selected.JAVA_MODULE" value="openjdk-16" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/desktopapp" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="/opt/scenebuilder/bin/SceneBuilder" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Project" />
@@ -349,14 +352,14 @@
       <workItem from="1642331938957" duration="11980000" />
       <workItem from="1642519672491" duration="1995000" />
       <workItem from="1642591670835" duration="1217000" />
-      <workItem from="1642595378837" duration="4780000" />
-    </task>
-    <task id="LOCAL-00038" summary="General Improvement">
-      <created>1637450542329</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1637450542329</updated>
+      <workItem from="1642595378837" duration="5474000" />
+      <workItem from="1642707503327" duration="599000" />
+      <workItem from="1642767883502" duration="1445000" />
+      <workItem from="1642782686754" duration="609000" />
+      <workItem from="1642785118684" duration="100000" />
+      <workItem from="1642785241586" duration="88000" />
+      <workItem from="1642857161939" duration="7953000" />
+      <workItem from="1642938800115" duration="8364000" />
     </task>
     <task id="LOCAL-00039" summary="Process Method in Client">
       <created>1637506761527</created>
@@ -694,7 +697,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642519758220</updated>
     </task>
-    <option name="localTasksCounter" value="87" />
+    <task id="LOCAL-00087" summary="Friend Feature completion">
+      <created>1642610455805</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1642610455805</updated>
+    </task>
+    <option name="localTasksCounter" value="88" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -740,7 +750,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="Workspace Commit" />
     <MESSAGE value="Create Chat Event" />
     <MESSAGE value="Add invite Event" />
     <MESSAGE value="Update invite Event" />
@@ -765,7 +774,8 @@
     <MESSAGE value="Adding TODOs" />
     <MESSAGE value="Add TODOs and Fix Exceptions and create new Events" />
     <MESSAGE value="Friend Feature developing" />
-    <option name="LAST_COMMIT_MESSAGE" value="Friend Feature developing" />
+    <MESSAGE value="Friend Feature completion" />
+    <option name="LAST_COMMIT_MESSAGE" value="Friend Feature completion" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XPathView.XPathProjectComponent">

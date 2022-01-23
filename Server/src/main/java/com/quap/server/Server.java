@@ -17,7 +17,6 @@ public class Server{
     private Thread receive;
 
     private final List<ClientHandler> handler = new ArrayList<>();
-    private final List<ClientHandler> onlineHandlers = new ArrayList<>();
     private final boolean status;
 
 
@@ -34,8 +33,8 @@ public class Server{
 
         /*
         TODO: Server wirft Threads als Future raus und startet jedes mal neu, solange status==true!
-
          */
+
         /*
         service.execute(new CommandListener());
         Scanner scanner = new Scanner(System.in);
@@ -164,8 +163,6 @@ public class Server{
 
     public void forwardMessage(int userID, String message) {
         System.out.println("forward message from " + userID);
-        //TODO: get all ClientHandler by userID
-        // then sends to each Client content + senderID
         for (ClientHandler clientHandler : handler) {
             System.out.println("UserID: " + clientHandler.getUserID());
             if (clientHandler.getUserID() == userID) {

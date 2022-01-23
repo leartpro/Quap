@@ -259,7 +259,6 @@ public class MainWindowController extends WindowController implements ClientObse
             decision = SceneController.submitRequestPopup(loader, primaryStage, info);
             System.out.println("user decision:" + decision);
             if (decision) {
-                //TODO: send join-chat-request to the server with chat and sender_id
                 System.out.println("send join-chat-request to the server with chat and sender_id...");
                 client.joinChat(chat.chatID());
             }
@@ -267,7 +266,7 @@ public class MainWindowController extends WindowController implements ClientObse
     }
 
     @Override
-    public void joinChatEvent(Chat chat) { //TODO: complete method
+    public void joinChatEvent(Chat chat) {
         System.out.println("joinChatEvent");
         if(currentNode.getType().equals("chatrooms")) {
             Platform.runLater(() -> loadButtons(client.getChats()));

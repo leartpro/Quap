@@ -298,7 +298,7 @@ public class Client {
         sendCommand(json.toString());
     }
 
-    public void addFriend(String input) { //TODO: similar to method addChatroom()
+    public void addFriend(String input) {
         JSONObject json = new JSONObject();
         json.put("type", "request-user");
         JSONObject data = new JSONObject();

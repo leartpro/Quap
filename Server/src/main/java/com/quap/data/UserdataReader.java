@@ -117,7 +117,6 @@ public class UserdataReader {
             ResultSet result = statement.getGeneratedKeys();
             if (result.next()) {
                 chatID = result.getInt("id");
-                //TODO:!!! Does not return the right result!!!
                 json.put("chatroom_id", chatID);
                 json.put("name", chatName);
             }
@@ -153,18 +152,6 @@ public class UserdataReader {
         }
     }
 
-    public void leaveChat(int chatID, int userID) { //TODO
-
-    }
-
-    public void updatePassword(int userID) { //TODO
-
-    }
-
-    public void updateName(int userID) { //TODO
-
-    }
-
     public void addFriend(int userID, int friendID) {
         try {
             statement.executeUpdate("" +
@@ -174,10 +161,6 @@ public class UserdataReader {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    public void removeFriend(int userID, int friendID) { //TODO
-
     }
 
     private JSONArray chatsByUser(int id) {
@@ -223,7 +206,7 @@ public class UserdataReader {
         ResultSet result = null;
 
         try {
-            result = statement.executeQuery("" + //TODO ???
+            result = statement.executeQuery("" +
                     "SELECT user_id " +
                     "FROM participants " +
                     "WHERE chatroom_id =" + chatID + " " +
@@ -337,7 +320,7 @@ public class UserdataReader {
         ResultSet result = null;
 
         try {
-            result = statement.executeQuery("" + //TODO ???
+            result = statement.executeQuery("" +
                     "SELECT users.id " +
                     "FROM users " +
                     "WHERE users.name = '" + username + "';"
@@ -369,7 +352,7 @@ public class UserdataReader {
         JSONObject json = new JSONObject();
 
         try {
-            result = statement.executeQuery("" + //TODO ???
+            result = statement.executeQuery("" +
                     "SELECT chatrooms.* " +
                     "FROM chatrooms " +
                     "WHERE chatrooms.id = " + chatID + ";"
@@ -406,8 +389,6 @@ public class UserdataReader {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        //TODO: return the chat-object by id
-
     }
 
     public int insertFriends(int senderID, int friend_id) {
@@ -455,7 +436,7 @@ public class UserdataReader {
         ResultSet result = null;
 
         try {
-            result = statement.executeQuery("" + //TODO ???
+            result = statement.executeQuery("" +
                     "SELECT users.name " +
                     "FROM users " +
                     "WHERE users.id = '" + userID + "';"

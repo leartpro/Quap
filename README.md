@@ -1,30 +1,35 @@
 ![Quap](./Client/DesktopApp/src/main/resources/com/quap/images/splashBackground.jpg)
 
-CONTENTS OF THIS FILE
----------------------
-
-* Introduction
-* Requirements
-* Installation
-* Configuration
-* Troubleshooting
-* FAQ
-* Outlook
-
 INTRODUCTION
 ------------
 
-The Administration Menu module displays the entire administrative menu tree
-(and most local tasks) in a drop-down menu, providing administrators one- or
-two-click access to most pages.  Other modules may also add menu links to the
-menu using hook_admin_menu_output_alter().
+This project is a messenger for the local network, written in Java, taking into account the avoidance of data storage.
+
+The project was developed with the Jetbrains Ultimate programs IntelliJ IDEA Ultimate and DataGrip (these programs are free for students, teachers and students).
+
+To ensure user-friendliness, the application has a graphical user interface through which the user can join chat rooms, write with friends and all this anonymously.
 
 * For more projects, visit my [personal page](https://leartpro.github.io/) (currently not available)
 
-
 * To submit bug reports and feature suggestions, or track changes click [here](https://leartpro.github.io/issues/) (currently not available)
 
-REQUIREMENTS
+TECHNICAL DESCRIPTION
+------------
+
+* ### Client
+  * #### User Interface
+    * 
+  * #### Network technology
+  * #### Database
+  * #### Runtime
+
+* ### Server
+  * #### Network technology
+  * #### Client handling
+  * #### Database
+  * #### Runtime
+
+<a id="requirements"></a>REQUIREMENTS
 ------------
 
 This project requires the following installs:
@@ -35,12 +40,25 @@ This project requires the following installs:
 INSTALLATION
 ------------
 
-* this section is currently not available
+This project must be installed as follows:
 
-CONFIGURATION
+1. Please make sure that you have already successfully completed the installations from [requirements](#requirements).
+2. Clone the Project from [here]() via [Git]() and got to /out/artifacts/ 
+3. Go to Server_jar and execute the jar
+4. Go to DesktopApp_jar and execute the jar with the following VM options:
+```console
+--module-path \"PATH TO YOUR JAVA FX SDK"\javafx-sdk-17.0.0.1\lib --add-modules=javafx.controls,javafx.fxml
+```
+* If you want to work with the project, debug it, or develop it further, see the [configuration section](#configuration).
+
+<a id="configuration"></a>CONFIGURATION
 -------------
 
-* this section is currently not available
+To work in the project, the project must be opened in [IntelliJ]() (click [here]() for more information).
+For an optimal working environment I recommend to use [IntelliJ-Ultimate]() and/or [DataGrip]() 
+to work optimally with the databases, as well as the tool 
+[SceneBuilder](https://gluonhq.com/products/scene-builder/) for a better work with .fxml files.
+
 
 TROUBLESHOOTING
 ---------------
@@ -50,22 +68,26 @@ TROUBLESHOOTING
 FAQ
 ---
 
-Q: I do not receive messages when I am offline. Is this normal?
+<font size="3">Q</font> : 
+I do not receive messages when I am offline. Is this normal?
 
-A: Yes, Quap is a livechat to collect as little data as possible.
+<font size="3">A</font>: 
+Yes, Quap is a livechat to collect as little data as possible.
 
-Q: I changed my device and now I don't see my messages. Have they been deleted?
+<font size="3">Q</font>: 
+I changed my device, and now I don't see my messages. Have they been deleted?
 
-A: Your messages are only stored on your device and give you absolute control over your data. 
-   The ability to transfer your messages to another device is currently under development.
+<font size="3">A</font>: 
+Your messages are only stored on your device and give you absolute control over your data. 
+The ability to transfer your messages to another device is currently under development.
 
 
 The Outlook
 -----------
 
-This project is currently still under development.
+####This project is currently still under development.
 
-* Planned features are:
+* ####Planned features are:
   - decentralized data synchronization
   - accessibility in the local network via DNS
   - live server console
