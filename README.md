@@ -16,9 +16,17 @@ To ensure user-friendliness, the application has a graphical user interface thro
 TECHNICAL DESCRIPTION
 ------------
 
+The project can be divided into three modules. A server module and a client module with a DesktopApp submodule.
+
+* The server module contains the Main.java class, which can be used to configure the server, 
+as well as the server class, which manages the ServerSocket and the ClientHandler. 
+The ClientHandlers take care of the requests of the clients and access the Postgres database.
+
+* 
+
 * ### Client
   * #### User Interface
-    * 
+    * ...
   * #### Network technology
   * #### Database
   * #### Runtime
@@ -92,4 +100,8 @@ The Outlook
   - accessibility in the local network via DNS
   - live server console
   - profile and settings for users
+
+GALARY
+-----------
+
 
