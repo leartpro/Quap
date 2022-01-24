@@ -32,6 +32,9 @@ public class LoginWindowController extends WindowController implements LoginVist
 
     public void setVista(Parent node, VistaNavigator controller) {
         if (node.getId().equals("signUp") || node.getId().equals("signIn")) {
+            if(currentNode != null) {
+                currentNode.removeObserver(this);
+            }
             currentNode = (LoginVistaNavigator) controller;
         } else {
             throw new IllegalArgumentException();
@@ -85,18 +88,14 @@ public class LoginWindowController extends WindowController implements LoginVist
     }
 
     public void login(ActionEvent actionEvent) {
-        //TODO: handle anonym mode
-
-        //TODO: run as future the server request and in addition to the db connection and property reading
         String name = currentNode.getName();
         String password = currentNode.getPassword();
 
         ConfigReader configReader = new ConfigReader(name);
         if (!existingUser) {
-            configReader.validateUser();
+            configReader.init();
         } else {
-            configReader.createUser();
-            configReader.readUser();
+            configReader.validateUser();
         }
         client.authorize(name, password, existingUser);
         client.connectDB();
@@ -121,9 +120,6 @@ public class LoginWindowController extends WindowController implements LoginVist
                 MainWindowController mainWindowController = loader.getController();
                 mainWindowController.setClient(client);
                 mainWindowController.setName(name);
-                //mainWindowController.setConfiguration(configuration);
-                //VistaController.loadMainVista(VistaController.LIST); //TODO: necessary?
-                //TODO: receive future result and validate
                 stage.show();
                 ResizeHelper.addResizeListener(stage);
                 stage.show();

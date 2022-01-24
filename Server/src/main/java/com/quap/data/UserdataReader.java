@@ -152,17 +152,6 @@ public class UserdataReader {
         }
     }
 
-    public void addFriend(int userID, int friendID) {
-        try {
-            statement.executeUpdate("" +
-                    "INSERT INTO friends(friend1_id, friend2_id)" +
-                    "VALUES(" + userID + "," + friendID + ")"
-            );
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
     private JSONArray chatsByUser(int id) {
         ResultSet result = null;
         JSONArray json = new JSONArray();
@@ -270,35 +259,6 @@ public class UserdataReader {
         return json;
     }
 
-    /*private JSONArray friendsByUser(int id) { //returns in current time the chats instead of friends
-        ResultSet result = null;
-        JSONArray json = new JSONArray();
-        try {
-            result = statement.executeQuery("" +
-                    "SELECT users.id, users.name " +
-                    "FROM users " +
-                    "LEFT JOIN friends " +
-                    "ON users.id = friends.friend2_id " +
-                    "WHERE friend1_id = " + id
-            );
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        try {
-            assert result != null;
-            json = resultSetToJSONArray(result);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                result.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        return json;
-    }*/
-
     private JSONArray resultSetToJSONArray(ResultSet rs) throws SQLException {
         JSONArray json = new JSONArray();
         ResultSetMetaData rsMetaData = rs.getMetaData();
@@ -347,7 +307,6 @@ public class UserdataReader {
     }
 
     public JSONObject getChatByID(int chatID) {
-        int userID = -1;
         ResultSet result = null;
         JSONObject json = new JSONObject();
 
@@ -392,7 +351,6 @@ public class UserdataReader {
     }
 
     public int insertFriends(int senderID, int friend_id) {
-        JSONObject json = new JSONObject();
         PreparedStatement statement;
         String query = "" +
                 "WITH chat_insert " +

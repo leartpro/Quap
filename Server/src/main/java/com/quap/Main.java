@@ -8,32 +8,11 @@ import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.UnknownHostException;
 
-public class Main { //TODO: mdns
+public class Main {
     private static ServerSocket socket;
 
     public static void main(String[] args) {
         System.setProperty("java.net.preferIPv4Stack", "true");
-        //TODO: read from properties file
-        /*String adapter_name="Ethernet";
-        String ip_address="192.168.56.1";
-        String subnet_mask="255.255.255.0";
-        String default_gateway="192.168.178.1";
-        String[] command =
-                {
-                        "cmd",
-                };
-        Process p;
-        try {
-            p = Runtime.getRuntime().exec(command);
-            new Thread(new SyncPipe(p.getErrorStream(), System.err)).start();
-            new Thread(new SyncPipe(p.getInputStream(), System.out)).start();
-            PrintWriter stdin = new PrintWriter(p.getOutputStream());
-            stdin.println("netsh int ip set address "+adapter_name+" static "+ip_address+" "+subnet_mask+" "+default_gateway);
-            stdin.close();
-            p.waitFor();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }*/
         int port=8192;
         if (args.length==0) {
             new Main(port);

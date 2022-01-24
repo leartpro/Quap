@@ -37,8 +37,6 @@ public abstract class MainVistaNavigator extends VistaNavigator {
 
     public abstract void removeObserver(MainVistaObserver observer);
 
-    //methods for main controllers
-
 
 
 }

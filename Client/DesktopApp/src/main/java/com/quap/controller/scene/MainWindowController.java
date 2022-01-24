@@ -139,23 +139,13 @@ public class MainWindowController extends WindowController implements ClientObse
     }
 
     public void close(ActionEvent actionEvent) {
-        //TODO: finish necessary tasks as daemon thread
         client.removeObserver(this);
         client.disconnect();
         ((Stage)(((Button)actionEvent.getSource()).getScene().getWindow())).close();
     }
 
     public void settings(ActionEvent actionEvent) {
-        /*VistaController.loadMainVista(VistaController.SETTINGS);
-        vBoxButtonHolder.getChildren().clear();
-        for (Button b : new ArrayList<>(List.of(new Button[]{new Button("setting1"), new Button("setting2"),
-                new Button("setting3"), new Button("setting4")}))) {
-            b.setOnAction(e -> {
-                VistaController.loadMainVista(CHAT); //TODO: load setting specific
-                currentNode.loadContent("Theme: dark", "Privacy: disable"); //dummys
-            });
-            vBoxButtonHolder.getChildren().add(b);
-        }*/
+
     }
 
     public void friends(ActionEvent actionEvent) {
@@ -196,16 +186,7 @@ public class MainWindowController extends WindowController implements ClientObse
     }
 
     public void profil(ActionEvent actionEvent) {
-        /*VistaController.loadMainVista(VistaController.PROFILE);
-        vBoxButtonHolder.getChildren().clear();
-        for (Button b : new ArrayList<Button>(List.of(new Button[]{new Button("prSetting1"), new Button("prSetting2"),
-                new Button("prSetting3"), new Button("prSetting4")}))) {
-            b.setOnAction(e -> {
-                VistaController.loadMainVista(CHAT);//TODO: load profile-setting specific
-                currentNode.loadContent("Name: User", "Password: *****"); //dummys
-            });
-            vBoxButtonHolder.getChildren().add(b);
-        }*/
+
     }
 
     public void setClient(Client client) {
@@ -312,14 +293,9 @@ public class MainWindowController extends WindowController implements ClientObse
     @Override
     public void deleteChatEvent(Chat chat) {
         System.out.println("deleteChatEvent");
-        /*if(currentNode.getType().equals("chatrooms")) {
-            chatrooms(new ActionEvent()); //TODO: this is a problem, because the current node cant change while observers are iterated
-        }*/
         if(currentNode.getType().equals("chatrooms")) {
             Platform.runLater(() -> loadButtons(client.getChats()));
             if(currentNodeID.equals("list")) {
-                //TODO: does duplicate the content because the content is never deleted
-                // solution would be to add a defaulte delete all to the loadContent() method and add an additional addContent(Content content) method
                 Platform.runLater(() -> currentNode.loadContent(Collections.singletonList(chat)));
             }
         }

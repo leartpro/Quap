@@ -42,16 +42,13 @@ public class ListController extends MainVistaNavigator {
         listView.setCellFactory(ContextMenuListCell.forListView(contextMenu, (listView) -> new ChatListCell()));
         listView.setOnMouseClicked(event -> {
             UserContent selectedContent = listView.getSelectionModel().getSelectedItem();
-            //TODO: test wich kind of content it is, then jump to it(specific chat) with MaWiCo.selectContent(currentContent)
         });
         infoItem.setOnAction(event -> {
             showInfo(listView.getSelectionModel().getSelectedItem().display(), infoItem);
         });
         chatItem.setOnAction(event -> {
-            //TODO:
         });
         deleteItem.setOnAction(event -> {
-            //TODO: listview has ui bugs on delete
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/quap/desktopapp/popup/requestPopup.fxml"));
             Stage primaryStage = (Stage) deleteItem.getParentPopup().getOwnerWindow();
             boolean decision = SceneController.submitRequestPopup(loader, primaryStage, Collections.singletonList("Are you sure to leave and delete this chat?"));
@@ -75,11 +72,10 @@ public class ListController extends MainVistaNavigator {
             if (input != null && !input.equals("")) {
                 switch (type) {
                     case "chatrooms" -> {
-                        int chatId = listView.getSelectionModel().getSelectedItem().id(); //TODO: is 0
+                        int chatId = listView.getSelectionModel().getSelectedItem().id();
                         client.inviteUser(input, chatId);
                     }
                     case "friends" -> {
-                        //TODO: get chatID by the chatroom name as input and the user as selectionModel()
                     }
                 }
             }

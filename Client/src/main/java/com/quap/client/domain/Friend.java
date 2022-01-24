@@ -39,13 +39,11 @@ public final class Friend extends UserContent {
         return name;
     }
 
+    @Override
     public int id() { return id; }
 
+    @Override
     public int chatID() { return chatID; }
-
-    public String created_at() {
-        return created_at;
-    }
 
     @Override
     public String toString() {

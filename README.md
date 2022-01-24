@@ -22,7 +22,7 @@ The project can be divided into three modules. A server module and a client modu
 as well as the server class, which manages the ServerSocket and the ClientHandler. 
 The ClientHandlers take care of the requests of the clients and access the Postgres database.
 
-* 
+* The Client module contains 
 
 * ### Client
   * #### User Interface

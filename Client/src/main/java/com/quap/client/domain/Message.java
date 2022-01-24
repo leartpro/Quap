@@ -24,6 +24,7 @@ public record Message(String content, Date timestamp, int senderID) implements C
         return date;
     }
 
+    @Override
     public String display() {
         return timestamp + " " + senderID + ": " + content;
     }

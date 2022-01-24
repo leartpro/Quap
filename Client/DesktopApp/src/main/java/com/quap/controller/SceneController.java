@@ -18,10 +18,6 @@ import java.util.List;
 */
 public class SceneController {
 
-    public void switchScene() {
-
-    }
-
     public static void submitPopup(FXMLLoader loader, Stage primaryStage, String content) {
         Stage inputStage;
         Scene newScene = null;

@@ -24,26 +24,7 @@ public class Server{
         service = Executors.newCachedThreadPool();
         this.socket = socket;
         status = true;
-        //manageClients();
         receiveConnection();
-        //TODO: db connection
-        //TODO: config reader
-        /*ConfigReader configReader = new ConfigReader();
-        configReader.loadDefaultProperties();*/
-
-        /*
-        TODO: Server wirft Threads als Future raus und startet jedes mal neu, solange status==true!
-         */
-
-        /*
-        service.execute(new CommandListener());
-        Scanner scanner = new Scanner(System.in);
-        while (status) {
-            String text = scanner.nextLine();
-            //TODO: manage commands
-        }
-        scanner.close();
-         */
     }
 
     /*public void manageClients() {
@@ -81,12 +62,10 @@ public class Server{
                     System.out.println(" to " + socket.getInetAddress() + ":" + socket.getLocalPort());
                     ClientHandler clientHandler = new ClientHandler(
                             client,
-                            UniqueIdentifier.getIdentifier(), //TODO: each Client handler stores his userID
+                            UniqueIdentifier.getIdentifier(),
                             server);
                     service.submit(clientHandler);
                     handler.add(clientHandler);
-                    //TODO: work with return
-                    //when return and result is not null -> submit a new ClientHAndler, because the previous failed
                 }
             }
         };
@@ -115,7 +94,7 @@ public class Server{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        if (status) { //TODO: status is always false
+        if (status) {
             System.out.println(LocalTime.now().toString().substring(0, LocalTime.now().toString().indexOf("."))
                     + " :Attempting to shutdown");
             service.shutdown();
@@ -134,7 +113,6 @@ public class Server{
                 }
             } catch (InterruptedException ie) {
                 Thread.currentThread().interrupt();
-                //TODO: handle exception
             }
         } else {
             Runtime.getRuntime().addShutdownHook(new Thread("shutdown") {

@@ -79,7 +79,6 @@ public class Client {
         json.put("password", this.password);
         json.put("existing", existing);
         sendAuthentication(json.toString());
-        //TODO: wait until authentication confirmation is arrived
     }
 
     public void connectDB() {
@@ -87,11 +86,8 @@ public class Client {
     }
 
     public void disconnect() {
-        //todo: finish the listen thread
         listen.interrupt();
         new Thread(this::closeSocket).start();
-        //TODO: send disconnect message to server
-        // if anonym mode, clear all data
     }
 
     public void listen() {
@@ -128,7 +124,6 @@ public class Client {
         if (!returnValue.equals("void")) {
             if (root.has("error") && !root.has("data")) {
                 System.err.println(root.getString("error"));
-                //TODO: submit Popup by error event
             } else if (root.has("data")) {
                 JSONObject data = root.getJSONObject("data");
                 switch (returnValue) {
@@ -331,7 +326,6 @@ public class Client {
 
     public void deleteChat(Chat chat) {
         chats.remove(chat);
-        //TODO: delete messages by chat
         JSONObject json = new JSONObject();
         json.put("type", "delete-chat");
         JSONObject data = new JSONObject();

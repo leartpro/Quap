@@ -17,7 +17,46 @@
   <component name="ChangeListManager">
     <list default="true" id="09927819-4efd-4d77-952e-37e9b4faac9c" name="Changes" comment="Update README.md">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/SceneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/SceneController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/popup/PopupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/popup/PopupController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/scene/LoginWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/scene/LoginWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/scene/MainWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/scene/MainWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/scene/WindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/scene/WindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/LoginVistaObserver.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/LoginVistaObserver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/MainVistaObserver.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/MainVistaObserver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/VistaNavigator.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/VistaNavigator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/VistaObserver.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/main/ChatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/main/ChatController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/main/ListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/main/ListController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/main/MainVistaNavigator.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/main/MainVistaNavigator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/popup/PopupController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/desktopapp/Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/desktopapp/Launcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/desktopapp/LauncherPreloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/desktopapp/LauncherPreloader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/utils/PseudoSelector.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/data/ConfigReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/data/ConfigReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/data/DataTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/domain/Chat.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/domain/Chat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/domain/Friend.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/domain/Friend.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/domain/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/domain/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/network/Config.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/network/Handler.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/quap/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/data/ConfigReader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/data/DataTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/data/OrderedProperties.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/data/UserdataReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/quap/data/UserdataReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/runtime/FutureCallback.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/runtime/FutureExecutor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/runtime/ListenableFuture.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/runtime/Result.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/server/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/quap/server/ClientHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/server/Message.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/quap/server/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/server/ServerClient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/resources/com/quap/db/create-db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/resources/com/quap/db/create-db.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/resources/com/quap/db/insert-sample-db.sql" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,6 +89,11 @@
   </component>
   <component name="Git.Settings">
     <option name="PUSH_AUTO_UPDATE" value="true" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="develop" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitSEFilterConfiguration">
@@ -352,14 +396,8 @@
       <workItem from="1642785118684" duration="100000" />
       <workItem from="1642785241586" duration="88000" />
       <workItem from="1642857161939" duration="7953000" />
-      <workItem from="1642938800115" duration="12419000" />
-    </task>
-    <task id="LOCAL-00040" summary="Load Content from Client in UI">
-      <created>1637606638389</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1637606638389</updated>
+      <workItem from="1642938800115" duration="12464000" />
+      <workItem from="1643037595487" duration="5251000" />
     </task>
     <task id="LOCAL-00041" summary="Generic Content from Client in UI">
       <created>1637613316901</created>
@@ -697,7 +735,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642952450887</updated>
     </task>
-    <option name="localTasksCounter" value="89" />
+    <task id="LOCAL-00089" summary="Update README.md">
+      <created>1642969645616</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1642969645616</updated>
+    </task>
+    <option name="localTasksCounter" value="90" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

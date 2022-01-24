@@ -46,19 +46,12 @@ public final class Chat extends UserContent {
 
     public String name() { return name; }
 
+    @Override
     public int chatID() { return id; }
 
     @Override
     public int id() {
         return id;
-    }
-
-    public String joined_at() {
-        return joined_at;
-    }
-
-    public String created_at() {
-        return created_at;
     }
 
     @Override

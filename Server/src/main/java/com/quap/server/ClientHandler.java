@@ -20,7 +20,7 @@ public class ClientHandler implements Callable {
     private int userID;
     private final Socket socket;
     private final Server server;
-    private Thread listen; //because listen is the only method call in run(), the clientHandler will quit when the listen Thread is interrupted
+    private Thread listen;
 
     private InputStream input;
     private final BufferedReader reader;
@@ -74,7 +74,7 @@ public class ClientHandler implements Callable {
         listen.start();
     }
 
-    private void process(String message) {                //TODO: run database access as future
+    private void process(String message) {
         String content = message.substring(5, (message.length() - 5));
         System.out.println(message);
         System.out.println(content);
@@ -89,7 +89,6 @@ public class ClientHandler implements Callable {
                 }
                 JSONObject input = new JSONObject(content).getJSONObject("data");
                 int chatID = input.getInt("chat_id");
-                //TODO: receive message status success, rejected, lost, etc.
                 assert dbReader != null;
                 List<Integer> userIds = new ArrayList<>(dbReader.userIDsByChat(chatID));
                 for (Integer id : userIds) {
@@ -189,7 +188,6 @@ public class ClientHandler implements Callable {
                         int chatID = data.getInt("chat_id");
                         assert dbReader != null;
                         dbReader.deleteUserFromChat(senderID, chatID);
-                        //TODO: send user leave chat message into chat if more than one user is left
                         JSONObject json = new JSONObject();
                         json.put("return-value", "message");
                         JSONObject returnValue = new JSONObject();
@@ -216,7 +214,6 @@ public class ClientHandler implements Callable {
                         server.forwardMessage(userID, json.toString());
                     }
                     case "accept-friend" -> {
-                        //TODO: fix duplicated code issue
                         int friendID = data.getInt("friend_id");
                         int chatID = dbReader.insertFriends(senderID, friendID);
                         JSONObject json = new JSONObject();
@@ -291,16 +288,12 @@ public class ClientHandler implements Callable {
         return userID;
     }
 
-    public ServerClient getClient() {
-        return null;
-    }
-
     public void disconnect() {
         System.out.println("Disconnecting");
     }
 
     @Override
-    public ServerClient call() throws Exception {
+    public Object call() {
         listen();
         //disconnect(); is called direct after listen()
 

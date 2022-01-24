@@ -29,7 +29,7 @@ public class ChatController extends MainVistaNavigator{
     private String type;
 
     @FXML
-    public void send(KeyEvent keyEvent) { //TODO: box shake event
+    public void send(KeyEvent keyEvent) {
         if(keyEvent.getCode() == KeyCode.ENTER) {
             if(textConsole.getText().length() > 0) {
                 client.sendMessage(textConsole.getText());

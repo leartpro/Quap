@@ -1,6 +1,6 @@
 package com.quap.controller.vista;
 
-public interface LoginVistaObserver extends VistaObserver{
+public interface LoginVistaObserver {
     void swapVistaEvent(String signUp);
     void toggleLoginEvent(boolean b);
 }
