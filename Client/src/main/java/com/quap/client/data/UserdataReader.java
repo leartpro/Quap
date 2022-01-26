@@ -71,16 +71,24 @@ public class UserdataReader {
         PreparedStatement statement;
         String query = "" +
                 "insert into messages(chat_id, sender_id, content) " +
-                "values(?, ? ,?);" +
-                "insert or ignore into users(id, username) " +
-                "values(?, ?)";
+                "values(?, ? ,?);";
         try {
             statement = connection.prepareStatement(query);
             statement.setInt(1, chat_id);
             statement.setInt(2, sender_id);
             statement.setString(3, content);
-            statement.setInt(4, sender_id);
-            statement.setString(5, senderName);
+            statement.execute();
+
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
+        }
+        query = "" +
+                "insert or ignore into users(id, username) " +
+                "values(?, ?)";
+        try {
+            statement = connection.prepareStatement(query);
+            statement.setInt(1, sender_id);
+            statement.setString(3, senderName);
             statement.execute();
         } catch (SQLException throwable) {
             throwable.printStackTrace();
@@ -88,6 +96,6 @@ public class UserdataReader {
     }
 
     public void deleteMessagesByChat(int chatID) {
-
+        //TODO: complete Method
     }
 }

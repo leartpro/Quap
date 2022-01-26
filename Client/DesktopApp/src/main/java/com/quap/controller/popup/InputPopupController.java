@@ -7,7 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class InputPopupController extends ReturnPopup{
+public class InputPopupController extends ReturnPopup {
     @FXML
     private Button btnClose;
 
@@ -35,5 +35,10 @@ public class InputPopupController extends ReturnPopup{
     @Override
     public String get() {
         return returnValue;
+    }
+
+    @Override
+    public void setHeader(String header) {
+        //TODO: complete Method
     }
 }

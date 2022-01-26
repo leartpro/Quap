@@ -120,10 +120,17 @@ public class Client {
     private void process(String content) {
         System.out.println(content);
         JSONObject root = new JSONObject(content);
-        String returnValue = root.getString("return-value"); //TODO: {"error":"The user Horst was not found."}
+        String returnValue = root.getString("return-value");
         if (!returnValue.equals("void")) {
             if (root.has("error") && !root.has("data")) {
                 System.err.println(root.getString("error"));
+                switch (returnValue) {
+                    case "authentication" -> {
+                        //TODO: handle error authentication with login window controller
+                        // {"error":"The user Horst was not found."}
+
+                    }
+                }
             } else if (root.has("data")) {
                 JSONObject data = root.getJSONObject("data");
                 switch (returnValue) {

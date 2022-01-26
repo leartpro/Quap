@@ -284,6 +284,7 @@ public class ClientHandler implements Callable {
                     System.err.println("The user " + name + " was not found.");
                     result = new JSONObject();
                     result.put("error", "The user " + name + " was not found.");
+                    result.put("return-value", "authentication");
                 }
                 send(result.toString());
             }

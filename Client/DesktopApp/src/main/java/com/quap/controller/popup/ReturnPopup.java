@@ -1,5 +1,7 @@
 package com.quap.controller.popup;
 
-public abstract class ReturnPopup {
+import com.quap.controller.PopupController;
+
+public abstract class ReturnPopup extends PopupController {
     public abstract Object get();
 }

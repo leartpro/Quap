@@ -1,7 +1,7 @@
 package com.quap.controller;
 
+import com.quap.controller.popup.DefaultPopupController;
 import com.quap.controller.popup.InputPopupController;
-import com.quap.controller.popup.PopupController;
 import com.quap.controller.popup.RequestPopupController;
 import com.quap.controller.popup.ReturnPopup;
 import com.quap.utils.WindowMoveHelper;
@@ -18,7 +18,7 @@ import java.util.List;
 */
 public class SceneController {
 
-    public static void submitPopup(FXMLLoader loader, Stage primaryStage, String content) {
+    public static void submitPopup(FXMLLoader loader, Stage primaryStage, String content, String header) {
         Stage inputStage;
         Scene newScene = null;
         try {
@@ -26,7 +26,7 @@ public class SceneController {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        PopupController popupController = loader.getController();
+        DefaultPopupController popupController = loader.getController();
         popupController.addContent(content);
         inputStage = new Stage();
         inputStage.initStyle(StageStyle.UNDECORATED);
@@ -34,10 +34,11 @@ public class SceneController {
         inputStage.setScene(newScene);
         //ResizeHelper.addResizeListener(inputStage);
         WindowMoveHelper.addMoveListener(inputStage);
+        popupController.setHeader(header);
         inputStage.showAndWait();
     }
 
-    public static String submitInputPopup(FXMLLoader loader, Stage primaryStage) {
+    public static String submitInputPopup(FXMLLoader loader, Stage primaryStage, String header) {
         CallbackStage inputStage;
         Scene newScene = null;
         try {
@@ -51,10 +52,11 @@ public class SceneController {
         inputStage.initOwner(primaryStage);
         inputStage.setScene(newScene);
         WindowMoveHelper.addMoveListener(inputStage);
+        popupController.setHeader(header);
         return (String) inputStage.showAndReturn(popupController);
     }
 
-    public static Boolean submitRequestPopup(FXMLLoader loader, Stage primaryStage, List<String> info) {
+    public static Boolean submitRequestPopup(FXMLLoader loader, Stage primaryStage, List<String> info, String header) {
         CallbackStage requestStage;
         Scene newScene = null;
         try {
@@ -69,6 +71,7 @@ public class SceneController {
         requestStage.setScene(newScene);
         WindowMoveHelper.addMoveListener(requestStage);
         popupController.setMessage(info);
+        popupController.setHeader(header);
         return (Boolean) requestStage.showAndReturn(popupController);
     }
 

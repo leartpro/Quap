@@ -47,4 +47,9 @@ public class RequestPopupController extends ReturnPopup{
     public Boolean get() {
         return decision;
     }
+
+    @Override
+    public void setHeader(String header) {
+        //TODO: complete Method
+    }
 }

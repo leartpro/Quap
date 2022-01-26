@@ -39,13 +39,13 @@ public class ListController extends MainVistaNavigator {
         inviteItem = new MenuItem("invite");
         contextMenu = new ContextMenu(infoItem, deleteItem, inviteItem);
         listView.setCellFactory(ContextMenuListCell.forListView(contextMenu, (listView) -> new ChatListCell()));
-        infoItem.setOnAction(event -> showInfo(listView.getSelectionModel().getSelectedItem().display(), infoItem));
+        infoItem.setOnAction(event -> showInfo(listView.getSelectionModel().getSelectedItem().display(), infoItem, "Information"));
         deleteItem.setOnAction(event -> {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/quap/desktopapp/popup/requestPopup.fxml"));
             Stage primaryStage = (Stage) deleteItem.getParentPopup().getOwnerWindow();
             switch (type) {
                 case "chatrooms" -> {
-                    boolean decision = SceneController.submitRequestPopup(loader, primaryStage, Collections.singletonList("Are you sure to leave and delete this chat?"));
+                    boolean decision = SceneController.submitRequestPopup(loader, primaryStage, Collections.singletonList("Are you sure to leave and delete this chat?"), "Delete this chatroom?");
                     if (decision) {
                         Chat chat = (Chat) listView.getSelectionModel().getSelectedItem();
                         client.deleteChat(chat);
@@ -56,7 +56,7 @@ public class ListController extends MainVistaNavigator {
                     }
                 }
                 case "friends" -> {
-                    boolean decision = SceneController.submitRequestPopup(loader, primaryStage, Collections.singletonList("Are you sure to unfriend this user?"));
+                    boolean decision = SceneController.submitRequestPopup(loader, primaryStage, Collections.singletonList("Are you sure to unfriend this user?"), "Unfriend this user?");
                     if (decision) {
                         Friend friend = (Friend) listView.getSelectionModel().getSelectedItem();
                         client.unfriendUser(friend);
@@ -72,7 +72,7 @@ public class ListController extends MainVistaNavigator {
             System.out.println("Invite to a chatroom");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/quap/desktopapp/popup/inputPopup.fxml"));
             Stage primaryStage = (Stage) inviteItem.getParentPopup().getOwnerWindow();
-            String input = SceneController.submitInputPopup(loader, primaryStage);
+            String input = SceneController.submitInputPopup(loader, primaryStage, "Type the username you want to join your chatroom");
             if (input != null && !input.equals("")) {
                 int chatId = listView.getSelectionModel().getSelectedItem().id();
                 client.inviteUser(input, chatId);
@@ -80,10 +80,10 @@ public class ListController extends MainVistaNavigator {
         });
     }
 
-    private void showInfo(String info, MenuItem item) {
+    private void showInfo(String info, MenuItem item, String header) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/quap/desktopapp/popup/popup.fxml"));
         Stage primaryStage = (Stage) item.getParentPopup().getOwnerWindow();
-        SceneController.submitPopup(loader, primaryStage, info);
+        SceneController.submitPopup(loader, primaryStage, info, header);
     }
 
     @Override
@@ -125,13 +125,17 @@ public class ListController extends MainVistaNavigator {
     public void addUserContent(ActionEvent actionEvent) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/quap/desktopapp/popup/inputPopup.fxml"));
         Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        String input = SceneController.submitInputPopup(loader, primaryStage);
+        String header = null;
+        if(type.equals("chatrooms")) {
+            header = "Type the name of the chatroom you want to create";
+        } else if(type.equals("friends")) {
+            header = "Type the name of the user you want to become your friend";
+        }
+        String input = SceneController.submitInputPopup(loader, primaryStage, header);
         if (input != null && !input.equals("")) {
             if (type.equals("chatrooms")) {
-                System.out.println("erstelle chatroom: " + input);
                 client.addChatroom(input);
             } else if (type.equals("friends")) {
-                System.out.println("request user: " + input);
                 client.addFriend(input);
             }
         }

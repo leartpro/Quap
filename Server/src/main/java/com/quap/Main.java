@@ -3,8 +3,9 @@ package com.quap;
 import com.quap.server.Server;
 
 import java.io.IOException;
-import java.net.InetSocketAddress;
-import java.net.ServerSocket;
+import java.net.*;
+import java.util.Collections;
+import java.util.Enumeration;
 
 public class Main {
     private static ServerSocket socket;
@@ -12,6 +13,27 @@ public class Main {
 
     public static void main(String[] args) {
         System.setProperty("java.net.preferIPv4Stack", "true");
+
+        System.out.println("Printing information about the available interfaces...\n");
+        try {
+            Enumeration<NetworkInterface> nets = NetworkInterface.getNetworkInterfaces();
+            for (NetworkInterface iface : Collections.list(nets)) {
+                if (iface.isUp()) {
+                    System.out.println("Interface name: " + iface.getDisplayName());
+                    System.out.println("\tInterface addresses: ");
+                    for (InterfaceAddress addr : iface.getInterfaceAddresses()) {
+                        System.out.println("\t\t" + addr.getAddress().toString());
+                    }
+                    System.out.println("\tMTU: " + iface.getMTU());
+                    System.out.println("\tSubinterfaces: " + Collections.list(iface.getSubInterfaces()));
+                    System.out.println("\tis loopback: " + iface.isLoopback());
+                    System.out.println("\tis virtual: " + iface.isVirtual());
+                    System.out.println("\tis point to point: " + iface.isPointToPoint());
+                }
+            }
+        } catch (SocketException ex) {
+            ex.printStackTrace();
+        }
         if (args.length==0) {
             Main.port = 8192;
         } else if(args.length==1) {

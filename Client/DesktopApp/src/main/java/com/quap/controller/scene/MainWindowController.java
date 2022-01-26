@@ -235,7 +235,7 @@ public class MainWindowController extends WindowController implements ClientObse
         scanner.close();
         Platform.runLater(() -> {
             boolean decision;
-            decision = SceneController.submitRequestPopup(loader, primaryStage, info);
+            decision = SceneController.submitRequestPopup(loader, primaryStage, info, "Your are invited to a chatroom");
             System.out.println("user decision:" + decision);
             if (decision) {
                 System.out.println("send join-chat-request to the server with chat and sender_id...");
@@ -269,7 +269,7 @@ public class MainWindowController extends WindowController implements ClientObse
         scanner.close();
         Platform.runLater(() -> {
             boolean decision;
-            decision = SceneController.submitRequestPopup(loader, primaryStage, info);
+            decision = SceneController.submitRequestPopup(loader, primaryStage, info, "You have a friend invite");
             System.out.println("user decision:" + decision);
             if (decision) {
                 client.acceptFriend(friend.id());
