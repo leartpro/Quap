@@ -8,9 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SettingsController extends MainVistaNavigator{
-    private Client client;
     private String type;
+    
+    @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
     private final List<MainVistaObserver> observers = new ArrayList<>();
+    private Client client;
 
     @Override
     public void loadContent(List<Content> content) {

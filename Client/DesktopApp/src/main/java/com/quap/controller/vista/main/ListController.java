@@ -3,6 +3,7 @@ package com.quap.controller.vista.main;
 import com.quap.client.Client;
 import com.quap.client.domain.Chat;
 import com.quap.client.domain.Content;
+import com.quap.client.domain.Friend;
 import com.quap.client.domain.UserContent;
 import com.quap.controller.SceneController;
 import com.quap.controller.vista.MainVistaObserver;
@@ -25,42 +26,45 @@ public class ListController extends MainVistaNavigator {
     private Client client;
     private String type;
     private final List<MainVistaObserver> observers = new ArrayList<>();
-
+    private final MenuItem infoItem = new MenuItem("info");
 
     @FXML
     private ListView<UserContent> listView;
 
     @FXML
     public void initialize() {
-        MenuItem infoItem, chatItem, deleteItem, inviteItem;
-        ContextMenu contextMenu;
-        infoItem = new MenuItem("info");
-        chatItem = new MenuItem("chat");
+        final MenuItem deleteItem, inviteItem;
+        final ContextMenu contextMenu;
         deleteItem = new MenuItem("delete");
         inviteItem = new MenuItem("invite");
-        contextMenu = new ContextMenu(infoItem, chatItem, deleteItem, inviteItem);
+        contextMenu = new ContextMenu(infoItem, deleteItem, inviteItem);
         listView.setCellFactory(ContextMenuListCell.forListView(contextMenu, (listView) -> new ChatListCell()));
-        listView.setOnMouseClicked(event -> {
-            UserContent selectedContent = listView.getSelectionModel().getSelectedItem();
-        });
-        infoItem.setOnAction(event -> {
-            showInfo(listView.getSelectionModel().getSelectedItem().display(), infoItem);
-        });
-        chatItem.setOnAction(event -> {
-        });
+        infoItem.setOnAction(event -> showInfo(listView.getSelectionModel().getSelectedItem().display(), infoItem));
         deleteItem.setOnAction(event -> {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/quap/desktopapp/popup/requestPopup.fxml"));
             Stage primaryStage = (Stage) deleteItem.getParentPopup().getOwnerWindow();
-            boolean decision = SceneController.submitRequestPopup(loader, primaryStage, Collections.singletonList("Are you sure to leave and delete this chat?"));
-            if (decision) {
-                Chat chat = (Chat) listView.getSelectionModel().getSelectedItem();
-                client.deleteChat(chat);
-                //listView.getItems().clear();
-                System.out.println("leave chat action...");
-                System.out.println(observers.size());
-                for (MainVistaObserver c : observers) {
-                    System.out.println(c);
-                    c.deleteChatEvent(chat);
+            switch (type) {
+                case "chatrooms" -> {
+                    boolean decision = SceneController.submitRequestPopup(loader, primaryStage, Collections.singletonList("Are you sure to leave and delete this chat?"));
+                    if (decision) {
+                        Chat chat = (Chat) listView.getSelectionModel().getSelectedItem();
+                        client.deleteChat(chat);
+                        System.out.println(observers.size());
+                        for (MainVistaObserver c : observers) {
+                            c.deleteChatEvent();
+                        }
+                    }
+                }
+                case "friends" -> {
+                    boolean decision = SceneController.submitRequestPopup(loader, primaryStage, Collections.singletonList("Are you sure to unfriend this user?"));
+                    if (decision) {
+                        Friend friend = (Friend) listView.getSelectionModel().getSelectedItem();
+                        client.unfriendUser(friend);
+                        for (MainVistaObserver c : observers) {
+                            System.out.println(c);
+                            c.unfriendEvent();
+                        }
+                    }
                 }
             }
         });
@@ -70,14 +74,8 @@ public class ListController extends MainVistaNavigator {
             Stage primaryStage = (Stage) inviteItem.getParentPopup().getOwnerWindow();
             String input = SceneController.submitInputPopup(loader, primaryStage);
             if (input != null && !input.equals("")) {
-                switch (type) {
-                    case "chatrooms" -> {
-                        int chatId = listView.getSelectionModel().getSelectedItem().id();
-                        client.inviteUser(input, chatId);
-                    }
-                    case "friends" -> {
-                    }
-                }
+                int chatId = listView.getSelectionModel().getSelectedItem().id();
+                client.inviteUser(input, chatId);
             }
         });
     }
@@ -103,6 +101,9 @@ public class ListController extends MainVistaNavigator {
     @Override
     public void setType(String id) {
         this.type = id;
+        if (type.equals("friends")) {
+            infoItem.setDisable(true);
+        }
     }
 
     @Override
@@ -120,6 +121,7 @@ public class ListController extends MainVistaNavigator {
         observers.remove(observer);
     }
 
+    @FXML
     public void addUserContent(ActionEvent actionEvent) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/quap/desktopapp/popup/inputPopup.fxml"));
         Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();

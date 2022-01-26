@@ -11,18 +11,13 @@ public abstract class MainVistaNavigator extends VistaNavigator {
 
     @Override
      protected VistaNavigator getVistaByID(String id) {
-        switch (id) {
-            case "list":
-                return new ListController();
-            case "profile":
-                return new ProfilController();
-            case "chat":
-                return new ChatController();
-            case "settings":
-                return new SettingsController();
-            default:
-                throw new IllegalArgumentException();
-        }
+        return switch (id) {
+            case "list" -> new ListController();
+            case "profile" -> new ProfilController();
+            case "chat" -> new ChatController();
+            case "settings" -> new SettingsController();
+            default -> throw new IllegalArgumentException();
+        };
     }
 
     public abstract void loadContent(List<Content> content);

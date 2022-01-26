@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--suppress JavaFxUnresolvedFxIdReference -->
+
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
 <?import java.net.URL?>
-<VBox fx:id="chat" styleClass="foreground" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.vista.main.ChatController">
+<VBox fx:id="chat" styleClass="foreground" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.vista.main.ChatController">
    <ScrollPane fx:id="chatPane" fitToHeight="true" fitToWidth="true" styleClass="foreground" VBox.vgrow="ALWAYS">
-      <TextArea fx:id="chatArea" styleClass="foreground" wrapText="true"/>
+      <TextArea fx:id="chatArea" editable="false" styleClass="foreground" wrapText="true" />
    </ScrollPane>
    <TextField fx:id="textConsole" onKeyPressed="#send" VBox.vgrow="ALWAYS">
       <VBox.margin>

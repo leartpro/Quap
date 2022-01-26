@@ -33,7 +33,6 @@ public class ConnectionWindowController implements Initializable {
 
     private static Label loadingLabel;
     private static ProgressBar prBar;
-    private static final double EPSILON = 0.0000005;
     double progress;
 
 
@@ -44,23 +43,11 @@ public class ConnectionWindowController implements Initializable {
         prBar = progressBar;
     }
 
-   /* public ConnectionWindowController() {
-        //increaseProgress();
-        Platform.runLater(() -> loadingLabel.setText("Open Connection"));
-        try {
-            client = new Client("localhost", 0); //local socketAddress to bind to
-            //client.listen();
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("Error");
-        }
-    }*/
     public void connect() {
         increaseProgress();
         Platform.runLater(() -> loadingLabel.setText("Open Connection"));
         try {
             client = new Client("localhost", 0); //local socketAddress to bind to
-            //client.listen();
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("Error");
@@ -69,7 +56,7 @@ public class ConnectionWindowController implements Initializable {
 
     public void increaseProgress() {
         if (progress < 1) {
-            for(int i = 0; i < 25; i++) {
+            for(int i = 0; i < 50; i++) {
                 progress += 0.01;
                 prBar.setProgress(progress);
                 //System.out.println(Double.toString(Math.round(progress * 100)) + "%");
@@ -81,24 +68,6 @@ public class ConnectionWindowController implements Initializable {
             }
         }
     }
-
-    /*public void connect() {
-        increaseProgress();
-        Platform.runLater(() -> loadingLabel.setText("Open Connection"));
-        try {
-            client = new Client("localhost", 0); //local socketAddress to bind to
-            client.listen();
-        } catch (IOException e) {
-            System.out.println("Error");
-        }
-    }*/
-
-    /*public void confirmConnection() {
-        increaseProgress();
-        System.out.println("confirm connection");
-        Platform.runLater(() -> loadingLabel.setText("Confirm Connection"));
-        client.listen();
-    }*/
 
     public void launchWindow() {
         increaseProgress();

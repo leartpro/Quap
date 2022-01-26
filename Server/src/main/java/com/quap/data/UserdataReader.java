@@ -3,7 +3,6 @@ package com.quap.data;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.net.URISyntaxException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +11,7 @@ public class UserdataReader {
     final Connection connection;
     Statement statement;
 
-    public UserdataReader() throws SQLException, URISyntaxException {
+    public UserdataReader() throws SQLException {
         connection = DriverManager.getConnection(
                 "jdbc:postgresql://localhost/postgres",
                 "postgres",
@@ -418,5 +417,9 @@ public class UserdataReader {
             }
         }
         return username;
+    }
+
+    public void unfriendUsers(int friendID, int senderID, int chatID) {
+
     }
 }

@@ -120,7 +120,7 @@ public class Client {
     private void process(String content) {
         System.out.println(content);
         JSONObject root = new JSONObject(content);
-        String returnValue = root.getString("return-value");
+        String returnValue = root.getString("return-value"); //TODO: {"error":"The user Horst was not found."}
         if (!returnValue.equals("void")) {
             if (root.has("error") && !root.has("data")) {
                 System.err.println(root.getString("error"));
@@ -142,13 +142,14 @@ public class Client {
                     }
                     case "message" -> {
                         int senderID = data.getInt("sender_id");
+                        String senderName = data.getString("sender_name");
                         int chatID = data.getInt("chat_id");
                         String messageContent = data.getString("message");
                         for (ClientObserver c : observers) {
-                            c.messageEvent(new Message(messageContent, new Date(), senderID));
+                            c.messageEvent(new Message(messageContent, new Date(), senderID, senderName));
                         }
                         System.out.println("senderID: " + senderID + ", chatID: " + chatID + ", message: " + messageContent);
-                        dataReader.addMessage(chatID, senderID, messageContent);
+                        dataReader.addMessage(chatID, senderID, senderName, messageContent);
                     }
                     case "command" -> {
                         System.out.println("command found");
@@ -214,6 +215,18 @@ public class Client {
                                     c.addFriendEvent(friend);
                                 }
                             }
+                            case "delete-friend" -> {
+                                friends.removeIf(friend -> friend.id() == data.getInt("friend_id"));
+                                for(Friend friend : friends) {
+                                    if(friend.id() == data.getInt("friend_id")) {
+                                        friends.remove(friend);
+                                        dataReader.deleteMessagesByChat(friend.chatID());
+                                    }
+                                }
+                                for (ClientObserver c : observers) {
+                                    c.unfriendEvent();
+                                }
+                            }
                         }
                     }
                 }
@@ -237,6 +250,7 @@ public class Client {
         data.put("message", message);
         data.put("chat_id", chatID);
         data.put("sender_id", id);
+        data.put("sender_name", username);
         json.put("data", data);
         String output = prefixes.get(Prefixes.MESSAGE) + json + suffixes.get(Suffixes.MESSAGE);
         System.out.println("Send Message from Client to Server: \n" + output);
@@ -326,6 +340,7 @@ public class Client {
 
     public void deleteChat(Chat chat) {
         chats.remove(chat);
+        dataReader.deleteMessagesByChat(chat.id());
         JSONObject json = new JSONObject();
         json.put("type", "delete-chat");
         JSONObject data = new JSONObject();
@@ -342,6 +357,19 @@ public class Client {
         //data.put("username", username);
         data.put("friend_id", id);
         data.put("sender_id", this.id);
+        json.put("data", data);
+        sendCommand(json.toString());
+    }
+
+    public void unfriendUser(Friend friend) {
+        friends.remove(friend);
+        dataReader.deleteMessagesByChat(friend.chatID());
+        JSONObject json = new JSONObject();
+        json.put("type", "unfriend-user");
+        JSONObject data = new JSONObject();
+        data.put("friend_id", friend.id());
+        data.put("sender_id", id);
+        data.put("chat_id", friend.chatID());
         json.put("data", data);
         sendCommand(json.toString());
     }

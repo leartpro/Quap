@@ -14,11 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SignUpController extends LoginVistaNavigator {
+
     private String username = "Anonym", password = "";
-
     private final List<LoginVistaObserver> observers = new ArrayList<>();
-
-
 
     @FXML
     private TextField txtUsername = new TextField();
@@ -109,7 +107,8 @@ public class SignUpController extends LoginVistaNavigator {
         }
     }
 
-    public void validateUsername(KeyEvent keyEvent) {
+    @FXML
+    public void validateUsername() {
         username = txtUsername.getText();
         LoginVistaNavigator.validateUsername(username, lblUsername);
         for (LoginVistaObserver c : observers) {

@@ -17,6 +17,7 @@ public class PopupController{
     @FXML
     private Button btnClose;
 
+    @FXML
     public void closePopup(ActionEvent actionEvent) {
         btnClose.setDisable(true);
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -32,9 +33,5 @@ public class PopupController{
         scrollContent.prefHeightProperty().bind(scrollContent.heightProperty());
         lbl.setAlignment(Pos.CENTER);
         scrollContent.setContent(lbl);
-    }
-
-    public void clearContent() {
-        scrollContent.setContent(null);
     }
 }

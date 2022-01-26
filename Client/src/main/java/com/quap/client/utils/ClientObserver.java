@@ -19,4 +19,6 @@ public interface ClientObserver {
     void friendRequestEvent(Friend friend);
 
     void addFriendEvent(Friend friend);
+
+    void unfriendEvent();
 }

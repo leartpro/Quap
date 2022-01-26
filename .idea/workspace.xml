@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="AnalysisUIOptions">
-    <option name="SPLITTER_PROPORTION" value="0.88095236" />
-    <option name="SCOPE_TYPE" value="3" />
+    <option name="SPLITTER_PROPORTION" value="0.39175823" />
     <option name="SHOW_STRUCTURE" value="true" />
   </component>
   <component name="ArtifactsWorkspaceSettings">
@@ -15,48 +14,52 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="09927819-4efd-4d77-952e-37e9b4faac9c" name="Changes" comment="Update README.md">
+    <list default="true" id="09927819-4efd-4d77-952e-37e9b4faac9c" name="Changes" comment="Trim Project">
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/SceneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/SceneController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/VistaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/VistaController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/popup/PopupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/popup/PopupController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/popup/RequestPopupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/popup/RequestPopupController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/scene/ConnectionWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/scene/ConnectionWindowController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/scene/LoginWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/scene/LoginWindowController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/scene/MainWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/scene/MainWindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/scene/WindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/scene/WindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/LoginVistaObserver.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/LoginVistaObserver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/MainVistaObserver.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/MainVistaObserver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/VistaNavigator.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/VistaNavigator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/VistaObserver.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/login/LoginVistaNavigator.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/login/LoginVistaNavigator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/login/SignInController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/login/SignInController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/login/SignUpController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/login/SignUpController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/main/ChatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/main/ChatController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/main/ListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/main/ListController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/main/MainVistaNavigator.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/main/MainVistaNavigator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/popup/PopupController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/desktopapp/Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/desktopapp/Launcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/desktopapp/LauncherPreloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/desktopapp/LauncherPreloader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/utils/PseudoSelector.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/main/ProfilController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/main/ProfilController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/main/SettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/main/SettingsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/desktopapp/scene/login-window.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/desktopapp/scene/login-window.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/desktopapp/scene/main-window.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/desktopapp/scene/main-window.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/desktopapp/vista/main/chat-main-vista.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/desktopapp/vista/main/chat-main-vista.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/desktopapp/vista/main/profile-main-vista.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/desktopapp/vista/main/settings-main-vista.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/images/bestanimationscom-bk.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/images/shubham-dhage-fmCr42xCLtk-unsplash-bk.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/images/splashBackground-old.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/styles/colors.css" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/styles/colors.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/styles/fonts.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/styles/layouts.css" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/resources/com/quap/styles/layouts.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/data/ConfigReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/data/ConfigReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/data/DataTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/domain/Chat.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/domain/Chat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/domain/Friend.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/domain/Friend.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/data/UserdataReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/data/UserdataReader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/domain/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/domain/Message.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/network/Config.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/network/Handler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/utils/ClientObserver.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/utils/ClientObserver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/module-info.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/quap/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/data/ConfigReader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/data/DataTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/data/OrderedProperties.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/data/UserdataReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/quap/data/UserdataReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/runtime/FutureCallback.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/runtime/FutureExecutor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/runtime/ListenableFuture.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/runtime/Result.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/server/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/quap/server/ClientHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/server/Message.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/server/CommandListener.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/quap/server/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/server/ServerClient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/resources/com/quap/config/config.properties" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/main/resources/com/quap/db/create-db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/resources/com/quap/db/create-db.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/resources/com/quap/db/insert-sample-db.sql" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,6 +129,7 @@
   </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="ProjectErrors" />
+    <option name="sortByName" value="true" />
   </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="2" />
@@ -150,8 +154,8 @@
     <property name="TODO_SCOPE" value="Module 'DesktopApp'" />
     <property name="ToolWindowCommit.ShowToolbar" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/Change SQL Dialect" value="PostgreSQL" />
-    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect" value="PostgreSQL" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/Change SQL Dialect" value="GenericSQL&#10;PostgreSQL" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect" value="PostgreSQL&#10;GenericSQL" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="jdk.selected.JAVA_MODULE" value="openjdk-16" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/desktopapp" />
@@ -397,14 +401,10 @@
       <workItem from="1642785241586" duration="88000" />
       <workItem from="1642857161939" duration="7953000" />
       <workItem from="1642938800115" duration="12464000" />
-      <workItem from="1643037595487" duration="5251000" />
-    </task>
-    <task id="LOCAL-00041" summary="Generic Content from Client in UI">
-      <created>1637613316901</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1637613316901</updated>
+      <workItem from="1643037595487" duration="7042000" />
+      <workItem from="1643046676868" duration="6205000" />
+      <workItem from="1643099849125" duration="3430000" />
+      <workItem from="1643189968450" duration="13465000" />
     </task>
     <task id="LOCAL-00042" summary="V1">
       <created>1637618436525</created>
@@ -742,7 +742,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642969645616</updated>
     </task>
-    <option name="localTasksCounter" value="90" />
+    <task id="LOCAL-00090" summary="Trim Project">
+      <created>1643044904692</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1643044904692</updated>
+    </task>
+    <option name="localTasksCounter" value="91" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -759,7 +766,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="develop" />
+                        <option value="origin/term-paper" />
                       </list>
                     </value>
                   </entry>
@@ -772,6 +779,17 @@
     </option>
     <option name="RECENT_FILTERS">
       <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/term-paper" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
         <entry key="User">
           <value>
             <list>
@@ -788,7 +806,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="Add invite Event" />
     <MESSAGE value="Update invite Event" />
     <MESSAGE value="UI Bug Fixes" />
     <MESSAGE value="Complete Chat-Invite-Feature" />
@@ -813,7 +830,8 @@
     <MESSAGE value="Friend Feature developing" />
     <MESSAGE value="Friend Feature completion" />
     <MESSAGE value="Update README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update README.md" />
+    <MESSAGE value="Trim Project" />
+    <option name="LAST_COMMIT_MESSAGE" value="Trim Project" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XPathView.XPathProjectComponent">

@@ -31,9 +31,14 @@ public class UserdataReader {
         statement.executeUpdate("create table if not exists messages (" +
                 "id integer primary key autoincrement," +
                 "chat_id int not null," +
-                "sender int not null," +
+                "sender_id int not null references users(id)," +
                 "created_at timestamp not null default current_timestamp," +
                 "content varchar not null)"
+        );
+        statement.executeUpdate("create table if not exists users (" +
+                "id integer primary key, " +
+                "username varchar not null unique " +
+                ")"
         );
 
         statement.executeUpdate("create index if not exists newestMessage on messages(created_at)");
@@ -44,14 +49,17 @@ public class UserdataReader {
         List<Message> messages = new ArrayList<>();
         try {
             ResultSet result = statement.executeQuery("" +
-                    "select sender, content, created_at from messages " +
+                    "select sender_id, content, created_at " +
+                    "from messages " +
+                    "inner join users " +
+                    "on messages.sender_id = users.id " +
                     "where chat_id = " + id + " " +
                     "order by created_at"
             );
             while (result.next()) {
                 messages.add(new Message(result.getString("content"),
                         result.getDate("created_at"),
-                        result.getInt("sender")));
+                        result.getInt("sender_id"), result.getString("username")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -59,19 +67,27 @@ public class UserdataReader {
         return messages;
     }
 
-    public void addMessage(int chat_id, int sender_id, String content) {
+    public void addMessage(int chat_id, int sender_id, String senderName, String content) {
         PreparedStatement statement;
         String query = "" +
-                "insert into messages(chat_id, sender, content) " +
-                "values(?, ? ,?)";
+                "insert into messages(chat_id, sender_id, content) " +
+                "values(?, ? ,?);" +
+                "insert or ignore into users(id, username) " +
+                "values(?, ?)";
         try {
             statement = connection.prepareStatement(query);
             statement.setInt(1, chat_id);
             statement.setInt(2, sender_id);
             statement.setString(3, content);
+            statement.setInt(4, sender_id);
+            statement.setString(5, senderName);
             statement.execute();
         } catch (SQLException throwable) {
             throwable.printStackTrace();
         }
+    }
+
+    public void deleteMessagesByChat(int chatID) {
+
     }
 }

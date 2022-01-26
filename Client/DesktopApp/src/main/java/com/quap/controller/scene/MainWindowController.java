@@ -41,7 +41,7 @@ public class MainWindowController extends WindowController implements ClientObse
 
     private MainVistaNavigator currentNode;
     private double lastX = 0.0d, lastY = 0.0d, lastWidth = 0.0d, lastHeight = 0.0d;
-    private ToggleGroup menuGroup, submenuGroup;
+    private ToggleGroup submenuGroup;
     public static Client client;
     public String currentNodeID;
 
@@ -74,7 +74,7 @@ public class MainWindowController extends WindowController implements ClientObse
         } catch (IOException e) {
             e.printStackTrace();
         }
-        menuGroup = new ToggleGroup();
+        ToggleGroup menuGroup = new ToggleGroup();
         submenuGroup = new ToggleGroup();
         btnFriends.setToggleGroup(menuGroup);
         btnChatrooms.setToggleGroup(menuGroup);
@@ -100,12 +100,14 @@ public class MainWindowController extends WindowController implements ClientObse
             currentNode = (MainVistaNavigator)controller;
             currentNode.setClient(client);
             currentNode.addObserver(this);
+            currentNode.setType("unknown");
         } else {
             throw new IllegalArgumentException();
         }
         stackContent.getChildren().setAll(node);
     }
 
+    @FXML
     public void maximize(ActionEvent actionEvent) {
         Node n = (Node) actionEvent.getSource();
         Window w = n.getScene().getWindow();
@@ -133,22 +135,21 @@ public class MainWindowController extends WindowController implements ClientObse
         actionEvent.consume();  // don't bubble up to title bar
     }
 
+    @FXML
     public void minimize(ActionEvent actionEvent) {
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
         stage.setIconified(true);
     }
 
+    @FXML
     public void close(ActionEvent actionEvent) {
         client.removeObserver(this);
         client.disconnect();
         ((Stage)(((Button)actionEvent.getSource()).getScene().getWindow())).close();
     }
 
-    public void settings(ActionEvent actionEvent) {
-
-    }
-
-    public void friends(ActionEvent actionEvent) {
+    @FXML
+    public void friends() {
         VistaController.loadVista(VistaController.LIST, this);
         currentNode.loadContent(new ArrayList<>(client.getFriends()));
         currentNode.setType("friends");
@@ -178,15 +179,12 @@ public class MainWindowController extends WindowController implements ClientObse
         lblName.setText(name);
     }
 
-    public void chatrooms(ActionEvent actionEvent) {
+    @FXML
+    public void chatrooms() {
         VistaController.loadVista(VistaController.LIST, this);
         currentNode.loadContent(new ArrayList<>(client.getChats()));
         currentNode.setType("chatrooms");
         loadButtons(client.getChats());
-    }
-
-    public void profil(ActionEvent actionEvent) {
-
     }
 
     public void setClient(Client client) {
@@ -195,7 +193,7 @@ public class MainWindowController extends WindowController implements ClientObse
         lblServer_IP.setText(lblServer_IP.getText() + " " + client.getConnectionInfo());
 
         //load the userdata into the default UI page
-        friends(null);
+        friends();
     }
 
     @Override
@@ -282,6 +280,7 @@ public class MainWindowController extends WindowController implements ClientObse
     @Override
     public void addFriendEvent(Friend friend) {
         System.out.println("createChatEvent");
+        System.out.println(currentNode.getType());
         if(currentNode.getType().equals("friends")) {
             Platform.runLater(() -> loadButtons(client.getFriends()));
             if(currentNodeID.equals("list")) {
@@ -291,12 +290,23 @@ public class MainWindowController extends WindowController implements ClientObse
     }
 
     @Override
-    public void deleteChatEvent(Chat chat) {
+    public void deleteChatEvent() {
         System.out.println("deleteChatEvent");
         if(currentNode.getType().equals("chatrooms")) {
             Platform.runLater(() -> loadButtons(client.getChats()));
             if(currentNodeID.equals("list")) {
-                Platform.runLater(() -> currentNode.loadContent(Collections.singletonList(chat)));
+                Platform.runLater(() -> currentNode.loadContent(new ArrayList<>(client.getChats())));
+            }
+        }
+    }
+
+    @Override
+    public void unfriendEvent() {
+        System.out.println("unfriendEvent");
+        if(currentNode.getType().equals("friends")) {
+            Platform.runLater(() -> loadButtons(client.getFriends()));
+            if(currentNodeID.equals("list")) {
+                Platform.runLater(() -> currentNode.loadContent(new ArrayList<>(client.getFriends())));
             }
         }
     }

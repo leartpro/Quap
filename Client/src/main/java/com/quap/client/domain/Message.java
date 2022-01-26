@@ -1,36 +1,33 @@
 package com.quap.client.domain;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public record Message(String content, Date timestamp, int senderID) implements Content {
+public record Message(String content, Date timestamp, int senderID, String senderName) implements Content {
 
     @Override
     public String toString() {
         return "Message[" +
                 "content=" + content + ", " +
                 "timestamp=" + timestamp + ", " +
-                "senderID=" + senderID + ']';
+                "senderID=" + senderID + ", " +
+                "senderName=" + senderName + ']';
+
     }
 
-    private static Date formatDate(Date date) {
-        String stringDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
-        try {
-            return new SimpleDateFormat("yyyy-MM-dd").parse(stringDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return date;
+    private static String formatDate(Date date) {
+        SimpleDateFormat fromat = new SimpleDateFormat("EEE, MMM d, y h:mm a");
+        String dateString = fromat.format(date);
+        return dateString;
     }
 
     @Override
     public String display() {
-        return timestamp + " " + senderID + ": " + content;
+        return timestamp + " " + senderName + "#" + senderID + ": " + content;
     }
 
     @Override
     public String content() {
-        return formatDate(timestamp) + " " + senderID + ": " + content;
+        return formatDate(timestamp) + " " + senderName + ": " + content;
     }
 }

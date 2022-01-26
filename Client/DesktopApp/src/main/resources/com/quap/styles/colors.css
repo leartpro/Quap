@@ -31,16 +31,6 @@
   -fx-text-fill: -text-color;
 }
 
-/*.text-area {
-  -fx-background-color: -foreground-color;
-  -fx-border-color: -foreground-color;
-
-}
-
-.text-area .content {
-  -fx-background-color: -foreground-color;
-}*/
-
 .text-area{
   -fx-background-color: -foreground-color, -foreground-color;
   -fx-text-fill: -text-color;

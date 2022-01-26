@@ -32,9 +32,6 @@ public class LoginWindowController extends WindowController implements LoginVist
 
     public void setVista(Parent node, VistaNavigator controller) {
         if (node.getId().equals("signUp") || node.getId().equals("signIn")) {
-            if(currentNode != null) {
-                currentNode.removeObserver(this);
-            }
             currentNode = (LoginVistaNavigator) controller;
         } else {
             throw new IllegalArgumentException();
@@ -87,6 +84,7 @@ public class LoginWindowController extends WindowController implements LoginVist
         }
     }
 
+    @FXML
     public void login(ActionEvent actionEvent) {
         String name = currentNode.getName();
         String password = currentNode.getPassword();

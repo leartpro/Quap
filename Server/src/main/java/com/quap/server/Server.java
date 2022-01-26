@@ -13,7 +13,6 @@ import java.util.concurrent.TimeUnit;
 public class Server{
     private final ExecutorService service;
     private final ServerSocket socket;
-    private Thread manage;
     private Thread receive;
 
     private final List<ClientHandler> handler = new ArrayList<>();
@@ -26,24 +25,6 @@ public class Server{
         status = true;
         receiveConnection();
     }
-
-    /*public void manageClients() {
-        manage = new Thread("Manage") {
-            public void run() {
-                while (status) {
-                    for (int i = 0; i < handler.size(); i++) {
-                        System.out.println(handler.get(i).getClient().getName() + " is online.");
-                    }
-                    try {
-                        Thread.sleep(2000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        };
-        manage.start();
-    }*/
 
     public void receiveConnection() {
         Server server = this;
@@ -85,10 +66,10 @@ public class Server{
     }
 
     public void terminate(boolean status) {
+        receive.interrupt();
         for (ClientHandler clientHandler : handler) {
             disconnect(clientHandler.getID(), true);
         }
-        status = false;
         try {
             socket.close();
         } catch (IOException e) {

@@ -8,7 +8,6 @@ import org.json.JSONObject;
 import java.io.*;
 import java.net.Socket;
 import java.net.SocketException;
-import java.net.URISyntaxException;
 import java.sql.SQLException;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -84,7 +83,7 @@ public class ClientHandler implements Callable {
                 UserdataReader dbReader = null;
                 try {
                     dbReader = new UserdataReader();
-                } catch (SQLException | URISyntaxException e) {
+                } catch (SQLException e) {
                     e.printStackTrace();
                 }
                 JSONObject input = new JSONObject(content).getJSONObject("data");
@@ -102,7 +101,7 @@ public class ClientHandler implements Callable {
                 UserdataReader dbReader = null;
                 try {
                     dbReader = new UserdataReader();
-                } catch (SQLException | URISyntaxException e) {
+                } catch (SQLException e) {
                     e.printStackTrace();
                 }
                 switch (new JSONObject(content).getString("type")) {
@@ -126,7 +125,7 @@ public class ClientHandler implements Callable {
                         System.out.println("Invite user to chat...");
                         try {
                             dbReader = new UserdataReader();
-                        } catch (SQLException | URISyntaxException e) {
+                        } catch (SQLException e) {
                             e.printStackTrace();
                         }
                         String username = data.getString("username");
@@ -155,7 +154,7 @@ public class ClientHandler implements Callable {
                         int chatID = data.getInt("chatroom_id");
                         try {
                             dbReader = new UserdataReader();
-                        } catch (SQLException | URISyntaxException e) {
+                        } catch (SQLException e) {
                             e.printStackTrace();
                         }
                         assert dbReader != null;
@@ -175,9 +174,10 @@ public class ClientHandler implements Callable {
                         json = new JSONObject();
                         json.put("return-value", "message");
                         JSONObject returnValue = new JSONObject();
-                        returnValue.put("message", "User " + senderID + "joined the chatroom.");
+                        returnValue.put("message", "User " + dbReader.userNameById(senderID) + "joined the chatroom.");
                         returnValue.put("chat_id", chatID);
-                        returnValue.put("sender_id", 0); //0 == server
+                        returnValue.put("sender_id", 0);
+                        returnValue.put("sender_name", "Server");
                         json.put("data", returnValue);
                         List<Integer> userIds = new ArrayList<>(dbReader.userIDsByChat(chatID));
                         for (Integer id : userIds) {
@@ -191,9 +191,10 @@ public class ClientHandler implements Callable {
                         JSONObject json = new JSONObject();
                         json.put("return-value", "message");
                         JSONObject returnValue = new JSONObject();
-                        returnValue.put("message", "User " + senderID + "left the chatroom.");
+                        returnValue.put("message", "User " + dbReader.userNameById(senderID) + "left the chatroom.");
                         returnValue.put("chat_id", chatID);
                         returnValue.put("sender_id", 0); //0 == server
+                        returnValue.put("sender_name", "Server");
                         json.put("data", returnValue);
                         List<Integer> userIds = new ArrayList<>(dbReader.userIDsByChat(chatID));
                         for (Integer id : userIds) {
@@ -202,6 +203,7 @@ public class ClientHandler implements Callable {
                     }
                     case "request-user" -> {
                         String username = data.getString("username");
+                        assert dbReader != null;
                         int userID = dbReader.userIDByName(username);
                         String senderName = name;
                         JSONObject json = new JSONObject();
@@ -215,6 +217,7 @@ public class ClientHandler implements Callable {
                     }
                     case "accept-friend" -> {
                         int friendID = data.getInt("friend_id");
+                        assert dbReader != null;
                         int chatID = dbReader.insertFriends(senderID, friendID);
                         JSONObject json = new JSONObject();
                         json.put("return-value", "command");
@@ -228,17 +231,30 @@ public class ClientHandler implements Callable {
                         returnValue.put("friend", friend);
                         json.put("data", returnValue);
                         server.forwardMessage(senderID, json.toString());
-                         //Override friend attribute
+
                         friend = new JSONObject();
                         returnValue.remove("friend");
-
                         friend.put("name", dbReader.userNameById(senderID));
                         friend.put("user_id", userID);
                         friend.put("created_at", LocalTime.now().toString());
                         friend.put("chatrooms_id", chatID);
                         returnValue.put("friend", friend);
                         json.put("data", returnValue);
-                        server.forwardMessage(friendID, json.toString()); //The second index should be the sender.id = friendID
+                        server.forwardMessage(friendID, json.toString());
+                    }
+                    case "unfriend-user" -> {
+                        int friendID = data.getInt("friend_id");
+                        int chatID = data.getInt("chat_id");
+                        assert dbReader != null;
+                        dbReader.unfriendUsers(friendID, senderID, chatID);
+                        JSONObject json = new JSONObject();
+                        json.put("return-value", "command");
+                        JSONObject returnValue = new JSONObject();
+                        returnValue.put("statement", "delete-friend");
+                        returnValue.put("friend_id", senderID);
+                        returnValue.put("chat_id", chatID);
+                        json.put("data", returnValue);
+                        server.forwardMessage(friendID, json.toString());
                     }
                 }
             }
@@ -247,7 +263,7 @@ public class ClientHandler implements Callable {
                 UserdataReader dbReader = null;
                 try {
                     dbReader = new UserdataReader();
-                } catch (SQLException | URISyntaxException e) {
+                } catch (SQLException e) {
                     e.printStackTrace();
                 }
                 assert dbReader != null;
@@ -268,7 +284,6 @@ public class ClientHandler implements Callable {
                     System.err.println("The user " + name + " was not found.");
                     result = new JSONObject();
                     result.put("error", "The user " + name + " was not found.");
-                    //e.printStackTrace();
                 }
                 send(result.toString());
             }
@@ -295,8 +310,6 @@ public class ClientHandler implements Callable {
     @Override
     public Object call() {
         listen();
-        //disconnect(); is called direct after listen()
-
         return null;
     }
 }

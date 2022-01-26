@@ -37,7 +37,7 @@ The ClientHandlers take care of the requests of the clients and access the Postg
   * #### Database
   * #### Runtime
 
-<a id="requirements"></a>REQUIREMENTS
+#REQUIREMENTS
 ------------
 
 This project requires the following installs:
@@ -59,7 +59,7 @@ This project must be installed as follows:
 ```
 * If you want to work with the project, debug it, or develop it further, see the [configuration section](#configuration).
 
-<a id="configuration"></a>CONFIGURATION
+#CONFIGURATION
 -------------
 
 To work in the project, the project must be opened in [IntelliJ]() (click [here]() for more information).
@@ -101,7 +101,7 @@ The Outlook
   - live server console
   - profile and settings for users
 
-GALARY
+GALLERY
 -----------
 
 

@@ -14,7 +14,6 @@ public abstract class LoginVistaNavigator extends VistaNavigator{
         } else if (id.equals("signIn")) {
             return new SignInController();
         } else {
-            IllegalArgumentException e;
             return null;
         }
     }

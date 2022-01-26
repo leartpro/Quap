@@ -31,9 +31,10 @@ CREATE TABLE participants
 CREATE TABLE friends
 (
     id         integer primary key generated always as identity,
-    friend1_id integer   NOT NULL references users (id) ON DELETE CASCADE,
-    friend2_id integer   NOT NULL references users (id) ON DELETE CASCADE,
-    chat_id    integer   not null references chatrooms (id) ON DELETE CASCADE,
-    unique (friend1_id, friend2_id)
+    friend1_id integer NOT NULL references users (id) ON DELETE CASCADE,
+    friend2_id integer NOT NULL references users (id) ON DELETE CASCADE,
+    chat_id    integer not null references chatrooms (id) ON DELETE CASCADE,
+    unique (friend1_id, friend2_id),
+    foreign key (friend1_id, friend2_id) references friends(friend2_id,friend1_id) ON DELETE CASCADE
 );
 

@@ -23,7 +23,7 @@ public class RequestPopupController extends ReturnPopup{
 
     @FXML
     void accept(ActionEvent actionEvent) {
-        btnDecline.setDisable(true);
+        btnAccept.setDisable(true);
         decision = true;
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.close();

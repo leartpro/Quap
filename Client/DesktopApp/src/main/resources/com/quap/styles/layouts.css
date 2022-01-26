@@ -93,15 +93,8 @@
     -fx-min-height: 30;
 }
 
-/*.popup > .scroll-pane {
-    -fx-padding: 0px 4px;
-    -fx-border-insets: 0px 4px;
-    -fx-background-insets: 0px 4px;
-}*/
-
 .popup > .text-field {
     -fx-border-insets: 0px 4px;
     -fx-background-insets: 0px 4px;
-
     -fx-background-radius: 8px;
 }
