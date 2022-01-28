@@ -6,21 +6,21 @@
 <?import javafx.scene.layout.*?>
 <?import java.lang.String?>
 <?import java.net.URL?>
-<BorderPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.popup.RequestPopupController">
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.popup.RequestPopupController">
     <top>
         <HBox maxWidth="1.7976931348623157E308" styleClass="ground" BorderPane.alignment="CENTER">
-            <Label styleClass="ground" text="Popup"/>
+            <Label fx:id="header" styleClass="ground" text="Popup" />
         </HBox>
     </top>
    <center>
        <HBox maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
-           <TextArea fx:id="txtDisplay" editable="false" HBox.hgrow="SOMETIMES"/>
+           <TextArea fx:id="txtDisplay" editable="false" HBox.hgrow="SOMETIMES" />
        </HBox>
    </center>
    <bottom>
        <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
-           <Button fx:id="btnAccept" mnemonicParsing="false" onAction="#accept" text="Accept"/>
-           <Button fx:id="btnDecline" mnemonicParsing="false" onAction="#decline" text="Decline"/>
+           <Button fx:id="btnAccept" mnemonicParsing="false" onAction="#accept" text="Accept" />
+           <Button fx:id="btnDecline" mnemonicParsing="false" onAction="#decline" text="Decline" />
        </HBox>
    </bottom>
    <stylesheets>

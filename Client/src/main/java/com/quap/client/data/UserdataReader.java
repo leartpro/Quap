@@ -96,6 +96,15 @@ public class UserdataReader {
     }
 
     public void deleteMessagesByChat(int chatID) {
-        //TODO: complete Method
-    }
+        PreparedStatement statement;
+        String query = "" +
+                "delete from messages " +
+                "where chat_id = ?";
+        try {
+            statement = connection.prepareStatement(query);
+            statement.setInt(1, chatID);
+            statement.execute();
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
+        }}
 }

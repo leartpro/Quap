@@ -128,6 +128,7 @@ public class Client {
                     case "authentication" -> {
                         //TODO: handle error authentication with login window controller
                         // {"error":"The user Horst was not found."}
+                        // give error back to ui by event on loginwindowcontroller
 
                     }
                 }
@@ -146,6 +147,7 @@ public class Client {
                             Friend friend = new Friend(privates.getJSONObject(i));
                             friends.add(friend);
                         }
+                        //TODO: on success update login window controller
                     }
                     case "message" -> {
                         int senderID = data.getInt("sender_id");

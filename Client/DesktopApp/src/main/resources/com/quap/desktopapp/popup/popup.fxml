@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import java.lang.String?>
 <?import java.net.URL?>
-<BorderPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.popup.DefaultPopupController">
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.quap.controller.popup.DefaultPopupController">
     <center>
         <ScrollPane fx:id="scrollContent" minHeight="200.0" minWidth="400.0" prefHeight="200.0" prefWidth="400.0" styleClass="foreground" />
     </center>
@@ -21,7 +21,7 @@
     </bottom>
    <top>
        <HBox styleClass="ground" BorderPane.alignment="CENTER">
-           <Label text="Popup"/>
+           <Label fx:id="header" text="Popup" />
        </HBox>
    </top>
    <stylesheets>

@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -13,6 +14,9 @@ public class InputPopupController extends ReturnPopup {
 
     @FXML
     private TextField userInput;
+    @FXML
+    private Label header;
+
     private String returnValue;
 
     @FXML
@@ -39,6 +43,6 @@ public class InputPopupController extends ReturnPopup {
 
     @Override
     public void setHeader(String header) {
-        //TODO: complete Method
+        this.header.setText(header);
     }
 }

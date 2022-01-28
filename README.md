@@ -52,8 +52,13 @@ This project must be installed as follows:
 
 1. Please make sure that you have already successfully completed the installations from [requirements](#requirements).
 2. Clone the Project from [here]() via [Git]() and got to /out/artifacts/ 
-3. Go to Server_jar and execute the jar
-4. Go to DesktopApp_jar and execute the jar with the following VM options:
+3. Navigate to the directory  /Quap/Server/src/main/resources/com/quap/db
+Open a terminal and run
+```console
+ psql -h localhost -U postgres -f create-db.sql
+```
+4. Go to Server_jar and execute the jar
+5. Go to DesktopApp_jar and execute the jar with the following VM options:
 ```console
 --module-path \"PATH TO YOUR JAVA FX SDK"\javafx-sdk-17.0.0.1\lib --add-modules=javafx.controls,javafx.fxml
 ```

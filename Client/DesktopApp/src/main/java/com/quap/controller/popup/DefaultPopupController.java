@@ -17,6 +17,8 @@ public class DefaultPopupController extends PopupController {
     private ScrollPane scrollContent;
     @FXML
     private Button btnClose;
+    @FXML
+    private Label header;
 
     @FXML
     public void closePopup(ActionEvent actionEvent) {
@@ -38,6 +40,6 @@ public class DefaultPopupController extends PopupController {
 
     @Override
     public void setHeader(String header) {
-        //TODO: complete Method
+        this.header.setText(header);
     }
 }
