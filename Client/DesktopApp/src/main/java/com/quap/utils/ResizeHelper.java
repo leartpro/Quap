@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 /**
  @author https://stackoverflow.com/questions/19455059/allow-user-to-resize-an-undecorated-stage/51630063#51630063
  */
+@SuppressWarnings("ALL")
 public class ResizeHelper {
 
     public static void addResizeListener(Stage stage) {

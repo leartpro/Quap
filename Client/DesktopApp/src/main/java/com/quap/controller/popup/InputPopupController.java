@@ -41,7 +41,6 @@ public class InputPopupController extends ReturnPopup {
         return returnValue;
     }
 
-    @Override
     public void setHeader(String header) {
         this.header.setText(header);
     }

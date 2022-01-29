@@ -1,6 +1,5 @@
 package com.quap.controller.popup;
 
-import com.quap.controller.PopupController;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,7 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.stage.Stage;
 
-public class DefaultPopupController extends PopupController {
+public class DefaultPopupController {
 
     @FXML
     private ScrollPane scrollContent;
@@ -38,7 +37,6 @@ public class DefaultPopupController extends PopupController {
         scrollContent.setContent(lbl);
     }
 
-    @Override
     public void setHeader(String header) {
         this.header.setText(header);
     }

@@ -51,7 +51,6 @@ public class RequestPopupController extends ReturnPopup{
         return decision;
     }
 
-    @Override
     public void setHeader(String header) {
         this.header.setText(header);
     }

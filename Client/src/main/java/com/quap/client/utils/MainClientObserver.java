@@ -6,7 +6,7 @@ import com.quap.client.domain.Message;
 
 import java.util.List;
 
-public interface ClientObserver {
+public interface MainClientObserver {
 
     void messageEvent(Message message);
 

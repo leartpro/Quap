@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
 
-public class ClientHandler implements Callable {
+public class ClientHandler implements Callable { //TODO: fix usage
     private final int ID;
     private int userID;
     private final Socket socket;
@@ -242,7 +242,7 @@ public class ClientHandler implements Callable {
                         json.put("data", returnValue);
                         server.forwardMessage(friendID, json.toString());
                     }
-                    case "unfriend-user" -> {
+                    case "unfriend-user" -> { //TODO: complete userdata method
                         int friendID = data.getInt("friend_id");
                         int chatID = data.getInt("chat_id");
                         assert dbReader != null;

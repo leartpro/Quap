@@ -5,7 +5,7 @@ import com.quap.client.domain.Chat;
 import com.quap.client.domain.Friend;
 import com.quap.client.domain.Message;
 import com.quap.client.domain.UserContent;
-import com.quap.client.utils.ClientObserver;
+import com.quap.client.utils.MainClientObserver;
 import com.quap.controller.SceneController;
 import com.quap.controller.VistaController;
 import com.quap.controller.vista.MainVistaObserver;
@@ -37,7 +37,7 @@ import java.util.Scanner;
 
 import static com.quap.controller.VistaController.CHAT;
 
-public class MainWindowController extends WindowController implements ClientObserver, MainVistaObserver {
+public class MainWindowController extends WindowController implements MainClientObserver, MainVistaObserver {
 
     private MainVistaNavigator currentNode;
     private double lastX = 0.0d, lastY = 0.0d, lastWidth = 0.0d, lastHeight = 0.0d;
@@ -92,7 +92,7 @@ public class MainWindowController extends WindowController implements ClientObse
     }
 
     public void setVista(Parent node, VistaNavigator controller) { //set the current node is called by VistaController
-        if (node.getId().equals("chat") || node.getId().equals("list") || node.getId().equals("profile") || node.getId().equals("settings")) {
+        if (node.getId().equals("chat") || node.getId().equals("list")) {
             if(currentNode != null) {
                 currentNode.removeObserver(this);
             }
@@ -143,7 +143,7 @@ public class MainWindowController extends WindowController implements ClientObse
 
     @FXML
     public void close(ActionEvent actionEvent) {
-        client.removeObserver(this);
+        client.removeMainObserver(this);
         client.disconnect();
         ((Stage)(((Button)actionEvent.getSource()).getScene().getWindow())).close();
     }
@@ -189,7 +189,7 @@ public class MainWindowController extends WindowController implements ClientObse
 
     public void setClient(Client client) {
         MainWindowController.client = client;
-        MainWindowController.client.addObserver(this);
+        MainWindowController.client.addMainObserver(this);
         lblServer_IP.setText(lblServer_IP.getText() + " " + client.getConnectionInfo());
 
         //load the userdata into the default UI page

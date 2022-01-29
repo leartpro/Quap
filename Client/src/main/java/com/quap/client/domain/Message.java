@@ -16,9 +16,8 @@ public record Message(String content, Date timestamp, int senderID, String sende
     }
 
     private static String formatDate(Date date) {
-        SimpleDateFormat fromat = new SimpleDateFormat("EEE, MMM d, y h:mm a");
-        String dateString = fromat.format(date);
-        return dateString;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, MMM d, y h:mm a");
+        return dateFormat.format(date);
     }
 
     @Override

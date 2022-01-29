@@ -2,32 +2,36 @@ package com.quap.controller.scene;
 
 import com.quap.client.Client;
 import com.quap.client.data.ConfigReader;
+import com.quap.client.utils.LoginClientObserver;
+import com.quap.controller.SceneController;
 import com.quap.controller.VistaController;
 import com.quap.controller.vista.LoginVistaObserver;
 import com.quap.controller.vista.VistaNavigator;
 import com.quap.controller.vista.login.LoginVistaNavigator;
 import com.quap.utils.ResizeHelper;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 import java.io.IOException;
 
-public class LoginWindowController extends WindowController implements LoginVistaObserver {
+@SuppressWarnings("ALL")
+public class LoginWindowController extends WindowController implements LoginVistaObserver, LoginClientObserver {
     private LoginVistaNavigator currentNode;
     private Client client;
     private boolean existingUser;
+    private String name, password;
 
     public void setClient(Client client) {
         this.client = client;
+        client.addLoginObserver(this);
     }
 
     public void setVista(Parent node, VistaNavigator controller) {
@@ -85,23 +89,38 @@ public class LoginWindowController extends WindowController implements LoginVist
     }
 
     @FXML
-    public void login(ActionEvent actionEvent) {
-        String name = currentNode.getName();
-        String password = currentNode.getPassword();
+    public void login() {
+        btnLogin.setVisible(true);
+        name = currentNode.getName();
+        password = currentNode.getPassword();
+        client.authorize(name, password, existingUser);
+    }
 
+    @Override
+    public void authFailedEvent(String error) {
+        System.out.println("authFailedEvent");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/quap/desktopapp/popup/popup.fxml"));
+            Stage primaryStage = (Stage) Stage.getWindows().stream().filter(Window::isShowing).findFirst().orElse(null);
+            Platform.runLater(() -> SceneController.submitPopup(loader, primaryStage, error, "Login"));
+            btnLogin.setDisable(false);
+    }
+
+    @Override
+    public void authSuccessEvent() {
+        System.out.println("authSuccessEvent");
         ConfigReader configReader = new ConfigReader(name);
         if (!existingUser) {
             configReader.init();
         } else {
             configReader.validateUser();
         }
-        client.authorize(name, password, existingUser);
         client.connectDB();
+        client.removeLoginObserver(this);
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/quap/desktopapp/scene/main-window.fxml"));
-                Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                Stage stage = (Stage) Stage.getWindows().stream().filter(Window::isShowing).findFirst().orElse(null);
                 Parent root = null;
                 try {
                     root = loader.load();
@@ -110,6 +129,7 @@ public class LoginWindowController extends WindowController implements LoginVist
                 }
                 assert root != null;
                 Scene scene = new Scene(root);
+                assert stage != null;
                 stage.setScene(scene);
                 stage.setMinWidth(600);
                 stage.setMinHeight(400);

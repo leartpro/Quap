@@ -16,6 +16,7 @@ import java.util.List;
 
 public class ChatController extends MainVistaNavigator{
     private Client client;
+
     @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
     private final List<MainVistaObserver> observers = new ArrayList<>();
 

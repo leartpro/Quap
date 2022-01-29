@@ -30,7 +30,7 @@ public class Server{
         Server server = this;
         receive = new Thread("Receive") {
             public void run() {
-                while (status) {
+                while (status) { //TODO: update status inside loop
                     Socket client = null;
                     try {
                         System.out.println("Listening on: " + socket.getLocalSocketAddress());
@@ -45,6 +45,7 @@ public class Server{
                             client,
                             UniqueIdentifier.getIdentifier(),
                             server);
+                    //noinspection unchecked
                     service.submit(clientHandler);
                     handler.add(clientHandler);
                 }
@@ -53,7 +54,8 @@ public class Server{
         receive.start();
     }
 
-    private void disconnect(int id, boolean status) {
+    //TODO: call method
+    private void disconnect(int id, boolean status) { //TODO: update status
         ClientHandler c;
         for (int i = 0; i < handler.size(); i++) {
             if (handler.get(i).getID() == id) {
@@ -65,6 +67,7 @@ public class Server{
         }
     }
 
+    //TODO: use method
     public void terminate(boolean status) {
         receive.interrupt();
         for (ClientHandler clientHandler : handler) {

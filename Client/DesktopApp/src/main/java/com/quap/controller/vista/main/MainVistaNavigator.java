@@ -9,17 +9,6 @@ import java.util.List;
 
 public abstract class MainVistaNavigator extends VistaNavigator {
 
-    @Override
-     protected VistaNavigator getVistaByID(String id) {
-        return switch (id) {
-            case "list" -> new ListController();
-            case "profile" -> new ProfilController();
-            case "chat" -> new ChatController();
-            case "settings" -> new SettingsController();
-            default -> throw new IllegalArgumentException();
-        };
-    }
-
     public abstract void loadContent(List<Content> content);
 
     public abstract void setClient(Client client);

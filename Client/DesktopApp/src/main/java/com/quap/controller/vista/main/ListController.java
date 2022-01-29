@@ -39,7 +39,7 @@ public class ListController extends MainVistaNavigator {
         inviteItem = new MenuItem("invite");
         contextMenu = new ContextMenu(infoItem, deleteItem, inviteItem);
         listView.setCellFactory(ContextMenuListCell.forListView(contextMenu, (listView) -> new ChatListCell()));
-        infoItem.setOnAction(event -> showInfo(listView.getSelectionModel().getSelectedItem().display(), infoItem, "Information"));
+        infoItem.setOnAction(event -> showInfo(listView.getSelectionModel().getSelectedItem().display(), infoItem));
         deleteItem.setOnAction(event -> {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/quap/desktopapp/popup/requestPopup.fxml"));
             Stage primaryStage = (Stage) deleteItem.getParentPopup().getOwnerWindow();
@@ -80,10 +80,10 @@ public class ListController extends MainVistaNavigator {
         });
     }
 
-    private void showInfo(String info, MenuItem item, String header) {
+    private void showInfo(String info, MenuItem item) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/quap/desktopapp/popup/popup.fxml"));
         Stage primaryStage = (Stage) item.getParentPopup().getOwnerWindow();
-        SceneController.submitPopup(loader, primaryStage, info, header);
+        SceneController.submitPopup(loader, primaryStage, info, "Information");
     }
 
     @Override

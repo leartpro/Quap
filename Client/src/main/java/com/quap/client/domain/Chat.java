@@ -44,8 +44,6 @@ public final class Chat extends UserContent {
         );
     }
 
-    public String name() { return name; }
-
     @Override
     public int chatID() { return id; }
 

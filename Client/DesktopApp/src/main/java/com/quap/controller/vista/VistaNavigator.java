@@ -4,5 +4,4 @@ import javafx.scene.Node;
 
 public abstract class VistaNavigator extends Node {
 
-    protected abstract VistaNavigator getVistaByID(String id);
 }

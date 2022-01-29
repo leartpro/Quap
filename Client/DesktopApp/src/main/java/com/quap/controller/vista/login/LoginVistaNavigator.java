@@ -7,17 +7,6 @@ import javafx.scene.paint.Paint;
 
 public abstract class LoginVistaNavigator extends VistaNavigator{
 
-    @Override
-    protected VistaNavigator getVistaByID(String id) {
-        if (id.equals("signUp")) {
-            return new SignUpController();
-        } else if (id.equals("signIn")) {
-            return new SignInController();
-        } else {
-            return null;
-        }
-    }
-
     public static void validatePassword(String password, Label lblPassword) {
         if (password.matches("(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,12}")) {
             lblPassword.setTextFill(Paint.valueOf("green"));
@@ -48,5 +37,4 @@ public abstract class LoginVistaNavigator extends VistaNavigator{
 
     public abstract void addObserver(LoginVistaObserver observer);
 
-    public abstract void removeObserver(LoginVistaObserver observer);
 }

@@ -2,7 +2,8 @@ package com.quap.client;
 
 import com.quap.client.data.UserdataReader;
 import com.quap.client.domain.*;
-import com.quap.client.utils.ClientObserver;
+import com.quap.client.utils.LoginClientObserver;
+import com.quap.client.utils.MainClientObserver;
 import com.quap.client.utils.Prefixes;
 import com.quap.client.utils.Suffixes;
 import org.json.JSONArray;
@@ -36,7 +37,9 @@ public class Client {
     private String username;
     private String password;
     private UserdataReader dataReader;
-    private final List<ClientObserver> observers = new ArrayList<>();
+    private final List<MainClientObserver> mainClientObservers = new ArrayList<>();
+    private final List<LoginClientObserver> loginClientObservers = new ArrayList<>();
+
 
     {
         try {
@@ -124,12 +127,9 @@ public class Client {
         if (!returnValue.equals("void")) {
             if (root.has("error") && !root.has("data")) {
                 System.err.println(root.getString("error"));
-                switch (returnValue) {
-                    case "authentication" -> {
-                        //TODO: handle error authentication with login window controller
-                        // {"error":"The user Horst was not found."}
-                        // give error back to ui by event on loginwindowcontroller
-
+                if ("authentication".equals(returnValue)) {
+                    for (LoginClientObserver c : loginClientObservers) {
+                        c.authFailedEvent(root.getString("error"));
                     }
                 }
             } else if (root.has("data")) {
@@ -147,14 +147,16 @@ public class Client {
                             Friend friend = new Friend(privates.getJSONObject(i));
                             friends.add(friend);
                         }
-                        //TODO: on success update login window controller
+                        for(LoginClientObserver c : loginClientObservers) {
+                            c.authSuccessEvent();
+                        }
                     }
                     case "message" -> {
                         int senderID = data.getInt("sender_id");
                         String senderName = data.getString("sender_name");
                         int chatID = data.getInt("chat_id");
                         String messageContent = data.getString("message");
-                        for (ClientObserver c : observers) {
+                        for (MainClientObserver c : mainClientObservers) {
                             c.messageEvent(new Message(messageContent, new Date(), senderID, senderName));
                         }
                         System.out.println("senderID: " + senderID + ", chatID: " + chatID + ", message: " + messageContent);
@@ -170,7 +172,7 @@ public class Client {
                                         result.getString("name"),
                                         result.getInt("chatroom_id"));
                                 chats.add(chat);
-                                for (ClientObserver c : observers) {
+                                for (MainClientObserver c : mainClientObservers) {
                                     c.createChatEvent(chat);
                                 }
                             }
@@ -190,7 +192,7 @@ public class Client {
                                         chatObject.getInt("id"),
                                         chatObject.getString("created_at")
                                 );
-                                for (ClientObserver c : observers) {
+                                for (MainClientObserver c : mainClientObservers) {
                                     c.inviteEvent(chat, senderID, senderName, participantsList);
                                 }
                             }
@@ -202,7 +204,7 @@ public class Client {
                                         chatObject.getString("created_at")
                                 );
                                 chats.add(chat);
-                                for (ClientObserver c : observers) {
+                                for (MainClientObserver c : mainClientObservers) {
                                     c.joinChatEvent(chat);
                                 }
                             }
@@ -213,14 +215,14 @@ public class Client {
                                 Friend friend = new Friend(
                                         senderName, senderID
                                 );
-                                for (ClientObserver c : observers) {
+                                for (MainClientObserver c : mainClientObservers) {
                                     c.friendRequestEvent(friend);
                                 }
                             }
                             case "add-friend" -> {
                                 Friend friend = new Friend(data.getJSONObject("friend"));
                                 friends.add(friend);
-                                for (ClientObserver c : observers) {
+                                for (MainClientObserver c : mainClientObservers) {
                                     c.addFriendEvent(friend);
                                 }
                             }
@@ -232,7 +234,7 @@ public class Client {
                                         dataReader.deleteMessagesByChat(friend.chatID());
                                     }
                                 }
-                                for (ClientObserver c : observers) {
+                                for (MainClientObserver c : mainClientObservers) {
                                     c.unfriendEvent();
                                 }
                             }
@@ -298,13 +300,23 @@ public class Client {
         this.chatID = chatID;
     }
 
-    public void addObserver(ClientObserver observer) {
-        observers.add(observer);
+    public void addMainObserver(MainClientObserver observer) {
+        mainClientObservers.add(observer);
     }
 
-    public void removeObserver(ClientObserver observer) {
-        observers.remove(observer);
+    public void removeMainObserver(MainClientObserver observer) {
+        mainClientObservers.remove(observer);
     }
+
+    public void addLoginObserver(LoginClientObserver observer) {
+        loginClientObservers.add(observer);
+    }
+
+    public void removeLoginObserver(LoginClientObserver observer) {
+        loginClientObservers.remove(observer);
+    }
+
+
 
     public void addChatroom(String input) {
         JSONObject json = new JSONObject();
