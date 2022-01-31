@@ -135,7 +135,7 @@ public class UserdataReader {
         return json;
     }
 
-    public void deleteUserFromChat(int userID, int chatID) {
+    public void deleteUserFromChat(int userID, int chatID) { //TODO: check if chatroom is empty then delete
         PreparedStatement statement;
         String query = "" +
                 "DELETE FROM participants " +
@@ -419,7 +419,17 @@ public class UserdataReader {
         return username;
     }
 
-    public void unfriendUsers(int friendID, int senderID, int chatID) {
-        //TODO: complete method
+    public void unfriendUsers(int chatID) {
+        PreparedStatement statement;
+        String query = "" +
+                    "DELETE FROM chatrooms " +
+                    "WHERE id = ? ";
+        try {
+            statement = connection.prepareStatement(query);
+            statement.setInt(1, chatID);
+            statement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

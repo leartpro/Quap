@@ -242,11 +242,11 @@ public class ClientHandler implements Callable { //TODO: fix usage
                         json.put("data", returnValue);
                         server.forwardMessage(friendID, json.toString());
                     }
-                    case "unfriend-user" -> { //TODO: complete userdata method
+                    case "unfriend-user" -> {
                         int friendID = data.getInt("friend_id");
                         int chatID = data.getInt("chat_id");
                         assert dbReader != null;
-                        dbReader.unfriendUsers(friendID, senderID, chatID);
+                        dbReader.unfriendUsers(chatID);
                         JSONObject json = new JSONObject();
                         json.put("return-value", "command");
                         JSONObject returnValue = new JSONObject();

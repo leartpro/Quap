@@ -191,8 +191,6 @@ public class MainWindowController extends WindowController implements MainClient
         MainWindowController.client = client;
         MainWindowController.client.addMainObserver(this);
         lblServer_IP.setText(lblServer_IP.getText() + " " + client.getConnectionInfo());
-
-        //load the userdata into the default UI page
         friends();
     }
 

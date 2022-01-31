@@ -115,7 +115,6 @@ public class LoginWindowController extends WindowController implements LoginVist
             configReader.validateUser();
         }
         client.connectDB();
-        client.removeLoginObserver(this);
         Platform.runLater(new Runnable() {
             @Override
             public void run() {

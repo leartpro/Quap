@@ -147,8 +147,9 @@ public class Client {
                             Friend friend = new Friend(privates.getJSONObject(i));
                             friends.add(friend);
                         }
-                        for(LoginClientObserver c : loginClientObservers) {
+                        for(LoginClientObserver c : loginClientObservers) { //java.util.ConcurrentModificationException
                             c.authSuccessEvent();
+                            //removeLoginObserver(c);
                         }
                     }
                     case "message" -> {

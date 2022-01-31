@@ -10,6 +10,7 @@ public class UserdataReader {
     private Connection connection;
     private Statement statement;
 
+    //TODO: if there is no friend loaded on auth delete all messages (unfriend while offline)
     public UserdataReader(String username, String password) {
         assert username != null;
         try {
@@ -49,7 +50,7 @@ public class UserdataReader {
         List<Message> messages = new ArrayList<>();
         try {
             ResultSet result = statement.executeQuery("" +
-                    "select sender_id, content, created_at " +
+                    "select sender_id, content, created_at, username " +
                     "from messages " +
                     "inner join users " +
                     "on messages.sender_id = users.id " +
@@ -88,7 +89,7 @@ public class UserdataReader {
         try {
             statement = connection.prepareStatement(query);
             statement.setInt(1, sender_id);
-            statement.setString(3, senderName);
+            statement.setString(2, senderName);
             statement.execute();
         } catch (SQLException throwable) {
             throwable.printStackTrace();
