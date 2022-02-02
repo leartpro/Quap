@@ -281,6 +281,10 @@ public class Client {
         writer.println(output);
     }
 
+    public void sendDisconnect(boolean status) {
+        //TODO: send disconnect
+    }
+
     private void closeSocket() {
         synchronized (socket) {
             try {

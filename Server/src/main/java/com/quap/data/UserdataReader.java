@@ -135,7 +135,7 @@ public class UserdataReader {
         return json;
     }
 
-    public void deleteUserFromChat(int userID, int chatID) { //TODO: check if chatroom is empty then delete
+    public void deleteUserFromChat(int userID, int chatID) {
         PreparedStatement statement;
         String query = "" +
                 "DELETE FROM participants " +
@@ -144,6 +144,31 @@ public class UserdataReader {
         try {
             statement = connection.prepareStatement(query);
             statement.setInt(1, userID);
+            statement.setInt(2, chatID);
+            statement.execute();
+
+        query = "" +
+        "with how_many_participants " +
+                "         as ( " +
+                "        select count(*) " +
+                "        from participants " +
+                "        where chatroom_id = ? " +
+                "           or participants.user_id " +
+                "            in ( " +
+                "                  select friend1_id " +
+                "                  from friends " +
+                "                  where chat_id = chatroom_id " +
+                "              ) " +
+                "    ) " +
+                "delete " +
+                "from chatrooms " +
+                "where id = ? " +
+                "  and ( " +
+                "          select * " +
+                "          from how_many_participants " +
+                "      ) = 0";
+            statement = connection.prepareStatement(query);
+            statement.setInt(1, chatID);
             statement.setInt(2, chatID);
             statement.execute();
         } catch (SQLException e) {

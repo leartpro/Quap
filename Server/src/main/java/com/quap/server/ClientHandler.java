@@ -12,9 +12,8 @@ import java.sql.SQLException;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Callable;
 
-public class ClientHandler implements Callable { //TODO: fix usage
+public class ClientHandler implements Runnable {
     private final int ID;
     private int userID;
     private final Socket socket;
@@ -288,6 +287,9 @@ public class ClientHandler implements Callable { //TODO: fix usage
                 }
                 send(result.toString());
             }
+            case 'd' -> {
+                //TODO: handle disconnecting
+            }
         }
     }
 
@@ -309,8 +311,7 @@ public class ClientHandler implements Callable { //TODO: fix usage
     }
 
     @Override
-    public Object call() {
+    public void run() {
         listen();
-        return null;
     }
 }

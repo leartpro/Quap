@@ -9,8 +9,8 @@ import java.util.List;
 public class UserdataReader {
     private Connection connection;
     private Statement statement;
-
-    //TODO: if there is no friend loaded on auth delete all messages (unfriend while offline)
+    //TODO: should not invite multiple times as friend/to chat
+    // should not invite self
     public UserdataReader(String username, String password) {
         assert username != null;
         try {
@@ -79,7 +79,6 @@ public class UserdataReader {
             statement.setInt(2, sender_id);
             statement.setString(3, content);
             statement.execute();
-
         } catch (SQLException throwable) {
             throwable.printStackTrace();
         }

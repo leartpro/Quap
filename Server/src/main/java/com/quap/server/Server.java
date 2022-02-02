@@ -16,7 +16,7 @@ public class Server{
     private Thread receive;
 
     private final List<ClientHandler> handler = new ArrayList<>();
-    private final boolean status;
+    private boolean status;
 
 
     public Server(ServerSocket socket) {
@@ -30,7 +30,7 @@ public class Server{
         Server server = this;
         receive = new Thread("Receive") {
             public void run() {
-                while (status) { //TODO: update status inside loop
+                while (status) {
                     Socket client = null;
                     try {
                         System.out.println("Listening on: " + socket.getLocalSocketAddress());
@@ -45,17 +45,18 @@ public class Server{
                             client,
                             UniqueIdentifier.getIdentifier(),
                             server);
-                    //noinspection unchecked
                     service.submit(clientHandler);
                     handler.add(clientHandler);
+                    if(socket.isClosed()) {
+                        status = false;
+                    }
                 }
             }
         };
         receive.start();
     }
 
-    //TODO: call method
-    private void disconnect(int id, boolean status) { //TODO: update status
+    private void disconnect(int id, boolean status) { //TODO: disconnect by client-exit/-error/-connection_closed
         ClientHandler c;
         for (int i = 0; i < handler.size(); i++) {
             if (handler.get(i).getID() == id) {
@@ -67,7 +68,7 @@ public class Server{
         }
     }
 
-    //TODO: use method
+    //TODO: use method or delete disconnect as well
     public void terminate(boolean status) {
         receive.interrupt();
         for (ClientHandler clientHandler : handler) {
