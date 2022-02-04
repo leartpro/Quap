@@ -40,7 +40,6 @@ public class Client {
     private final List<MainClientObserver> mainClientObservers = new ArrayList<>();
     private final List<LoginClientObserver> loginClientObservers = new ArrayList<>();
 
-
     {
         try {
             String name = InetAddress.getLocalHost().getHostName();
@@ -59,8 +58,7 @@ public class Client {
     public Client(String address, int port) throws IOException {
         this.address = InetAddress.getByName(address);
         this.port = port;
-        socket = new Socket(InetAddress.getByName("192.168.178.69"), 8192); //java.net.ConnectException: Connection refused: connect
-        //socket.bind(null);
+        socket = new Socket(InetAddress.getByName("192.168.178.69"), 8192);
         writer = new PrintWriter(socket.getOutputStream(), true);
         reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         listen();
@@ -89,21 +87,22 @@ public class Client {
     }
 
     public void disconnect() {
+        sendDisconnect();
         listen.interrupt();
         new Thread(this::closeSocket).start();
     }
 
     public void listen() {
-        System.out.println("Client is listen...");
         listen = new Thread(() -> {
             String message;
             while (!socket.isClosed() && reader != null) {
                 try {
-                    message = reader.readLine(); //java.net.SocketException: Socket closed
+                    message = reader.readLine();
                     if (message != null) {
                         process(message);
                     }
                 } catch (SocketException se) {
+                    disconnect();
                     System.err.println("Connection closed");
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -147,10 +146,12 @@ public class Client {
                             Friend friend = new Friend(privates.getJSONObject(i));
                             friends.add(friend);
                         }
-                        for(LoginClientObserver c : loginClientObservers) { //java.util.ConcurrentModificationException
+                        LoginClientObserver r = null;
+                        for(LoginClientObserver c : loginClientObservers) {
                             c.authSuccessEvent();
-                            //removeLoginObserver(c);
+                            r = c;
                         }
+                        removeLoginObserver(r);
                     }
                     case "message" -> {
                         int senderID = data.getInt("sender_id");
@@ -210,7 +211,6 @@ public class Client {
                                 }
                             }
                             case "friend-request" -> {
-                                //JSONObject chatObject = data.getJSONObject("chat");
                                 int senderID = data.getInt("sender_id");
                                 String senderName = data.getString("sender_name");
                                 Friend friend = new Friend(
@@ -241,12 +241,13 @@ public class Client {
                             }
                         }
                     }
+                    case "disconnect" -> {
+                        //todo: HANDLE DISCONNECT FROM SERVER
+                    }
                 }
             } else {
                 System.err.println("Unknown package content");
             }
-        } else {
-            System.out.println("No data expected");
         }
     }
 
@@ -265,24 +266,22 @@ public class Client {
         data.put("sender_name", username);
         json.put("data", data);
         String output = prefixes.get(Prefixes.MESSAGE) + json + suffixes.get(Suffixes.MESSAGE);
-        System.out.println("Send Message from Client to Server: \n" + output);
         writer.println(output);
     }
 
     public void sendAuthentication(String authentication) {
         String output = prefixes.get(Prefixes.AUTHENTICATION) + authentication + suffixes.get(Suffixes.AUTHENTICATION);
-        System.out.println("Send Message from Client to Server: \n" + authentication);
         writer.println(output);
     }
 
     public void sendCommand(String command) {
         String output = prefixes.get(Prefixes.COMMAND) + command + suffixes.get(Suffixes.COMMAND);
-        System.out.println("Send Message from Client to Server: \n" + command);
         writer.println(output);
     }
 
-    public void sendDisconnect(boolean status) {
-        //TODO: send disconnect
+    private void sendDisconnect() {
+        String output = prefixes.get(Prefixes.DISCONNECT) + ""/*TODO: status information here*/ + suffixes.get(Suffixes.DISCONNECT);
+        writer.println(output);
     }
 
     private void closeSocket() {

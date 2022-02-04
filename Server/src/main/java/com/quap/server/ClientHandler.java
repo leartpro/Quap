@@ -57,7 +57,6 @@ public class ClientHandler implements Runnable {
                     }
                 } catch (SocketException e) {
                     e.printStackTrace();
-                    listen.interrupt();
                     try {
                         reader.close();
                     } catch (IOException ex) {
@@ -288,7 +287,8 @@ public class ClientHandler implements Runnable {
                 send(result.toString());
             }
             case 'd' -> {
-                //TODO: handle disconnecting
+                listen.interrupt();
+                //TODO: handle disconnecting FROM CLIENT
             }
         }
     }
@@ -307,7 +307,13 @@ public class ClientHandler implements Runnable {
     }
 
     public void disconnect() {
-        System.out.println("Disconnecting");
+        JSONObject json = new JSONObject();
+        json.put("return-value", "disconnect");
+        JSONObject data = new JSONObject();
+        data.put("", ""); //TODO: status information
+        json.put("data", data);
+        send(json.toString());
+        //TODO: send disconnect to client
     }
 
     @Override

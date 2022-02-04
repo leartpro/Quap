@@ -14,10 +14,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="09927819-4efd-4d77-952e-37e9b4faac9c" name="Changes" comment="Bug fixing">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__eu_hansolo_fx_countries_17_0_16.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__eu_hansolo_fx_heatmap_17_0_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__eu_hansolo_jdktools_17_0_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__eu_hansolo_toolbox_17_0_12.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__eu_hansolo_toolboxfx_17_0_22.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__eu_hansolo_tilesfx_17_0_11.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__eu_hansolo_tilesfx_17_1_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_swing_17_0_2_ea_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_swing_17_0_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_swing_linux_17_0_2_ea_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_swing_linux_17_0_2.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/DesktopApp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/DesktopApp.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/data/UserdataReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/data/UserdataReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/data/UserdataReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/quap/data/UserdataReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/utils/Prefixes.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/utils/Prefixes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/utils/Suffixes.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/utils/Suffixes.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/server/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/quap/server/ClientHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/quap/server/Server.java" afterDir="false" />
     </list>
@@ -371,14 +381,9 @@
       <workItem from="1643468006571" duration="10625000" />
       <workItem from="1643662628925" duration="2527000" />
       <workItem from="1643737697909" duration="316000" />
-      <workItem from="1643837636611" duration="4250000" />
-    </task>
-    <task id="LOCAL-00047" summary="colors.css">
-      <created>1638218668157</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1638218668157</updated>
+      <workItem from="1643837636611" duration="4278000" />
+      <workItem from="1643915457090" duration="603000" />
+      <workItem from="1643991105901" duration="5994000" />
     </task>
     <task id="LOCAL-00048" summary="Remove Size Properties in FXML">
       <created>1638222691264</created>
@@ -716,7 +721,14 @@
       <option name="project" value="LOCAL" />
       <updated>1643665324102</updated>
     </task>
-    <option name="localTasksCounter" value="96" />
+    <task id="LOCAL-00096" summary="Bug fixing">
+      <created>1643841966496</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1643841966496</updated>
+    </task>
+    <option name="localTasksCounter" value="97" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

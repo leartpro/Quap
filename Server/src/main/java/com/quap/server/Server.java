@@ -37,18 +37,17 @@ public class Server{
                         client = socket.accept();
                     } catch (IOException e) {
                         e.printStackTrace();
+                        terminate(false);
                     }
                     assert client != null;
                     System.out.print("\r\nNew connection from " + client.getInetAddress() + ":" + client.getPort());
                     System.out.println(" to " + socket.getInetAddress() + ":" + socket.getLocalPort());
-                    ClientHandler clientHandler = new ClientHandler(
-                            client,
-                            UniqueIdentifier.getIdentifier(),
-                            server);
+                    ClientHandler clientHandler = new ClientHandler(client, UniqueIdentifier.getIdentifier(), server);
                     service.submit(clientHandler);
                     handler.add(clientHandler);
                     if(socket.isClosed()) {
                         status = false;
+                        terminate(true);
                     }
                 }
             }
@@ -56,7 +55,7 @@ public class Server{
         receive.start();
     }
 
-    private void disconnect(int id, boolean status) { //TODO: disconnect by client-exit/-error/-connection_closed
+    private void disconnect(int id) { //TODO: disconnect by client-exit/-error/-connection_closed
         ClientHandler c;
         for (int i = 0; i < handler.size(); i++) {
             if (handler.get(i).getID() == id) {
@@ -72,7 +71,7 @@ public class Server{
     public void terminate(boolean status) {
         receive.interrupt();
         for (ClientHandler clientHandler : handler) {
-            disconnect(clientHandler.getID(), true);
+            disconnect(clientHandler.getID());
         }
         try {
             socket.close();
@@ -125,11 +124,8 @@ public class Server{
     }
 
     public void forwardMessage(int userID, String message) {
-        System.out.println("forward message from " + userID);
         for (ClientHandler clientHandler : handler) {
-            System.out.println("UserID: " + clientHandler.getUserID());
             if (clientHandler.getUserID() == userID) {
-                System.out.println("Send Message from Client:" + userID + " to Client:" + clientHandler.getUserID());
                 clientHandler.send(message);
             }
         }

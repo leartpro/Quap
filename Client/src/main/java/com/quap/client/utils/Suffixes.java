@@ -1,5 +1,5 @@
 package com.quap.client.utils;
 
 public enum Suffixes {
-    MESSAGE, COMMAND, AUTHENTICATION
+    MESSAGE, COMMAND, AUTHENTICATION, DISCONNECT
 }
