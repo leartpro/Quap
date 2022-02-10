@@ -106,5 +106,6 @@ public class UserdataReader {
             statement.execute();
         } catch (SQLException throwable) {
             throwable.printStackTrace();
-        }}
+        }
+    }
 }

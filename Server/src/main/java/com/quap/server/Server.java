@@ -60,14 +60,13 @@ public class Server{
         for (int i = 0; i < handler.size(); i++) {
             if (handler.get(i).getID() == id) {
                 c = handler.get(i);
-                c.disconnect();
+                c.disconnect(true);
                 handler.remove(i);
                 break;
             }
         }
     }
 
-    //TODO: use method or delete disconnect as well
     public void terminate(boolean status) {
         receive.interrupt();
         for (ClientHandler clientHandler : handler) {

@@ -457,4 +457,18 @@ public class UserdataReader {
             e.printStackTrace();
         }
     }
+
+
+    public void disconnect() {
+        try {
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

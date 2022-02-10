@@ -57,6 +57,7 @@ public class ClientHandler implements Runnable {
                     }
                 } catch (SocketException e) {
                     e.printStackTrace();
+                    this.disconnect(false);
                     try {
                         reader.close();
                     } catch (IOException ex) {
@@ -64,7 +65,7 @@ public class ClientHandler implements Runnable {
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
-                    this.disconnect();
+                    this.disconnect(false);
                 }
             }
         });
@@ -287,8 +288,15 @@ public class ClientHandler implements Runnable {
                 send(result.toString());
             }
             case 'd' -> {
+                UserdataReader dbReader = null;
+                try {
+                    dbReader = new UserdataReader();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                assert dbReader != null;
                 listen.interrupt();
-                //TODO: handle disconnecting FROM CLIENT
+                dbReader.disconnect();
             }
         }
     }
@@ -306,14 +314,13 @@ public class ClientHandler implements Runnable {
         return userID;
     }
 
-    public void disconnect() {
+    public void disconnect(boolean status) {
         JSONObject json = new JSONObject();
         json.put("return-value", "disconnect");
         JSONObject data = new JSONObject();
-        data.put("", ""); //TODO: status information
+        data.put("status", status);
         json.put("data", data);
         send(json.toString());
-        //TODO: send disconnect to client
     }
 
     @Override

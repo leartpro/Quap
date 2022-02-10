@@ -144,7 +144,7 @@ public class MainWindowController extends WindowController implements MainClient
     @FXML
     public void close(ActionEvent actionEvent) {
         client.removeMainObserver(this);
-        client.disconnect();
+        client.disconnect(true);
         ((Stage)(((Button)actionEvent.getSource()).getScene().getWindow())).close();
     }
 
@@ -234,7 +234,6 @@ public class MainWindowController extends WindowController implements MainClient
         Platform.runLater(() -> {
             boolean decision;
             decision = SceneController.submitRequestPopup(loader, primaryStage, info, "Your are invited to a chatroom");
-            System.out.println("user decision:" + decision);
             if (decision) {
                 System.out.println("send join-chat-request to the server with chat and sender_id...");
                 client.joinChat(chat.chatID());
@@ -268,7 +267,6 @@ public class MainWindowController extends WindowController implements MainClient
         Platform.runLater(() -> {
             boolean decision;
             decision = SceneController.submitRequestPopup(loader, primaryStage, info, "You have a friend invite");
-            System.out.println("user decision:" + decision);
             if (decision) {
                 client.acceptFriend(friend.id());
             }

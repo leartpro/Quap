@@ -86,8 +86,8 @@ public class Client {
         dataReader = new UserdataReader(username, password);
     }
 
-    public void disconnect() {
-        sendDisconnect();
+    public void disconnect(boolean status) {
+        sendDisconnect(status);
         listen.interrupt();
         new Thread(this::closeSocket).start();
     }
@@ -102,7 +102,7 @@ public class Client {
                         process(message);
                     }
                 } catch (SocketException se) {
-                    disconnect();
+                    disconnect(false);
                     System.err.println("Connection closed");
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -242,7 +242,18 @@ public class Client {
                         }
                     }
                     case "disconnect" -> {
-                        //todo: HANDLE DISCONNECT FROM SERVER
+                        /*
+                                JSONObject json = new JSONObject();
+        json.put("return-value", "disconnect");
+        JSONObject data = new JSONObject();
+        data.put("status", status);
+        json.put("data", data);
+        send(json.toString());
+    }
+                         */
+
+                        //todo:
+
                     }
                 }
             } else {
@@ -279,8 +290,10 @@ public class Client {
         writer.println(output);
     }
 
-    private void sendDisconnect() {
-        String output = prefixes.get(Prefixes.DISCONNECT) + ""/*TODO: status information here*/ + suffixes.get(Suffixes.DISCONNECT);
+    private void sendDisconnect(boolean status) {
+        JSONObject json = new JSONObject();
+        json.put("status", status);
+        String output = prefixes.get(Prefixes.DISCONNECT) + json + suffixes.get(Suffixes.DISCONNECT);
         writer.println(output);
     }
 
