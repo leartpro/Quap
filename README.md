@@ -22,20 +22,7 @@ The project can be divided into three modules. A server module and a client modu
 as well as the server class, which manages the ServerSocket and the ClientHandler. 
 The ClientHandlers take care of the requests of the clients and access the Postgres database.
 
-* The Client module contains 
-
-* ### Client
-  * #### User Interface
-    * ...
-  * #### Network technology
-  * #### Database
-  * #### Runtime
-
-* ### Server
-  * #### Network technology
-  * #### Client handling
-  * #### Database
-  * #### Runtime
+* The Client module contains...
 
 #REQUIREMENTS
 ------------
@@ -76,7 +63,14 @@ to work optimally with the databases, as well as the tool
 TROUBLESHOOTING
 ---------------
 
-* this section is currently not available
+If you receive a connection error, the problem is that the ip configuration in your local area network 
+is different from the inserted values.
+To fix this problem you have to edit client.java:61 and Main.java:47. 
+Simply change the default IP Adresses and restart server and client. 
+
+If you receive a database error, 
+which tolds you that no role for the database exists,
+you have to change the role in the Serverside Database-Reader in UserdataReader:17.
 
 FAQ
 ---
@@ -108,5 +102,5 @@ The Outlook
 
 GALLERY
 -----------
-
+* currently not avaiable
 
