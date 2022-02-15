@@ -55,10 +55,7 @@ public final class Friend extends UserContent {
 
     @Override
     public String display() {
-        return "Friend: " + "\n" +
-                "name: " + name + ", " + "\n" +
-                "id: " + id + ", " + "\n" +
-                "created_at: " + created_at +  "\n";
+        return "Friend: " + name;
     }
 
     @Override

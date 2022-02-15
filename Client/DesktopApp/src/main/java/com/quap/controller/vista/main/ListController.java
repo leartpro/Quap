@@ -187,7 +187,7 @@ public class ListController extends MainVistaNavigator {
             super.updateItem(content, isEmpty);
             if (content != null && !isEmpty) {
                 //setDisabled(false);
-                setText(content.toString());
+                setText(content.content());
             }
         }
     }

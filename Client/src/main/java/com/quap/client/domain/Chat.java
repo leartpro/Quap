@@ -63,11 +63,7 @@ public final class Chat extends UserContent {
 
     @Override
     public String display() {
-        return "Chat: " + "\n" +
-                "name: " + name + "\n" +
-                "id: " + id + "\n" +
-                "joined_at: " + joined_at + "\n" +
-                "created_at: " + created_at + "\n";
+        return "Chat: " + name;
     }
 
     @Override
