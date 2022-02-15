@@ -58,7 +58,7 @@ public class Client {
     public Client(String address, int port) throws IOException {
         this.address = InetAddress.getByName(address);
         this.port = port;
-        socket = new Socket(InetAddress.getByName("192.168.178.69"), 8192);
+        socket = new Socket(InetAddress.getByName("192.168.178.43"), 8192);
         writer = new PrintWriter(socket.getOutputStream(), true);
         reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         listen();
@@ -103,7 +103,6 @@ public class Client {
                     }
                 } catch (SocketException se) {
                     disconnect(false);
-                    System.err.println("Connection closed");
                 } catch (IOException e) {
                     e.printStackTrace();
                     listen.interrupt();
@@ -243,17 +242,14 @@ public class Client {
                     }
                     case "disconnect" -> {
                         /*
-                                JSONObject json = new JSONObject();
+        JSONObject json = new JSONObject();
         json.put("return-value", "disconnect");
         JSONObject data = new JSONObject();
         data.put("status", status);
         json.put("data", data);
         send(json.toString());
-    }
                          */
-
                         //todo:
-
                     }
                 }
             } else {

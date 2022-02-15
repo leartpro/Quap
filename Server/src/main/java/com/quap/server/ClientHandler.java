@@ -173,7 +173,7 @@ public class ClientHandler implements Runnable {
                         json = new JSONObject();
                         json.put("return-value", "message");
                         JSONObject returnValue = new JSONObject();
-                        returnValue.put("message", "User " + dbReader.userNameById(senderID) + "joined the chatroom.");
+                        returnValue.put("message", "User " + dbReader.userNameById(senderID) + " joined the chatroom.");
                         returnValue.put("chat_id", chatID);
                         returnValue.put("sender_id", 0);
                         returnValue.put("sender_name", "Server");
@@ -190,7 +190,7 @@ public class ClientHandler implements Runnable {
                         JSONObject json = new JSONObject();
                         json.put("return-value", "message");
                         JSONObject returnValue = new JSONObject();
-                        returnValue.put("message", "User " + dbReader.userNameById(senderID) + "left the chatroom.");
+                        returnValue.put("message", "User " + dbReader.userNameById(senderID) + " left the chatroom.");
                         returnValue.put("chat_id", chatID);
                         returnValue.put("sender_id", 0); //0 == server
                         returnValue.put("sender_name", "Server");

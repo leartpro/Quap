@@ -55,7 +55,7 @@ public class Server{
         receive.start();
     }
 
-    private void disconnect(int id) { //TODO: disconnect by client-exit/-error/-connection_closed
+    private void disconnect(int id) {
         ClientHandler c;
         for (int i = 0; i < handler.size(); i++) {
             if (handler.get(i).getID() == id) {
