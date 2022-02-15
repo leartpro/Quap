@@ -7,10 +7,17 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * TODO
+ */
 public class UserdataReader {
     final Connection connection;
     Statement statement;
 
+    /**
+     * TODO
+     * @throws SQLException
+     */
     public UserdataReader() throws SQLException {
         connection = DriverManager.getConnection(
                 "jdbc:postgresql://localhost/postgres",

@@ -11,9 +11,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 /**
+ * TODO
  @author https://stackoverflow.com/questions/19455059/allow-user-to-resize-an-undecorated-stage/51630063#51630063
  */
-@SuppressWarnings("ALL")
+
 public class ResizeHelper {
 
     public static void addResizeListener(Stage stage) {
@@ -104,8 +105,6 @@ public class ResizeHelper {
                                 stage.setY(mouseEvent.getScreenY());
                             } else {
                                 newHeight = Math.min(Math.max(newHeight, minHeight), maxHeight);
-                                // y1 + h1 = y2 + h2
-                                // y1 = y2 + h2 - h1
                                 stage.setY(stage.getY() + stage.getHeight() - newHeight);
                                 stage.setHeight(newHeight);
                             }
@@ -124,8 +123,6 @@ public class ResizeHelper {
                                 stage.setX(mouseEvent.getScreenX());
                             } else {
                                 newWidth = Math.min(Math.max(newWidth, minWidth), maxWidth);
-                                // x1 + w1 = x2 + w2
-                                // x1 = x2 + w2 - w1
                                 stage.setX(stage.getX() + stage.getWidth() - newWidth);
                                 stage.setWidth(newWidth);
                             }

@@ -22,6 +22,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * TODO
+ */
 public class Client {
     private final HashMap<Prefixes, String> prefixes = new HashMap<>();
     private final HashMap<Suffixes, String> suffixes = new HashMap<>();
@@ -55,6 +58,12 @@ public class Client {
         }
     }
 
+    /**
+     * TODO
+     * @param address
+     * @param port
+     * @throws IOException
+     */
     public Client(String address, int port) throws IOException {
         this.address = InetAddress.getByName(address);
         this.port = port;
@@ -76,6 +85,12 @@ public class Client {
         return username;
     }
 
+    /**
+     * TODO
+     * @param name
+     * @param password
+     * @param existing
+     */
     public void authorize(String name, String password, boolean existing) {
         this.username = name;
         this.password = password;
@@ -90,12 +105,19 @@ public class Client {
         dataReader = new UserdataReader(username, password);
     }
 
+    /**
+     * TODO
+     * @param status
+     */
     public void disconnect(boolean status) {
         sendDisconnect(status);
         listen.interrupt();
         new Thread(this::closeSocket).start();
     }
 
+    /**
+     * TODO
+     */
     public void listen() {
         listen = new Thread(() -> {
             String message;
@@ -122,6 +144,10 @@ public class Client {
         listen.start();
     }
 
+    /**
+     * TODO
+     * @param content
+     */
     private void process(String content) {
         System.out.println(content);
         JSONObject root = new JSONObject(content);
@@ -259,10 +285,18 @@ public class Client {
     }
 
 
-    public String getConnectionInfo() {
+    /**
+     * TODO
+     * @return
+     */
+    public String getConnectionInfo() { //TODO: fix local addr
         return address.getCanonicalHostName()+":"+port + " --> " + socket.getRemoteSocketAddress();
     }
 
+    /**
+     * TODO
+     * @param message
+     */
     public void sendMessage(String message) {
         JSONObject json = new JSONObject();
         json.put("return-value", "message");
@@ -276,16 +310,28 @@ public class Client {
         writer.println(output);
     }
 
+    /**
+     * TODO
+     * @param authentication
+     */
     public void sendAuthentication(String authentication) {
         String output = prefixes.get(Prefixes.AUTHENTICATION) + authentication + suffixes.get(Suffixes.AUTHENTICATION);
         writer.println(output);
     }
 
+    /**
+     * TODO
+     * @param command
+     */
     public void sendCommand(String command) {
         String output = prefixes.get(Prefixes.COMMAND) + command + suffixes.get(Suffixes.COMMAND);
         writer.println(output);
     }
 
+    /**
+     * TODO
+     * @param status
+     */
     private void sendDisconnect(boolean status) {
         JSONObject json = new JSONObject();
         json.put("status", status);
@@ -293,6 +339,9 @@ public class Client {
         writer.println(output);
     }
 
+    /**
+     * TODO
+     */
     private void closeSocket() {
         synchronized (socket) {
             try {

@@ -7,10 +7,17 @@ import java.net.*;
 import java.util.Collections;
 import java.util.Enumeration;
 
+/**
+ * TODO
+ */
 public class Main {
     private static ServerSocket socket;
     private static int port;
 
+    /**
+     * TODO
+     * @param args
+     */
     public static void main(String[] args) {
         System.setProperty("java.net.preferIPv4Stack", "true");
 

@@ -13,8 +13,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="09927819-4efd-4d77-952e-37e9b4faac9c" name="Changes" comment="Rebuild Artifacts">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    <list default="true" id="09927819-4efd-4d77-952e-37e9b4faac9c" name="Changes" comment="Update README.md">
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/scene/LoginWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/scene/LoginWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/scene/MainWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/scene/MainWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/main/ChatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/controller/vista/main/ChatController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/desktopapp/Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/desktopapp/Launcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/desktopapp/LauncherPreloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/desktopapp/LauncherPreloader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/utils/ResizeHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/utils/ResizeHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/utils/WindowMoveHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/src/main/java/com/quap/utils/WindowMoveHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/data/UserdataReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/data/UserdataReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/quap/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/data/UserdataReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/quap/data/UserdataReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/server/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/quap/server/ClientHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/quap/server/Server.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -372,14 +384,7 @@
       <workItem from="1644525659872" duration="4212000" />
       <workItem from="1644681852672" duration="2535000" />
       <workItem from="1644746160877" duration="7683000" />
-      <workItem from="1644957970219" duration="3841000" />
-    </task>
-    <task id="LOCAL-00055" summary="Add dark theme">
-      <created>1638811631922</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1638811631922</updated>
+      <workItem from="1644957970219" duration="5297000" />
     </task>
     <task id="LOCAL-00056" summary="Update CSS">
       <created>1638815137676</created>
@@ -717,7 +722,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644961356590</updated>
     </task>
-    <option name="localTasksCounter" value="104" />
+    <task id="LOCAL-00104" summary="Update README.md">
+      <created>1644961832600</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1644961832600</updated>
+    </task>
+    <option name="localTasksCounter" value="105" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -788,7 +800,6 @@
     <MESSAGE value="Add TODOs and Fix Exceptions and create new Events" />
     <MESSAGE value="Friend Feature developing" />
     <MESSAGE value="Friend Feature completion" />
-    <MESSAGE value="Update README.md" />
     <MESSAGE value="Trim Project" />
     <MESSAGE value="Cleanup Project" />
     <MESSAGE value="Build Artifacts" />
@@ -799,7 +810,8 @@
     <MESSAGE value="Bug fixes" />
     <MESSAGE value="Improve User Interface" />
     <MESSAGE value="Rebuild Artifacts" />
-    <option name="LAST_COMMIT_MESSAGE" value="Rebuild Artifacts" />
+    <MESSAGE value="Update README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update README.md" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XPathView.XPathProjectComponent">

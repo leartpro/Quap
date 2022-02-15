@@ -22,12 +22,14 @@ import javafx.stage.Window;
 
 import java.io.IOException;
 
-@SuppressWarnings("ALL")
+/**
+ * TODO
+ */
 public class LoginWindowController extends WindowController implements LoginVistaObserver, LoginClientObserver {
     private LoginVistaNavigator currentNode;
     private Client client;
     private boolean existingUser;
-    private String name, password;
+    private String name;
 
     public void setClient(Client client) {
         this.client = client;
@@ -92,7 +94,7 @@ public class LoginWindowController extends WindowController implements LoginVist
     public void login() {
         btnLogin.setVisible(true);
         name = currentNode.getName();
-        password = currentNode.getPassword();
+        String password = currentNode.getPassword();
         client.authorize(name, password, existingUser);
     }
 
@@ -105,6 +107,9 @@ public class LoginWindowController extends WindowController implements LoginVist
             btnLogin.setDisable(false);
     }
 
+    /**
+     * TODO
+     */
     @Override
     public void authSuccessEvent() {
         System.out.println("authSuccessEvent");

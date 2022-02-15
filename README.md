@@ -94,7 +94,7 @@ The Outlook
 
 ####This project is currently still under development.
 
-* ####Planned features are:
+* #####Planned features are:
   - decentralized data synchronization
   - accessibility in the local network via DNS
   - live server console

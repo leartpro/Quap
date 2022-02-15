@@ -37,6 +37,9 @@ import java.util.Scanner;
 
 import static com.quap.controller.VistaController.CHAT;
 
+/**
+ * TODO
+ */
 public class MainWindowController extends WindowController implements MainClientObserver, MainVistaObserver {
 
     private MainVistaNavigator currentNode;

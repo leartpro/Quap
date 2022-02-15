@@ -10,6 +10,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * TODO
+ */
 public class Server{
     private final ExecutorService service;
     private final ServerSocket socket;
@@ -19,6 +22,10 @@ public class Server{
     private boolean status;
 
 
+    /**
+     * TODO
+     * @param socket
+     */
     public Server(ServerSocket socket) {
         service = Executors.newCachedThreadPool();
         this.socket = socket;
@@ -26,6 +33,9 @@ public class Server{
         receiveConnection();
     }
 
+    /**
+     * TODO
+     */
     public void receiveConnection() {
         Server server = this;
         receive = new Thread("Receive") {
@@ -55,6 +65,10 @@ public class Server{
         receive.start();
     }
 
+    /**
+     * TODO
+     * @param id
+     */
     private void disconnect(int id) {
         ClientHandler c;
         for (int i = 0; i < handler.size(); i++) {
@@ -67,6 +81,10 @@ public class Server{
         }
     }
 
+    /**
+     * TODO
+     * @param status
+     */
     public void terminate(boolean status) {
         receive.interrupt();
         for (ClientHandler clientHandler : handler) {
@@ -122,6 +140,11 @@ public class Server{
         }
     }
 
+    /**
+     * TODO
+     * @param userID
+     * @param message
+     */
     public void forwardMessage(int userID, String message) {
         for (ClientHandler clientHandler : handler) {
             if (clientHandler.getUserID() == userID) {

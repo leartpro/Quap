@@ -14,9 +14,18 @@ import javafx.stage.StageStyle;
 
 import java.util.Objects;
 
+/**
+ * TODO
+ */
 public class LauncherPreloader extends Preloader {
 
     private Stage preLoaderStage;
+
+    /**
+     * TODO
+     * @param primaryStage
+     * @throws Exception
+     */
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/quap/desktopapp/scene/connection-window.fxml")));

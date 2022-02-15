@@ -8,6 +8,10 @@ import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+/**
+ * TODO
+ * inspired by https://stackoverflow.com/questions/19455059/allow-user-to-resize-an-undecorated-stage/51630063#51630063
+ */
 public class WindowMoveHelper {
 
     public static void addMoveListener(Stage stage) {

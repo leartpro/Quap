@@ -13,6 +13,9 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * TODO
+ */
 public class ClientHandler implements Runnable {
     private final int ID;
     private int userID;
@@ -26,6 +29,12 @@ public class ClientHandler implements Runnable {
     private final PrintWriter writer;
     private String name;
 
+    /**
+     * TODO
+     * @param socket
+     * @param ID
+     * @param server
+     */
     public ClientHandler(Socket socket, int ID, Server server) {
         this.socket = socket;
         this.ID = ID;
@@ -46,6 +55,9 @@ public class ClientHandler implements Runnable {
         reader = new BufferedReader(new InputStreamReader(input));
     }
 
+    /**
+     * TODO
+     */
     private void listen() {
         listen = new Thread(() -> {
             String message;
@@ -72,6 +84,10 @@ public class ClientHandler implements Runnable {
         listen.start();
     }
 
+    /**
+     * TODO
+     * @param message
+     */
     private void process(String message) {
         String content = message.substring(5, (message.length() - 5));
         System.out.println(message);
@@ -301,6 +317,10 @@ public class ClientHandler implements Runnable {
         }
     }
 
+    /**
+     * TODO
+     * @param message
+     */
     public void send(String message) {
         System.out.println("Server Message to Client: " + message);
         writer.println(message);
@@ -314,6 +334,10 @@ public class ClientHandler implements Runnable {
         return userID;
     }
 
+    /**
+     * TODO
+     * @param status
+     */
     public void disconnect(boolean status) {
         JSONObject json = new JSONObject();
         json.put("return-value", "disconnect");
@@ -323,6 +347,9 @@ public class ClientHandler implements Runnable {
         send(json.toString());
     }
 
+    /**
+     * TODO
+     */
     @Override
     public void run() {
         listen();
