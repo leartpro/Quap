@@ -83,8 +83,9 @@ public class ListController extends MainVistaNavigator {
                     Platform.runLater(() -> SceneController.submitPopup(
                             new FXMLLoader(getClass().getResource("/com/quap/desktopapp/popup/popup.fxml")),
                             (Stage) Stage.getWindows().stream().filter(Window::isShowing).findFirst().orElse(null),
-                            "Information",
-                            "You can't invite yourself to a chatroom!"));
+                            "You can't invite yourself to a chatroom!",
+                            "Information")
+                    );
                 }
             }
         });
@@ -158,8 +159,9 @@ public class ListController extends MainVistaNavigator {
                     Platform.runLater(() -> SceneController.submitPopup(
                             new FXMLLoader(getClass().getResource("/com/quap/desktopapp/popup/popup.fxml")),
                             (Stage) Stage.getWindows().stream().filter(Window::isShowing).findFirst().orElse(null),
-                            "Information",
-                            "You can't add " + input + " as your friend!"));
+                            "You can't add " + input + " as your friend!",
+                            "Information")
+                    );
                 }
             }
         }

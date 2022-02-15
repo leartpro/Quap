@@ -120,7 +120,7 @@ public class ClientHandler implements Runnable {
                         }
                         send(json.toString());
                     }
-                    case "invite-user" -> {
+                    case "invite-user" -> { //TODO: cant invite already participant, no respons needed
                         System.out.println("Invite user to chat...");
                         try {
                             dbReader = new UserdataReader();

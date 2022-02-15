@@ -58,7 +58,7 @@ public class Client {
     public Client(String address, int port) throws IOException {
         this.address = InetAddress.getByName(address);
         this.port = port;
-        socket = new Socket(InetAddress.getByName("192.168.178.43"), 8192);
+        socket = new Socket(InetAddress.getByName("192.168.178.69"), 8192);
         writer = new PrintWriter(socket.getOutputStream(), true);
         reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         listen();
