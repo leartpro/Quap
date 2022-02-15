@@ -21,4 +21,6 @@ public interface MainClientObserver {
     void addFriendEvent(Friend friend);
 
     void unfriendEvent();
+
+    void serverDisconnectEvent(String content, String header);
 }

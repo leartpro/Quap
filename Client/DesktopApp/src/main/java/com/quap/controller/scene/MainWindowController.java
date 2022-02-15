@@ -82,9 +82,9 @@ public class MainWindowController extends WindowController implements MainClient
         btnSettings.setToggleGroup(menuGroup);
 
         menuGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
-            if(newValue != null) {
+            if (newValue != null) {
                 newValue.setSelected(true);
-                if(oldValue != null) {
+                if (oldValue != null) {
                     oldValue.setSelected(false);
                 }
             }
@@ -93,11 +93,11 @@ public class MainWindowController extends WindowController implements MainClient
 
     public void setVista(Parent node, VistaNavigator controller) { //set the current node is called by VistaController
         if (node.getId().equals("chat") || node.getId().equals("list")) {
-            if(currentNode != null) {
+            if (currentNode != null) {
                 currentNode.removeObserver(this);
             }
             currentNodeID = node.getId();
-            currentNode = (MainVistaNavigator)controller;
+            currentNode = (MainVistaNavigator) controller;
             currentNode.setClient(client);
             currentNode.addObserver(this);
             currentNode.setType("unknown");
@@ -145,7 +145,7 @@ public class MainWindowController extends WindowController implements MainClient
     public void close(ActionEvent actionEvent) {
         client.removeMainObserver(this);
         client.disconnect(true);
-        ((Stage)(((Button)actionEvent.getSource()).getScene().getWindow())).close();
+        ((Stage) (((Button) actionEvent.getSource()).getScene().getWindow())).close();
     }
 
     @FXML
@@ -159,7 +159,7 @@ public class MainWindowController extends WindowController implements MainClient
     public void loadButtons(List<UserContent> data) {
         vBoxButtonHolder.getChildren().clear();
         submenuGroup.getToggles().clear();
-        for(UserContent content : data) {
+        for (UserContent content : data) {
             ToggleButton b = new ToggleButton(content.content());
             b.setOnAction(e -> {
                 VistaController.loadVista(CHAT, this);
@@ -205,9 +205,9 @@ public class MainWindowController extends WindowController implements MainClient
     @Override
     public void createChatEvent(Chat chat) {
         System.out.println("createChatEvent");
-        if(currentNode.getType().equals("chatrooms")) {
+        if (currentNode.getType().equals("chatrooms")) {
             Platform.runLater(() -> loadButtons(client.getChats()));
-            if(currentNodeID.equals("list")) {
+            if (currentNodeID.equals("list")) {
                 Platform.runLater(() -> currentNode.loadContent(Collections.singletonList(chat)));
             }
         }
@@ -226,7 +226,7 @@ public class MainWindowController extends WindowController implements MainClient
         }
         StringBuilder sb = new StringBuilder();
         sb.append("participants: " + "\n");
-        for(String participant : participants) {
+        for (String participant : participants) {
             sb.append(participant).append("\n");
         }
         info.add(sb.toString());
@@ -244,9 +244,9 @@ public class MainWindowController extends WindowController implements MainClient
     @Override
     public void joinChatEvent(Chat chat) {
         System.out.println("joinChatEvent");
-        if(currentNode.getType().equals("chatrooms")) {
+        if (currentNode.getType().equals("chatrooms")) {
             Platform.runLater(() -> loadButtons(client.getChats()));
-            if(currentNodeID.equals("list")) {
+            if (currentNodeID.equals("list")) {
                 Platform.runLater(() -> currentNode.loadContent(Collections.singletonList(chat)));
             }
         }
@@ -277,9 +277,9 @@ public class MainWindowController extends WindowController implements MainClient
     public void addFriendEvent(Friend friend) {
         System.out.println("createChatEvent");
         System.out.println(currentNode.getType());
-        if(currentNode.getType().equals("friends")) {
+        if (currentNode.getType().equals("friends")) {
             Platform.runLater(() -> loadButtons(client.getFriends()));
-            if(currentNodeID.equals("list")) {
+            if (currentNodeID.equals("list")) {
                 Platform.runLater(() -> currentNode.loadContent(Collections.singletonList(friend)));
             }
         }
@@ -288,9 +288,9 @@ public class MainWindowController extends WindowController implements MainClient
     @Override
     public void deleteChatEvent() {
         System.out.println("deleteChatEvent");
-        if(currentNode.getType().equals("chatrooms")) {
+        if (currentNode.getType().equals("chatrooms")) {
             Platform.runLater(() -> loadButtons(client.getChats()));
-            if(currentNodeID.equals("list")) {
+            if (currentNodeID.equals("list")) {
                 Platform.runLater(() -> currentNode.loadContent(new ArrayList<>(client.getChats())));
             }
         }
@@ -299,11 +299,20 @@ public class MainWindowController extends WindowController implements MainClient
     @Override
     public void unfriendEvent() {
         System.out.println("unfriendEvent");
-        if(currentNode.getType().equals("friends")) {
+        if (currentNode.getType().equals("friends")) {
             Platform.runLater(() -> loadButtons(client.getFriends()));
-            if(currentNodeID.equals("list")) {
+            if (currentNodeID.equals("list")) {
                 Platform.runLater(() -> currentNode.loadContent(new ArrayList<>(client.getFriends())));
             }
         }
+    }
+
+    @Override
+    public void serverDisconnectEvent(String content, String header) {
+        Platform.runLater(() -> SceneController.submitPopup(
+                new FXMLLoader(getClass().getResource("/com/quap/desktopapp/popup/popup.fxml")),
+                (Stage) Stage.getWindows().stream().filter(Window::isShowing).findFirst().orElse(null),
+                content,
+                header));
     }
 }

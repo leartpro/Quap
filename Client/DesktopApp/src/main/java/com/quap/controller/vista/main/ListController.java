@@ -7,6 +7,7 @@ import com.quap.client.domain.Friend;
 import com.quap.client.domain.UserContent;
 import com.quap.controller.SceneController;
 import com.quap.controller.vista.MainVistaObserver;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +17,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import javafx.util.Callback;
 
 import java.util.ArrayList;
@@ -74,8 +76,16 @@ public class ListController extends MainVistaNavigator {
             Stage primaryStage = (Stage) inviteItem.getParentPopup().getOwnerWindow();
             String input = SceneController.submitInputPopup(loader, primaryStage, "Type the username you want to join your chatroom");
             if (input != null && !input.equals("")) {
-                int chatId = listView.getSelectionModel().getSelectedItem().id();
-                client.inviteUser(input, chatId);
+                if(!input.equals(client.getUsername())) {
+                    int chatId = listView.getSelectionModel().getSelectedItem().id();
+                    client.inviteUser(input, chatId);
+                } else {
+                    Platform.runLater(() -> SceneController.submitPopup(
+                            new FXMLLoader(getClass().getResource("/com/quap/desktopapp/popup/popup.fxml")),
+                            (Stage) Stage.getWindows().stream().filter(Window::isShowing).findFirst().orElse(null),
+                            "Information",
+                            "You can't invite yourself to a chatroom!"));
+                }
             }
         });
     }
@@ -136,7 +146,21 @@ public class ListController extends MainVistaNavigator {
             if (type.equals("chatrooms")) {
                 client.addChatroom(input);
             } else if (type.equals("friends")) {
-                client.addFriend(input);
+                boolean isFriend = false;
+                for(UserContent friend : client.getFriends()) {
+                    if(input.equals(friend.content())) {
+                        isFriend = true;
+                    }
+                }
+                if(!input.equals(client.getUsername()) && !isFriend) {
+                    client.addFriend(input);
+                } else {
+                    Platform.runLater(() -> SceneController.submitPopup(
+                            new FXMLLoader(getClass().getResource("/com/quap/desktopapp/popup/popup.fxml")),
+                            (Stage) Stage.getWindows().stream().filter(Window::isShowing).findFirst().orElse(null),
+                            "Information",
+                            "You can't add " + input + " as your friend!"));
+                }
             }
         }
     }

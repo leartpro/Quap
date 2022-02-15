@@ -9,8 +9,7 @@ import java.util.List;
 public class UserdataReader {
     private Connection connection;
     private Statement statement;
-    //TODO: should not invite multiple times as friend/to chat
-    // should not invite self
+
     public UserdataReader(String username, String password) {
         assert username != null;
         try {

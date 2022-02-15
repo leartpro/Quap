@@ -72,6 +72,10 @@ public class Client {
         return new ArrayList<>(chats);
     }
 
+    public String getUsername() {
+        return username;
+    }
+
     public void authorize(String name, String password, boolean existing) {
         this.username = name;
         this.password = password;
@@ -241,15 +245,11 @@ public class Client {
                         }
                     }
                     case "disconnect" -> {
-                        /*
-        JSONObject json = new JSONObject();
-        json.put("return-value", "disconnect");
-        JSONObject data = new JSONObject();
-        data.put("status", status);
-        json.put("data", data);
-        send(json.toString());
-                         */
-                        //todo:
+                        for (MainClientObserver c : mainClientObservers) {
+                            c.serverDisconnectEvent("The server does not respond anymore and has disconnected with the status '" + data.getString("status") + "'", "Warning");
+                        }
+                        listen.interrupt();
+                        new Thread(this::closeSocket).start();
                     }
                 }
             } else {
