@@ -7,12 +7,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Die Klasse UserdataReader stellt die Scnittstelle zur lokalen SQLite Datenbank her.
+ * Desweiteren stellt sie Methoden zum einfügen und abfragen von Nachrichten zur Verfügung.
  * TODO
  */
 public class UserdataReader {
     private Connection connection;
     private Statement statement;
 
+    /**
+     * Im Konstruktor wird entweder eine bestehende Verbindung zu einer Datenbank hergestellt,
+     * welche der Kombination aus Nutzername und Password entspricht,
+     * oder es wird eine neue erstellt.
+     * @param username
+     * @param password
+     */
     public UserdataReader(String username, String password) {
         assert username != null;
         try {

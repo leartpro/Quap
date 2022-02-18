@@ -39,6 +39,9 @@ import static com.quap.controller.VistaController.CHAT;
 
 /**
  * TODO
+ * Diese Klasse verwaltet die Benutzerinteraktion im Hauptfenster.
+ * Dabei verwatet diese Klasse die Klasse Client.
+ * Über Events können Updates im Client an das Nutzerinterface übergeben werden
  */
 public class MainWindowController extends WindowController implements MainClientObserver, MainVistaObserver {
 
@@ -193,7 +196,7 @@ public class MainWindowController extends WindowController implements MainClient
     public void setClient(Client client) {
         MainWindowController.client = client;
         MainWindowController.client.addMainObserver(this);
-        lblServer_IP.setText(lblServer_IP.getText() + " " + client.getConnectionInfo());
+        lblServer_IP.setText(client.getConnectionInfo());
         friends();
     }
 

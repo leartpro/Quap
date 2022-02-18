@@ -9,6 +9,7 @@ import java.util.Enumeration;
 
 /**
  * TODO
+ * Die Klasse stellt die Mainklasse des Servers da und enthält die main-Methode
  */
 public class Main {
     private static ServerSocket socket;
@@ -16,6 +17,8 @@ public class Main {
 
     /**
      * TODO
+     * Die Methode verarbeitet die Argumente, mit denen die Klasse aufgerufen wurde.
+     * Wenn die Socket sich zu der ihr zugewiesenen Adresse binden kann, wird die Serverklasse aufgerufen
      * @param args
      */
     public static void main(String[] args) {
@@ -51,7 +54,7 @@ public class Main {
         }
         try {
             socket = new ServerSocket();
-            socket.bind(new InetSocketAddress("192.168.178.69", Main.port));
+            socket.bind(new InetSocketAddress("172.20.10.14", Main.port));
         } catch (IOException e) {
             e.printStackTrace();
         }

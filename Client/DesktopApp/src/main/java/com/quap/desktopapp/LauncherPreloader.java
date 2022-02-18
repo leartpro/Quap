@@ -16,6 +16,7 @@ import java.util.Objects;
 
 /**
  * TODO
+ * Die Preloader Klasse lädt das Verbindungsfenster, während die Initialiserung des Clients im Hintergrund läuft
  */
 public class LauncherPreloader extends Preloader {
 
@@ -23,6 +24,7 @@ public class LauncherPreloader extends Preloader {
 
     /**
      * TODO
+     * Die MEthode lädt das Verbindungsfenster
      * @param primaryStage
      * @throws Exception
      */

@@ -24,6 +24,9 @@ import java.util.List;
 
 /**
  * TODO
+ * Die Klasse Client stellt ist für die netzwerktechnischen Aspekte des Clients zuständig.
+ * So wird im Konstruktor eine Verbindung zum Server versucht herzustellen,
+ * als eingehende Nachrichten verarbeitet und ausgehende gesendet.
  */
 public class Client {
     private final HashMap<Prefixes, String> prefixes = new HashMap<>();
@@ -60,6 +63,8 @@ public class Client {
 
     /**
      * TODO
+     * Im Konstruktor wird versucht eine Verbindung zum Server herzustellen
+     * und Writer und Reader werden auf die Socket Streams gesetzt.
      * @param address
      * @param port
      * @throws IOException
@@ -67,7 +72,7 @@ public class Client {
     public Client(String address, int port) throws IOException {
         this.address = InetAddress.getByName(address);
         this.port = port;
-        socket = new Socket(InetAddress.getByName("192.168.178.69"), 8192);
+        socket = new Socket(InetAddress.getByName("172.20.10.14"), 8192);
         writer = new PrintWriter(socket.getOutputStream(), true);
         reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         listen();
@@ -87,6 +92,8 @@ public class Client {
 
     /**
      * TODO
+     * Diese Methode verpackt die Daten, welche für die Authentifizierung benötigt werden, in ein Json-Format,
+     * welches der Server verarbeiten kann.
      * @param name
      * @param password
      * @param existing
@@ -107,6 +114,7 @@ public class Client {
 
     /**
      * TODO
+     * Beim Aufruf dieser Methode wird dem Server der Verbindungsabbruch mitgeteilt und die Socket des Clients wird geschlossen.
      * @param status
      */
     public void disconnect(boolean status) {
@@ -117,6 +125,7 @@ public class Client {
 
     /**
      * TODO
+     * diese Methode wirft einen Thread aus, welche auf eingehende Daten wartet und diese an die process-Methode zum verarbeiten übergibt.
      */
     public void listen() {
         listen = new Thread(() -> {
@@ -146,6 +155,8 @@ public class Client {
 
     /**
      * TODO
+     * Diese Methode differenziert die einkommenden Daten anhand ihrer Metadaten
+     * und führt für verschiedene Werte unterschiedliche Aktionen aus.
      * @param content
      */
     private void process(String content) {
@@ -287,14 +298,17 @@ public class Client {
 
     /**
      * TODO
-     * @return
+     * Diese Methode gibt die Client Adresse und die Server Adresse zurück.
+     * @return Connection Information
      */
-    public String getConnectionInfo() { //TODO: fix local addr
-        return address.getCanonicalHostName()+":"+port + " --> " + socket.getRemoteSocketAddress();
+    public String getConnectionInfo() {
+        return socket.getLocalSocketAddress()+":"+ socket.getLocalPort() + " --> " + socket.getRemoteSocketAddress();
     }
 
     /**
      * TODO
+     * Diese Methode verpackt die Daten, welche zum übermittlen der Nachricht benötigt werden,
+     * damit der Server diese verarbeiten kann.
      * @param message
      */
     public void sendMessage(String message) {
@@ -312,6 +326,7 @@ public class Client {
 
     /**
      * TODO
+     * Diese Methode kennzeichnet ihren Input als Authtifikation und sendet die Daten an den Server.
      * @param authentication
      */
     public void sendAuthentication(String authentication) {
@@ -321,6 +336,7 @@ public class Client {
 
     /**
      * TODO
+     * Diese Methode kennzeichnet ihren Input als Befehl und sendet die Daten an den Server.
      * @param command
      */
     public void sendCommand(String command) {
@@ -330,6 +346,7 @@ public class Client {
 
     /**
      * TODO
+     * Diese Methode kennzeichnet ihren Input als Verbindungsabbau und sendet die Daten an den Server.
      * @param status
      */
     private void sendDisconnect(boolean status) {
@@ -341,6 +358,8 @@ public class Client {
 
     /**
      * TODO
+     * Diese Methode enthält einen kritischen Codebereich, welcher Threadsafe geschützt ist.
+     * Beim Aufruf dieser Methode wird die Socket geschlossen.
      */
     private void closeSocket() {
         synchronized (socket) {

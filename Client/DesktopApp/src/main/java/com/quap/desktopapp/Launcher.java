@@ -7,11 +7,14 @@ import javafx.stage.Stage;
 
 /**
  * TODO
+ * Die Klasse stellt die Main Klasse des Clients dar, welche die main-Methode enthält
+ *
  */
 public class Launcher extends Application {
 
     /**
      * TODO
+     * Die Methode sorgt für die Initialisierung im Verbindungsfenster
      */
     @Override
     public void init() {
@@ -25,6 +28,7 @@ public class Launcher extends Application {
 
     /**
      * TODO
+     * Beim Methodenaufruf, wird der Preloader des Clients geladen
      * @param args
      */
     public static void main(String[] args) {
