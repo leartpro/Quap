@@ -15,7 +15,6 @@ import javafx.stage.StageStyle;
 import java.util.Objects;
 
 /**
- * TODO
  * Die Preloader Klasse lädt das Verbindungsfenster, während die Initialiserung des Clients im Hintergrund läuft
  */
 public class LauncherPreloader extends Preloader {
@@ -23,10 +22,9 @@ public class LauncherPreloader extends Preloader {
     private Stage preLoaderStage;
 
     /**
-     * TODO
-     * Die MEthode lädt das Verbindungsfenster
-     * @param primaryStage
-     * @throws Exception
+     * Die Methode lädt das Verbindungsfenster
+     * @param primaryStage die Stage der Client Anwendung
+     * @throws Exception, wenn das Nutzerinterface nicht geladen werden kann
      */
     @Override
     public void start(Stage primaryStage) throws Exception {

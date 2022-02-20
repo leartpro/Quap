@@ -6,14 +6,12 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 /**
- * TODO
  * Die Klasse stellt die Main Klasse des Clients dar, welche die main-Methode enthält
  *
  */
 public class Launcher extends Application {
 
     /**
-     * TODO
      * Die Methode sorgt für die Initialisierung im Verbindungsfenster
      */
     @Override
@@ -24,12 +22,11 @@ public class Launcher extends Application {
         }
 
     @Override
-    public void start(Stage primaryStage) { }
+    public void start(Stage primaryStage) {}
 
     /**
-     * TODO
      * Beim Methodenaufruf, wird der Preloader des Clients geladen
-     * @param args
+     * @param args Arguemte der Client Anwendung (Keine Argumente erwartet)
      */
     public static void main(String[] args) {
         System.setProperty("javafx.preloader", LauncherPreloader.class.getCanonicalName());

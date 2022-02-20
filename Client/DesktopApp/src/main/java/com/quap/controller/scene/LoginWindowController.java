@@ -23,7 +23,6 @@ import javafx.stage.Window;
 import java.io.IOException;
 
 /**
- * TODO
  * Diese KLasse behandelt die Nutzerinteraktion im Login Fenster
  */
 public class LoginWindowController extends WindowController implements LoginVistaObserver, LoginClientObserver {
@@ -109,9 +108,8 @@ public class LoginWindowController extends WindowController implements LoginVist
     }
 
     /**
-     * TODO
      * Diese Methode wird aufgerufen, wenn der Server zurückgegeben hat, dass Nutzername und Passowrt übereinstimmen.
-     * Bei einem MEthodenaufruft wird das Hauptfenster geladen.
+     * Bei einem Methodenaufruft wird das Hauptfenster geladen.
      */
     @Override
     public void authSuccessEvent() {

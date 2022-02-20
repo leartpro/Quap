@@ -8,8 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * TODO
- * Diese Klasse stellt die Schnittstelle zur Serverdatenbank(postgres) da.
+ * Diese Klasse stellt die Schnittstelle zur Serverdatenbank(postgres) dar.
  * Dabei stellt sie sowohl die Verbindung her, als auch Methoden um mit der Datanbank zu interagieren.
  */
 public class UserdataReader {
@@ -17,9 +16,8 @@ public class UserdataReader {
     Statement statement;
 
     /**
-     * TODO
-     * Im Konstruktor wird eine VErbindung zur Datanbank mit URL, Nutzername und Passwort versucht.
-     * @throws SQLException
+     * Im Konstruktor wird eine Verbindung zur Datanbank mit URL, Nutzername und Passwort versucht.
+     * @throws SQLException sollte die VErbindung mit URL, Nutzername oder Passwort fehlgeschlagen sein
      */
     public UserdataReader() throws SQLException {
         connection = DriverManager.getConnection(

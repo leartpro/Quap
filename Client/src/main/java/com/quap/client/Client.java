@@ -23,18 +23,14 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * TODO
- * Die Klasse Client stellt ist für die netzwerktechnischen Aspekte des Clients zuständig.
- * So wird im Konstruktor eine Verbindung zum Server versucht herzustellen,
- * als eingehende Nachrichten verarbeitet und ausgehende gesendet.
+ * Die Klasse Client ist für die netzwerktechnischen Aspekte des Clients zuständig.
+ * Darunter auch eingehende Nachrichten verarbeiten und ausgehende senden.
  */
 public class Client {
     private final HashMap<Prefixes, String> prefixes = new HashMap<>();
     private final HashMap<Suffixes, String> suffixes = new HashMap<>();
-    private final int port;
     private final Socket socket;
     private Thread listen;
-    InetAddress address;
     private final BufferedReader reader;
     private final PrintWriter writer;
     private final ArrayList<Friend> friends = new ArrayList<>();
@@ -62,17 +58,14 @@ public class Client {
     }
 
     /**
-     * TODO
      * Im Konstruktor wird versucht eine Verbindung zum Server herzustellen
      * und Writer und Reader werden auf die Socket Streams gesetzt.
-     * @param address
-     * @param port
-     * @throws IOException
+     * @param address Die Server-IP
+     * @param port Der Server-Port
+     * @throws IOException bei ungültigen Parametern
      */
     public Client(String address, int port) throws IOException {
-        this.address = InetAddress.getByName(address);
-        this.port = port;
-        socket = new Socket(InetAddress.getByName("172.20.10.14"), 8192);
+        socket = new Socket(InetAddress.getByName(address), port);
         writer = new PrintWriter(socket.getOutputStream(), true);
         reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         listen();
@@ -91,12 +84,11 @@ public class Client {
     }
 
     /**
-     * TODO
      * Diese Methode verpackt die Daten, welche für die Authentifizierung benötigt werden, in ein Json-Format,
      * welches der Server verarbeiten kann.
-     * @param name
-     * @param password
-     * @param existing
+     * @param name Nutzername
+     * @param password Nutzerpasswort
+     * @param existing ob es sich um einen existierenden oder neuen Nutzer handelt (SignIn/SignUp)
      */
     public void authorize(String name, String password, boolean existing) {
         this.username = name;
@@ -113,9 +105,8 @@ public class Client {
     }
 
     /**
-     * TODO
      * Beim Aufruf dieser Methode wird dem Server der Verbindungsabbruch mitgeteilt und die Socket des Clients wird geschlossen.
-     * @param status
+     * @param status false bei Fehler
      */
     public void disconnect(boolean status) {
         sendDisconnect(status);
@@ -124,8 +115,8 @@ public class Client {
     }
 
     /**
-     * TODO
-     * diese Methode wirft einen Thread aus, welche auf eingehende Daten wartet und diese an die process-Methode zum verarbeiten übergibt.
+     * Diese Methode wirft einen Thread aus, welche auf eingehende Daten wartet
+     * und diese an die process-Methode zum Verarbeiten übergibt.
      */
     public void listen() {
         listen = new Thread(() -> {
@@ -154,10 +145,9 @@ public class Client {
     }
 
     /**
-     * TODO
      * Diese Methode differenziert die einkommenden Daten anhand ihrer Metadaten
      * und führt für verschiedene Werte unterschiedliche Aktionen aus.
-     * @param content
+     * @param content Der ganze Inhalt inclusive der Metadaten
      */
     private void process(String content) {
         System.out.println(content);
@@ -297,8 +287,7 @@ public class Client {
 
 
     /**
-     * TODO
-     * Diese Methode gibt die Client Adresse und die Server Adresse zurück.
+     * Diese Methode gibt die Client-Adresse und die Server Adresse zurück.
      * @return Connection Information
      */
     public String getConnectionInfo() {
@@ -306,10 +295,9 @@ public class Client {
     }
 
     /**
-     * TODO
      * Diese Methode verpackt die Daten, welche zum übermittlen der Nachricht benötigt werden,
      * damit der Server diese verarbeiten kann.
-     * @param message
+     * @param message Die Nachricht, die im Chat angezeigt wird
      */
     public void sendMessage(String message) {
         JSONObject json = new JSONObject();
@@ -325,9 +313,8 @@ public class Client {
     }
 
     /**
-     * TODO
      * Diese Methode kennzeichnet ihren Input als Authtifikation und sendet die Daten an den Server.
-     * @param authentication
+     * @param authentication Die Daten im JSON-Format
      */
     public void sendAuthentication(String authentication) {
         String output = prefixes.get(Prefixes.AUTHENTICATION) + authentication + suffixes.get(Suffixes.AUTHENTICATION);
@@ -335,9 +322,8 @@ public class Client {
     }
 
     /**
-     * TODO
      * Diese Methode kennzeichnet ihren Input als Befehl und sendet die Daten an den Server.
-     * @param command
+     * @param command Die Daten im JSON-Format
      */
     public void sendCommand(String command) {
         String output = prefixes.get(Prefixes.COMMAND) + command + suffixes.get(Suffixes.COMMAND);
@@ -345,9 +331,8 @@ public class Client {
     }
 
     /**
-     * TODO
      * Diese Methode kennzeichnet ihren Input als Verbindungsabbau und sendet die Daten an den Server.
-     * @param status
+     * @param status false = Fehler
      */
     private void sendDisconnect(boolean status) {
         JSONObject json = new JSONObject();
@@ -357,7 +342,6 @@ public class Client {
     }
 
     /**
-     * TODO
      * Diese Methode enthält einen kritischen Codebereich, welcher Threadsafe geschützt ist.
      * Beim Aufruf dieser Methode wird die Socket geschlossen.
      */

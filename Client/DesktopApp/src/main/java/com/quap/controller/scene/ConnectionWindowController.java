@@ -47,7 +47,7 @@ public class ConnectionWindowController implements Initializable {
         increaseProgress();
         Platform.runLater(() -> loadingLabel.setText("Open Connection"));
         try {
-            client = new Client("localhost", 0); //local socketAddress to bind to
+            client = new Client("192.168.178.43", 8192); //local socketAddress to bind to //TODO get local address
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("Error");

@@ -38,9 +38,8 @@ import java.util.Scanner;
 import static com.quap.controller.VistaController.CHAT;
 
 /**
- * TODO
  * Diese Klasse verwaltet die Benutzerinteraktion im Hauptfenster.
- * Dabei verwatet diese Klasse die Klasse Client.
+ * Dabei verwaltet diese Klasse die Klasse Client.
  * Über Events können Updates im Client an das Nutzerinterface übergeben werden
  */
 public class MainWindowController extends WindowController implements MainClientObserver, MainVistaObserver {

@@ -54,7 +54,7 @@ public class Main {
         }
         try {
             socket = new ServerSocket();
-            socket.bind(new InetSocketAddress("172.20.10.14", Main.port));
+            socket.bind(new InetSocketAddress("192.168.178.43", Main.port));
         } catch (IOException e) {
             e.printStackTrace();
         }
