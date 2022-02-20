@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * Die Klasse UserdataReader stellt die Scnittstelle zur lokalen SQLite Datenbank her.
- * Desweiteren stellt sie Methoden zum einfügen und abfragen von Nachrichten zur Verfügung.
+ * Des Weiteren stellt sie Methoden zum Einfügen und Abfragen von Nachrichten zur Verfügung.
  */
 public class UserdataReader {
     private Connection connection;

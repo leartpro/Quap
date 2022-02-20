@@ -11,7 +11,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 /**
- * TODO
  * Die Klasse stellt Möglichkeiten, wie bewegen, vergrößern und verkleinern der ihr übergebenen Stage zu Verfügung
  *
  @author https://stackoverflow.com/questions/19455059/allow-user-to-resize-an-undecorated-stage/51630063#51630063
@@ -49,7 +48,6 @@ public class ResizeHelper {
     private static class ResizeListener implements EventHandler<MouseEvent> {
         private final Stage stage;
         private Cursor cursorEvent = Cursor.DEFAULT;
-        private final int border = 4;
         private double startX = 0;
         private double startY = 0;
         private double startScreenX = 0;
@@ -69,6 +67,7 @@ public class ResizeHelper {
             double sceneWidth = scene.getWidth();
             double sceneHeight = scene.getHeight();
 
+            int border = 4;
             if (MouseEvent.MOUSE_MOVED.equals(mouseEventType)) {
                 if (mouseEventX < border && mouseEventY < border) {
                     cursorEvent = Cursor.NW_RESIZE;

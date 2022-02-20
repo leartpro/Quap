@@ -11,7 +11,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 /**
- * TODO
+ * Wartet auf eingehende Verbindungen an der ServerSocket
+ * und verwaltet die ClientHandler in einem ExecutorService
  */
 public class Server{
     private final ExecutorService service;
@@ -23,8 +24,9 @@ public class Server{
 
 
     /**
-     * TODO
-     * @param socket
+     * Im Konstruktor wird die Socket und der Status gesetzt,
+     * als auch die receiveConnection() Methode gestartet
+     * @param socket die ServerSocket
      */
     public Server(ServerSocket socket) {
         service = Executors.newCachedThreadPool();
@@ -34,7 +36,7 @@ public class Server{
     }
 
     /**
-     * TODO
+     * Die Methode wirft einen Thread aus, indem auf einegende Verbindungsanfragen gewartet wird
      */
     public void receiveConnection() {
         Server server = this;
@@ -66,8 +68,8 @@ public class Server{
     }
 
     /**
-     * TODO
-     * @param id
+     * Bringt den ClientHandler mit der entsprechenden Id, dazu die Verbindung zum Client zu trennen
+     * @param id Die UUID des ClientHandlers
      */
     private void disconnect(int id) {
         ClientHandler c;
@@ -82,8 +84,8 @@ public class Server{
     }
 
     /**
-     * TODO
-     * @param status
+     * Bricht alle Verbindungen ab und schließt den Server
+     * @param status Der status, mit dem der Server sich schließen soll
      */
     public void terminate(boolean status) {
         receive.interrupt();
@@ -141,9 +143,10 @@ public class Server{
     }
 
     /**
-     * TODO
-     * @param userID
-     * @param message
+     * Sendet über den ClientHandler, welcher den Nutzer
+     * mit der entsprechenden userID verwaltet die Nachricht
+     * @param userID die Id des Nutzers
+     * @param message Die zu sendene Nachricht
      */
     public void forwardMessage(int userID, String message) {
         for (ClientHandler clientHandler : handler) {

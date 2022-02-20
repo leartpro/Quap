@@ -14,8 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * TODO
- *
+ * Die Klasse ist für die eingehenden Anfragen des übergebenen Clients zuständig.
+ * Die ClientHandler laufen Nebenläufig voneinander ab, werden im Server verwaltet und verwalten jeweils
+ * ein Object der Klasse UserdareReader.
  */
 public class ClientHandler implements Runnable {
     private final int ID;
@@ -31,10 +32,10 @@ public class ClientHandler implements Runnable {
     private String name;
 
     /**
-     * TODO
-     * @param socket
-     * @param ID
-     * @param server
+     * Im Konstruktor werden die Streams der Socket Writer und Reader zugewiesen.
+     * @param socket Die Socket, welche bei einer eingehenden Verbindung erzeugt wurde
+     * @param ID eine UUID, generiert bei der UniqueIdentifier Klasse
+     * @param server eine Referenz auf den Server
      */
     public ClientHandler(Socket socket, int ID, Server server) {
         this.socket = socket;
@@ -57,7 +58,7 @@ public class ClientHandler implements Runnable {
     }
 
     /**
-     * TODO
+     * Die Methode wirft einen Thread aus, welcher den eingehenden Stream liest
      */
     private void listen() {
         listen = new Thread(() -> {
@@ -86,8 +87,9 @@ public class ClientHandler implements Runnable {
     }
 
     /**
-     * TODO
-     * @param message
+     * Diese Methode differenziert die einkommenden Daten anhand ihrer Metadaten
+     * und führt für verschiedene Werte unterschiedliche Aktionen aus.
+     * @param message den Input des eingehenden Streams
      */
     private void process(String message) {
         String content = message.substring(5, (message.length() - 5));
@@ -137,7 +139,7 @@ public class ClientHandler implements Runnable {
                         }
                         send(json.toString());
                     }
-                    case "invite-user" -> { //TODO: cant invite already participant, no respons needed
+                    case "invite-user" -> {
                         System.out.println("Invite user to chat...");
                         try {
                             dbReader = new UserdataReader();
@@ -149,22 +151,31 @@ public class ClientHandler implements Runnable {
                         assert dbReader != null;
                         int userID = dbReader.userIDByName(username);
                         int chatID = data.getInt("chat_id");
-                        JSONObject chat = dbReader.getChatByID(chatID);
-                        JSONArray participants = dbReader.usersByChat(chatID);
-                        JSONObject json = new JSONObject();
-                        json.put("return-value", "command");
-                        if (chat != null) {
-                            JSONObject returnValue = new JSONObject();
-                            returnValue.put("statement", "invite-chat");
-                            returnValue.put("chat", chat);
-                            returnValue.put("sender_id", senderID);
-                            returnValue.put("sender_name", senderName);
-                            returnValue.put("participants", participants);
-                            json.put("data", returnValue);
-                        } else {
-                            json.put("error", "can not create this chat");
+                        boolean isParticipant = false;
+                        for(int participant : dbReader.userIDsByChat(chatID)) {
+                            if (userID == participant) {
+                                isParticipant = true;
+                                break;
+                            }
                         }
-                        server.forwardMessage(userID, json.toString());
+                        if(!isParticipant) {
+                            JSONObject chat = dbReader.getChatByID(chatID);
+                            JSONArray participants = dbReader.usersByChat(chatID);
+                            JSONObject json = new JSONObject();
+                            json.put("return-value", "command");
+                            if (chat != null) {
+                                JSONObject returnValue = new JSONObject();
+                                returnValue.put("statement", "invite-chat");
+                                returnValue.put("chat", chat);
+                                returnValue.put("sender_id", senderID);
+                                returnValue.put("sender_name", senderName);
+                                returnValue.put("participants", participants);
+                                json.put("data", returnValue);
+                            } else {
+                                json.put("error", "can not create this chat");
+                            }
+                            server.forwardMessage(userID, json.toString());
+                        }
                     }
                     case "join-chat" -> {
                         int chatID = data.getInt("chatroom_id");
@@ -319,8 +330,8 @@ public class ClientHandler implements Runnable {
     }
 
     /**
-     * TODO
-     * @param message
+     * Die Methode sendet beim aufruf, über den Writer, die Nachricht zum Client
+     * @param message die Nachricht im JSON-Format, mit allen relevanten Metadaten
      */
     public void send(String message) {
         System.out.println("Server Message to Client: " + message);
@@ -336,8 +347,8 @@ public class ClientHandler implements Runnable {
     }
 
     /**
-     * TODO
-     * @param status
+     * Teilt beim Methodenaufruf den VErbindungsabbruch dem Client mit
+     * @param status false bei Fehler
      */
     public void disconnect(boolean status) {
         JSONObject json = new JSONObject();
@@ -349,7 +360,7 @@ public class ClientHandler implements Runnable {
     }
 
     /**
-     * TODO
+     * Startet die listen-Methode und wird durch das Runnable Interface vorgeschrieben
      */
     @Override
     public void run() {

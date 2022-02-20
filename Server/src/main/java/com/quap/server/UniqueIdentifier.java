@@ -16,9 +16,6 @@ public class UniqueIdentifier {
         Collections.shuffle(ids);
     }
 
-    private UniqueIdentifier() {
-    }
-
     public static int getIdentifier() {
         if (index > ids.size() - 1) index = 0;
         return ids.get(index++);
