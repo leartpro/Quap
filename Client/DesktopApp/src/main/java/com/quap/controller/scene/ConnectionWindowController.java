@@ -19,9 +19,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-/*
-    The loading screen of this application
- */
 public class ConnectionWindowController implements Initializable {
     private Client client;
 
@@ -38,25 +35,27 @@ public class ConnectionWindowController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println("init");
         loadingLabel = lblLoading;
         prBar = progressBar;
     }
 
-    public void connect() {
+    public void connect(String adress) {
         increaseProgress();
         Platform.runLater(() -> loadingLabel.setText("Open Connection"));
         try {
-            client = new Client("192.168.178.43", 8192); //local socketAddress to bind to //TODO get local address
+            if (adress != null) {
+                client = new Client(adress, 8192);
+            } else {
+                client = new Client("192.168.178.43", 8192);
+            }
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("Error");
         }
     }
 
     public void increaseProgress() {
         if (progress < 1) {
-            for(int i = 0; i < 50; i++) {
+            for (int i = 0; i < 50; i++) {
                 progress += 0.01;
                 prBar.setProgress(progress);
                 //System.out.println(Double.toString(Math.round(progress * 100)) + "%");

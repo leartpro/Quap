@@ -11,13 +11,14 @@ import javafx.stage.Stage;
  */
 public class Launcher extends Application {
 
+    private static String adress = null;
     /**
      * Die Methode sorgt für die Initialisierung im Verbindungsfenster
      */
     @Override
     public void init() {
         ConnectionWindowController init = new ConnectionWindowController();
-        init.connect();
+        init.connect(adress);
         init.launchWindow();
         }
 
@@ -30,6 +31,9 @@ public class Launcher extends Application {
      */
     public static void main(String[] args) {
         System.setProperty("javafx.preloader", LauncherPreloader.class.getCanonicalName());
+        if(args.length == 1) {
+            adress = args[0];
+        }
         launch(args);
     }
 }
