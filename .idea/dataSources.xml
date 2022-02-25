@@ -13,30 +13,6 @@
         </library>
       </libraries>
     </data-source>
-    <data-source source="LOCAL" name="messages [2]" uuid="dbb5348a-fd45-415e-b09f-88b0956388a0">
-      <driver-ref>sqlite.xerial</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\Users\lenni\Documents\Progammieren\IdeaProjects\IdeaProjects\Quap\Client\src\main\resources\com\quap\users\Olaf\sqlite\db\messages.db</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-      <libraries>
-        <library>
-          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.34.0/sqlite-jdbc-3.34.0.jar</url>
-        </library>
-      </libraries>
-    </data-source>
-    <data-source source="LOCAL" name="messages [3]" uuid="53ec68b9-f170-41d3-88e9-4e6735662d8b">
-      <driver-ref>sqlite.xerial</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\Users\lenni\Documents\Progammieren\IdeaProjects\IdeaProjects\Quap\Client\src\main\resources\com\quap\users\Horst\sqlite\db\messages.db</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-      <libraries>
-        <library>
-          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.34.0/sqlite-jdbc-3.34.0.jar</url>
-        </library>
-      </libraries>
-    </data-source>
     <data-source source="LOCAL" name="postgres@localhost [2]" uuid="9446f510-f4c1-43d8-9c06-4af91dc7cf52">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>

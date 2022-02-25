@@ -13,7 +13,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="09927819-4efd-4d77-952e-37e9b4faac9c" name="Changes" comment="Dokumentation">
+    <list default="true" id="09927819-4efd-4d77-952e-37e9b4faac9c" name="Changes" comment="Args for the Client Application">
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/53ec68b9-f170-41d3-88e9-4e6735662d8b.xml" beforeDir="false" />
@@ -43,10 +43,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/DesktopApp/DesktopApp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Client/DesktopApp/DesktopApp.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/data/UserdataReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/quap/client/data/UserdataReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/server/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/quap/server/ClientHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/quap/server/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/quap/server/UniqueIdentifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/quap/server/UniqueIdentifier.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,7 +149,7 @@
     <property name="project.structure.proportion" value="0.1321004" />
     <property name="project.structure.side.proportion" value="0.3607306" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="Settings.Markdown" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -188,6 +184,7 @@
       </envs>
       <option name="MAIN_CLASS_NAME" value="com.quap.desktopapp.Launcher" />
       <module name="DesktopApp" />
+      <option name="PROGRAM_PARAMETERS" value="192.168.178.43" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.quap.desktopapp.*" />
@@ -415,21 +412,8 @@
       <workItem from="1645293176433" duration="202000" />
       <workItem from="1645312402494" duration="313000" />
       <workItem from="1645356220188" duration="527000" />
-      <workItem from="1645377711508" duration="6648000" />
-    </task>
-    <task id="LOCAL-00058" summary="Workspace Commit">
-      <created>1638825881516</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
-      <option name="project" value="LOCAL" />
-      <updated>1638825881517</updated>
-    </task>
-    <task id="LOCAL-00059" summary="Create Chat Event">
-      <created>1638998334601</created>
-      <option name="number" value="00059" />
-      <option name="presentableId" value="LOCAL-00059" />
-      <option name="project" value="LOCAL" />
-      <updated>1638998334601</updated>
+      <workItem from="1645377711508" duration="8810000" />
+      <workItem from="1645477683260" duration="2354000" />
     </task>
     <task id="LOCAL-00060" summary="Add invite Event">
       <created>1639423171031</created>
@@ -760,7 +744,21 @@
       <option name="project" value="LOCAL" />
       <updated>1645380321879</updated>
     </task>
-    <option name="localTasksCounter" value="107" />
+    <task id="LOCAL-00107" summary="Dokumentation">
+      <created>1645401108123</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1645401108123</updated>
+    </task>
+    <task id="LOCAL-00108" summary="Args for the Client Application">
+      <created>1645402106678</created>
+      <option name="number" value="00108" />
+      <option name="presentableId" value="LOCAL-00108" />
+      <option name="project" value="LOCAL" />
+      <updated>1645402106678</updated>
+    </task>
+    <option name="localTasksCounter" value="109" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -817,7 +815,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <MESSAGE value="Fix duplicated Code (unstable Version)" />
     <MESSAGE value="Complete UI Duplicated Code Cleanup" />
     <MESSAGE value="UI Upgrades" />
     <MESSAGE value="Fix Small UI Bugs" />
@@ -842,7 +839,8 @@
     <MESSAGE value="Rebuild Artifacts" />
     <MESSAGE value="Update README.md" />
     <MESSAGE value="Dokumentation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Dokumentation" />
+    <MESSAGE value="Args for the Client Application" />
+    <option name="LAST_COMMIT_MESSAGE" value="Args for the Client Application" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XPathView.XPathProjectComponent">
