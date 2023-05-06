@@ -16,7 +16,6 @@ import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.SocketException;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -43,12 +42,6 @@ public class Client {
     private final List<LoginClientObserver> loginClientObservers = new ArrayList<>();
 
     {
-        try {
-            String name = InetAddress.getLocalHost().getHostName();
-            System.out.println(name);
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        }
         for (Prefixes p : Prefixes.values()) {
             prefixes.put(p, "/+" + p.name().toLowerCase().charAt(0) + "+/");
         }

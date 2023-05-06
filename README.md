@@ -5,32 +5,21 @@ INTRODUCTION
 
 This project is a messenger for the local network, written in Java, taking into account the avoidance of data storage.
 
-The project was developed with the Jetbrains Ultimate programs IntelliJ IDEA Ultimate and DataGrip (these programs are free for students, teachers and students).
+The project was developed as part of my term paper.
 
-To ensure user-friendliness, the application has a graphical user interface through which the user can join chat rooms, write with friends and all this anonymously.
+To ensure user-friendliness, the application has a graphical user interface through which the user can join chat rooms, 
+write with friends and all this anonymously.
 
-* For more projects, visit my [personal page](https://leartpro.github.io/) (currently not available)
+* For more projects, visit my [personal page](https://lennartprotte.tech/)
 
-* To submit bug reports and feature suggestions, or track changes click [here](https://leartpro.github.io/issues/) (currently not available)
-
-TECHNICAL DESCRIPTION
-------------
-
-The project can be divided into three modules. A server module and a client module with a DesktopApp submodule.
-
-* The server module contains the Main.java class, which can be used to configure the server, 
-as well as the server class, which manages the ServerSocket and the ClientHandler. 
-The ClientHandlers take care of the requests of the clients and access the Postgres database.
-
-* The Client module contains...
-
-#REQUIREMENTS
+REQUIREMENTS
 ------------
 
 This project requires the following installs:
 
-* [JDK-16+](https://www.jetbrains.com/help/idea/sdk.html) (link to jetbrains.com)
-* [Postgres](https://www.postgresql.org/) (link to postgresql.org)
+* [JDK-16+](https://jdk.java.net)
+* [Postgres](https://www.postgresql.org/)
+* [JavaFx SDK](https://gluonhq.com/products/javafx/)
 
 INSTALLATION
 ------------
@@ -51,26 +40,13 @@ Open a terminal and run
 ```
 * If you want to work with the project, debug it, or develop it further, see the [configuration section](#configuration).
 
-#CONFIGURATION
+CONFIGURATION
 -------------
 
 To work in the project, the project must be opened in [IntelliJ]() (click [here]() for more information).
 For an optimal working environment I recommend to use [IntelliJ-Ultimate]() and/or [DataGrip]() 
 to work optimally with the databases, as well as the tool 
 [SceneBuilder](https://gluonhq.com/products/scene-builder/) for a better work with .fxml files.
-
-
-TROUBLESHOOTING
----------------
-
-If you receive a connection error, the problem is that the ip configuration in your local area network 
-is different from the inserted values.
-To fix this problem you have to edit client.java:61 and Main.java:47. 
-Simply change the default IP Adresses and restart server and client. 
-
-If you receive a database error, 
-which tolds you that no role for the database exists,
-you have to change the role in the Serverside Database-Reader in UserdataReader:17.
 
 FAQ
 ---
@@ -92,15 +68,11 @@ The ability to transfer your messages to another device is currently under devel
 The Outlook
 -----------
 
-####This project is currently still under development.
+#### This project is currently still under development.
 
-* #####Planned features are:
+* ##### Planned features are:
   - decentralized data synchronization
   - accessibility in the local network via DNS
   - live server console
   - profile and settings for users
-
-GALLERY
------------
-* currently not avaiable
 
