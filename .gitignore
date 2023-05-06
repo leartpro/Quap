@@ -1,12 +1,3 @@
-/Server/target/
-/Client/target/
-/Client/DesktopApp/target/
+*/target/
 /.idea/codeStyles/
-/.idea/dataSources/
-/.idea/inspectionProfiles/
-/.idea/dataSources.local.xml
-/.idea/dataSources.xml
-/.idea/discord.xml
-/Client/src/main/resources/com/quap/users/
-/.idea/dataSources
-/.idea/libraries
+/.idea/
