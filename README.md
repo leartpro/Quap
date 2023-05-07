@@ -24,8 +24,6 @@ This project requires the following installs:
 INSTALLATION
 ------------
 
-This project must be installed as follows:
-
 1. Please make sure that you have already successfully completed the installations from [requirements](#requirements).
 2. Clone the Project from [here]() via [Git]() and got to /out/artifacts/ 
 3. Navigate to the directory  /Quap/Server/src/main/resources/com/quap/db
@@ -43,10 +41,7 @@ This project must be installed as follows:
 CONFIGURATION
 -------------
 
-To work in the project, the project must be opened in [IntelliJ]() (click [here]() for more information).
-For an optimal working environment I recommend to use [IntelliJ-Ultimate]() and/or [DataGrip]() 
-to work optimally with the databases, as well as the tool 
-[SceneBuilder](https://gluonhq.com/products/scene-builder/) for a better work with .fxml files.
+TODO: hier schreiben, was Client braucht an config und was Server braucht an config
 
 FAQ
 ---

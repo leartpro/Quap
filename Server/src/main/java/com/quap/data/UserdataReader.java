@@ -32,8 +32,7 @@ public class UserdataReader {
         PreparedStatement statement;
         JSONObject json = new JSONObject();
         json.put("return-value", "authentication");
-        String query = "" +
-                "INSERT INTO users(name, password)" +
+        String query = "INSERT INTO users(name, password)" +
                 "VALUES(?,?)";
         try {
             statement = connection.prepareStatement(query);
@@ -78,8 +77,7 @@ public class UserdataReader {
     private int getUserID(String name, String password) {
         PreparedStatement statement = null;
         int userID = -1;
-        String query = "" +
-                "SELECT id FROM users WHERE " +
+        String query = "SELECT id FROM users WHERE " +
                 "users.name = ?";
         if (password != null) {
             query += "AND users.password = ?";
@@ -113,8 +111,7 @@ public class UserdataReader {
         JSONObject json = new JSONObject();
         int chatID = -1;
         PreparedStatement statement;
-        String query = "" +
-                "INSERT INTO chatrooms(name, is_private)" +
+        String query = "INSERT INTO chatrooms(name, is_private)" +
                 "VALUES(?,?)";
         try {
             statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -128,8 +125,7 @@ public class UserdataReader {
                 json.put("name", chatName);
             }
             result.close();
-            query = "" +
-                    "INSERT INTO participants(user_id, chatroom_id) " +
+            query = "INSERT INTO participants(user_id, chatroom_id) " +
                     "VALUES(?,?)";
             statement = connection.prepareStatement(query);
             statement.setInt(1, userID);
@@ -145,8 +141,7 @@ public class UserdataReader {
 
     public void deleteUserFromChat(int userID, int chatID) {
         PreparedStatement statement;
-        String query = "" +
-                "DELETE FROM participants " +
+        String query = "DELETE FROM participants " +
                 "WHERE user_id = ? " +
                 "AND chatroom_id = ?";
         try {
@@ -155,8 +150,7 @@ public class UserdataReader {
             statement.setInt(2, chatID);
             statement.execute();
 
-        query = "" +
-        "with how_many_participants " +
+        query = "with how_many_participants " +
                 "         as ( " +
                 "        select count(*) " +
                 "        from participants " +
@@ -188,8 +182,7 @@ public class UserdataReader {
         ResultSet result = null;
         JSONArray json = new JSONArray();
         try {
-            result = statement.executeQuery("" +
-                    "SELECT users.name, users.id AS user_id, chatrooms.id AS chatrooms_id, chatrooms.created_at " +
+            result = statement.executeQuery("SELECT users.name, users.id AS user_id, chatrooms.id AS chatrooms_id, chatrooms.created_at " +
                     "FROM friends " +
                     "LEFT JOIN users " +
                     "ON users.id = friends.friend2_id " +
@@ -207,8 +200,7 @@ public class UserdataReader {
         ResultSet result = null;
         JSONArray json = new JSONArray();
         try {
-            result = statement.executeQuery("" +
-                    "SELECT chatrooms.id, chatrooms.name, chatrooms.created_at, participants.created_at " +
+            result = statement.executeQuery("SELECT chatrooms.id, chatrooms.name, chatrooms.created_at, participants.created_at " +
                     "AS joined_at " +
                     "FROM participants " +
                     "LEFT JOIN chatrooms " +
@@ -227,8 +219,7 @@ public class UserdataReader {
         ResultSet result = null;
 
         try {
-            result = statement.executeQuery("" +
-                    "SELECT user_id " +
+            result = statement.executeQuery("SELECT user_id " +
                     "FROM participants " +
                     "WHERE chatroom_id =" + chatID + " " +
                     "UNION SELECT friend1_id " +
@@ -261,8 +252,7 @@ public class UserdataReader {
         JSONArray json = new JSONArray();
 
         try {
-            result = statement.executeQuery("" +
-                    "SELECT id, name " +
+            result = statement.executeQuery("SELECT id, name " +
                     "FROM users " +
                     "LEFT JOIN participants " +
                     "ON participants.user_id = users.id " +
@@ -312,8 +302,7 @@ public class UserdataReader {
         ResultSet result = null;
 
         try {
-            result = statement.executeQuery("" +
-                    "SELECT users.id " +
+            result = statement.executeQuery("SELECT users.id " +
                     "FROM users " +
                     "WHERE users.name = '" + username + "';"
             );
@@ -343,8 +332,7 @@ public class UserdataReader {
         JSONObject json = new JSONObject();
 
         try {
-            result = statement.executeQuery("" +
-                    "SELECT chatrooms.* " +
+            result = statement.executeQuery("SELECT chatrooms.* " +
                     "FROM chatrooms " +
                     "WHERE chatrooms.id = " + chatID + ";"
             );
@@ -369,8 +357,7 @@ public class UserdataReader {
 
     public void addUserToChat(int chatID, int senderID) {
         PreparedStatement statement;
-        String query = "" +
-                "INSERT INTO participants(user_id, chatroom_id) " +
+        String query = "INSERT INTO participants(user_id, chatroom_id) " +
                 "VALUES(?,?)";
         try {
             statement = connection.prepareStatement(query);
@@ -384,8 +371,7 @@ public class UserdataReader {
 
     public int insertFriends(int senderID, int friend_id) {
         PreparedStatement statement;
-        String query = "" +
-                "WITH chat_insert " +
+        String query = "WITH chat_insert " +
                 "         AS ( " +
                 "        INSERT INTO chatrooms (name, is_private) " +
                 "            VALUES (?, true) " +
@@ -426,8 +412,7 @@ public class UserdataReader {
         ResultSet result = null;
 
         try {
-            result = statement.executeQuery("" +
-                    "SELECT users.name " +
+            result = statement.executeQuery("SELECT users.name " +
                     "FROM users " +
                     "WHERE users.id = '" + userID + "';"
             );
@@ -454,8 +439,7 @@ public class UserdataReader {
 
     public void unfriendUsers(int chatID) {
         PreparedStatement statement;
-        String query = "" +
-                    "DELETE FROM chatrooms " +
+        String query = "DELETE FROM chatrooms " +
                     "WHERE id = ? ";
         try {
             statement = connection.prepareStatement(query);
@@ -465,7 +449,6 @@ public class UserdataReader {
             e.printStackTrace();
         }
     }
-
 
     public void disconnect() {
         try {
