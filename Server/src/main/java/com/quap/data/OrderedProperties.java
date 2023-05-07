@@ -52,7 +52,7 @@ public final class OrderedProperties implements Serializable {
         this(new LinkedHashMap<>(), false);
     }
 
-    private OrderedProperties(Map<String, String> properties, boolean suppressDate) {
+    public OrderedProperties(Map<String, String> properties, boolean suppressDate) {
         this.properties = properties;
         this.suppressDate = suppressDate;
     }

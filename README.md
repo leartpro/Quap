@@ -33,7 +33,7 @@ Es wird eine Postgres und eine Java, als auch eine JavaFX Installation vorausges
 ### SERVER
 
 Nun kann im Verzeichnis `Server/resources/com/quap/config` die Datei
-`config.properties` angepasst werden.
+`config.properties` angepasst werden (siehe [Configuration](#server-1)).
 In dieser muss neben den Socket Daten auch die Datenbank Verbindung festgelegt werden.
 
 Das Datenbankschema kann wie folgt aufgesetzt werden:
@@ -42,21 +42,59 @@ Das Datenbankschema kann wie folgt aufgesetzt werden:
      psql -h <IP> -U <NAME> -f create-db.sql
 ```
 
+Nun kann im Verzeichnis `Server` folgender Befehl zum Kompilieren verwendet werden:
+
+```sh
+    mvn clean install
+```
+
+Es sollte nun eine ausführbare `.jar`-Datei im Verzeichnis `Server/target/` zu finden sein.
+Diese kann wie folgt ausgeführt werden:
+
+```sh
+    java -jar <NAME_OF_FILE>
+```
+
 ### CLIENT
 
 Go to DesktopApp_jar and execute the jar with the following VM options:
-    ```console
+    ```sh
     --module-path \"PATH TO YOUR JAVA FX SDK"\javafx-sdk-17.0.0.1\lib --add-modules=javafx.controls,javafx.fxml
     ```
-* If you want to work with the project, debug it, or develop it further, see the [configuration section](#configuration).
 
 CONFIGURATION
 -------------
 
+TODO: hier schreiben, was Client braucht an config und was Server braucht an config
+
 ### SERVER
 
+The [config file](./Server/src/main/resources/com/quap/config/config.properties) contains
+
+Im Falle von unbeabsichtigten Veränderungen kann auf das folgende Template zurückgegriffen werden:
+```properties
+    #DATABASE
+    database-postgres-name=postgres@localhost
+    database-postgres-socket=localhost\:5432
+    database-postgres-username=postgres
+    database-postgres-password=password
+    #RUNTIME
+    runtime-maxThreads=null
+    #NETWORK
+    network-prefer-protocol=java.net.preferIPv4Stack
+    network-adapter-name=Ethernet
+    network-ip-address=192.168.56.1
+    network-subnet-mask=255.255.0.0
+    network-default-gateway=192.168.178.1
+    #SOCKET
+    network-socket-hostname=192.168.178.69
+    network-socket-port=8192
+    network-socket-backlog=0
+```
+
 ### CLIENT
-TODO: hier schreiben, was Client braucht an config und was Server braucht an config
+
+
 
 FAQ
 ---
@@ -78,11 +116,11 @@ The ability to transfer your messages to another device is currently under devel
 The Outlook
 -----------
 
-#### This project is currently still under development.
-
-* ##### Planned features are:
+* #### Planned features are:
   - decentralized data synchronization
   - accessibility in the local network via DNS
   - live server console
   - profile and settings for users
 
+* #### Term Paper:
+  - this project is the practical part of my term paper
