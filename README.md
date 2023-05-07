@@ -24,15 +24,27 @@ This project requires the following installs:
 INSTALLATION
 ------------
 
-1. Please make sure that you have already successfully completed the installations from [requirements](#requirements).
-2. Clone the Project from [here]() via [Git]() and got to /out/artifacts/ 
-3. Navigate to the directory  /Quap/Server/src/main/resources/com/quap/db
-     Open a terminal and run
-    ```console
-     psql -h localhost -U postgres -f create-db.sql
-    ```
-4. Go to Server_jar and execute the jar
-5. Go to DesktopApp_jar and execute the jar with the following VM options:
+Es wird eine Postgres und eine Java, als auch eine JavaFX Installation vorausgesetzt.
+
+```sh
+    git clone https://github.com/leartpro/Quap.git
+```
+
+### SERVER
+
+Nun kann im Verzeichnis `Server/resources/com/quap/config` die Datei
+`config.properties` angepasst werden.
+In dieser muss neben den Socket Daten auch die Datenbank Verbindung festgelegt werden.
+
+Das Datenbankschema kann wie folgt aufgesetzt werden:
+
+```sh
+     psql -h <IP> -U <NAME> -f create-db.sql
+```
+
+### CLIENT
+
+Go to DesktopApp_jar and execute the jar with the following VM options:
     ```console
     --module-path \"PATH TO YOUR JAVA FX SDK"\javafx-sdk-17.0.0.1\lib --add-modules=javafx.controls,javafx.fxml
     ```
@@ -41,6 +53,9 @@ INSTALLATION
 CONFIGURATION
 -------------
 
+### SERVER
+
+### CLIENT
 TODO: hier schreiben, was Client braucht an config und was Server braucht an config
 
 FAQ
