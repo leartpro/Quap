@@ -65,11 +65,10 @@ Go to DesktopApp_jar and execute the jar with the following VM options:
 CONFIGURATION
 -------------
 
-TODO: hier schreiben, was Client braucht an config und was Server braucht an config
-
 ### SERVER
 
-The [config file](./Server/src/main/resources/com/quap/config/config.properties) contains
+Die Datei [config.properties](./Server/src/main/resources/com/quap/config/config.properties) 
+stellt die Konfigurationsdatei des Servers dar.
 
 Im Falle von unbeabsichtigten Veränderungen kann auf das folgende Template zurückgegriffen werden:
 ```properties
@@ -79,15 +78,11 @@ Im Falle von unbeabsichtigten Veränderungen kann auf das folgende Template zur�
     database-postgres-username=postgres
     database-postgres-password=password
     #RUNTIME
-    runtime-maxThreads=null
+    runtime-maxThreads=8
     #NETWORK
-    network-prefer-protocol=java.net.preferIPv4Stack
-    network-adapter-name=Ethernet
-    network-ip-address=192.168.56.1
-    network-subnet-mask=255.255.0.0
-    network-default-gateway=192.168.178.1
+    network-address-scope=IPv4
     #SOCKET
-    network-socket-hostname=192.168.178.69
+    network-socket-hostname=localhost
     network-socket-port=8192
     network-socket-backlog=0
 ```

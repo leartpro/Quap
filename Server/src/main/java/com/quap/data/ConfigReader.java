@@ -8,6 +8,7 @@ import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
+//TODO: use this configuration on server startup
 public class ConfigReader {
 
     public void loadDefaultProperties() throws IOException {
@@ -21,19 +22,15 @@ public class ConfigReader {
         database.store(writer, "DATABASE");
 
         OrderedProperties runtime = new OrderedProperties(new LinkedHashMap<>() ,true);
-        runtime.setProperty("runtime-maxThreads", "null");
+        runtime.setProperty("runtime-maxThreads", "8");
         runtime.store(writer, "RUNTIME");
 
         OrderedProperties network = new OrderedProperties(new LinkedHashMap<>() ,true);
-        network.setProperty("network-prefer-protocol", "java.net.preferIPv4Stack");
-        network.setProperty("network-adapter-name", "Ethernet");
-        network.setProperty("network-ip-address", "192.168.56.1");
-        network.setProperty("network-subnet-mask", "255.255.0.0");
-        network.setProperty("network-default-gateway", "192.168.178.1");
+        network.setProperty("network-address-scope", "IPv4");
         network.store(writer, "NETWORK");
 
         OrderedProperties socket = new OrderedProperties(new LinkedHashMap<>() ,true);
-        socket.setProperty("network-socket-hostname", "192.168.178.69");
+        socket.setProperty("network-socket-hostname", "localhost");
         socket.setProperty("network-socket-port", "8192");
         socket.setProperty("network-socket-backlog", "0");
         socket.store(writer, "SOCKET");

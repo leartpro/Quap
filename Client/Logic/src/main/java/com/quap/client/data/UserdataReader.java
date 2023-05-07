@@ -59,8 +59,7 @@ public class UserdataReader {
     public List<Message> getMessagesByChat(int id) {
         List<Message> messages = new ArrayList<>();
         try {
-            ResultSet result = statement.executeQuery("" +
-                    "select sender_id, content, created_at, username " +
+            ResultSet result = statement.executeQuery("select sender_id, content, created_at, username " +
                     "from messages " +
                     "inner join users " +
                     "on messages.sender_id = users.id " +
@@ -80,8 +79,7 @@ public class UserdataReader {
 
     public void addMessage(int chat_id, int sender_id, String senderName, String content) {
         PreparedStatement statement;
-        String query = "" +
-                "insert into messages(chat_id, sender_id, content) " +
+        String query = "insert into messages(chat_id, sender_id, content) " +
                 "values(?, ? ,?);";
         try {
             statement = connection.prepareStatement(query);
@@ -92,8 +90,7 @@ public class UserdataReader {
         } catch (SQLException throwable) {
             throwable.printStackTrace();
         }
-        query = "" +
-                "insert or ignore into users(id, username) " +
+        query = "insert or ignore into users(id, username) " +
                 "values(?, ?)";
         try {
             statement = connection.prepareStatement(query);
@@ -107,8 +104,7 @@ public class UserdataReader {
 
     public void deleteMessagesByChat(int chatID) {
         PreparedStatement statement;
-        String query = "" +
-                "delete from messages " +
+        String query = "delete from messages " +
                 "where chat_id = ?";
         try {
             statement = connection.prepareStatement(query);
