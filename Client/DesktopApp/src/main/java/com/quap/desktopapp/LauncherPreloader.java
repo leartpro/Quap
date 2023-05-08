@@ -15,7 +15,7 @@ import javafx.stage.StageStyle;
 import java.util.Objects;
 
 /**
- * Die Preloader Klasse lädt das Verbindungsfenster, während die Initialiserung des Clients im Hintergrund läuft
+ * Die Preloader Klasse lädt das Verbindungsfenster, während die Initialisierung des Clients im Hintergrund läuft
  */
 public class LauncherPreloader extends Preloader {
 

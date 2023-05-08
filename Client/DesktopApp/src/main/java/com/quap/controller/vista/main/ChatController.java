@@ -20,9 +20,9 @@ public class ChatController extends MainVistaNavigator{
     private final List<MainVistaObserver> observers = new ArrayList<>();
 
     @FXML
-    private TextField textConsole = new TextField();
+    private final TextField textConsole = new TextField();
     @FXML
-    private TextArea chatArea = new TextArea();
+    private final TextArea chatArea = new TextArea();
 
     private String type;
 

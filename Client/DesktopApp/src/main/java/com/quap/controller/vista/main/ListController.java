@@ -175,10 +175,6 @@ public class ListController extends MainVistaNavigator {
                 return cell;
             };
         }
-
-        public ContextMenuListCell(ContextMenu contextMenu) {
-            setContextMenu(contextMenu);
-        }
     }
 
     private static class ChatListCell extends ListCell<UserContent> {

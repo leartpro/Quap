@@ -46,7 +46,7 @@ public class Server{
     }
 
     /**
-     * Die Methode wirft einen Thread aus, indem auf einegende Verbindungsanfragen gewartet wird
+     * Die Methode wirft einen Thread aus, indem auf einhegende Verbindungsanfragen gewartet wird
      */
     public void receiveConnection() {
         Server server = this;
@@ -156,7 +156,7 @@ public class Server{
      * Sendet über den ClientHandler, welcher den Nutzer
      * mit der entsprechenden userID verwaltet die Nachricht
      * @param userID die Id des Nutzers
-     * @param message Die zu sendene Nachricht
+     * @param message Die zu senden Nachricht
      */
     public void forwardMessage(int userID, String message) {
         for (ClientHandler clientHandler : handler) {

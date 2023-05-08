@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 /**
  * Die Klasse stellt Möglichkeiten, wie bewegen, vergrößern und verkleinern der ihr übergebenen Stage zu Verfügung
  *
- @author https://stackoverflow.com/questions/19455059/allow-user-to-resize-an-undecorated-stage/51630063#51630063
+ @author <a href="https://stackoverflow.com/questions/19455059/allow-user-to-resize-an-undecorated-stage/51630063#51630063">...</a>
  */
 
 public class ResizeHelper {

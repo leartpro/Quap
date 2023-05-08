@@ -288,7 +288,7 @@ public class Client {
     }
 
     /**
-     * Diese Methode verpackt die Daten, welche zum übermittlen der Nachricht benötigt werden,
+     * Diese Methode verpackt die Daten, welche zum Übermitteln der Nachricht benötigt werden,
      * damit der Server diese verarbeiten kann.
      * @param message Die Nachricht, die im Chat angezeigt wird
      */
@@ -306,7 +306,7 @@ public class Client {
     }
 
     /**
-     * Diese Methode kennzeichnet ihren Input als Authtifikation und sendet die Daten an den Server.
+     * Diese Methode kennzeichnet ihren Input als Authentication und sendet die Daten an den Server.
      * @param authentication Die Daten im JSON-Format
      */
     public void sendAuthentication(String authentication) {

@@ -14,8 +14,7 @@ import java.util.List;
 
 /**
  * Die Klasse ist für die eingehenden Anfragen des übergebenen Clients zuständig.
- * Die ClientHandler laufen Nebenläufig voneinander ab, werden im Server verwaltet und verwalten jeweils
- * ein Object der Klasse UserdareReader.
+ * Die ClientHandler laufen Nebenläufig voneinander ab und werden im Server verwaltet
  */
 public class ClientHandler implements Runnable {
     private final int ID;
@@ -289,6 +288,7 @@ public class ClientHandler implements Runnable {
                 send(result.toString());
             }
             case 'd' -> {
+                System.out.println("disconnect found");
                 assert dbReader != null;
                 listen.interrupt();
                 dbReader.disconnect();
@@ -314,7 +314,7 @@ public class ClientHandler implements Runnable {
     }
 
     /**
-     * Teilt beim Methodenaufruf den VErbindungsabbruch dem Client mit
+     * Teilt beim Methodenaufruf den Verbindungsabbruch dem Client mit
      * @param status false bei Fehler
      */
     public void disconnect(boolean status) {

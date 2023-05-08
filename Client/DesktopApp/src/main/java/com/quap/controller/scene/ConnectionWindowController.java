@@ -39,15 +39,11 @@ public class ConnectionWindowController implements Initializable {
         prBar = progressBar;
     }
 
-    public void connect(String adress) {
+    public void connect(String address) {
         increaseProgress();
         Platform.runLater(() -> loadingLabel.setText("Open Connection"));
         try {
-            if (adress != null) {
-                client = new Client(adress, 8192);
-            } else {
-                client = new Client("192.168.178.43", 8192);
-            }
+            client = new Client(address, 8192);
         } catch (IOException e) {
             e.printStackTrace();
         }

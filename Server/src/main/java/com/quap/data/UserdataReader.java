@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * Diese Klasse stellt die Schnittstelle zur Serverdatenbank(postgres) dar.
- * Dabei stellt sie sowohl die Verbindung her, als auch Methoden um mit der Datanbank zu interagieren.
+ * Dabei stellt sie sowohl die Verbindung her, als auch Methoden um mit der Datenbank zu interagieren.
  */
 public class UserdataReader {
     final Connection connection;

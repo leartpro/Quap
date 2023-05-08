@@ -70,7 +70,7 @@ public class LoginWindowController extends WindowController implements LoginVist
     private CheckBox checkAnonymMode;
 
     @FXML
-    private Button btnLogin = new Button();
+    private final Button btnLogin = new Button();
 
     @FXML
     public void initialize() {
@@ -108,8 +108,8 @@ public class LoginWindowController extends WindowController implements LoginVist
     }
 
     /**
-     * Diese Methode wird aufgerufen, wenn der Server zurückgegeben hat, dass Nutzername und Passowrt übereinstimmen.
-     * Bei einem Methodenaufruft wird das Hauptfenster geladen.
+     * Diese Methode wird aufgerufen, wenn der Server zurückgegeben hat, dass Nutzername und Passwort übereinstimmen.
+     * Bei einem Methodenaufruf wird das Hauptfenster geladen.
      */
     @Override
     public void authSuccessEvent() {

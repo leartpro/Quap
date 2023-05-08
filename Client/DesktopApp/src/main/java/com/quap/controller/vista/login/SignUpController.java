@@ -19,22 +19,22 @@ public class SignUpController extends LoginVistaNavigator {
     private final List<LoginVistaObserver> observers = new ArrayList<>();
 
     @FXML
-    private TextField txtUsername = new TextField();
+    private final TextField txtUsername = new TextField();
 
     @FXML
-    private Label lblPassword = new Label();
+    private final Label lblPassword = new Label();
 
     @FXML
-    private PasswordField txtPassword = new PasswordField();
+    private final PasswordField txtPassword = new PasswordField();
 
     @FXML
-    private Label lblPasswordConfirm = new Label();
+    private final Label lblPasswordConfirm = new Label();
 
     @FXML
-    private PasswordField txtPasswordConfirm = new PasswordField();
+    private final PasswordField txtPasswordConfirm = new PasswordField();
 
     @FXML
-    private Label lblUsername = new Label();
+    private final Label lblUsername = new Label();
 
     @FXML
     void confirmPassword(KeyEvent keyEvent) {
