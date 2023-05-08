@@ -2,12 +2,10 @@ package com.quap.controller.vista.login;
 
 import com.quap.controller.VistaController;
 import com.quap.controller.vista.LoginVistaObserver;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Paint;
 
 import java.util.ArrayList;
@@ -74,7 +72,7 @@ public class SignInController extends LoginVistaNavigator {
     }
 
     @FXML
-    void validatePassword(KeyEvent keyEvent) {
+    void validatePassword() {
         password = txtPassword.getText();
         LoginVistaNavigator.validatePassword(password, lblPassword);
         for (LoginVistaObserver c : observers) {
@@ -92,7 +90,7 @@ public class SignInController extends LoginVistaNavigator {
     }
 
     @FXML
-    void signUp(ActionEvent event) {
+    void signUp() {
         for (LoginVistaObserver c : observers) {
             c.swapVistaEvent(VistaController.SignUp);
         }
