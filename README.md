@@ -20,11 +20,12 @@ This project requires the following installs:
 * [JDK-16+](https://jdk.java.net)
 * [Postgres](https://www.postgresql.org/)
 * [JavaFx SDK](https://gluonhq.com/products/javafx/)
+* [SQLite](https://www.sqlite.org/download.html)
 
 INSTALLATION
 ------------
 
-Es wird eine Postgres und eine Java, als auch eine JavaFX Installation vorausgesetzt.
+Es wird eine Postgres, eine SQLite und eine Java, als auch eine JavaFX Installation vorausgesetzt.
 
 ```sh
     git clone https://github.com/leartpro/Quap.git
@@ -33,42 +34,8 @@ Es wird eine Postgres und eine Java, als auch eine JavaFX Installation vorausges
 ### SERVER
 
 Nun kann im Verzeichnis `Server/resources/com/quap/config` die Datei
-`config.properties` angepasst werden (siehe [Configuration](#server-1)).
+[config.properties](./Server/src/main/resources/com/quap/config/config.properties) angepasst werden.
 In dieser muss neben den Socket Daten auch die Datenbank Verbindung festgelegt werden.
-
-Das Datenbankschema kann wie folgt aufgesetzt werden:
-
-```sh
-     psql -h <IP> -U <NAME> -f create-db.sql
-```
-
-Nun kann im Verzeichnis `Server` folgender Befehl zum Kompilieren verwendet werden:
-
-```sh
-    mvn clean install
-```
-
-Es sollte nun eine ausführbare `.jar`-Datei im Verzeichnis `Server/target/` zu finden sein.
-Diese kann wie folgt ausgeführt werden:
-
-```sh
-    java -jar <NAME_OF_FILE>
-```
-
-### CLIENT
-
-Go to DesktopApp_jar and execute the jar with the following VM options:
-    ```sh
-    --module-path \"PATH TO YOUR JAVA FX SDK"\javafx-sdk-17.0.0.1\lib --add-modules=javafx.controls,javafx.fxml
-    ```
-
-CONFIGURATION
--------------
-
-### SERVER
-
-Die Datei [config.properties](./Server/src/main/resources/com/quap/config/config.properties) 
-stellt die Konfigurationsdatei des Servers dar.
 
 Im Falle von unbeabsichtigten Veränderungen kann auf das folgende Template zurückgegriffen werden:
 ```properties
@@ -87,9 +54,53 @@ Im Falle von unbeabsichtigten Veränderungen kann auf das folgende Template zur�
     network-socket-backlog=0
 ```
 
+Das Datenbankschema kann wie folgt aufgesetzt werden:
+
+```sh
+     psql -h <IP> -U <NAME> -f create-db.sql
+```
+
+Nun kann im Verzeichnis `Server` folgender Befehl zum Kompilieren verwendet werden:
+
+```sh
+    mvn clean install
+```
+
+Es sollte nun eine ausführbare `.jar`-Datei im Verzeichnis `Server/target/` zu finden sein.
+Diese kann wie folgt ausgeführt werden:
+
+```sh
+    java -jar <NAME_OF_FILE>.jar
+```
+
 ### CLIENT
 
+Zum Kompilieren kann im Verzeichnis `Client` der folgende befehl verwendet werden:
+```sh
+    mvn clean install
+```
 
+Es sollte nun eine ausführbare `.jar`-Datei im Verzeichnis `Client/target/` zu finden sein.
+Diese kann wie folgt ausgeführt werden:
+```sh
+    java --module-path \<PATH_TO_YOUR_JAVA_FX_SDK>\javafx-sdk-17.0.0.1\lib --add-modules=javafx.controls,javafx.fxml -jar <NAME_OF_FILE>.jar <SERVER_IP>
+```
+
+USAGE
+-----
+
+Nach einer erfolgreichen Installation nach den oben genannten Schritten, sollte ein Ladefenster,
+gefolgt von einem Login-Fenster erscheinen. Hier kann über "SignUp" ein neuer Account erstellt werden.
+Ein gültiger Name besteht dabei aus vier bis zwölf Zeichen und ein gültiges Passwort besteht aus:
+-mindestens acht Zeichen
+-maximal zwölf Zeichen
+-Zahlen
+-Großbuchstaben
+-Kleinbuchstaben
+-Sonderzeichen, wie z.B. !?#
+
+Über das "+" Symbol können Chats erstellt oder Freunde hinzugefügt werden.
+In der Listen-Ansicht stellt ein Rechtsklick weitere Funktionen zu Verfügung.
 
 FAQ
 ---
@@ -107,7 +118,6 @@ I changed my device, and now I don't see my messages. Have they been deleted?
 Your messages are only stored on your device and give you absolute control over your data. 
 The ability to transfer your messages to another device is currently under development.
 
-
 The Outlook
 -----------
 
@@ -116,6 +126,11 @@ The Outlook
   - accessibility in the local network via DNS
   - live server console
   - profile and settings for users
+  - server logging
+  - server use configurations
+  - client can change server ip in runtime
 
-* #### Term Paper:
-  - this project is the practical part of my term paper
+* #### Issues:
+  - error handling in server is missing
+  - client ui does not load on connection error
+  - server ignores configuration
