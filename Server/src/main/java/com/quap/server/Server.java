@@ -1,13 +1,16 @@
 package com.quap.server;
 
+import com.quap.data.UserdataReader;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -17,6 +20,8 @@ import java.util.concurrent.TimeUnit;
 public class Server{
     private final ExecutorService service;
     private final ServerSocket socket;
+
+    private final UserdataReader dbConnector;
     private Thread receive;
 
     private final List<ClientHandler> handler = new ArrayList<>();
@@ -28,9 +33,14 @@ public class Server{
      * als auch die receiveConnection() Methode gestartet
      * @param socket die ServerSocket
      */
-    public Server(ServerSocket socket) {
-        service = Executors.newCachedThreadPool();
+    public Server(ServerSocket socket, ExecutorService service, Connection connection) {
         this.socket = socket;
+        this.service = service;
+        try {
+            this.dbConnector = new UserdataReader(connection);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         status = true;
         receiveConnection();
     }
@@ -54,7 +64,7 @@ public class Server{
                     assert client != null;
                     System.out.print("\r\nNew connection from " + client.getInetAddress() + ":" + client.getPort());
                     System.out.println(" to " + socket.getInetAddress() + ":" + socket.getLocalPort());
-                    ClientHandler clientHandler = new ClientHandler(client, UniqueIdentifier.getIdentifier(), server);
+                    ClientHandler clientHandler = new ClientHandler(client, UniqueIdentifier.getIdentifier(), server, dbConnector);
                     service.submit(clientHandler);
                     handler.add(clientHandler);
                     if(socket.isClosed()) {

@@ -8,7 +8,6 @@ import org.json.JSONObject;
 import java.io.*;
 import java.net.Socket;
 import java.net.SocketException;
-import java.sql.SQLException;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +19,7 @@ import java.util.List;
  */
 public class ClientHandler implements Runnable {
     private final int ID;
+    private final UserdataReader dbReader;
     private int userID;
     private final Socket socket;
     private final Server server;
@@ -37,10 +37,11 @@ public class ClientHandler implements Runnable {
      * @param ID eine UUID, generiert bei der UniqueIdentifier Klasse
      * @param server eine Referenz auf den Server
      */
-    public ClientHandler(Socket socket, int ID, Server server) {
+    public ClientHandler(Socket socket, int ID, Server server, UserdataReader dbConnector) {
         this.socket = socket;
         this.ID = ID;
         this.server = server;
+        this.dbReader = dbConnector;
         userID = -1;
 
         try {
@@ -98,12 +99,6 @@ public class ClientHandler implements Runnable {
         switch (message.charAt(2)) {
             case 'm' -> {
                 System.out.println("message found:" + content);
-                UserdataReader dbReader = null;
-                try {
-                    dbReader = new UserdataReader();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
                 JSONObject input = new JSONObject(content).getJSONObject("data");
                 int chatID = input.getInt("chat_id");
                 assert dbReader != null;
@@ -116,12 +111,6 @@ public class ClientHandler implements Runnable {
                 System.out.println("command found");
                 JSONObject data = new JSONObject(content).getJSONObject("data");
                 int senderID = data.getInt("sender_id");
-                UserdataReader dbReader = null;
-                try {
-                    dbReader = new UserdataReader();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
                 switch (new JSONObject(content).getString("type")) {
                     case "create-chat" -> {
                         String chatName = data.getString("chatname");
@@ -141,11 +130,6 @@ public class ClientHandler implements Runnable {
                     }
                     case "invite-user" -> {
                         System.out.println("Invite user to chat...");
-                        try {
-                            dbReader = new UserdataReader();
-                        } catch (SQLException e) {
-                            e.printStackTrace();
-                        }
                         String username = data.getString("username");
                         String senderName = name;
                         assert dbReader != null;
@@ -179,11 +163,6 @@ public class ClientHandler implements Runnable {
                     }
                     case "join-chat" -> {
                         int chatID = data.getInt("chatroom_id");
-                        try {
-                            dbReader = new UserdataReader();
-                        } catch (SQLException e) {
-                            e.printStackTrace();
-                        }
                         assert dbReader != null;
                         dbReader.addUserToChat(chatID, senderID);
                         JSONObject chat = dbReader.getChatByID(chatID);
@@ -287,12 +266,6 @@ public class ClientHandler implements Runnable {
             }
             case 'a' -> {
                 System.out.println("authentication found");
-                UserdataReader dbReader = null;
-                try {
-                    dbReader = new UserdataReader();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
                 assert dbReader != null;
                 JSONObject json = new JSONObject(content);
                 String name = json.getString("name");
@@ -316,12 +289,6 @@ public class ClientHandler implements Runnable {
                 send(result.toString());
             }
             case 'd' -> {
-                UserdataReader dbReader = null;
-                try {
-                    dbReader = new UserdataReader();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
                 assert dbReader != null;
                 listen.interrupt();
                 dbReader.disconnect();
@@ -330,7 +297,7 @@ public class ClientHandler implements Runnable {
     }
 
     /**
-     * Die Methode sendet beim aufruf, über den Writer, die Nachricht zum Client
+     * Die Methode sendet beim Aufruf, über den Writer, die Nachricht zum Client
      * @param message die Nachricht im JSON-Format, mit allen relevanten Metadaten
      */
     public void send(String message) {

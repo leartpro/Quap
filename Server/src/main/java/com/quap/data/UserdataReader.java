@@ -16,18 +16,15 @@ public class UserdataReader {
     Statement statement;
 
     /**
-     * Im Konstruktor wird eine Verbindung zur Datanbank mit URL, Nutzername und Passwort versucht.
-     * @throws SQLException sollte die VErbindung mit URL, Nutzername oder Passwort fehlgeschlagen sein
+     * Im Konstruktor wird eine Verbindung zur Datenbank mit URL, Nutzername und Passwort versucht.
+     * @throws SQLException sollte die Verbindung mit URL, Nutzername oder Passwort fehlgeschlagen sein
      */
-    public UserdataReader() throws SQLException {
-        connection = DriverManager.getConnection(
-                "jdbc:postgresql://localhost/postgres",
-                "lenniprotte",
-                "postgres");
-        statement = connection.createStatement();
+    public UserdataReader(Connection connection) throws SQLException {
+        this.connection = connection;
+        statement = this.connection.createStatement();
     }
 
-    public JSONObject insertUser(String name, String password) {
+    public synchronized JSONObject insertUser(String name, String password) {
         System.out.println("insertUser(" + name + "," + password + ")");
         PreparedStatement statement;
         JSONObject json = new JSONObject();
@@ -56,7 +53,7 @@ public class UserdataReader {
         return json;
     }
 
-    public JSONObject verifyUser(String name, String password) {
+    public synchronized JSONObject verifyUser(String name, String password) {
         System.out.println("verifyUser(" + name + "," + password + ")");
         JSONObject json = new JSONObject();
         json.put("return-value", "authentication");
@@ -74,7 +71,7 @@ public class UserdataReader {
         return json;
     }
 
-    private int getUserID(String name, String password) {
+    private synchronized int getUserID(String name, String password) {
         PreparedStatement statement = null;
         int userID = -1;
         String query = "SELECT id FROM users WHERE " +
@@ -107,7 +104,7 @@ public class UserdataReader {
         return userID;
     }
 
-    public JSONObject addChat(int userID, String chatName, boolean isPrivate) {
+    public synchronized JSONObject addChat(int userID, String chatName, boolean isPrivate) {
         JSONObject json = new JSONObject();
         int chatID = -1;
         PreparedStatement statement;
@@ -139,7 +136,7 @@ public class UserdataReader {
         return json;
     }
 
-    public void deleteUserFromChat(int userID, int chatID) {
+    public synchronized void deleteUserFromChat(int userID, int chatID) {
         PreparedStatement statement;
         String query = "DELETE FROM participants " +
                 "WHERE user_id = ? " +
@@ -178,7 +175,7 @@ public class UserdataReader {
         }
     }
 
-    private JSONArray chatsByUser(int id) {
+    private synchronized JSONArray chatsByUser(int id) {
         ResultSet result = null;
         JSONArray json = new JSONArray();
         try {
@@ -196,7 +193,7 @@ public class UserdataReader {
         return getObjects(result, json);
     }
 
-    private JSONArray chatroomsByUser(int id) {
+    private synchronized JSONArray chatroomsByUser(int id) {
         ResultSet result = null;
         JSONArray json = new JSONArray();
         try {
@@ -214,7 +211,7 @@ public class UserdataReader {
         return getObjects(result, json);
     }
 
-    public List<Integer> userIDsByChat(int chatID) {
+    public synchronized List<Integer> userIDsByChat(int chatID) {
         List<Integer> userIDs = new ArrayList<>();
         ResultSet result = null;
 
@@ -247,7 +244,7 @@ public class UserdataReader {
         return userIDs;
     }
 
-    public JSONArray usersByChat(int chatID) {
+    public synchronized JSONArray usersByChat(int chatID) {
         ResultSet result = null;
         JSONArray json = new JSONArray();
 
@@ -264,7 +261,7 @@ public class UserdataReader {
         return getObjects(result, json);
     }
 
-    private JSONArray getObjects(ResultSet result, JSONArray json) {
+    private synchronized JSONArray getObjects(ResultSet result, JSONArray json) {
         try {
             assert result != null;
             json = resultSetToJSONArray(result);
@@ -281,7 +278,7 @@ public class UserdataReader {
         return json;
     }
 
-    private JSONArray resultSetToJSONArray(ResultSet rs) throws SQLException {
+    private synchronized JSONArray resultSetToJSONArray(ResultSet rs) throws SQLException {
         JSONArray json = new JSONArray();
         ResultSetMetaData rsMetaData = rs.getMetaData();
         while (rs.next()) {
@@ -297,7 +294,7 @@ public class UserdataReader {
     }
 
 
-    public int userIDByName(String username) {
+    public synchronized int userIDByName(String username) {
         int userID = -1;
         ResultSet result = null;
 
@@ -327,7 +324,7 @@ public class UserdataReader {
         return userID;
     }
 
-    public JSONObject getChatByID(int chatID) {
+    public synchronized JSONObject getChatByID(int chatID) {
         ResultSet result = null;
         JSONObject json = new JSONObject();
 
@@ -355,7 +352,7 @@ public class UserdataReader {
         return json;
     }
 
-    public void addUserToChat(int chatID, int senderID) {
+    public synchronized void addUserToChat(int chatID, int senderID) {
         PreparedStatement statement;
         String query = "INSERT INTO participants(user_id, chatroom_id) " +
                 "VALUES(?,?)";
@@ -369,7 +366,7 @@ public class UserdataReader {
         }
     }
 
-    public int insertFriends(int senderID, int friend_id) {
+    public synchronized int insertFriends(int senderID, int friend_id) {
         PreparedStatement statement;
         String query = "WITH chat_insert " +
                 "         AS ( " +
@@ -407,7 +404,7 @@ public class UserdataReader {
         return chatID;
     }
 
-    public String userNameById(int userID) {
+    public synchronized String userNameById(int userID) {
         String username = "";
         ResultSet result = null;
 
@@ -437,7 +434,7 @@ public class UserdataReader {
         return username;
     }
 
-    public void unfriendUsers(int chatID) {
+    public synchronized void unfriendUsers(int chatID) {
         PreparedStatement statement;
         String query = "DELETE FROM chatrooms " +
                     "WHERE id = ? ";
@@ -450,7 +447,7 @@ public class UserdataReader {
         }
     }
 
-    public void disconnect() {
+    public synchronized void disconnect() {
         try {
             statement.close();
         } catch (SQLException e) {

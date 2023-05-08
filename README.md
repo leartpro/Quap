@@ -40,10 +40,10 @@ In dieser muss neben den Socket Daten auch die Datenbank Verbindung festgelegt w
 Im Falle von unbeabsichtigten Veränderungen kann auf das folgende Template zurückgegriffen werden:
 ```properties
     #DATABASE
-    database-postgres-name=postgres@localhost
-    database-postgres-socket=localhost\:5432
-    database-postgres-username=postgres
-    database-postgres-password=password
+    database-name=postgres
+    database-url=localhost:5432
+    database-username=root
+    database-password=toor
     #RUNTIME
     runtime-maxThreads=8
     #NETWORK
@@ -127,10 +127,8 @@ The Outlook
   - live server console
   - profile and settings for users
   - server logging
-  - server use configurations
   - client can change server ip in runtime
 
 * #### Issues:
   - error handling in server is missing
   - client ui does not load on connection error
-  - server ignores configuration
