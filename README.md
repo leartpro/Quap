@@ -5,7 +5,7 @@ INTRODUCTION
 
 This project is a messenger for the local network, written in Java, taking into account the avoidance of data storage.
 
-The project was developed as part of my term paper.
+The project was developed as part of my term paper und wird seitdem verbessert und erweitert.
 
 To ensure user-friendliness, the application has a graphical user interface through which the user can join chat rooms, 
 write with friends and all this anonymously.
@@ -128,6 +128,7 @@ The Outlook
   - profile and settings for users
   - server logging
   - client can change server ip in runtime
+  - client logout
 
 * #### Issues:
   - error handling in server is missing
