@@ -86,6 +86,12 @@ Diese kann wie folgt ausgeführt werden:
     java --module-path \<PATH_TO_YOUR_JAVA_FX_SDK>\javafx-sdk-17.0.0.1\lib --add-modules=javafx.controls,javafx.fxml -jar <NAME_OF_FILE>.jar <SERVER_IP>
 ```
 
+### DOCKER
+
+Sowohl im Verzeichnis `Server`, als auch im Verzeichnis `Client` finden sich bereits Dockerfiles.
+Es ist zu beachten, dass die jeweiligen .jar-Dateien bereits kompiliert vorliegen müssen.
+Je nach Port, auf dem der Client oder der Server läuft, ist eine Anpassung des entsprechenden Dockerfiles notwendig.
+
 USAGE
 -----
 
